@@ -51,10 +51,10 @@ export const nav: NavItem[] = [
       { heading: 'Problems we solve', className: 'problems', links: useCases },
       { heading: 'Industries we serve', className: 'industries', links: industries },
     ],
-    foot: {
-      text: 'Every service we offer is backed by our 100% money-back guarantee.',
-      link: guarantee,
-    },
+    foot: [
+      { text: 'Every service we offer is backed by our 100% money-back guarantee.', link: guarantee },
+      { text: 'Weighing other options?', link: { label: 'See how IMPACT compares', path: '/compare' } },
+    ],
   },
   {
     kind: 'menu',
@@ -105,7 +105,7 @@ export const nav: NavItem[] = [
         heading: 'Events',
         links: [
           { label: 'Webinars & Workshops', path: '/events' },
-          { label: 'Endless Customers Live', path: '/conference', site: 'ec', sub: 'On endlesscustomers.com' },
+          { label: 'Endless Customers Live', path: '/conference', site: 'ec' },
         ],
       },
     ],

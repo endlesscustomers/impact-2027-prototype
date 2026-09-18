@@ -56,6 +56,7 @@ const impact: PageEntry[] = [
   { path: '/instant-diagnostic', h1: 'Ask AI who to hire in your market. See if it says you.', title: 'Free Instant Diagnostic', group: 'Core', purpose: 'The free tool: enter your site, see how AI describes and recommends you.' },
   { path: '/deep-diagnostic', h1: 'See exactly what’s holding your growth back, and what to do first.', title: 'Deep Diagnostic & Roadmap', group: 'Core', purpose: 'The $5,000 first purchase: what you get, how it runs, what happens after.' },
   { path: '/guarantee', h1: 'If we miss the mark, we make it right.', title: '100% Money-Back Guarantee', group: 'Core', purpose: 'Every service we offer is covered: tell us within 7 days, we redo the work, and if we still miss, we refund you in full.' },
+  { path: '/compare', h1: 'IMPACT, an agency, a freelancer, or your own team: an honest comparison.', title: 'Compare Your Options', group: 'Core', purpose: 'How IMPACT compares to the other ways to get this done: cost, speed, what you own at the end, and who each is right for. Written the way we teach clients to write comparisons.' },
   { path: '/search', title: 'Search', group: 'Core' },
 
   { path: '/services', h1: 'Everything we do, and where to start.', title: 'All Services', group: 'Services', purpose: 'Every service on one page, with who it is for and where to start.' },

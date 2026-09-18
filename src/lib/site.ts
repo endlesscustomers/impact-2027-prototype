@@ -56,5 +56,5 @@ export interface NavGroup {
 
 export type NavItem =
   | { kind: 'link'; label: string; path: string }
-  | { kind: 'panel'; id: string; label: string; columns: { heading: string; className: string; links: NavLink[]; more?: NavLink }[]; foot: { text: string; link: NavLink } }
+  | { kind: 'panel'; id: string; label: string; columns: { heading: string; className: string; links: NavLink[]; more?: NavLink }[]; foot: { text: string; link: NavLink }[] }
   | { kind: 'menu'; id: string; label: string; groups: NavGroup[] };
