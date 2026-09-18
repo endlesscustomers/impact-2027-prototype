@@ -148,6 +148,12 @@ body[data-open] .scrim { opacity: 1; pointer-events: auto; }
 .col a { display: block; padding: 5px 0; color: var(--ink); font-weight: 500; font-size: 15px; letter-spacing: -.005em; transition: color .15s var(--ease); }
 .col a:hover { color: var(--accent); }
 .col.services ul a { font-size: 22px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; padding: 6px 0; }
+.badge {
+  display: inline-block; vertical-align: middle; margin-left: 10px; padding: 3px 8px; border-radius: 999px;
+  font-size: 11px; font-weight: 500; letter-spacing: .02em; line-height: 1; white-space: nowrap;
+  background: var(--accent); color: var(--accent-ink); position: relative; top: -2px;
+}
+.acc-body .badge { font-size: 10px; margin-left: 8px; }
 .col a.more { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
 .col a.more:hover { color: var(--accent); }
 .acc-body a.more { font-size: 15px; color: var(--ink-2); }

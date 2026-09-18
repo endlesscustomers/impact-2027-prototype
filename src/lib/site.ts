@@ -42,6 +42,8 @@ export interface NavLink {
   sub?: string;
   /** Hidden until the page has proof behind it (Cybersecurity). */
   whenProof?: boolean;
+  /** Small pill after the label, e.g. "Start here". */
+  badge?: string;
 }
 
 export interface NavGroup {

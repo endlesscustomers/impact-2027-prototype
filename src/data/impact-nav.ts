@@ -4,7 +4,7 @@ import type { NavItem, NavLink } from '../lib/site';
 // Order and labels are decisions; change them here and both desktop and mobile follow.
 
 export const services: NavLink[] = [
-  { label: 'Deep Diagnostic & Roadmap', path: '/deep-diagnostic' },
+  { label: 'Deep Diagnostic & Roadmap', path: '/deep-diagnostic', badge: 'Start here' },
   { label: 'Endless Customers Coaching', path: '/coaching' },
   { label: 'HubSpot Services', path: '/hubspot' },
   { label: 'Website Services', path: '/websites' },

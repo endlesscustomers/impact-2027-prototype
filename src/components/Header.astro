@@ -72,7 +72,7 @@ const crosses = (l: NavLink) => l.site && l.site !== site;
           {item.columns.map((col) => (
             <div class:list={['col', col.className]}>
               <h3>{col.heading}</h3>
-              <ul>{col.links.map((l) => <li data-when={l.whenProof ? 'proof' : undefined}><a href={linkHref(l)}>{l.label}</a></li>)}</ul>
+              <ul>{col.links.map((l) => <li data-when={l.whenProof ? 'proof' : undefined}><a href={linkHref(l)}>{l.label}{l.badge && <span class="badge">{l.badge}</span>}</a></li>)}</ul>
               {col.more && <a class="more" href={linkHref(col.more)}>{col.more.label} <span class="arrow">→</span></a>}
             </div>
           ))}
@@ -118,7 +118,7 @@ const crosses = (l: NavLink) => l.site && l.site !== site;
               ? item.columns.map((col, i) => (
                   <>
                     <h4>{col.heading}</h4>
-                    <ul class:list={{ big: i === 0 }}>{col.links.map((l) => <li data-when={l.whenProof ? 'proof' : undefined}><a href={linkHref(l)}>{l.label}</a></li>)}</ul>
+                    <ul class:list={{ big: i === 0 }}>{col.links.map((l) => <li data-when={l.whenProof ? 'proof' : undefined}><a href={linkHref(l)}>{l.label}{l.badge && <span class="badge">{l.badge}</span>}</a></li>)}</ul>
                     {col.more && <a class="more" href={linkHref(col.more)}>{col.more.label} →</a>}
                   </>
                 ))
