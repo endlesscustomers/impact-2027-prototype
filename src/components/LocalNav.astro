@@ -11,14 +11,11 @@ const clean = '/' + path.replace(/^\/+|\/+$/g, '');
 
 <nav class="localnav" aria-label={ms.name}>
   <div class="wrap">
-    <a class="name" href={href('impact', ms.base)}>
-      <b>{ms.name}</b>
-      <span>{ms.tagline}</span>
-    </a>
+    <a class="name" href={href('impact', ms.base)}>{ms.name}</a>
     <ul>
       {ms.links.map((l) => {
-        const here = !l.site && (clean === l.path);
-        return <li><a href={href(l.site ?? 'impact', l.path)} aria-current={here ? 'page' : undefined} class:list={{ ext: !!l.site }}>{l.label}</a></li>;
+        const here = !l.site && !l.hash && clean === l.path;
+        return <li><a href={href(l.site ?? 'impact', l.path) + (l.hash ? '#' + l.hash : '')} aria-current={here ? 'page' : undefined} class:list={{ ext: !!l.site }}>{l.label}</a></li>;
       })}
     </ul>
     <a class="cta" href={href('impact', ms.cta.path)}>{ms.cta.label}</a>
@@ -27,22 +24,21 @@ const clean = '/' + path.replace(/^\/+|\/+$/g, '');
 
 <style>
   .localnav { position: sticky; top: var(--header-h); z-index: 30; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); border-bottom: 1px solid var(--line); }
-  .localnav .wrap { display: flex; align-items: center; gap: 24px; height: 52px; }
-  .name { display: grid; line-height: 1.15; flex: none; }
-  .name b { font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
-  .name span { font-size: 11px; color: var(--ink-3); }
-  ul { list-style: none; margin: 0 auto; padding: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .localnav .wrap { display: flex; align-items: center; gap: 28px; height: 48px; }
+  .name { flex: none; font-size: 17px; font-weight: 600; letter-spacing: -.015em; }
+  ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
   ul::-webkit-scrollbar { display: none; }
-  li a { display: block; padding: 6px 10px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--ink-2); white-space: nowrap; }
+  li a { position: relative; display: block; padding: 14px 0; font-size: 13px; color: var(--ink-2); white-space: nowrap; }
   li a:hover { color: var(--ink); }
-  li a[aria-current="page"] { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+  li a[aria-current="page"] { color: var(--ink); }
+  li a[aria-current="page"]::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--ink); }
   li a.ext::after { content: " ↗"; color: var(--ink-3); }
-  .cta { flex: none; height: 34px; padding: 0 14px; border-radius: 999px; display: inline-flex; align-items: center; background: var(--ink); color: var(--bg); font-size: 13px; font-weight: 600; }
-  .cta:hover { filter: brightness(1.15); }
+  .cta { flex: none; height: 30px; padding: 0 12px; border-radius: 999px; display: inline-flex; align-items: center; border: 1px solid var(--line-strong); font-size: 13px; font-weight: 500; }
+  .cta:hover { border-color: var(--ink); }
   @media (max-width: 900px) {
-    .localnav .wrap { height: auto; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; gap: 8px 16px; }
-    .name span { display: none; }
-    .cta { order: 2; margin-left: auto; }
-    ul { order: 3; width: 100%; margin: 0; }
+    .localnav .wrap { height: auto; flex-wrap: wrap; padding-top: 8px; padding-bottom: 0; gap: 8px 16px; }
+    .cta { margin-left: auto; }
+    ul { width: 100%; margin: 0; gap: 18px; }
+    li a { padding: 10px 0; }
   }
 </style>

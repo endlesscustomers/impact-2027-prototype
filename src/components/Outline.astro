@@ -47,7 +47,7 @@ const split = (s: string) => { const i = s.indexOf(' — '); return i < 0 ? [s, 
   </section>
 
   {outline.blocks.map((b, i) => (
-    <section class:list={['section', 'block', { alt: i % 2 === 1 }]}>
+    <section class:list={['section', 'block', { alt: i % 2 === 1 }]} id={i === 0 ? 'services' : undefined}>
       <div class="wrap">
         <div class="bhead">
           <h2>{b.h}</h2>

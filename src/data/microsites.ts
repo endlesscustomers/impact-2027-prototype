@@ -4,6 +4,9 @@ import type { NavLink, SiteId } from '../lib/site';
 // local nav under it (the way Apple's product sections do). No second brand, no header lockup.
 // Every service except Workshops is one (Site Structure, 2026-09-18).
 
+/** Microsite nav link; `hash` jumps to a section on the target page. */
+export type MsLink = NavLink & { hash?: string };
+
 export interface Microsite {
   id: string;
   name: string;
@@ -11,7 +14,7 @@ export interface Microsite {
   base: string;
   /** One line under the name in the local nav. */
   tagline: string;
-  links: NavLink[];
+  links: MsLink[];
   cta: NavLink;
 }
 
@@ -24,10 +27,9 @@ export const microsites: Microsite[] = [
     links: [
       { label: 'Overview', path: '/coaching' },
       { label: 'How it works', path: '/coaching/how-it-works' },
-      { label: 'Alignment Day', path: '/coaching/alignment-day' },
       { label: 'Results', path: '/coaching/results' },
       { label: 'Pricing', path: '/coaching/pricing' },
-      { label: 'Our coaches', path: '/coaches', site: 'ec' },
+      { label: 'Coaches', path: '/coaches', site: 'ec' },
     ],
     cta: { label: 'Book an Explore Call', path: '/talk' },
   },
@@ -38,14 +40,11 @@ export const microsites: Microsite[] = [
     tagline: 'Diamond Solutions Partner · 15+ years · 27 certifications',
     links: [
       { label: 'Overview', path: '/hubspot' },
+      { label: 'Services', path: '/hubspot', hash: 'services' },
       { label: 'Training', path: '/hubspot/training' },
-      { label: 'Onboarding & setup', path: '/hubspot/onboarding' },
-      { label: 'Cleanup & rescue', path: '/hubspot/cleanup' },
-      { label: 'Integrations', path: '/hubspot/integrations' },
-      { label: 'Trust theme', path: '/hubspot/trust-theme' },
       { label: 'Results', path: '/hubspot/results' },
       { label: 'Pricing', path: '/hubspot/pricing' },
-      { label: 'Our experts', path: '/hubspot/experts' },
+      { label: 'Experts', path: '/hubspot/experts' },
     ],
     cta: { label: 'Talk to a HubSpot expert', path: '/talk' },
   },
@@ -56,14 +55,10 @@ export const microsites: Microsite[] = [
     tagline: 'Built to be found, trusted, and run in-house',
     links: [
       { label: 'Overview', path: '/websites' },
-      { label: 'Redesign', path: '/websites/redesign' },
-      { label: 'Optimization', path: '/websites/optimization' },
-      { label: 'Learning Center builds', path: '/websites/learning-center-builds' },
-      { label: 'Self-service tools', path: '/websites/self-service-tools' },
-      { label: 'Trust theme', path: '/hubspot/trust-theme' },
+      { label: 'Services', path: '/websites', hash: 'services' },
       { label: 'Portfolio', path: '/results/website-portfolio' },
       { label: 'Pricing', path: '/websites/pricing' },
-      { label: 'Our experts', path: '/websites/experts' },
+      { label: 'Experts', path: '/websites/experts' },
     ],
     cta: { label: 'Talk to a website strategist', path: '/talk' },
   },
@@ -74,11 +69,10 @@ export const microsites: Microsite[] = [
     tagline: 'Run by our Swell team',
     links: [
       { label: 'Overview', path: '/paid-media' },
-      { label: 'Management', path: '/paid-media/management' },
-      { label: 'Consulting & training', path: '/paid-media/consulting' },
+      { label: 'Services', path: '/paid-media', hash: 'services' },
       { label: 'Results', path: '/paid-media/results' },
       { label: 'Pricing', path: '/paid-media/pricing' },
-      { label: 'Our team', path: '/paid-media/experts' },
+      { label: 'Team', path: '/paid-media/experts' },
     ],
     cta: { label: 'Get a free ads assessment', path: '/talk' },
   },
