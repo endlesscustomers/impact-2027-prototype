@@ -1,4 +1,4 @@
-import type { NavItem, NavLink } from '../lib/site';
+import type { NavItem, NavLink, Ribbon } from '../lib/site';
 
 // endlesscustomers.com header, as settled with Bob on 2026-09-18.
 // Five items, with Pricing and Learning Center required. Get Coaching & Training is an
@@ -44,4 +44,11 @@ export const nav: NavItem[] = [
     ],
   },
   { kind: 'link', label: 'Pricing', path: '/pricing' },
+];
+
+// Announcement ribbon under the header.
+export const ribbons: Ribbon[] = [
+  { id: 'ecl-hartford-2026', on: ['/', '/coaching', '/coaches', '/become-a-coach', '/success-stories', '/pricing', '/book-a-call'], text: 'Endless Customers Live · Hartford, CT · October 5–7, 2026', short: 'Endless Customers Live · Oct 5–7', cta: 'Register', path: '/conference' },
+  { id: 'free-chapter', on: ['/book', '/what-is-endless-customers', '/how-to-implement'], text: 'Read the first chapter of Endless Customers free', short: 'First chapter, free', cta: 'Get it', path: '/book' },
+  { id: 'podcast', on: ['/learn', '/podcast', '/webinars', '/academy', '/instant-diagnostic'], text: 'The Endless Customers Podcast: a new conversation every week', short: 'New podcast episode weekly', cta: 'Listen', path: '/podcast' },
 ];

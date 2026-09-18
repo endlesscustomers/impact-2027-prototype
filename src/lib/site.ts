@@ -19,6 +19,24 @@ export function href(site: SiteId, path: string = '/'): string {
   return clean ? `${BASE}/${SITES[site].dir}/${clean}/` : `${BASE}/${SITES[site].dir}/`;
 }
 
+/** A file under public/, e.g. asset('img/logos/yale.png'). */
+export function asset(path: string): string {
+  return `${BASE}/${path.replace(/^\/+/, '')}`;
+}
+
+/** A contextual announcement under the header, chosen by path prefix (first match wins). */
+export interface Ribbon {
+  id: string;
+  /** Real-site path prefixes this ribbon shows on; '/' matches only the homepage. */
+  on: string[];
+  text: string;
+  /** Shorter copy for phones. */
+  short?: string;
+  cta: string;
+  path: string;
+  site?: SiteId;
+}
+
 /** The prototype's own entry page. */
 export function entryHref(): string {
   return `${BASE}/`;

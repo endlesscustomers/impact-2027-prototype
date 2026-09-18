@@ -3,6 +3,7 @@
 import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Ribbon from '../components/Ribbon.astro';
 import type { SiteId } from '../lib/site';
 import { SITES, entryHref, realUrl } from '../lib/site';
 import * as impact from '../data/impact-nav';
@@ -29,6 +30,7 @@ const mobileNote = site === 'ec'
 <Base title={`${title} · ${s.domain}`} description={description} favicon={site}>
   <slot name="head" slot="head" />
   <Header site={site} nav={nav} cta={cta} mobileNote={mobileNote} currentPath={path} />
+  <Ribbon site={site} path={path} ribbons={site === 'ec' ? ec.ribbons : impact.ribbons} />
   <main>
     <slot />
   </main>

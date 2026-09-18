@@ -283,3 +283,23 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 @media (min-width: 901px) and (max-width: 1100px) {
   .grid.c4 { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ---------- Ribbon (announcement under the header; Zoom's shape, per-section content) ---------- */
+.ribbon-wrap { padding: 12px 20px 0; }
+.ribbon {
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 48px; padding: 8px 48px 8px 20px; border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 5%, transparent); color: var(--ink); font-size: 15px;
+  transition: background .15s var(--ease);
+}
+html[data-dark] .ribbon { background: rgba(255,255,255,.08); }
+.ribbon:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
+html[data-dark] .ribbon:hover { background: rgba(255,255,255,.12); }
+.ribbon .short { display: none; }
+.ribbon .pill { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; background: var(--grad); color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.ribbon-wrap[hidden] { display: none; }
+@media (max-width: 734px) {
+  .ribbon-wrap { padding: 10px 12px 0; }
+  .ribbon { font-size: 14px; padding-left: 14px; gap: 10px; }
+  .ribbon .long { display: none; } .ribbon .short { display: inline; }
+}

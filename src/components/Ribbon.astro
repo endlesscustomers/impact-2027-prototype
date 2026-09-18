@@ -1,0 +1,51 @@
+---
+// Announcement ribbon under the header. Shape borrowed from zoom.com (inset, rounded, text + pill + close);
+// behavior borrowed from apple.com (the message changes by section). Dismissal is per message and remembered.
+import type { Ribbon, SiteId } from '../lib/site';
+import { href } from '../lib/site';
+
+interface Props { site: SiteId; path: string; ribbons: Ribbon[] }
+const { site, path, ribbons } = Astro.props;
+
+const clean = '/' + path.replace(/^\/+|\/+$/g, '');
+const pick = ribbons.find((r) => r.on.some((p) => (p === '/' ? clean === '/' : clean === p || clean.startsWith(p + '/'))));
+---
+
+{pick && (
+  <div class="ribbon-wrap" data-ribbon={pick.id} hidden>
+    <div class="wrap">
+      <a class="ribbon" href={href(pick.site ?? site, pick.path)}>
+        <span class="long">{pick.text}</span>
+        <span class="short">{pick.short ?? pick.text}</span>
+        <span class="pill">{pick.cta} →</span>
+      </a>
+      <button class="x" type="button" aria-label="Dismiss" data-dismiss>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+      </button>
+    </div>
+  </div>
+)}
+
+<style>
+  .wrap { position: relative; }
+  .x { position: absolute; right: 32px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; color: var(--ink-3); }
+  .x:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+  .x svg { width: 14px; height: 14px; }
+  .x svg path { stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; }
+  @media (max-width: 734px) { .x { right: 6px; } }
+</style>
+
+<script is:inline>
+  (function () {
+    var el = document.querySelector('[data-ribbon]');
+    if (!el) return;
+    var key = 'ribbon:' + el.getAttribute('data-ribbon');
+    var gone = false;
+    try { gone = localStorage.getItem(key) === '1'; } catch (e) {}
+    if (!gone) el.removeAttribute('hidden');
+    el.querySelector('[data-dismiss]').addEventListener('click', function () {
+      el.setAttribute('hidden', '');
+      try { localStorage.setItem(key, '1'); } catch (e) {}
+    });
+  })();
+</script>
