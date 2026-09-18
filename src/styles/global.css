@@ -77,7 +77,6 @@ img, svg { display: block; max-width: 100%; }
   border-radius: 8px; transition: color .15s var(--ease), background .15s var(--ease);
 }
 .nav-btn:hover, .nav-btn[aria-expanded="true"], .nav-btn[aria-current="page"] { color: var(--ink); }
-.nav-btn[aria-expanded="true"] { background: color-mix(in srgb, var(--ink) 6%, transparent); }
 .chev { width: 10px; height: 10px; transition: transform .2s var(--ease); opacity: .6; }
 [aria-expanded="true"] > .chev { transform: rotate(180deg); }
 .chev path { stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
@@ -93,7 +92,7 @@ img, svg { display: block; max-width: 100%; }
 .icon-btn:hover .tip, .icon-btn:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
 .tip-dark, html[data-dark] .tip-light { display: none; }
 html[data-dark] .tip-dark { display: block; }
-.icon-btn:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.icon-btn:hover { color: var(--ink); }
 .icon-btn svg { width: 18px; height: 18px; }
 .icon-btn svg * { stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .cta {
