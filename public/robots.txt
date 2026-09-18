@@ -1,0 +1,3 @@
+# Prototype. Not for indexing. Every page also carries <meta name="robots" content="noindex, nofollow">.
+User-agent: *
+Disallow: /

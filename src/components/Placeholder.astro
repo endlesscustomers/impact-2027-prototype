@@ -1,0 +1,27 @@
+---
+// A page that exists so the link works. Says what the page is for and where it sits.
+import Site from '../layouts/Site.astro';
+import type { SiteId } from '../lib/site';
+import { href, SITES } from '../lib/site';
+import type { PageEntry } from '../data/pages';
+
+interface Props { site: SiteId; page: PageEntry }
+const { site, page } = Astro.props;
+const s = SITES[site];
+---
+
+<Site site={site} title={page.title} path={page.path} status="placeholder">
+  <section class="hero">
+    <div class="wrap">
+      <p class="crumbs"><a href={href(site, '/')}>{s.name}</a><span>/</span>{page.group}</p>
+      <h1>{page.title}</h1>
+      <p class="lede">{page.purpose ?? 'This page is in the plan but has not been written yet.'}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap narrow prose">
+      <p><strong>Placeholder.</strong> It is here so every link in the header and footer goes somewhere. The header, footer, and page shell are real; the copy for this page is still to come.</p>
+      <p>Real address when the site launches: <strong>{s.domain}{page.path === '/' ? '' : page.path}</strong></p>
+    </div>
+  </section>
+</Site>

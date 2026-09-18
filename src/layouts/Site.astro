@@ -1,0 +1,42 @@
+---
+// A page on one of the two sites: header, page body, footer, and the prototype strip.
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { SiteId } from '../lib/site';
+import { SITES, entryHref, realUrl } from '../lib/site';
+import * as impact from '../data/impact-nav';
+import * as ec from '../data/ec-nav';
+
+interface Props {
+  site: SiteId;
+  title: string;
+  description?: string;
+  /** Real-site path of this page, e.g. "/pricing". Used for the strip and nav highlighting. */
+  path: string;
+  /** "draft" pages are proposed copy; "placeholder" pages exist only so the link works. */
+  status?: 'draft' | 'placeholder';
+}
+const { site, title, description, path, status = 'draft' } = Astro.props;
+const s = SITES[site];
+const nav = site === 'ec' ? ec.nav : impact.nav;
+const cta = site === 'ec' ? ec.cta : impact.cta;
+const mobileNote = site === 'ec'
+  ? { text: 'Endless Customers is a brand of IMPACT.' }
+  : { text: 'Not sure where to start?', link: impact.instantDiagnostic };
+---
+
+<Base title={`${title} · ${s.domain}`} description={description}>
+  <Header site={site} nav={nav} cta={cta} mobileNote={mobileNote} currentPath={path} />
+  <main>
+    <slot />
+  </main>
+  <Footer site={site} />
+
+  <div class="proto" aria-label="Prototype">
+    <span class="dot" aria-hidden="true"></span>
+    <b>{realUrl(site, path)}</b>
+    <span class="status">{status === 'placeholder' ? 'placeholder' : 'draft'}</span>
+    <a href={entryHref()}>All pages</a>
+  </div>
+</Base>

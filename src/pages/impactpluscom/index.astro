@@ -1,0 +1,138 @@
+---
+// impactplus.com home. Draft copy for reaction; proof slots are marked, not invented.
+import Site from '../../layouts/Site.astro';
+import { href } from '../../lib/site';
+import { services, useCases, industries } from '../../data/impact-nav';
+---
+
+<Site site="impact" title="IMPACT" path="/" description="IMPACT is a training and coaching company. We do what you can't yet, and teach you to run the rest.">
+  <section class="hero home">
+    <div class="wrap">
+      <p class="eyebrow">Training and coaching for companies that want to be found, trusted, and chosen</p>
+      <h1>When your buyers ask AI who to hire, does it recommend you?</h1>
+      <p class="lede">Most companies can't answer that yet. We can tell you in about a minute, and then show you what to do about it. IMPACT does the work you can't do yet, and teaches your team to run the rest.</p>
+      <div class="actions">
+        <a class="btn primary" href={href('impact', '/instant-diagnostic')}>Take the free instant diagnostic <span class="arrow">→</span></a>
+        <a class="btn" href={href('impact', '/talk')}>Let’s Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>How it starts</h2>
+      <p class="intro">One first step for everyone, so nobody buys the wrong thing. Where it goes from there depends on what the diagnostic finds.</p>
+      <div class="grid c3 steps">
+        <a class="card" href={href('impact', '/instant-diagnostic')}>
+          <span class="num">1</span>
+          <h3>Free instant diagnostic</h3>
+          <p>Enter your website. See how AI describes you, whether it recommends you, and what it gets wrong. Takes about a minute.</p>
+          <span class="more">Run it now →</span>
+        </a>
+        <a class="card" href={href('impact', '/deep-diagnostic')}>
+          <span class="num">2</span>
+          <h3>Deep Diagnostic &amp; Roadmap</h3>
+          <p>A full review of your marketing, sales, and AI visibility, with a prioritized roadmap your team can run with or without us. $5,000.</p>
+          <span class="more">What you get →</span>
+        </a>
+        <a class="card" href={href('impact', '/services')}>
+          <span class="num">3</span>
+          <h3>The service you need</h3>
+          <p>Coaching, HubSpot, a website, paid media, or a workshop. The roadmap says which, in what order, and what you can keep in-house.</p>
+          <span class="more">All services →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>How we help</h2>
+      <p class="intro">Start from what we do, what you need, or who you are. They all lead to the same handful of services.</p>
+      <div class="grid c3 help-home">
+        <div>
+          <h3 class="colhead">What we do</h3>
+          <ul class="list-links">{services.map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
+        </div>
+        <div>
+          <h3 class="colhead">What you need</h3>
+          <ul class="list-links small">{useCases.map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
+        </div>
+        <div>
+          <h3 class="colhead">Who we serve</h3>
+          <ul class="list-links small">{industries.filter((l) => !l.whenProof).map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">The system behind everything we do</p>
+          <h2>Endless Customers</h2>
+          <p class="intro">Every service at IMPACT runs on one system: become the most known, trusted, and recommended company in your market by answering what buyers ask, showing what others hide, and teaching your own team to do it. The book explains it. The coaching installs it. The other services do the parts you can't yet.</p>
+          <div class="actions" style="margin-top: 8px;">
+            <a class="btn" href={href('ec', '/')}>Explore the system on endlesscustomers.com <span class="arrow">→</span></a>
+            <a class="btn" href={href('impact', '/coaching')}>Coaching &amp; training</a>
+          </div>
+        </div>
+        <div class="ec-mark" aria-hidden="true">
+          <span class="ring"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Proof</h2>
+      <p class="intro">Client stories go here: three of them, each with the company, the industry, the problem, and the numbers, in their words. <span class="tag plan">Content to come, from the testimonials library</span></p>
+      <div class="grid c3">
+        {[1, 2, 3].map(() => (
+          <div class="card story">
+            <span class="tag plan">Client story slot</span>
+            <h3>Company name, industry</h3>
+            <p>The problem they came with, what changed, and the result, in a sentence or two of their own words.</p>
+            <span class="more">Read the story →</span>
+          </div>
+        ))}
+      </div>
+      <div class="actions"><a class="btn" href={href('impact', '/results/success-stories')}>All success stories</a><a class="btn" href={href('impact', '/results/reviews')}>Reviews</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid c2">
+        <a class="card big" href={href('impact', '/learn')}>
+          <p class="eyebrow">Learning Center</p>
+          <h3>Answers first. No forms.</h3>
+          <p>Articles, videos, and tools, searchable by the problem you have, your role, and your industry. Everything ungated.</p>
+          <span class="more">Explore the Learning Center →</span>
+        </a>
+        <a class="card big" href={href('impact', '/speaking')}>
+          <p class="eyebrow">Speaking</p>
+          <h3>Bring the question to your room.</h3>
+          <p>Bob Ruffolo and Marcus Sheridan speak to owner groups and industry events about what AI has changed for buyers, and what to do about it.</p>
+          <span class="more">Request a speaker →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .hero.home { padding: 112px 0 88px; }
+  .hero.home h1 { max-width: 16ch; }
+  .steps .card { position: relative; padding-top: 28px; }
+  .steps .num { position: absolute; top: 20px; right: 22px; font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .colhead { margin: 0 0 8px; font-size: 13px; font-weight: 400; color: var(--ink-3); }
+  .help-home .list-links.small a { font-size: 15px; padding: 11px 0; }
+  .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .ec-mark { display: grid; place-items: center; min-height: 260px; }
+  .ring { width: 220px; height: 220px; border-radius: 50%; background: var(--grad); opacity: .9; filter: blur(2px); mask: radial-gradient(circle, transparent 58%, #000 60%); -webkit-mask: radial-gradient(circle, transparent 58%, #000 60%); }
+  .story h3 { color: var(--ink-3); }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } .ec-mark { min-height: 160px; } .ring { width: 140px; height: 140px; } .hero.home { padding: 64px 0 48px; } }
+</style>

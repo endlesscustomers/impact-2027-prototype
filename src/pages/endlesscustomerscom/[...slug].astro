@@ -1,0 +1,14 @@
+---
+// Generates a placeholder for every registered page on this site that has no .astro file of its own.
+// A real file at the same path wins over this route automatically.
+import Placeholder from '../../components/Placeholder.astro';
+import { pages } from '../../data/pages';
+
+export function getStaticPaths() {
+  return pages.ec
+    .filter((p) => p.path !== '/')
+    .map((p) => ({ params: { slug: p.path.replace(/^\//, '') }, props: { page: p } }));
+}
+const { page } = Astro.props;
+---
+<Placeholder site="ec" page={page} />
