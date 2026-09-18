@@ -17,14 +17,14 @@ export const guarantee: NavLink = { label: 'Read the guarantee', path: '/guarant
 
 // Menu labels are the topics a buyer would name; the pages behind them carry the persuasive H1s.
 export const useCases: NavLink[] = [
-  { label: 'AI visibility', path: '/help/ai-visibility' },
-  { label: 'Lead generation', path: '/help/leads' },
-  { label: 'Sales enablement', path: '/help/sales' },
-  { label: 'Content and video', path: '/help/content' },
-  { label: 'Reviews and reputation', path: '/help/reviews' },
-  { label: 'CRM and customer data', path: '/help/crm' },
-  { label: 'AI and automation', path: '/help/ai' },
-  { label: 'Marketing team training', path: '/help/team' },
+  { label: 'AI Visibility', path: '/help/ai-visibility' },
+  { label: 'Lead Generation', path: '/help/leads' },
+  { label: 'Sales Enablement', path: '/help/sales' },
+  { label: 'Content and Video', path: '/help/content' },
+  { label: 'Reviews and Reputation', path: '/help/reviews' },
+  { label: 'CRM and Customer Data', path: '/help/crm' },
+  { label: 'AI and Automation', path: '/help/ai' },
+  { label: 'Marketing Team Training', path: '/help/team' },
 ];
 
 export const industries: NavLink[] = [
