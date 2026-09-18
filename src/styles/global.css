@@ -147,16 +147,21 @@ body[data-open] .scrim { opacity: 1; pointer-events: auto; }
 .col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
 .col a { display: block; padding: 5px 0; color: var(--ink); font-weight: 500; font-size: 15px; letter-spacing: -.005em; transition: color .15s var(--ease); }
 .col a:hover { color: var(--accent); }
-.col.services a { font-size: 22px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; padding: 6px 0; }
+.col.services ul a { font-size: 22px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; padding: 6px 0; }
+.col a.more { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.col a.more:hover { color: var(--accent); }
+.acc-body a.more { font-size: 15px; color: var(--ink-2); }
 li[data-when="proof"] { display: none; }
 
 .help-foot {
   margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line);
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 28px; font-size: 14px; color: var(--ink-3);
 }
+.help-foot { color: var(--ink-2); font-size: 15px; gap: 8px 14px; align-items: center; }
+.help-foot .shield { width: 20px; height: 20px; flex: none; }
+.help-foot .shield path { stroke: var(--accent); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .help-foot a { color: var(--ink); font-weight: 500; }
 .help-foot a:hover { color: var(--accent); }
-.help-foot .why { margin-left: auto; }
 .arrow { display: inline-block; transition: transform .15s var(--ease); }
 a:hover > .arrow { transform: translateX(2px); }
 

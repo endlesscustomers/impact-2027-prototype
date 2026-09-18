@@ -4,7 +4,7 @@ import type { NavItem, NavLink } from '../lib/site';
 // Order and labels are decisions; change them here and both desktop and mobile follow.
 
 export const services: NavLink[] = [
-  { label: 'Explore All Services', path: '/services' },
+  { label: 'Deep Diagnostic & Roadmap', path: '/deep-diagnostic' },
   { label: 'Endless Customers Coaching', path: '/coaching' },
   { label: 'HubSpot Services', path: '/hubspot' },
   { label: 'Website Services', path: '/websites' },
@@ -12,15 +12,19 @@ export const services: NavLink[] = [
   { label: 'Workshops', path: '/workshops' },
 ];
 
+export const exploreAll: NavLink = { label: 'Explore all services', path: '/services' };
+export const guarantee: NavLink = { label: 'Read the guarantee', path: '/guarantee' };
+
+// Menu labels are the topics a buyer would name; the pages behind them carry the persuasive H1s.
 export const useCases: NavLink[] = [
-  { label: 'Get recommended by AI', path: '/help/ai-visibility' },
-  { label: 'Get more leads', path: '/help/leads' },
-  { label: 'Close sales faster', path: '/help/sales' },
-  { label: 'Make content and video that sells', path: '/help/content' },
-  { label: 'Get more reviews', path: '/help/reviews' },
-  { label: 'Fix our CRM and customer data', path: '/help/crm' },
-  { label: 'Put AI and automation to work', path: '/help/ai' },
-  { label: 'Build and train our marketing team', path: '/help/team' },
+  { label: 'AI visibility', path: '/help/ai-visibility' },
+  { label: 'Lead generation', path: '/help/leads' },
+  { label: 'Sales enablement', path: '/help/sales' },
+  { label: 'Content and video', path: '/help/content' },
+  { label: 'Reviews and reputation', path: '/help/reviews' },
+  { label: 'CRM and customer data', path: '/help/crm' },
+  { label: 'AI and automation', path: '/help/ai' },
+  { label: 'Marketing team training', path: '/help/team' },
 ];
 
 export const industries: NavLink[] = [
@@ -43,14 +47,13 @@ export const nav: NavItem[] = [
     id: 'help',
     label: 'How We Help',
     columns: [
-      { heading: 'What we do', className: 'services', links: services },
-      { heading: 'What you need', className: 'problems', links: useCases },
-      { heading: 'Who we serve', className: 'industries', links: industries },
+      { heading: 'Services we offer', className: 'services', links: services, more: exploreAll },
+      { heading: 'Problems we solve', className: 'problems', links: useCases },
+      { heading: 'Industries we serve', className: 'industries', links: industries },
     ],
     foot: {
-      lead: 'Not sure where to start?',
-      links: [instantDiagnostic, { label: 'Start with the Deep Diagnostic & Roadmap', path: '/deep-diagnostic' }],
-      why: { label: 'Why IMPACT?', path: '/why-impact' },
+      text: 'Every service we offer is backed by our money-back guarantee.',
+      link: guarantee,
     },
   },
   {

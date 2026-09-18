@@ -2,7 +2,7 @@
 // impactplus.com home. Draft copy for reaction; proof slots are marked, not invented.
 import Site from '../../layouts/Site.astro';
 import { href } from '../../lib/site';
-import { services, useCases, industries } from '../../data/impact-nav';
+import { services, useCases, industries, exploreAll } from '../../data/impact-nav';
 ---
 
 <Site site="impact" title="IMPACT" path="/" description="IMPACT is a training and coaching company. We do what you can't yet, and teach you to run the rest.">
@@ -50,15 +50,15 @@ import { services, useCases, industries } from '../../data/impact-nav';
       <p class="intro">Start from what we do, what you need, or who you are. They all lead to the same handful of services.</p>
       <div class="grid c3 help-home">
         <div>
-          <h3 class="colhead">What we do</h3>
-          <ul class="list-links">{services.map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
+          <h3 class="colhead">Services we offer</h3>
+          <ul class="list-links">{[...services, exploreAll].map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
         </div>
         <div>
-          <h3 class="colhead">What you need</h3>
+          <h3 class="colhead">Problems we solve</h3>
           <ul class="list-links small">{useCases.map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
         </div>
         <div>
-          <h3 class="colhead">Who we serve</h3>
+          <h3 class="colhead">Industries we serve</h3>
           <ul class="list-links small">{industries.filter((l) => !l.whenProof).map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
         </div>
       </div>
