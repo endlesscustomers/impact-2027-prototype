@@ -83,7 +83,16 @@ img, svg { display: block; max-width: 100%; }
 .chev path { stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
 .tools { display: flex; align-items: center; gap: 8px; justify-self: end; }
-.icon-btn { width: 36px; height: 36px; display: inline-grid; place-items: center; border-radius: 8px; color: var(--ink-2); }
+.icon-btn { position: relative; width: 36px; height: 36px; display: inline-grid; place-items: center; border-radius: 8px; color: var(--ink-2); }
+/* Caption under an icon, shown on hover or keyboard focus (as on the sandbox nav). */
+.icon-btn .tip {
+  position: absolute; top: calc(100% + 2px); left: 50%; transform: translate(-50%, -2px);
+  font-size: 11px; line-height: 1; white-space: nowrap; color: var(--ink-3); letter-spacing: .01em;
+  opacity: 0; pointer-events: none; transition: opacity .15s var(--ease), transform .15s var(--ease);
+}
+.icon-btn:hover .tip, .icon-btn:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
+.tip-dark, html[data-dark] .tip-light { display: none; }
+html[data-dark] .tip-dark { display: block; }
 .icon-btn:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
 .icon-btn svg { width: 18px; height: 18px; }
 .icon-btn svg * { stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
@@ -240,7 +249,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .proto .status { opacity: .75; }
 
 @media (max-width: 900px) {
-  .nav, .tools .search { display: none; }
+  .nav, .tools .search, .tools .account, .icon-btn .tip { display: none; }
   .header .cta { padding: 0 14px; font-size: 13px; }
   .header .cta.grad { display: none; }
   .tools .theme { order: -1; }
