@@ -33,8 +33,9 @@ const clean = '/' + path.replace(/^\/+|\/+$/g, '');
   li a[aria-current="page"] { color: var(--ink); }
   li a[aria-current="page"]::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--ink); }
   li a.ext::after { content: " ↗"; color: var(--ink-3); }
-  .cta { flex: none; height: 30px; padding: 0 12px; border-radius: 999px; display: inline-flex; align-items: center; border: 1px solid var(--line-strong); font-size: 13px; font-weight: 500; }
-  .cta:hover { border-color: var(--ink); }
+  .cta { flex: none; font-size: 13px; font-weight: 500; color: var(--accent); }
+  .cta::after { content: ' ›'; }
+  .cta:hover { text-decoration: underline; text-underline-offset: 3px; }
   @media (max-width: 900px) {
     .localnav .wrap { height: auto; flex-wrap: wrap; padding-top: 8px; padding-bottom: 0; gap: 8px 16px; }
     .cta { margin-left: auto; }
