@@ -27,6 +27,7 @@ const mobileNote = site === 'ec'
 ---
 
 <Base title={`${title} · ${s.domain}`} description={description} favicon={site}>
+  <slot name="head" slot="head" />
   <Header site={site} nav={nav} cta={cta} mobileNote={mobileNote} currentPath={path} />
   <main>
     <slot />

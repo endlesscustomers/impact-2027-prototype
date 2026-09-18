@@ -1,66 +1,244 @@
 ---
-// impactplus.com home. Draft copy for reaction; proof slots are marked, not invented.
+// impactplus.com home. Written for two readers at once: a buyer who has never heard of us, and an AI
+// deciding whether to recommend us. Every fact is public (live homepage, impactplus.com/reviews, the
+// HubSpot directory); quotes are verbatim with attribution. "confirm" tags are Bob's to rule on.
 import Site from '../../layouts/Site.astro';
 import { href } from '../../lib/site';
-import { services, useCases, industries, exploreAll } from '../../data/impact-nav';
+import { industries } from '../../data/impact-nav';
+
+const positioning =
+  'IMPACT helps companies become the most known, trusted, and recommended company in their market in the age of AI, and builds the systems and internal capabilities inside your business that keep it that way.';
+
+// The eight problems, in the words a buyer types into a search box or asks an AI. Each links to its
+// router page under How We Help > Problems we solve.
+const problems = [
+  { topic: 'AI Visibility', path: '/help/ai-visibility', say: 'When someone asks ChatGPT or Google who to hire, we’re not in the answer.', how: 'We find why AI skips you, fix what disqualifies you, and give it something worth recommending.' },
+  { topic: 'Lead Generation', path: '/help/leads', say: 'We don’t get enough of the right leads.', how: 'Answer what buyers ask before they call, so the ones who call are already sold on you.' },
+  { topic: 'Sales Enablement', path: '/help/sales', say: 'Our sales cycle is too long and we lose deals on price.', how: 'Assignment selling, honest pricing pages, and a CRM your reps actually use. Close faster, discount less.' },
+  { topic: 'Content and Video', path: '/help/content', say: 'We publish content and nothing happens.', how: 'The questions buyers research, answered in writing and on video, by your own team.' },
+  { topic: 'Reviews and Reputation', path: '/help/reviews', say: 'We don’t have enough reviews, and AI notices.', how: 'A review engine that runs itself, and a reputation AI can verify.' },
+  { topic: 'CRM and Customer Data', path: '/help/crm', say: 'Our HubSpot is a mess and nobody trusts the numbers.', how: 'Clean data, working automation, and reports your leadership team believes.' },
+  { topic: 'AI and Automation', path: '/help/ai', say: 'We know we should be using AI. We’re not, really.', how: 'AI doing real work in your content, campaigns, sales follow-up, and operations, with your team trained to run it.' },
+  { topic: 'Marketing Team Training', path: '/help/team', say: 'Our marketing team needs help, not another agency.', how: 'Hire the right people, train them, and give them a system to own.' },
+];
+
+const services = [
+  { label: 'Deep Diagnostic & Roadmap', path: '/deep-diagnostic', badge: 'Start here', price: '$5,000', what: 'A full review of what’s holding you back, how buyers and AI see you today, and a prioritized roadmap your team can run with or without us.' },
+  { label: 'Endless Customers Coaching', path: '/coaching', what: 'A coach who works like a fractional chief revenue officer: in your leadership meetings, pushing on the hard things, installing the system with your team.' },
+  { label: 'HubSpot Services', path: '/hubspot', what: 'Onboarding, rescue, integration, and training from a HubSpot Diamond Solutions Partner. We leave your team able to run it.' },
+  { label: 'Website Services', path: '/websites', what: 'A site buyers and AI can trust, built on HubSpot so your team can change it without calling anyone.' },
+  { label: 'Paid Media Services', path: '/paid-media', what: 'Google, Meta, and video ads that amplify what already works, run by our Swell team.' },
+  { label: 'Workshops', path: '/workshops', what: 'One day with your leadership or sales team, in person or virtual. You leave with a plan they’ll actually run.' },
+];
+
+// Verbatim from impactplus.com and impactplus.com/reviews. Banned names checked against the library.
+const results = [
+  { stat: '7x', label: 'revenue growth in three years', q: 'In three years, we saw 4x more sales qualified leads in our pipeline and 7x revenue growth. IMPACT’s coaching gave us the clarity and accountability to align our content and become a trusted authority in our market.', who: 'Patrick Moorhead', title: 'Former CMO', co: 'Pricefx' },
+  { stat: '3x', label: 'sales opportunities in one year', q: 'We were stuck trying to DIY our marketing. IMPACT gave us the structure and clarity we needed. Sales opportunities tripled, especially from qualified leads. We even hired our first salesperson in four years.', who: 'Mike Ritzema', title: 'Founder and President', co: 'Superior Trucking Payroll' },
+  { stat: '1 → 6', label: 'stores', q: 'From one store to six stores, that didn’t happen by accident. Working with IMPACT and Endless Customers gave us guidance early on. The fundamentals haven’t changed, but having coaching helped us adapt as the company continued to grow.', who: 'Steve Sheinkopf', title: 'CEO', co: 'Yale Appliance' },
+];
+const quotes = [
+  { q: 'IMPACT doesn’t do the work for you. They teach you how to own it. Our team walks away from every session smarter and more confident.', who: 'Davy Clay', title: 'Co-Founder', co: 'Dental Claim Support' },
+  { q: 'Sales and marketing united under one strategy, and within a year we hit 1,500 leads a month with stronger close rates and lifetime value than ever before.', who: 'Tony Paille', title: 'Chief Marketing Officer', co: 'AIIM International' },
+  { q: 'IMPACT’s coaching gave us the accountability and structure we needed to apply what we believed in. That guidance led to stronger trust, faster sales conversations, and consistent growth.', who: 'Kaitlyn Pintarich', title: 'President', co: 'Berry Insurance' },
+];
+const clients = ['Yale Appliance', 'Berry Insurance', 'Mazzella', 'AIS', 'Pricefx', 'Linta Roofing', 'Energy Swing Windows', 'Roe Painting', 'Superior Trucking Payroll', 'AIIM International', 'Zintex', 'Dental Claim Support', 'Bird Technologies', 'Harold Brothers', 'Kelser'];
+
+// Questions buyers ask before they call. Kept from the live homepage, rewritten to the new structure.
+const faqs = [
+  { q: 'Who is IMPACT?', a: 'A marketing and sales training company in Cheshire, Connecticut, founded in 2009. We’re the company behind Endless Customers, the book, the conference, and the coaching system, and a HubSpot Diamond Solutions Partner. We work alongside leadership, marketing, and sales teams so they become, and stay, the most known, trusted, and recommended company in their market.' },
+  { q: 'How is IMPACT different from a marketing agency?', a: 'An agency does the work for you and you rent the result. We diagnose first, do the work with you, and train your team to own it, so the growth engine belongs to you. We do offer website, HubSpot, and paid media services, and even those are built so your team can run what we leave behind.' },
+  { q: 'Will this work for my business?', a: 'It works best for companies that sell directly to their own customers, whose buyers research before they reach out, and whose leaders are willing to commit people and time to it. If distributors or dealers sit between you and your buyer, or you want everything outsourced forever, we’ll say so on the first call.' },
+  { q: 'What does it cost?', a: 'Every service has a published price. The Deep Diagnostic & Roadmap, where everyone starts, is $5,000. Coaching, HubSpot, website, and paid media prices are on the pricing page, with what changes them. Every service is backed by a 100% money-back guarantee.' },
+  { q: 'What results can we expect, and how fast?', a: 'Quick wins can land within weeks, usually from your sales team using content in live deals. The compounding results, more qualified opportunities at a lower cost to win them, build over the first year and keep building. Companies that fully commit commonly see three to five times the qualified opportunities from their digital channels.' },
+  { q: 'Does IMPACT help with AI?', a: 'Yes, in two directions. We make your company visible and recommendable in AI search and chat tools by fixing what disqualifies you and publishing what AI can trust. And we put AI to work inside your business, in content, campaigns, sales follow-up, and operations, and train your team to use it well.' },
+];
+
+const description =
+  'IMPACT is a marketing and sales training company in Cheshire, Connecticut, founded in 2009, working with companies across the US and Canada that sell directly to their customers. Diagnostic first, then coaching, HubSpot, websites, paid media, and workshops. Published pricing and a 100% money-back guarantee.';
+
+// Organization schema: for entity resolution, not for rankings. Facts only; no self-hosted ratings.
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'IMPACT',
+  url: 'https://www.impactplus.com/',
+  logo: 'https://www.impactplus.com/hubfs/impact-logo.png',
+  description: positioning,
+  foundingDate: '2009',
+  founder: { '@type': 'Person', name: 'Bob Ruffolo' },
+  telephone: '+1-203-265-4377',
+  address: { '@type': 'PostalAddress', streetAddress: '125 Commerce Ct STE 9', addressLocality: 'Cheshire', addressRegion: 'CT', postalCode: '06410', addressCountry: 'US' },
+  areaServed: ['US', 'CA'],
+  brand: [{ '@type': 'Brand', name: 'Endless Customers', url: 'https://www.endlesscustomers.com/' }],
+  knowsAbout: ['AI visibility', 'Endless Customers', 'They Ask, You Answer', 'HubSpot', 'inbound marketing', 'sales enablement', 'content marketing', 'video marketing', 'CRM', 'marketing team training'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services',
+    itemListElement: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.label, url: `https://www.impactplus.com${s.path}` }, ...(s.price ? { price: '5000', priceCurrency: 'USD' } : {}) })),
+  },
+  sameAs: ['https://www.linkedin.com/company/impact-plus', 'https://www.youtube.com/@impactplus', 'https://ecosystem.hubspot.com/marketplace/solutions/impact'],
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
 
-<Site site="impact" title="IMPACT" path="/" description="IMPACT is a training and coaching company. We do what you can't yet, and teach you to run the rest.">
+<Site site="impact" title="IMPACT" path="/" description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
   <section class="hero home">
     <div class="wrap">
-      <h1>When your buyers ask AI who to hire, does it recommend you?</h1>
-      <p class="lede">Most companies can't answer that yet. We can tell you in about a minute, and then show you what to do about it. IMPACT does the work you can't do yet, and teaches your team to run the rest.</p>
+      <h1>Win more customers in the age of AI.</h1>
+      <p class="lede">{positioning}</p>
       <div class="actions">
-        <a class="btn primary" href={href('impact', '/instant-diagnostic')}>Take the free instant diagnostic <span class="arrow">→</span></a>
+        <a class="btn primary" href={href('impact', '/instant-diagnostic')}>See how AI describes your company <span class="arrow">→</span></a>
         <a class="btn" href={href('impact', '/talk')}>Let’s Talk</a>
       </div>
+      <ul class="facts" aria-label="About IMPACT">
+        <li>Founded 2009</li>
+        <li>Cheshire, Connecticut</li>
+        <li>US and Canada</li>
+        <li>300+ companies coached</li>
+        <li>HubSpot Diamond Solutions Partner</li>
+        <li><a href={href('impact', '/pricing')}>Pricing published</a></li>
+        <li><a href={href('impact', '/guarantee')}>100% money-back guarantee</a></li>
+      </ul>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <h2>How it starts</h2>
-      <p class="intro">One first step for everyone, so nobody buys the wrong thing. Where it goes from there depends on what the diagnostic finds.</p>
-      <div class="grid c3 steps">
-        <a class="card" href={href('impact', '/instant-diagnostic')}>
-          <span class="num">1</span>
-          <h3>Free instant diagnostic</h3>
-          <p>Enter your website. See how AI describes you, whether it recommends you, and what it gets wrong. Takes about a minute.</p>
-          <span class="more">Run it now →</span>
-        </a>
-        <a class="card" href={href('impact', '/deep-diagnostic')}>
-          <span class="num">2</span>
-          <h3>Deep Diagnostic &amp; Roadmap</h3>
-          <p>A full review of your marketing, sales, and AI visibility, with a prioritized roadmap your team can run with or without us. $5,000.</p>
-          <span class="more">What you get →</span>
-        </a>
-        <a class="card" href={href('impact', '/services')}>
-          <span class="num">3</span>
-          <h3>The service you need</h3>
-          <p>Coaching, HubSpot, a website, paid media, or a workshop. The roadmap says which, in what order, and what you can keep in-house.</p>
-          <span class="more">All services →</span>
-        </a>
+      <div class="split">
+        <div>
+          <h2>Your buyers changed how they choose. Most companies haven’t noticed yet.</h2>
+          <p class="intro">Before they call anyone, buyers ask ChatGPT, Google, and Perplexity who to trust. They read reviews. They look for prices. They expect answers, not pitches. AI already has an opinion about your company, whether or not you’ve shaped it.</p>
+          <p class="intro">The companies winning now are the ones AI can find, understand, and recommend, and the ones whose teams know how to keep it that way. That’s what we build.</p>
+          <a class="btn" href={href('impact', '/instant-diagnostic')}>Ask AI about your company. Free, one minute. <span class="arrow">→</span></a>
+        </div>
+        <ol class="shift">
+          <li><b>Known.</b> Show up when a buyer asks a friend, a search engine, or an AI who to hire.</li>
+          <li><b>Trusted.</b> Answer the questions others dodge: cost, problems, comparisons, who you’re not for.</li>
+          <li><b>Recommended.</b> Reviews, proof, and consistency AI can verify, so it names you first.</li>
+        </ol>
       </div>
     </div>
   </section>
 
   <section class="section alt">
     <div class="wrap">
-      <h2>How we help</h2>
-      <p class="intro">Start from what we do, what you need, or who you are. They all lead to the same handful of services.</p>
-      <div class="grid c3 help-home">
+      <h2>Sound familiar?</h2>
+      <p class="intro">These are the problems companies bring us. Pick yours to see how we approach it, which services apply, and what it costs.</p>
+      <div class="grid c4 problems">
+        {problems.map((p) => (
+          <a class="card problem" href={href('impact', p.path)}>
+            <span class="topic">{p.topic}</span>
+            <h3>“{p.say}”</h3>
+            <p>{p.how}</p>
+            <span class="more">How we solve it →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What we do</h2>
+      <p class="intro">One way in, so nobody buys the wrong thing. Where it goes from there depends on what we find.</p>
+      <ol class="grid c4 how">
+        <li>
+          <span class="num">1</span>
+          <h3>We diagnose</h3>
+          <p>Every engagement starts with the <a href={href('impact', '/deep-diagnostic')}>Deep Diagnostic &amp; Roadmap</a>. Our experts use AI, their own judgment, and what your team tells us to find what’s keeping you from winning more customers, including exactly how AI describes you today.</p>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <h3>We build the roadmap</h3>
+          <p>Strategy first: is there a bigger move that makes you the obvious choice over every competitor? Then the quick wins that bring in customers now. Then the long-term work that earns trust with buyers and with the AI they ask.</p>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <h3>We do the work with you</h3>
+          <p>Coaching, HubSpot, websites, paid media, workshops. We start with the foundation: a website you can build on, a CRM with clean data, AI put to work in sales and marketing. Then we turn up the volume.</p>
+        </li>
+        <li>
+          <span class="num">4</span>
+          <h3>We make you self-sufficient</h3>
+          <p>The part that matters most. Our coaches work like fractional chief revenue officers. We help you build a marketing team that owns its content, video, HubSpot, and website. The goal is a company that doesn’t need an agency.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Services we offer</h2>
+      <p class="intro">Six services, one system behind them. Every one is backed by our <a href={href('impact', '/guarantee')}>100% money-back guarantee</a>, and every one has a <a href={href('impact', '/pricing')}>published price</a>.</p>
+      <div class="services">
+        {services.map((s) => (
+          <a class="svc" href={href('impact', s.path)}>
+            <div class="svc-head">
+              <h3>{s.label}</h3>
+              {s.badge && <span class="badge">{s.badge}</span>}
+              {s.price && <span class="price">{s.price}</span>}
+            </div>
+            <p>{s.what}</p>
+            <span class="arrow">→</span>
+          </a>
+        ))}
+      </div>
+      <div class="actions"><a class="btn" href={href('impact', '/services')}>Explore all services</a><a class="btn" href={href('impact', '/compare')}>Compare us to your other options</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Results, in their words</h2>
+      <p class="intro">Three of the 300+ companies we’ve coached. Every quote is verbatim and attributed; more on <a href={href('impact', '/results/success-stories')}>success stories</a> and <a href={href('impact', '/results/reviews')}>reviews</a>.</p>
+      <div class="grid c3">
+        {results.map((r) => (
+          <blockquote class="card result">
+            <span class="stat">{r.stat}</span>
+            <span class="stat-label">{r.label}</span>
+            <p>“{r.q}”</p>
+            <footer><b>{r.who}</b>, {r.title}, {r.co}</footer>
+          </blockquote>
+        ))}
+      </div>
+      <div class="grid c3 more-quotes">
+        {quotes.map((t) => (
+          <blockquote class="quote">
+            <p>“{t.q}”</p>
+            <footer><b>{t.who}</b>, {t.title}, {t.co}</footer>
+          </blockquote>
+        ))}
+      </div>
+      <p class="clients"><span>Companies growing with IMPACT:</span> {clients.join(' · ')}</p>
+      <p class="proof-line">Independently: <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">5.0 on the HubSpot directory, 327+ reviews</a> · <a href={href('impact', '/results/reviews')}>5.0 on Google</a> · BBB A+, accredited since 2011 · 400+ five-star reviews in all.</p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="split fit">
         <div>
-          <h3 class="colhead">Services we offer</h3>
-          <ul class="list-links">{[...services, exploreAll].map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
+          <h2>Who we work with</h2>
+          <p class="intro">Companies that sell directly to their own customers, B2B and B2C, usually between $5M and $50M in revenue <span class="tag plan" title="Bob to confirm the range">confirm range</span>, across the US and Canada. We know these industries best:</p>
+          <ul class="list-links small inds">
+            {industries.filter((l) => !l.whenProof).map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}
+          </ul>
         </div>
-        <div>
-          <h3 class="colhead">Problems we solve</h3>
-          <ul class="list-links small">{useCases.map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
-        </div>
-        <div>
-          <h3 class="colhead">Industries we serve</h3>
-          <ul class="list-links small">{industries.filter((l) => !l.whenProof).map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}</ul>
-        </div>
+        <aside class="notfit">
+          <h3>When we’re not the right fit</h3>
+          <p>If distributors, dealers, or other layers sit between you and the person who buys, our system doesn’t work as well, and we’ll tell you so on the first call. We’re also not the choice if you want an agency to do everything for you forever. We build teams that don’t need one.</p>
+          <a href={href('impact', '/compare')}>See how we compare to an agency, a freelancer, or doing it in-house →</a>
+        </aside>
       </div>
     </div>
   </section>
@@ -69,36 +247,34 @@ import { services, useCases, industries, exploreAll } from '../../data/impact-na
     <div class="wrap">
       <div class="split">
         <div>
-          <p class="eyebrow">The system behind everything we do</p>
-          <h2>Endless Customers</h2>
-          <p class="intro">Every service at IMPACT runs on one system: become the most known, trusted, and recommended company in your market by answering what buyers ask, showing what others hide, and teaching your own team to do it. The book explains it. The coaching installs it. The other services do the parts you can't yet.</p>
+          <h2>The system behind everything we do</h2>
+          <p class="intro">Every service at IMPACT runs on <b>Endless Customers</b>, the national best-seller by Marcus Sheridan, previously known as <i>They Ask, You Answer</i>: become the most known, trusted, and recommended company in your market by answering what buyers ask, showing what others hide, and teaching your own team to do it. The book explains it. The coaching installs it. The other services do the parts you can’t yet.</p>
           <div class="actions" style="margin-top: 8px;">
             <a class="btn" href={href('ec', '/')}>Explore the system on endlesscustomers.com <span class="arrow">→</span></a>
-            <a class="btn" href={href('impact', '/coaching')}>Coaching &amp; training</a>
+            <a class="btn" href={href('ec', '/book')}>Get a free chapter of the book</a>
           </div>
         </div>
-        <div class="ec-mark" aria-hidden="true">
-          <span class="ring"></span>
-        </div>
+        <div class="ec-mark" aria-hidden="true"><span class="ring"></span></div>
       </div>
     </div>
   </section>
 
   <section class="section alt">
     <div class="wrap">
-      <h2>Proof</h2>
-      <p class="intro">Client stories go here: three of them, each with the company, the industry, the problem, and the numbers, in their words. <span class="tag plan">Content to come, from the testimonials library</span></p>
-      <div class="grid c3">
-        {[1, 2, 3].map(() => (
-          <div class="card story">
-            <span class="tag plan">Client story slot</span>
-            <h3>Company name, industry</h3>
-            <p>The problem they came with, what changed, and the result, in a sentence or two of their own words.</p>
-            <span class="more">Read the story →</span>
-          </div>
+      <h2>Questions buyers ask before they call</h2>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq">
+            <summary><h3>{f.q}</h3><span class="plus" aria-hidden="true"></span></summary>
+            <p>{f.a}</p>
+          </details>
         ))}
       </div>
-      <div class="actions"><a class="btn" href={href('impact', '/results/success-stories')}>All success stories</a><a class="btn" href={href('impact', '/results/reviews')}>Reviews</a></div>
+      <div class="actions">
+        <a class="btn" href={href('impact', '/pricing')}>See pricing</a>
+        <a class="btn" href={href('impact', '/compare')}>Compare your options</a>
+        <a class="btn" href={href('impact', '/guarantee')}>Read the guarantee</a>
+      </div>
     </div>
   </section>
 
@@ -106,16 +282,39 @@ import { services, useCases, industries, exploreAll } from '../../data/impact-na
     <div class="wrap">
       <div class="grid c2">
         <a class="card big" href={href('impact', '/learn')}>
-          <p class="eyebrow">Learning Center</p>
           <h3>Answers first. No forms.</h3>
-          <p>Articles, videos, and tools, searchable by the problem you have, your role, and your industry. Everything ungated.</p>
+          <p>Articles, videos, and tools in the Learning Center, searchable by the problem you have, your role, and your industry. Everything ungated.</p>
           <span class="more">Explore the Learning Center →</span>
         </a>
         <a class="card big" href={href('impact', '/speaking')}>
-          <p class="eyebrow">Speaking</p>
           <h3>Bring the question to your room.</h3>
-          <p>Bob Ruffolo and Marcus Sheridan speak to owner groups and industry events about what AI has changed for buyers, and what to do about it.</p>
+          <p>Bob Ruffolo and Marcus Sheridan speak to owner groups and industry events about what AI changed for buyers, and what to do about it.</p>
           <span class="more">Request a speaker →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about">
+    <div class="wrap narrow">
+      <h2>About IMPACT</h2>
+      <p class="prose">IMPACT is a marketing and sales training company founded in 2009 and headquartered at 125 Commerce Ct STE 9, Cheshire, CT 06410, (203) 265-4377. We work with companies across the United States and Canada. We are the company behind <a href={href('ec', '/')}>Endless Customers</a>, the book, the conference, and the coaching system, and a HubSpot Diamond Solutions Partner. We run on the same system we teach. Founder and CEO <a href={href('impact', '/team')}>Bob Ruffolo</a>; <a href={href('impact', '/about')}>our story, mission, and values</a>; <a href={href('impact', '/team')}>the people you’ll work with</a>.</p>
+    </div>
+  </section>
+
+  <section class="section final">
+    <div class="wrap">
+      <h2>Two ways to start. Both are free.</h2>
+      <div class="grid c2">
+        <a class="card big" href={href('impact', '/instant-diagnostic')}>
+          <h3>See how AI describes your company</h3>
+          <p>Enter your website. In about a minute you’ll see what AI says about you, whether it recommends you, and what it gets wrong.</p>
+          <span class="more">Run the free instant diagnostic →</span>
+        </a>
+        <a class="card big" href={href('impact', '/talk')}>
+          <h3>Talk to someone who’s done this</h3>
+          <p>A 30-minute conversation about your business, what’s holding it back, and whether we’re the right fit. No pitch.</p>
+          <span class="more">Let’s Talk →</span>
         </a>
       </div>
     </div>
@@ -123,15 +322,103 @@ import { services, useCases, industries, exploreAll } from '../../data/impact-na
 </Site>
 
 <style>
-  .hero.home { padding: 112px 0 88px; }
+  .hero.home { padding: 104px 0 72px; }
   .hero.home h1 { max-width: 16ch; }
-  .steps .card { position: relative; padding-top: 28px; }
-  .steps .num { position: absolute; top: 20px; right: 22px; font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-  .colhead { margin: 0 0 8px; font-size: 13px; font-weight: 400; color: var(--ink-3); }
-  .help-home .list-links.small a { font-size: 15px; padding: 11px 0; }
-  .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .hero.home .lede { max-width: 66ch; font-size: 21px; color: var(--ink); }
+  .facts { list-style: none; margin: 40px 0 0; padding: 20px 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 14px; color: var(--ink-2); }
+  .facts li { position: relative; }
+  .facts li + li::before { content: ''; position: absolute; left: -16px; top: 50%; width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); }
+  .facts a { color: var(--ink); font-weight: 500; }
+  .facts a:hover { color: var(--accent); }
+
+  .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
+  .split .intro + .intro { margin-top: -20px; }
+  .shift { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .shift li { padding: 20px 22px; background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; font-size: 16px; color: var(--ink-2); }
+  .shift b { display: block; color: var(--ink); font-size: 18px; font-weight: 600; letter-spacing: -.015em; margin-bottom: 2px; }
+
+  .problems { gap: 16px; }
+  .problem .topic { font-size: 12px; color: var(--ink-3); letter-spacing: .01em; }
+  .problem h3 { font-size: 17px; line-height: 1.3; }
+  .problem p { font-size: 14px; }
+
+  .how { list-style: none; margin: 0; padding: 0; }
+  .how li { position: relative; padding: 28px 0 0; border-top: 1px solid var(--line-strong); }
+  .how .num { position: absolute; top: -13px; left: 0; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 600; }
+  .how h3 { margin: 0 0 10px; font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+  .how p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  .how a { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--line-strong); }
+  .how a:hover { color: var(--accent); }
+
+  .services { display: grid; border-top: 1px solid var(--line-strong); }
+  .svc { display: grid; grid-template-columns: 1.1fr 1.6fr auto; gap: 24px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--line); transition: color .15s var(--ease); }
+  .svc:hover { color: var(--accent); }
+  .svc:hover .arrow { transform: translateX(4px); }
+  .svc-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .svc h3 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+  .svc .price { font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .svc p { margin: 0; color: var(--ink-2); font-size: 15px; max-width: 60ch; }
+  .svc .arrow { color: var(--ink-3); }
+
+  .result { margin: 0; }
+  .result .stat { color: var(--accent); }
+  .result .stat-label { font-size: 13px; color: var(--ink-3); margin-bottom: 10px; }
+  .result p { font-size: 15px; color: var(--ink-2); text-wrap: pretty; }
+  .result footer, .quote footer { margin-top: auto; padding-top: 12px; font-size: 13px; color: var(--ink-3); }
+  .result footer b, .quote footer b { color: var(--ink); font-weight: 500; }
+  .more-quotes { margin-top: 24px; }
+  .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); display: flex; flex-direction: column; }
+  .quote p { margin: 0; font-size: 15px; color: var(--ink-2); text-wrap: pretty; }
+  .clients { margin: 40px 0 0; font-size: 14px; color: var(--ink-2); line-height: 1.8; }
+  .clients span { color: var(--ink-3); }
+  .proof-line { margin: 8px 0 0; font-size: 14px; color: var(--ink-3); }
+  .proof-line a { color: var(--ink); font-weight: 500; }
+  .proof-line a:hover { color: var(--accent); }
+
+  .fit { align-items: start; }
+  .inds a { font-size: 15px; padding: 11px 0; }
+  .notfit { padding: 28px; border-radius: 16px; background: var(--bg-panel); border: 1px solid var(--line); }
+  .notfit h3 { margin: 0 0 10px; font-size: 18px; font-weight: 600; letter-spacing: -.015em; }
+  .notfit p { margin: 0 0 14px; color: var(--ink-2); font-size: 15px; text-wrap: pretty; }
+  .notfit a { font-weight: 500; font-size: 14px; color: var(--ink); }
+  .notfit a:hover { color: var(--accent); }
+
   .ec-mark { display: grid; place-items: center; min-height: 260px; }
   .ring { width: 220px; height: 220px; border-radius: 50%; background: var(--grad); opacity: .9; filter: blur(2px); mask: radial-gradient(circle, transparent 58%, #000 60%); -webkit-mask: radial-gradient(circle, transparent 58%, #000 60%); }
-  .story h3 { color: var(--ink-3); }
-  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } .ec-mark { min-height: 160px; } .ring { width: 140px; height: 140px; } .hero.home { padding: 64px 0 48px; } }
+
+  .faqs { max-width: 800px; border-top: 1px solid var(--line-strong); }
+  .faq { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq h3 { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em; }
+  .faq summary:hover h3 { color: var(--accent); }
+  .faq .plus { position: relative; flex: none; width: 14px; height: 14px; }
+  .faq .plus::before, .faq .plus::after { content: ''; position: absolute; background: var(--ink-3); transition: transform .2s var(--ease); }
+  .faq .plus::before { left: 0; top: 6px; width: 14px; height: 2px; }
+  .faq .plus::after { left: 6px; top: 0; width: 2px; height: 14px; }
+  .faq[open] .plus::after { transform: rotate(90deg); }
+  .faq p { margin: 0 0 20px; color: var(--ink-2); font-size: 16px; max-width: 70ch; text-wrap: pretty; }
+  .faqs + .actions { margin-top: 32px; }
+
+  .about { padding-top: 40px; padding-bottom: 40px; }
+  .about h2 { font-size: 20px; }
+  .about .prose { margin: 0; font-size: 16px; }
+  .about .prose a { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--line-strong); }
+  .about .prose a:hover { color: var(--accent); }
+  .final { padding-bottom: 96px; }
+
+  @media (max-width: 900px) {
+    .hero.home { padding: 64px 0 48px; }
+    .hero.home .lede { font-size: 18px; }
+    .facts { gap: 6px 20px; }
+    .facts li + li::before { display: none; }
+    .split { grid-template-columns: 1fr; gap: 32px; }
+    .ec-mark { min-height: 160px; } .ring { width: 140px; height: 140px; }
+    .svc { grid-template-columns: 1fr; gap: 6px; }
+    .svc .arrow { display: none; }
+    .problems.grid.c4 { grid-template-columns: 1fr 1fr; }
+    .how { gap: 36px; }
+    .final { padding-bottom: 72px; }
+  }
+  @media (max-width: 560px) { .problems.grid.c4 { grid-template-columns: 1fr; } }
 </style>

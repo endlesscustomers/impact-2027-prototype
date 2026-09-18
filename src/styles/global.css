@@ -248,6 +248,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .footer a:hover { color: var(--ink); }
 .footer .brand p { margin: 12px 0 0; max-width: 32ch; text-wrap: pretty; }
 .footer .brand .logo svg { height: 26px; }
+.footer .brand .addr { color: var(--ink-3); font-size: 13px; }
 .footer .brand .logo.ec svg { height: 44px; }
 .footer .legal { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--ink-3); font-size: 13px; }
 .footer .legal .right { margin-left: auto; }
