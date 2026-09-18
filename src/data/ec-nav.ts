@@ -1,8 +1,8 @@
 import type { NavItem, NavLink } from '../lib/site';
 
 // endlesscustomers.com header, as settled with Bob on 2026-09-18.
-// Five items, with Pricing and Learning Center required. Coaching is sold on impactplus.com,
-// so "Get Coaching & Training" crosses sites and is marked as such in the menu.
+// Five items, with Pricing and Learning Center required. Get Coaching & Training is an
+// endlesscustomers.com page (Bob, 2026-09-18), not a hop to impactplus.com.
 
 export const cta: NavLink = { label: 'Book a Free Call', path: '/book-a-call' };
 
@@ -15,7 +15,7 @@ export const nav: NavItem[] = [
     groups: [
       {
         links: [
-          { label: 'Get Coaching & Training', path: '/coaching', site: 'impact' },
+          { label: 'Get Coaching & Training', path: '/coaching' },
           { label: 'Our Coaches', path: '/coaches' },
           { label: 'Become a Coach', path: '/become-a-coach' },
         ],

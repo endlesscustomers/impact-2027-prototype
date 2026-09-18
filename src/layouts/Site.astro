@@ -26,7 +26,7 @@ const mobileNote = site === 'ec'
   : { text: 'Not sure where to start?', link: impact.instantDiagnostic };
 ---
 
-<Base title={`${title} · ${s.domain}`} description={description}>
+<Base title={`${title} · ${s.domain}`} description={description} favicon={site}>
   <Header site={site} nav={nav} cta={cta} mobileNote={mobileNote} currentPath={path} />
   <main>
     <slot />

@@ -16,7 +16,7 @@ npm run dev        # http://localhost:4321/impact-2027-prototype/
 npm run build      # static output in dist/
 ```
 
-Pushing to `main` deploys to GitHub Pages through `.github/workflows/deploy.yml`.
+Live at https://endlesscustomers.github.io/impact-2027-prototype/ . Pushing to `main` deploys to GitHub Pages through `.github/workflows/deploy.yml`.
 
 ## Where things live
 
