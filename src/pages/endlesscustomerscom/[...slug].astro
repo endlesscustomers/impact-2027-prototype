@@ -1,8 +1,10 @@
 ---
-// Generates a placeholder for every registered page on this site that has no .astro file of its own.
-// A real file at the same path wins over this route automatically.
+// Generates every registered page on this site that has no .astro file of its own: an outline when
+// one exists, otherwise a placeholder. A real file at the same path wins over this route.
 import Placeholder from '../../components/Placeholder.astro';
+import Outline from '../../components/Outline.astro';
 import { pages } from '../../data/pages';
+import { outlines } from '../../data/outlines';
 
 export function getStaticPaths() {
   return pages.ec
@@ -10,5 +12,6 @@ export function getStaticPaths() {
     .map((p) => ({ params: { slug: p.path.replace(/^\//, '') }, props: { page: p } }));
 }
 const { page } = Astro.props;
+const outline = outlines.ec[page.path];
 ---
-<Placeholder site="ec" page={page} />
+{outline ? <Outline site="ec" page={page} outline={outline} /> : <Placeholder site="ec" page={page} />}

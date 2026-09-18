@@ -1,0 +1,135 @@
+---
+// Renders a page from its outline: breadcrumbs, H1, lede, the section blocks, and a "how this page
+// connects" strip. Enough to read the strategy off the page; not the finished page.
+import Site from '../layouts/Site.astro';
+import LocalNav from './LocalNav.astro';
+import type { SiteId } from '../lib/site';
+import { href } from '../lib/site';
+import { pages, crumbParent, type PageEntry } from '../data/pages';
+import type { Outline } from '../data/outlines';
+import { micrositeFor } from '../data/microsites';
+
+interface Props { site: SiteId; page: PageEntry; outline: Outline }
+const { site, page, outline } = Astro.props;
+
+// Breadcrumb: group parent (linked to its hub) › section page if this is a sub-page › this page.
+const hubFor: Record<string, string> = { 'How We Help': '/services', Results: '/results/success-stories', About: '/about', 'Learning Center': '/learn', Coaching: '/coaching' };
+const crumbs: { label: string; path?: string }[] = [];
+const parent = crumbParent[page.group];
+if (parent) crumbs.push({ label: parent, path: hubFor[parent] });
+const segs = page.path.replace(/^\//, '').split('/');
+if (segs.length > 1) {
+  const section = pages[site].find((p) => p.path === '/' + segs[0]);
+  if (section) crumbs.push({ label: section.title, path: section.path });
+}
+const ms = micrositeFor(site, page.path);
+const split = (s: string) => { const i = s.indexOf(' — '); return i < 0 ? [s, ''] : [s.slice(0, i), s.slice(i + 3)]; };
+---
+
+<Site site={site} title={page.title} path={page.path} status="draft">
+  {ms && <LocalNav ms={ms} path={page.path} />}
+  <section class="hero">
+    <div class="wrap">
+      {crumbs.length > 0 && (
+        <p class="crumbs">
+          {crumbs.map((c) => <>{c.path ? <a href={href(site, c.path)}>{c.label}</a> : <span class="t">{c.label}</span>}<span>&gt;</span></>)}
+          <span class="here">{page.title}</span>
+        </p>
+      )}
+      <h1>{outline.h1 ?? page.h1 ?? page.title}</h1>
+      <p class="lede">{outline.lede ?? page.purpose}</p>
+      {outline.ctas && (
+        <div class="actions">
+          {outline.ctas.map((c, i) => <a class:list={['btn', { primary: i === 0 }]} href={href(c.site ?? site, c.path)}>{c.label}{c.site && c.site !== site ? ' ↗' : ''}</a>)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  {outline.blocks.map((b, i) => (
+    <section class:list={['section', 'block', { alt: i % 2 === 1 }]}>
+      <div class="wrap">
+        <div class="bhead">
+          <h2>{b.h}</h2>
+          {b.tag && <span class="tag plan">{b.tag}</span>}
+        </div>
+        {b.p && <p class="intro">{b.p}</p>}
+        {b.kind === 'cards' && b.items && (
+          <div class="grid c3 cards">{b.items.map((it) => { const [a, d] = split(it); return <div class="card"><h3>{a}</h3>{d && <p>{d}</p>}</div>; })}</div>
+        )}
+        {b.kind === 'steps' && b.items && (
+          <ol class="steps">{b.items.map((it, n) => { const [a, d] = split(it); return <li><span class="n">{n + 1}</span><div><b>{a}</b>{d && <p>{d}</p>}</div></li>; })}</ol>
+        )}
+        {b.kind === 'pricing' && b.items && (
+          <ul class="prices">{b.items.map((it) => { const [a, d] = split(it); return <li><span>{a}</span><b>{d}</b></li>; })}</ul>
+        )}
+        {b.kind === 'faq' && b.items && (
+          <div class="faqs">{b.items.map((it) => { const [q, a] = split(it); return <details class="faq"><summary><h3>{q}</h3></summary><p>{a}</p></details>; })}</div>
+        )}
+        {b.kind === 'proof' && b.items && (
+          <div class="grid c2">{b.items.map((it) => { const [q, w] = split(it); return <blockquote class="quote"><p>“{q}”</p>{w && <footer>{w}</footer>}</blockquote>; })}</div>
+        )}
+        {(!b.kind || b.kind === 'text' || b.kind === 'links') && b.items && (
+          <ul class="plain">{b.items.map((it) => <li>{it}</li>)}</ul>
+        )}
+        {b.links && (
+          <ul class="list-links small">{b.links.map((l) => <li><a href={href(l.site ?? site, l.path)}>{l.label}{l.site && l.site !== site ? ' ↗' : ''} <span class="arrow">→</span></a></li>)}</ul>
+        )}
+      </div>
+    </section>
+  ))}
+
+  {(outline.connects || outline.source) && (
+    <section class="section connects">
+      <div class="wrap">
+        <h2>How this page connects</h2>
+        {outline.source && <p class="src">{outline.source}</p>}
+        {outline.connects && (
+          <ul>
+            {outline.connects.map((c) => <li><span>{c.text}</span><a href={href(c.link.site ?? site, c.link.path)}>{c.link.label}{c.link.site && c.link.site !== site ? ' ↗' : ''} →</a></li>)}
+          </ul>
+        )}
+      </div>
+    </section>
+  )}
+</Site>
+
+<style>
+  .crumbs a:hover { color: var(--accent); }
+  .crumbs .here { color: var(--ink); }
+  .block .bhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .block .bhead h2 { margin: 0; }
+  .block .intro { margin-bottom: 24px; }
+  .block .intro:last-child { margin-bottom: 0; }
+  .cards .card h3 { font-size: 16px; }
+  .cards .card p { font-size: 14px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; max-width: 760px; }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; }
+  .steps .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 600; }
+  .steps b { display: block; font-weight: 600; letter-spacing: -.01em; padding-top: 3px; }
+  .steps p { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
+  .prices { list-style: none; margin: 0; padding: 0; max-width: 760px; border-top: 1px solid var(--line-strong); }
+  .prices li { display: flex; justify-content: space-between; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+  .prices b { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .faqs { max-width: 760px; border-top: 1px solid var(--line-strong); }
+  .faq { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; padding: 16px 0; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq h3 { margin: 0; font-size: 17px; font-weight: 500; }
+  .faq summary:hover h3 { color: var(--accent); }
+  .faq p { margin: 0 0 18px; color: var(--ink-2); max-width: 70ch; }
+  .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); }
+  .quote p { margin: 0; font-size: 16px; color: var(--ink); text-wrap: pretty; }
+  .quote footer { margin-top: 8px; font-size: 13px; color: var(--ink-3); }
+  .plain { margin: 0; padding-left: 20px; color: var(--ink-2); }
+  .block .list-links { max-width: 640px; }
+  .block .grid + .list-links, .block .prices + .list-links, .block .intro + .list-links { margin-top: 20px; }
+  .connects { border-top: 1px solid var(--line); background: var(--bg-panel); }
+  .connects h2 { font-size: 20px; }
+  .connects .src { margin: 0 0 16px; color: var(--ink-2); font-size: 15px; }
+  .connects ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 800px; }
+  .connects li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
+  .connects li a { color: var(--ink); font-weight: 500; white-space: nowrap; }
+  .connects li a:hover { color: var(--accent); }
+  @media (max-width: 900px) { .prices li { flex-direction: column; gap: 4px; } .prices b { text-align: left; white-space: normal; } }
+</style>
