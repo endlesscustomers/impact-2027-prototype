@@ -285,7 +285,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 }
 
 /* ---------- Ribbon (announcement under the header; Zoom's shape, per-section content) ---------- */
-.ribbon-wrap { padding: 12px 20px 0; }
+.ribbon-wrap { padding: 12px 20px 0; background: var(--bg); }
 .ribbon {
   position: relative; display: flex; align-items: center; justify-content: center; gap: 12px;
   min-height: 48px; padding: 8px 48px 8px 20px; border-radius: 12px;
