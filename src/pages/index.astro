@@ -5,19 +5,23 @@ import ImpactLogo from '../components/ImpactLogo.astro';
 import ECLogo from '../components/ECLogo.astro';
 import { SITES, href, type SiteId } from '../lib/site';
 import { pages, draftedPaths } from '../data/pages';
+import { outlines } from '../data/outlines';
 
 const built = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/New_York' });
 
+type State = 'drafted' | 'outlined' | 'placeholder';
 function index(site: SiteId) {
   const drafted = draftedPaths(site);
-  const groups = new Map<string, { path: string; title: string; drafted: boolean }[]>();
+  const groups = new Map<string, { path: string; title: string; state: State }[]>();
   for (const p of pages[site]) {
     if (!groups.has(p.group)) groups.set(p.group, []);
-    groups.get(p.group)!.push({ path: p.path, title: p.title, drafted: drafted.has(p.path) });
+    const state: State = drafted.has(p.path) ? 'drafted' : outlines[site][p.path] ? 'outlined' : 'placeholder';
+    groups.get(p.group)!.push({ path: p.path, title: p.title, state });
   }
   const total = pages[site].length;
   const done = pages[site].filter((p) => drafted.has(p.path)).length;
-  return { groups, total, done };
+  const outlined = pages[site].filter((p) => !drafted.has(p.path) && outlines[site][p.path]).length;
+  return { groups, total, done, outlined };
 }
 const impact = index('impact');
 const ec = index('ec');
@@ -36,15 +40,53 @@ const ec = index('ec');
           <span class="logo"><ImpactLogo /></span>
           <span class="domain">impactplus.com</span>
           <span class="what">The full-service company. Diagnostic first, then coaching, HubSpot, websites, paid media, workshops.</span>
-          <span class="count">{impact.done} of {impact.total} pages drafted</span>
+          <span class="count">{impact.done} drafted · {impact.outlined} outlined · {impact.total} pages</span>
         </a>
         <a class="site ec" href={href('ec', '/')}>
           <span class="logo ec"><ECLogo /></span>
           <span class="domain">endlesscustomers.com</span>
           <span class="what">The system. The book, the conference, the coaches, the learning center, and what it costs to implement.</span>
-          <span class="count">{ec.done} of {ec.total} pages drafted</span>
+          <span class="count">{ec.done} drafted · {ec.outlined} outlined · {ec.total} pages</span>
         </a>
       </div>
+
+      <section class="how">
+        <h2>How the two sites work together</h2>
+        <p class="lede">One company, one system, two doors. Each thing lives in one place; the other site links to it instead of copying it. Every page says which it is in its "How this page connects" strip.</p>
+        <div class="grid">
+          <div class="col">
+            <h3>impactplus.com owns</h3>
+            <ul>
+              <li><a href={href('impact', '/deep-diagnostic')}>The Deep Diagnostic &amp; Roadmap</a>, where everyone starts</li>
+              <li><a href={href('impact', '/coaching')}>Coaching</a> (how it works, plans, prices, Alignment Day)</li>
+              <li><a href={href('impact', '/hubspot')}>HubSpot</a>, <a href={href('impact', '/websites')}>websites</a>, <a href={href('impact', '/paid-media')}>paid media</a>, <a href={href('impact', '/workshops')}>workshops</a>: each a microsite with its own local nav</li>
+              <li><a href={href('impact', '/pricing')}>Every IMPACT price</a> and <a href={href('impact', '/guarantee')}>the guarantee</a></li>
+              <li><a href={href('impact', '/team')}>The team</a>, <a href={href('impact', '/results/success-stories')}>success stories</a>, <a href={href('impact', '/learn')}>the Learning Center</a></li>
+              <li><a href={href('impact', '/instant-diagnostic')}>The free instant diagnostic</a></li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>endlesscustomers.com owns</h3>
+            <ul>
+              <li><a href={href('ec', '/book')}>The book</a> and <a href={href('ec', '/what-is-endless-customers')}>what the system is</a></li>
+              <li><a href={href('ec', '/how-to-implement')}>How to implement</a>: the page where a buyer changes sites</li>
+              <li><a href={href('ec', '/coaches')}>The coach directory</a>, IMPACT's coaches and certified independents together</li>
+              <li><a href={href('ec', '/conference')}>The conference</a>, <a href={href('ec', '/podcast')}>the podcast</a>, <a href={href('ec', '/academy')}>the Academy</a></li>
+              <li><a href={href('ec', '/pricing')}>What implementing the system costs in total</a>, with and without a coach</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>The doors between them</h3>
+            <ul>
+              <li>EC <a href={href('ec', '/coaching')}>Get Coaching &amp; Training</a> says IMPACT delivers it, books the call right there, and links to IMPACT's coaching section for the detail</li>
+              <li>IMPACT's coaching section links to the EC coach directory instead of duplicating profiles</li>
+              <li>EC <a href={href('ec', '/pricing')}>pricing</a> gives the total; IMPACT <a href={href('impact', '/pricing')}>pricing</a> gives every line</li>
+              <li>Success stories, the Learning Center, and the instant diagnostic: one source, a door on each site</li>
+              <li>The conference is on EC; IMPACT's <a href={href('impact', '/events')}>events</a> page and ribbon point there</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <div class="indexes">
         {([['impact', impact], ['ec', ec]] as const).map(([site, ix]) => (
@@ -57,7 +99,7 @@ const ec = index('ec');
                   {list.map((p) => (
                     <li>
                       <a href={href(site, p.path)}>{p.title}</a>
-                      <span class:list={['tag', p.drafted ? 'ok' : 'plan']}>{p.drafted ? 'drafted' : 'placeholder'}</span>
+                      <span class:list={['tag', { ok: p.state === 'drafted', mid: p.state === 'outlined', plan: p.state === 'placeholder' }]}>{p.state}</span>
                     </li>
                   ))}
                 </ul>
@@ -68,7 +110,7 @@ const ec = index('ec');
       </div>
 
       <footer class="foot">
-        <p>Prototype, updated {built}. Drafted means the page has proposed copy and layout to react to. Placeholder means the link works and the page says what it is for. Nothing here is final, and none of it is indexed by search engines.</p>
+        <p>Prototype, updated {built}. Drafted means the page has proposed copy and layout to react to. Outlined means the page's sections, prices, and connections are laid out so the strategy reads, without finished copy. Placeholder means the link works and the page says what it is for. Nothing here is final, and none of it is indexed by search engines.</p>
       </footer>
     </div>
   </div>
@@ -94,6 +136,15 @@ const ec = index('ec');
   .site .count { margin-top: auto; padding-top: 12px; font-size: 13px; color: var(--ink-3); }
   .site.ec:hover .domain { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
+  .how { margin-bottom: 72px; padding: 32px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-panel); }
+  .how h2 { margin: 0 0 8px; font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+  .how .lede { margin: 0 0 24px; font-size: 16px; }
+  .how .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .how h3 { margin: 0 0 10px; font-size: 14px; font-weight: 600; }
+  .how ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 14px; color: var(--ink-2); }
+  .how a { color: var(--ink); font-weight: 500; }
+  .how a:hover { color: var(--accent); }
+  .tag.mid { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
   .indexes { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   .index h2 { font-size: 15px; font-weight: 600; margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--line-strong); }
   .group { margin-bottom: 24px; }
@@ -105,7 +156,8 @@ const ec = index('ec');
   .foot p { margin: 0; }
   @media (max-width: 800px) {
     .entry { padding: 40px 0 64px; }
-    .pick, .indexes { grid-template-columns: 1fr; }
+    .pick, .indexes, .how .grid { grid-template-columns: 1fr; }
+    .how { padding: 20px; }
     .site { min-height: 0; padding: 24px; }
   }
 </style>

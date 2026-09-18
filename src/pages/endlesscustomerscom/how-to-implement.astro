@@ -1,0 +1,138 @@
+---
+// endlesscustomers.com/how-to-implement: the page where a buyer changes sites mid-decision, so it is
+// designed as a page, not a link. Three ways to implement the system, honestly compared.
+import Site from '../../layouts/Site.astro';
+import { href } from '../../lib/site';
+
+const ways = [
+  {
+    name: 'On your own',
+    who: 'You have the discipline, the time, and someone who can write and shoot video every week.',
+    what: ['The book, the 90-day starter guide, and the toolkit', 'The Learning Center, free and ungated', 'The podcast and the conference'],
+    cost: 'Under $50 in materials. The real cost is a content manager’s time and a website that can carry a Learning Center.',
+    honest: 'Most companies that try this stall by month four. The ones that don’t have a leader who owns it.',
+    cta: { label: 'Start with the book', path: '/book' },
+  },
+  {
+    name: 'With the Academy',
+    who: 'You want structure and courses for the team, without a coach in the room.',
+    what: ['Courses, in the order the system is taught', 'Templates and tools', 'Progress tracking for the team'],
+    cost: 'Per seat, annual.',
+    honest: 'Good for teams that already publish and want to get better. Not a substitute for accountability.',
+    cta: { label: 'Endless Customers Academy', path: '/academy' },
+  },
+  {
+    name: 'With a coach',
+    who: 'You want it installed, and you want someone pushing on the hard things every week.',
+    what: ['Deep Diagnostic & Roadmap, then Alignment Day', 'Weekly or bi-weekly coaching and training', 'Quarterly planning until mastery'],
+    cost: '$5,000 for the diagnostic, then from $5,500 a month, month to month. Delivered by IMPACT or a certified independent coach.',
+    honest: 'The fastest and the most expensive. Wrong for you if leadership won’t commit people and time, or if you want an agency to do it for you.',
+    cta: { label: 'Get coaching & training', path: '/coaching' },
+    rec: true,
+  },
+];
+---
+
+<Site site="ec" title="How to Implement" path="/how-to-implement" description="Three ways to implement the Endless Customers system: on your own, with the Academy, or with a coach. Pick the one that fits.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="crumbs"><a href={href('ec', '/learn')}>Learning Center</a><span>&gt;</span><span class="here">How to Implement</span></p>
+      <h1>Three ways to implement the system. Pick the one that fits.</h1>
+      <p class="lede">Every way starts in the same place: the free instant diagnostic, so you know how buyers and AI see you today. From there it’s a question of time, money, and how much accountability you want.</p>
+      <div class="actions">
+        <a class="btn grad" href={href('ec', '/instant-diagnostic')}>Run the free instant AI diagnostic</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid c3 ways">
+        {ways.map((w) => (
+          <div class:list={['card', 'way', { rec: w.rec }]}>
+            {w.rec && <span class="badge">Most companies</span>}
+            <h3>{w.name}</h3>
+            <p class="who">{w.who}</p>
+            <ul>{w.what.map((x) => <li>{x}</li>)}</ul>
+            <p class="cost"><b>Cost.</b> {w.cost}</p>
+            <p class="honest"><b>Honestly.</b> {w.honest}</p>
+            <a class="btn" href={href('ec', w.cta.path)}>{w.cta.label} <span class="arrow">→</span></a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Whichever way, the order is the same</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><div><b>Know how AI sees you</b><p>The free instant diagnostic. One minute.</p></div></li>
+        <li><span class="n">2</span><div><b>Diagnose and plan</b><p>The Deep Diagnostic &amp; Roadmap ($5,000, by IMPACT), or your own honest audit if you’re going alone.</p></div></li>
+        <li><span class="n">3</span><div><b>Align leadership</b><p>Alignment Day with a coach, or a day you run yourself with the book’s agenda.</p></div></li>
+        <li><span class="n">4</span><div><b>Hire and publish</b><p>A content manager, a videographer, a weekly cadence. Sales uses what they make.</p></div></li>
+        <li><span class="n">5</span><div><b>Track and reset quarterly</b><p>What’s working, what isn’t, what’s next.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <h2>Where IMPACT comes in</h2>
+          <p class="intro">IMPACT is the company behind Endless Customers. It delivers the Deep Diagnostic and coaching, certifies independent coaches, and also does the work the system needs when your team can’t yet: HubSpot, websites, paid media. If you pick the coach route, you’ll be working with IMPACT or a coach IMPACT certified.</p>
+          <div class="actions" style="margin-top: 8px;">
+            <a class="btn" href={href('impact', '/')}>impactplus.com ↗</a>
+            <a class="btn" href={href('ec', '/coaches')}>The coach directory</a>
+          </div>
+        </div>
+        <ul class="list-links small">
+          <li><a href={href('impact', '/deep-diagnostic')}>Deep Diagnostic &amp; Roadmap ↗ <span class="arrow">→</span></a></li>
+          <li><a href={href('impact', '/coaching')}>Endless Customers Coaching ↗ <span class="arrow">→</span></a></li>
+          <li><a href={href('impact', '/hubspot')}>HubSpot Services ↗ <span class="arrow">→</span></a></li>
+          <li><a href={href('impact', '/websites')}>Website Services ↗ <span class="arrow">→</span></a></li>
+          <li><a href={href('impact', '/pricing')}>All IMPACT pricing ↗ <span class="arrow">→</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section connects">
+    <div class="wrap">
+      <h2>How this page connects</h2>
+      <p class="src">This site is the source for how the system is implemented. IMPACT’s coaching section describes its version of step 3 onward in detail.</p>
+      <ul>
+        <li><span>The same sequence, from IMPACT’s side</span><a href={href('impact', '/coaching/how-it-works')}>impactplus.com/coaching/how-it-works ↗ →</a></li>
+        <li><span>What each route costs in total</span><a href={href('ec', '/pricing')}>Pricing →</a></li>
+      </ul>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .hero { padding: 72px 0 56px; }
+  .crumbs .here { color: var(--ink); }
+  .ways .way { position: relative; gap: 12px; }
+  .way.rec { border-color: var(--accent); }
+  .way .badge { position: absolute; top: 16px; right: 16px; }
+  .way h3 { font-size: 22px; letter-spacing: -.02em; }
+  .way .who { color: var(--ink); font-size: 15px; }
+  .way ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; display: grid; gap: 4px; }
+  .way .cost, .way .honest { font-size: 14px; color: var(--ink-2); }
+  .way b { color: var(--ink); font-weight: 600; }
+  .way .btn { margin-top: auto; align-self: start; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; max-width: 760px; }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; }
+  .steps .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--grad); color: #fff; font-size: 13px; font-weight: 600; }
+  .steps b { display: block; padding-top: 3px; font-weight: 600; }
+  .steps p { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
+  .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+  .connects { border-top: 1px solid var(--line); background: var(--bg-panel); }
+  .connects h2 { font-size: 20px; }
+  .connects .src { margin: 0 0 16px; color: var(--ink-2); font-size: 15px; }
+  .connects ul { list-style: none; margin: 0; padding: 0; max-width: 800px; }
+  .connects li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
+  .connects li a { color: var(--ink); font-weight: 500; }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 24px; } .hero { padding: 48px 0 36px; } }
+</style>

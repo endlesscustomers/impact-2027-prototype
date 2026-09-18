@@ -326,6 +326,43 @@ const impact: Record<string, Outline> = {
     blocks: [{ h: 'The team', kind: 'cards', items: ['Jason Linde — Google Ads Lead, Paid Media Specialist', 'Tanner Holman — Paid Social Strategist'] }],
     connects: [{ text: 'The whole company', link: { label: 'Meet our team', path: '/team' } }],
   },
+  '/websites': {
+    h1: 'A website your buyers trust and your team can run.',
+    lede: 'Redesigns, optimization, Learning Center and self-service tool builds, on HubSpot, by experienced strategists. Built to be found by buyers and AI, and handed to your team to run without a developer.',
+    ctas: [{ label: 'Talk to a website strategist', path: '/talk' }, { label: 'See pricing', path: '/websites/pricing' }],
+    blocks: [
+      { h: 'What we hear most often', kind: 'cards', items: ['Our site looks fine but nothing happens — Optimization: conversion, AI discoverability, speed, and training', 'We need a new site and we’ve been burned before — Redesign on a proven modular framework, strategists leading, 4 to 7 months', 'We can’t change anything without calling a developer — The Trust theme on HubSpot; your marketing manager runs it', 'We want a Learning Center like yours — Learning Center builds, search-first and ungated', 'Buyers want to price it themselves — Self-service tools: calculators, assessments, selectors'] },
+      { h: 'Why companies choose IMPACT for a website', kind: 'cards', items: ['A proven modular framework, not a start-from-scratch build', 'Experienced strategists lead every project, not junior staff', 'Optimized for the age of AI — what AI can find and verify', 'Yours to run — training is part of every launch'] },
+      { h: 'How it works', kind: 'steps', items: ['Discovery & scoping', 'Strategy & research', 'Content & design', 'Build', 'QA, redirects & migration', 'Launch', 'Training & optimization'] },
+      { h: 'Pricing', kind: 'pricing', tag: live, items: ['Redesign — $25,000 to $155,000', 'Learning Center build — from $5,000', 'Self-service tools — strategy $3,000; builds $5,000 to $70,000', 'Optimization & training — monthly, quoted'], links: [{ label: 'Website pricing in detail', path: '/websites/pricing' }] },
+      { h: 'Results', kind: 'proof', items: ['$900K+ highest-grossing day in company history; 700+ leads in the first month — Zintex Home Remodeling', 'They brought real value beyond just the design — Dana Svilar, Bird Technologies', 'Less like working with a vendor and more like working with an extension of our team — Ashley Rothmann, McClone Insurance'] },
+      { h: 'Your team', kind: 'cards', items: ['Mary Brown — Lead Website Strategist', 'Janet Mendez — Website Strategist', 'Joe Rinaldi — Creative Director, Brand', 'Melissa Smith — Web Team Manager', 'Daniel Escardo — Sr. Front-end Developer'], links: [{ label: 'Our experts', path: '/websites/experts' }, { label: 'Portfolio', path: '/results/website-portfolio' }] },
+    ],
+    connects: [
+      { text: 'One of six IMPACT services; the Deep Diagnostic says whether the website is first', link: { label: 'All services', path: '/services' } },
+      { text: 'The Trust theme is shared with HubSpot Services', link: { label: 'HubSpot Services', path: '/hubspot' } },
+      { text: 'Every site we build carries a Learning Center, the engine of the system', link: { label: 'What is Endless Customers?', path: '/what-is-endless-customers', site: 'ec' } },
+    ],
+    source: 'This site is the source.',
+  },
+  '/paid-media': {
+    h1: 'Ads that reach the buyers already asking the question.',
+    lede: 'Google, Meta, LinkedIn, Microsoft, YouTube, and more, run by our Swell team. Do it for you, or do it with you: a strategist who trains your team to run the ads. Reported in revenue, not clicks.',
+    ctas: [{ label: 'Get a free ads assessment', path: '/talk' }, { label: 'See pricing', path: '/paid-media/pricing' }],
+    blocks: [
+      { h: 'Two ways to work with Swell', kind: 'cards', items: ['Management (do it for you) — campaigns, creative, optimization, real-time spend visibility, reporting tied to revenue, bi-weekly strategy calls', 'Consulting & training (do it with you) — a strategist beside your team, monthly, so the capability stays in-house'] },
+      { h: 'Is Swell the right fit?', kind: 'cards', items: ['You spend $20,000 a month or more on ads, or plan to', 'You want to know what the spend returns, in revenue', 'Your website and content can carry the traffic; if not, we’ll say so and point you to the fix first'] },
+      { h: 'How we work together', kind: 'steps', items: ['Intro call — 30 minutes', 'Initial audit — complimentary', 'Audit review', 'Kickoff — 60 minutes', 'Ongoing — bi-weekly for management, monthly for consulting'] },
+      { h: 'Pricing', kind: 'pricing', tag: live, items: ['Management — $5,000/mo base + 10–15% performance fee ($20K–$100K spend); $7,000/mo base above $100K', 'Consulting & training — $4,000/mo', 'Minimum ad spend — $20,000/mo managed; $10,000/mo consulting'], links: [{ label: 'Paid media pricing in detail', path: '/paid-media/pricing' }] },
+      { h: 'Results', kind: 'proof', items: ['Our return on ad spend is about 13x — Matthew Marshall, Southwest Exteriors', 'Highly intelligent, proactive, and communicative — Matt Bowley, Illume Fertility', 'Average client relationship 3 to 4 years; longest 7+'] },
+      { h: 'Your team', kind: 'cards', items: ['Jason Linde — Google Ads Lead, Paid Media Specialist', 'Tanner Holman — Paid Social Strategist'], links: [{ label: 'Our team', path: '/paid-media/experts' }] },
+    ],
+    connects: [
+      { text: 'Paid media amplifies a foundation; most clients arrive from coaching or a website build', link: { label: 'All services', path: '/services' } },
+      { text: 'Swell is a team name inside IMPACT, not a separate company', link: { label: 'About IMPACT', path: '/about' } },
+    ],
+    source: 'This site is the source.',
+  },
   '/workshops': {
     lede: 'One day with your leadership or sales team, in person or virtual. You leave with a plan they’ll actually run. The only service that isn’t a section of its own.',
     ctas: [talk],

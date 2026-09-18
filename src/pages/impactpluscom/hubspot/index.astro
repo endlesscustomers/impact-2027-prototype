@@ -1,0 +1,209 @@
+---
+// HubSpot Services microsite home. A HubSpot buyer who lands here should see a complete HubSpot
+// partner: what we do, who does it, what it costs, proof, and one CTA. Same IMPACT header; the
+// local nav under it is the microsite. No sub-brand (HubSpot's partner rules bar "Hub" or "HubSpot"
+// in a partner's program name). Facts and prices from the live site, 2026-09-18.
+import Site from '../../../layouts/Site.astro';
+import LocalNav from '../../../components/LocalNav.astro';
+import { href, asset } from '../../../lib/site';
+import { microsites } from '../../../data/microsites';
+
+const ms = microsites.find((m) => m.id === 'hubspot')!;
+const path = '/hubspot';
+
+const problems = [
+  ['We bought HubSpot and nobody uses it.', 'Training in your own portal until the team owns it.', '/hubspot/training'],
+  ['Our HubSpot is a mess and nobody trusts the numbers.', 'A portal audit, then the cleanup, then reports leadership believes.', '/hubspot/cleanup'],
+  ['We’re starting from scratch and don’t want to get it wrong.', 'Onboarding configured for how your team actually sells.', '/hubspot/onboarding'],
+  ['HubSpot doesn’t talk to our ERP / accounting / e-commerce.', 'Integrations and migrations, with engineers where the work needs them.', '/hubspot/integrations'],
+  ['We need a website our team can change without a developer.', 'The Trust theme: IMPACT’s HubSpot CMS theme.', '/hubspot/trust-theme'],
+  ['We want to actually use Breeze AI.', 'Agents and assistants configured to your data, and a team trained to run them.', '/hubspot/onboarding'],
+];
+const programs = [
+  ['Core', '$3,500/mo', 'Two sessions a month, one specialist, one department up to 10 people.'],
+  ['Advanced', '$6,000/mo', 'Weekly sessions, multiple departments, deeper curriculum.'],
+  ['Organization', '$10,000/mo', 'Multiple weekly tracks, role-based, with leadership coordination.'],
+];
+const team = [
+  ['Jessica Palmeri', 'Director of HubSpot Training', 'jessica-palmeri.jpg'],
+  ['Joe Bachir', 'HubSpot Trainer', 'joe-bachir.jpg'],
+  ['Kaitlyn Petro', 'HubSpot Trainer', 'kaitlyn-petro.jpg'],
+];
+const quotes = [
+  ['IMPACT’s overall customized approach and strategy to training is far superior to anything else.', 'Chris Garnett, Chief Marketing & Sales Officer, PartnerMD'],
+  ['From knowing almost nothing in regards to online marketing, to now taking on my own projects within HubSpot, in just months.', 'Janine Estolas, Western States Metal Roofing'],
+  ['Their coaching made a big difference in helping our sales team get comfortable with our new CRM and actually use it effectively.', 'Cheryl Parker, Kaplan Learning'],
+];
+const faqs = [
+  ['Are you a HubSpot agency?', 'We’re a HubSpot Diamond Solutions Partner, and HubSpot services are one of IMPACT’s six services. The difference from a typical HubSpot agency: we train your team to run the portal, so you don’t need us forever.'],
+  ['Do we have to do the Deep Diagnostic first?', 'No. HubSpot work can start on its own. If you don’t know whether HubSpot is the problem, the Deep Diagnostic will tell you where it sits in the order of things to fix.'],
+  ['Do you do migrations from Salesforce?', 'Yes, with our integration partner’s engineers on the technical side and our trainers on the people side.'],
+  ['Is the work guaranteed?', 'Every project and every training session is covered by the 100% money-back guarantee. Tell us within 7 days, we redo it, and if we still miss, you get your money back.'],
+];
+---
+
+<Site site="impact" title="HubSpot Services" path={path} description="HubSpot training, onboarding, cleanup, integrations, and the Trust theme, from a HubSpot Diamond Solutions Partner that trains your team to run it.">
+  <LocalNav ms={ms} path={path} />
+
+  <section class="hero ms-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href={href('impact', '/services')}>How We Help</a><span>&gt;</span><span class="here">HubSpot Services</span></p>
+      <div class="hero-grid">
+        <div>
+          <h1>The HubSpot team that gets you out of the mess and into the results.</h1>
+          <p class="lede">Training, onboarding, cleanup, integrations, and a CMS theme your marketing manager can run, from a HubSpot Diamond Solutions Partner. We leave your team able to run it, which is the part most partners skip.</p>
+          <div class="actions">
+            <a class="btn primary" href={href('impact', '/talk')}>Talk to a HubSpot expert</a>
+            <a class="btn" href={href('impact', '/hubspot/pricing')}>See pricing</a>
+          </div>
+        </div>
+        <aside class="creds">
+          <img src={asset('img/badges/hubspot-diamond.webp')} alt="HubSpot Diamond Solutions Partner" />
+          <ul>
+            <li><b>5.0</b> on the HubSpot directory, 327+ reviews</li>
+            <li><b>15+</b> years as a HubSpot partner</li>
+            <li><b>2x</b> HubSpot Partner of the Year</li>
+            <li><b>27</b> certifications across the team</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What we hear most often</h2>
+      <p class="intro">Pick the one that sounds like you. Each leads to the service, the process, and the price.</p>
+      <div class="grid c3">
+        {problems.map(([say, how, p]) => (
+          <a class="card" href={href('impact', p)}><h3>“{say}”</h3><p>{how}</p><span class="more">How we handle it →</span></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <h2>What makes IMPACT different from other HubSpot partners</h2>
+          <p class="intro">Most partners set HubSpot up and leave. Some manage it for you forever. We do the setup, and then we train your team in your own portal until they don’t need us. That’s the same thing we do with content, sales, and websites, because it’s the whole point of IMPACT.</p>
+          <p class="intro">HubSpot is only as powerful as the team using it.</p>
+        </div>
+        <ol class="steps">
+          <li><span class="n">1</span><div><b>Discovery &amp; kickoff</b><p>A worksheet, then a deep dive with your specialist.</p></div></li>
+          <li><span class="n">2</span><div><b>Training roadmap</b><p>Priorities and a curriculum for your team.</p></div></li>
+          <li><span class="n">3</span><div><b>Sessions in your portal</b><p>Screen-share, in your actual HubSpot. Your team applies it between sessions.</p></div></li>
+          <li><span class="n">4</span><div><b>Independence</b><p>The program ends when your team owns the portal.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Training programs</h2>
+      <p class="intro">Priced by how many people and departments need training. Three-month minimum, then month to month. <span class="tag plan">Live-site pricing, to verify for 2027</span></p>
+      <div class="grid c3">
+        {programs.map(([name, price, what]) => (
+          <div class="card plan">
+            <h3>{name}</h3>
+            <span class="price">{price}</span>
+            <p>{what}</p>
+            <a class="more" href={href('impact', '/hubspot/training')}>Details →</a>
+          </div>
+        ))}
+      </div>
+      <p class="also">Also: an on-site workshop, $12,500 + travel, a full day at your office plus 4–6 weeks of virtual follow-up. Projects (onboarding, cleanup, dashboards, Breeze AI) run $3,000 to $15,000+ and are quoted after a scoping call. <a href={href('impact', '/hubspot/pricing')}>All HubSpot pricing →</a></p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Meet your HubSpot certified trainers</h2>
+      <p class="intro">The same people every session. Certified, and in your portal, not a slide deck.</p>
+      <div class="grid c3 team">
+        {team.map(([name, role]) => (
+          <div class="person">
+            <span class="ph" aria-hidden="true">{name.split(' ').map((w) => w[0]).join('')}</span>
+            <b>{name}</b>
+            <span>{role}</span>
+          </div>
+        ))}
+      </div>
+      <a class="more" href={href('impact', '/hubspot/experts')}>The HubSpot team, and our integration partner →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What clients say</h2>
+      <div class="grid c3">
+        {quotes.map(([q, who]) => <blockquote class="quote"><p>“{q}”</p><footer>{who}</footer></blockquote>)}
+      </div>
+      <p class="also">More on the <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">HubSpot directory ↗</a> and on our <a href={href('impact', '/hubspot/results')}>results page</a>.</p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Questions HubSpot buyers ask</h2>
+      <div class="faqs">
+        {faqs.map(([q, a]) => <details class="faq"><summary><h3>{q}</h3></summary><p>{a}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section connects">
+    <div class="wrap">
+      <h2>How this section connects</h2>
+      <ul>
+        <li><span>One of six IMPACT services; the roadmap from the Deep Diagnostic says whether it’s first</span><a href={href('impact', '/services')}>All services →</a></li>
+        <li><span>Coaching clients bring in the HubSpot team for add-on projects</span><a href={href('impact', '/coaching')}>Endless Customers Coaching →</a></li>
+        <li><span>The Trust theme is shared with Website Services</span><a href={href('impact', '/websites')}>Website Services →</a></li>
+        <li><span>HubSpot problems in the buyer’s words</span><a href={href('impact', '/help/crm')}>CRM and Customer Data →</a></li>
+      </ul>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .ms-hero { padding: 64px 0 56px; }
+  .crumbs .here { color: var(--ink); }
+  .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+  .creds { display: grid; gap: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
+  .creds img { height: 64px; width: auto; }
+  .creds ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--ink-2); }
+  .creds b { color: var(--ink); font-size: 17px; margin-right: 4px; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+  .split .intro + .intro { margin-top: -20px; font-weight: 500; color: var(--ink); }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; }
+  .steps .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 600; }
+  .steps b { display: block; padding-top: 3px; font-weight: 600; }
+  .steps p { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
+  .plan .price { font-size: 28px; font-weight: 600; letter-spacing: -.02em; color: var(--accent); }
+  .also { margin: 24px 0 0; color: var(--ink-2); font-size: 15px; max-width: 70ch; }
+  .also a { color: var(--ink); font-weight: 500; }
+  .also a:hover { color: var(--accent); }
+  .team .person { display: grid; justify-items: start; gap: 2px; font-size: 14px; color: var(--ink-3); }
+  .ph { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 12%, var(--bg)); color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+  .team b { color: var(--ink); font-weight: 500; font-size: 16px; }
+  .section > .wrap > a.more { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 500; }
+  .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); }
+  .quote p { margin: 0; font-size: 16px; text-wrap: pretty; }
+  .quote footer { margin-top: 8px; font-size: 13px; color: var(--ink-3); }
+  .faqs { max-width: 760px; border-top: 1px solid var(--line-strong); }
+  .faq { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; padding: 16px 0; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq h3 { margin: 0; font-size: 17px; font-weight: 500; }
+  .faq summary:hover h3 { color: var(--accent); }
+  .faq p { margin: 0 0 18px; color: var(--ink-2); max-width: 70ch; }
+  .connects { border-top: 1px solid var(--line); background: var(--bg-panel); }
+  .connects h2 { font-size: 20px; }
+  .connects ul { list-style: none; margin: 0; padding: 0; max-width: 800px; }
+  .connects li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
+  .connects li a { color: var(--ink); font-weight: 500; }
+  @media (max-width: 900px) { .hero-grid, .split { grid-template-columns: 1fr; gap: 28px; } .ms-hero { padding: 40px 0 32px; } }
+</style>
