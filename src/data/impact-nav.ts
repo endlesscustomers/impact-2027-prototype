@@ -53,7 +53,7 @@ export const nav: NavItem[] = [
     ],
     foot: [
       { text: 'Every service we offer is backed by our 100% money-back guarantee.', link: guarantee },
-      { text: 'Weighing other options?', link: { label: 'See how IMPACT compares', path: '/compare' } },
+      { text: 'Is IMPACT the right fit for your business?', link: { label: 'Compare us to your other options', path: '/compare' } },
     ],
   },
   {
