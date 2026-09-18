@@ -83,11 +83,16 @@ img, svg { display: block; max-width: 100%; }
 
 .tools { display: flex; align-items: center; gap: 8px; justify-self: end; }
 .icon-btn { position: relative; width: 36px; height: 36px; display: inline-grid; place-items: center; border-radius: 8px; color: var(--ink-2); }
-/* Caption under an icon, shown on hover or keyboard focus (as on the sandbox nav). */
+/* Tooltip under an icon, shown on hover or keyboard focus: dark pill with a pointer, as on the sandbox nav. */
 .icon-btn .tip {
-  position: absolute; top: calc(100% + 2px); left: 50%; transform: translate(-50%, -2px);
-  font-size: 11px; line-height: 1; white-space: nowrap; color: var(--ink-3); letter-spacing: .01em;
+  position: absolute; top: calc(100% + 12px); left: 50%; transform: translate(-50%, -3px);
+  padding: 7px 10px; border-radius: 8px; background: var(--ink); color: var(--bg);
+  font-size: 13px; font-weight: 500; line-height: 1; white-space: nowrap;
   opacity: 0; pointer-events: none; transition: opacity .15s var(--ease), transform .15s var(--ease);
+}
+.icon-btn .tip::before {
+  content: ""; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  border: 6px solid transparent; border-bottom-color: var(--ink); border-top: 0;
 }
 .icon-btn:hover .tip, .icon-btn:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
 .tip-dark, html[data-dark] .tip-light { display: none; }
