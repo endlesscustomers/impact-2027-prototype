@@ -593,6 +593,7 @@ const ec: Record<string, Outline> = {
   },
   '/webinars': { lede: 'Live sessions on what’s changing and what to do about it.', blocks: [{ h: 'Upcoming and on demand', kind: 'cards', tag: 'Feed', items: ['The Great Agency Reckoning: What’s Still Worth Paying For in the Age of AI', 'How to Prepare for Agentic Buying and the Future of Search'] }] },
   '/podcast': { lede: 'Real conversations about how companies win attention, build trust, and grow with the Endless Customers System. Weekly.', blocks: [{ h: 'Latest', kind: 'cards', tag: 'Feed', items: ['Ep. 175 — How He Built a 600-page Website Without Knowing How to Code', 'Ep. 174 — How Far Can AI Take Your Endless Customers Strategy?', 'Ep. 173 — Who Should Use ChatGPT Ads, and Who Should Wait?'] }, { h: 'Listen', kind: 'cards', items: ['Apple Podcasts', 'Spotify', 'YouTube'] }] },
+  '/search': { lede: 'Search across both sites: pages, Learning Center, podcast, and coaches.', blocks: [{ h: 'Results', p: 'Answer-first: the matching Learning Center answer shows above the page results.' }] },
   '/privacy': { lede: 'Privacy policy.', blocks: [{ h: 'Policy', p: 'Shared with impactplus.com.' }] },
   '/terms': { lede: 'Terms of service.', blocks: [{ h: 'Terms', p: 'Shared with impactplus.com.' }] },
 };
