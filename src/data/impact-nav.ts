@@ -52,7 +52,7 @@ export const nav: NavItem[] = [
       { heading: 'Industries we serve', className: 'industries', links: industries },
     ],
     foot: {
-      text: 'Every service we offer is backed by our money-back guarantee.',
+      text: 'Every service we offer is backed by our 100% money-back guarantee.',
       link: guarantee,
     },
   },

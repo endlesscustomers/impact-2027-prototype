@@ -135,7 +135,7 @@ const crosses = (l: NavLink) => l.site && l.site !== site;
     <div class="foot">
       <a class:list={['cta', { grad: isEC }]} href={href(site, cta.path)}>{cta.label}</a>
       {isEC && <p><a href="https://app.impactplus.com/users/sign_in" target="_blank" rel="noopener">Academy Login ↗</a></p>}
-      {!isEC && <p>Every service we offer is backed by our <a href={href('impact', '/guarantee')}>money-back guarantee →</a></p>}
+      {!isEC && <p>Every service we offer is backed by our <a href={href('impact', '/guarantee')}>100% money-back guarantee →</a></p>}
       {mobileNote && <p>{mobileNote.text} {mobileNote.link && <a href={linkHref(mobileNote.link)}>{mobileNote.link.label} →</a>}</p>}
     </div>
   </div>
