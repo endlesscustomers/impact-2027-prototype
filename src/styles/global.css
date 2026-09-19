@@ -386,6 +386,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .faqs { max-width: 800px; } /* no rule under the heading; hairlines sit only between and below questions (Bob, 2026-09-19) */
 .section.center .faqs { margin: 0 auto; text-align: left; }
 .faq { border-bottom: 1px solid var(--line); }
+.faq:last-child { border-bottom: 0; } /* hairlines only between questions: no rule above the first or below the last (Bob, 2026-09-19) */
 .faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; cursor: pointer; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq h3 { margin: 0; font-family: var(--font-head); font-size: var(--fs-h3); font-weight: var(--w-bold); letter-spacing: var(--tr-title); line-height: var(--lh-h3); color: var(--ink); }
