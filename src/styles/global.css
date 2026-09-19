@@ -14,6 +14,8 @@
   --accent: #1a6cf5;
   --accent-ink: #ffffff;
   --scrim: rgba(29,29,31,.28);
+  --menu-bg: #ffffff;            /* open dropdown card */
+  --menu-tint: rgba(29,29,31,.05); /* page behind an open menu, under the blur */
   --shadow: 0 24px 48px -24px rgba(0,0,0,.28), 0 1px 0 rgba(0,0,0,.06);
   --shadow-card: 0 8px 16px -8px rgba(0,0,0,.14), 0 32px 64px -24px rgba(0,0,0,.28);
   --selection: #d6e4ff;
@@ -28,8 +30,8 @@
     --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18);
     --accent: #4c8dff; --scrim: rgba(0,0,0,.5);
     --shadow: 0 24px 48px -24px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.05);
-  --shadow-card: 0 0 0 1px rgba(255,255,255,.08), 0 32px 64px -24px rgba(0,0,0,.8);
     --shadow-card: 0 0 0 1px rgba(255,255,255,.08), 0 32px 64px -24px rgba(0,0,0,.8);
+    --menu-bg: #000000; --menu-tint: rgba(255,255,255,.09); /* inverse of light: black card, page lifts to charcoal */
     --selection: #22406f;
   }
 }
@@ -39,6 +41,8 @@
   --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18);
   --accent: #4c8dff; --scrim: rgba(0,0,0,.5);
   --shadow: 0 24px 48px -24px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.05);
+  --shadow-card: 0 0 0 1px rgba(255,255,255,.08), 0 32px 64px -24px rgba(0,0,0,.8);
+  --menu-bg: #000000; --menu-tint: rgba(255,255,255,.09);
   --selection: #22406f;
 }
 
@@ -128,8 +132,8 @@ html[data-dark] .theme .sun { display: block; }
 
 /* ---------- Dropdown sheets ---------- */
 .scrim {
-  /* No darkening: the page behind an open menu just blurs. */
-  position: fixed; inset: 0; z-index: 30; background: transparent;
+  /* The page behind an open menu blurs and takes a slight tint: darker in light mode, lifted to charcoal in dark mode. */
+  position: fixed; inset: 0; z-index: 30; background: var(--menu-tint);
   opacity: 0; pointer-events: none; transition: opacity .25s var(--ease);
   backdrop-filter: blur(12px) saturate(1.1); -webkit-backdrop-filter: blur(12px) saturate(1.1);
 }
@@ -141,7 +145,7 @@ body[data-open] .header { background: transparent; backdrop-filter: none; -webki
   /* Zoom-style floating card: inset by the header gutter, rounded on all sides, a breath of air under the header,
      shadow instead of a border. The same recipe scales down to the small menus. */
   position: fixed; left: 32px; right: 32px; top: calc(var(--header-h) + 8px); z-index: 35;
-  background: var(--bg-panel); border-radius: 20px; box-shadow: var(--shadow-card);
+  background: var(--menu-bg); border-radius: 20px; box-shadow: var(--shadow-card);
   opacity: 0; transform: translateY(-6px); pointer-events: none; visibility: hidden;
   transition: opacity .22s var(--ease), transform .28s var(--ease), visibility 0s linear .28s;
 }
