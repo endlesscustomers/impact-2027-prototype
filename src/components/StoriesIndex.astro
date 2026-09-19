@@ -1,0 +1,169 @@
+---
+// The success stories listing, both sites. Shape: zoom.com/en/customer-stories/all (Bob, 2026-09-19):
+// title and intro left, featured story right; search and a Filter toggle; four filters that apply on
+// selection (Problem, Service, Company Size, Industry: Bob, 2026-09-19); a three-column grid with
+// Load More; a call to action. Filtering runs in the page; on HubSpot the same data comes from HubDB.
+import Site from '../layouts/Site.astro';
+import StoryCard from './StoryCard.astro';
+import { href, type SiteId } from '../lib/site';
+import { PROBLEMS, SERVICES, SIZES, industryOrder, listingPath, posterFor, storiesFor, storyPath } from '../data/stories';
+import { pages } from '../data/pages';
+
+interface Props { site: SiteId }
+const { site } = Astro.props;
+const path = listingPath[site];
+const list = storiesFor(site);
+const featured = list.find((s) => s.featuredOn?.includes(site)) ?? list[0];
+const page = pages[site].find((p) => p.path === path);
+const h1 = page?.h1 ?? 'Success Stories';
+const intro = site === 'ec'
+  ? 'Every company here implemented the Endless Customers System, most of them with a coach. Real numbers, told by the people who did the work.'
+  : 'Real companies and real numbers, told by the people who did the work. Filter by the problem you have, the service they used, company size, or industry.';
+const count = (key: 'problems' | 'services' | 'industry' | 'size', v: string) => list.filter((s) => (Array.isArray(s[key]) ? (s[key] as string[]).includes(v) : s[key] === v)).length;
+const groups: { key: string; label: string; hint: string; values: string[] }[] = [
+  { key: 'problem', label: 'Problem', hint: 'What they came to fix', values: PROBLEMS.filter((v) => count('problems', v)) },
+  { key: 'service', label: 'Service', hint: 'What they used', values: SERVICES.map((s) => s.name).filter((v) => count('services', v)) },
+  { key: 'size', label: 'Company Size', hint: 'Employees, where the story says', values: SIZES.filter((v) => count('size', v)) },
+  { key: 'industry', label: 'Industry', hint: 'Their market', values: industryOrder(list).filter((v) => count('industry', v)) },
+];
+const countFor = (key: string, v: string) => count(key === 'problem' ? 'problems' : key === 'service' ? 'services' : (key as 'size' | 'industry'), v);
+const ctaPrimary = site === 'ec' ? { label: 'Book a Free Call', path: '/book-a-call' } : { label: 'Book a Free Consultation', path: '/talk' };
+const ctaSecondary = site === 'ec' ? { label: 'Get Coaching & Training', path: '/coaching' } : { label: 'Take the Free Instant Diagnostic', path: '/instant-diagnostic' };
+const other: SiteId = site === 'ec' ? 'impact' : 'ec';
+---
+
+<Site site={site} title="Success Stories" path={path} description={intro}>
+  <div class="st-index">
+    <section class="hero side">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <h1>{h1}</h1>
+            <p class="lede">{intro}</p>
+          </div>
+          <a class="st-featured" href={href(site, storyPath(site, featured))}>
+            <span class="st-media">
+              {posterFor(featured) && <img src={posterFor(featured)} alt="" />}
+              <span class="st-tag">{featured.industry}</span>
+            </span>
+            <span class="st-text">
+              <b>{featured.client}</b>
+              <p>{featured.blurb}</p>
+              <span class="st-go">{featured.video ? 'Watch Video' : 'Read Story'} →</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="st-tools">
+      <div class="wrap">
+        <div class="st-bar">
+          <label class="st-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" placeholder="Search" aria-label="Search success stories" autocomplete="off" />
+            <button class="st-clear" type="button" aria-label="Clear search">×</button>
+          </label>
+          <button class="st-toggle" type="button" aria-expanded="false" aria-controls="st-filters">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Filter
+            <svg class="st-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="st-filters" id="st-filters">
+          {groups.map((g) => (
+            <details class="st-filter" data-key={g.key}>
+              <summary>{g.label} <span class="st-n">0</span><svg class="st-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+              <div class="st-menu">
+                <small>{g.hint}. Filters apply on selection.</small>
+                {g.values.map((v) => <label><input type="checkbox" value={v} /> {v} <span class="st-c">({countFor(g.key, v)})</span></label>)}
+              </div>
+            </details>
+          ))}
+          <button class="st-reset" type="button" hidden>Clear All</button>
+          <span class="st-count"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="st-grid">
+      <div class="wrap">
+        <div class="grid c3">
+          {list.map((s, i) => <StoryCard site={site} story={s} eager={i < 3} />)}
+        </div>
+        <p class="st-empty">No stories match. Try changing your filters or search term.</p>
+        <div class="st-more"><button class="btn" type="button">Load More</button></div>
+      </div>
+    </section>
+
+    <section class="section alt st-cta">
+      <div class="wrap">
+        <h2>Interested in Results Like These?</h2>
+        <p>{site === 'ec' ? 'Talk to someone who has done this with hundreds of companies. Wanting a coach hands off to IMPACT, the company that delivers the coaching.' : 'Start with a free conversation, or ask AI how your company shows up before you talk to anyone.'}</p>
+        <div class="actions">
+          <a class="btn primary" href={href(site, ctaPrimary.path)}>{ctaPrimary.label} <span class="arrow">→</span></a>
+          <a class="btn" href={href(site, ctaSecondary.path)}>{ctaSecondary.label}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section connects">
+      <div class="wrap">
+        <h2>How This Page Connects</h2>
+        <p class="src">One set of stories, one layout, listed on both sites. Each story lives once and is filed against the problem it solved, the service used, company size, and industry; HubSpot holds that as one HubDB row per story.</p>
+        <ul>
+          <li><span>The same stories on the other site</span><a href={href(other, listingPath[other])}>{other === 'ec' ? 'endlesscustomers.com/success-stories' : 'impactplus.com/results/success-stories'} ↗ →</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</Site>
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector('.st-index'); if (!root) return;
+    var cards = Array.prototype.slice.call(root.querySelectorAll('.st-card[data-story]'));
+    var searchWrap = root.querySelector('.st-search'), search = searchWrap.querySelector('input');
+    var toggle = root.querySelector('.st-toggle'), filters = root.querySelector('.st-filters');
+    var groups = Array.prototype.slice.call(root.querySelectorAll('.st-filter'));
+    var count = root.querySelector('.st-count'), more = root.querySelector('.st-more'), grid = root.querySelector('.st-grid'), reset = root.querySelector('.st-reset');
+    var PAGE = 9, shown = PAGE;
+    toggle.addEventListener('click', function () { var open = filters.hasAttribute('data-open'); filters.toggleAttribute('data-open', !open); toggle.setAttribute('aria-expanded', String(!open)); });
+    groups.forEach(function (g) { g.addEventListener('toggle', function () { if (g.open) groups.forEach(function (o) { if (o !== g) o.open = false; }); }); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.st-filter')) groups.forEach(function (g) { g.open = false; }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') groups.forEach(function (g) { g.open = false; }); });
+    function state() {
+      var s = {};
+      groups.forEach(function (g) {
+        var v = Array.prototype.slice.call(g.querySelectorAll('input:checked')).map(function (i) { return i.value; });
+        s[g.getAttribute('data-key')] = v; g.toggleAttribute('data-count', v.length > 0); g.querySelector('.st-n').textContent = String(v.length);
+      });
+      return s;
+    }
+    function apply(first) {
+      if (first) shown = PAGE;
+      var s = state(), q = (search.value || '').trim().toLowerCase(), any = q.length > 0, n = 0;
+      searchWrap.toggleAttribute('data-has', q.length > 0);
+      cards.forEach(function (c) {
+        var ok = true;
+        Object.keys(s).forEach(function (k) {
+          if (!s[k].length) return; any = true;
+          var have = (c.getAttribute('data-' + k) || '').split('|');
+          if (!s[k].some(function (v) { return have.indexOf(v) >= 0; })) ok = false;
+        });
+        if (ok && q && (c.getAttribute('data-text') || '').indexOf(q) < 0) ok = false;
+        if (ok) { n++; c.hidden = n > shown; } else c.hidden = true;
+      });
+      count.textContent = n === 1 ? '1 story' : n + ' stories';
+      grid.toggleAttribute('data-empty', n === 0);
+      more.hidden = n <= shown;
+      reset.hidden = !any;
+    }
+    root.addEventListener('change', function (e) { if (e.target.matches('.st-filter input')) apply(true); });
+    search.addEventListener('input', function () { apply(true); });
+    searchWrap.querySelector('.st-clear').addEventListener('click', function () { search.value = ''; apply(true); search.focus(); });
+    more.querySelector('button').addEventListener('click', function () { shown += PAGE; apply(false); });
+    reset.addEventListener('click', function () { search.value = ''; groups.forEach(function (g) { Array.prototype.forEach.call(g.querySelectorAll('input'), function (i) { i.checked = false; }); }); apply(true); });
+    apply(true);
+  })();
+</script>

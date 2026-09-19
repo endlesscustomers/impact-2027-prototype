@@ -1,0 +1,136 @@
+---
+// One success story, both sites. Shape: zoom.com/en/customer-stories/cricut (Bob, 2026-09-19):
+// breadcrumb; headline, summary, and the video or image; a rule; a sticky facts card on the left
+// (industry, size, challenges, solutions, outcomes, related), services used, share; on the right the
+// stat cards, quote cards, and the narrative; then the call to action and related stories.
+// On HubSpot this is one page template: the facts and card come from the story's HubDB row, the
+// narrative is the page's own modules (rich text, quote card, stat row, video).
+import Site from '../layouts/Site.astro';
+import Video from './Video.astro';
+import StoryCard from './StoryCard.astro';
+import { href, realUrl, type SiteId } from '../lib/site';
+import { SERVICES, bodyFor, listingPath, posterFor, related, storiesFor, storyPath, type Story } from '../data/stories';
+
+interface Props { site: SiteId; story: Story }
+const { site, story: s } = Astro.props;
+const path = storyPath(site, s);
+const list = storiesFor(site);
+const rel = related(s, list);
+const body = bodyFor(s);
+const poster = posterFor(s);
+const url = 'https://' + realUrl(site, path);
+const share = [
+  { name: 'LinkedIn', u: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, d: 'M6.94 8.5V19H3.56V8.5h3.38zM5.25 3a1.94 1.94 0 110 3.88 1.94 1.94 0 010-3.88zM20.44 19h-3.37v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.69V19H10.04V8.5h3.24v1.43h.05c.45-.85 1.55-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.18V19z' },
+  { name: 'Facebook', u: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, d: 'M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.87.24-1.46 1.49-1.46h1.6V4.46c-.28-.04-1.22-.12-2.33-.12-2.3 0-3.88 1.4-3.88 3.98v2.18H7.8v3h2.58V21h3.12z' },
+  { name: 'X', u: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(s.headline)}`, d: 'M17.5 3h3l-6.6 7.6L21.7 21h-6.1l-4.8-6.3L5.3 21h-3l7.1-8.1L2 3h6.2l4.3 5.7L17.5 3zm-1.1 16.2h1.7L7.2 4.7H5.4l11 14.5z' },
+];
+const serviceLink = (name: string) => {
+  const svc = SERVICES.find((x) => x.name === name);
+  if (!svc) return { href: '#', cross: false };
+  if (site === 'ec' && name === 'Endless Customers Coaching') return { href: href('ec', '/coaching'), cross: false };
+  return { href: href(svc.site, svc.path), cross: site !== svc.site };
+};
+const cta = site === 'ec'
+  ? { h: 'Want Results Like These?', p: 'Talk to someone who has done this with hundreds of companies. Wanting a coach hands off to IMPACT, the company that delivers the coaching.', a: { label: 'Book a Free Call', path: '/book-a-call' }, b: { label: 'Get Coaching & Training', path: '/coaching' } }
+  : { h: 'Interested in Results Like These?', p: 'Start with a free conversation, or ask AI how your company shows up before you talk to anyone.', a: { label: 'Book a Free Consultation', path: '/talk' }, b: { label: 'Take the Free Instant Diagnostic', path: '/instant-diagnostic' } };
+const lead = s.quotes[0];
+const rest = s.quotes.slice(1);
+// Drop a quote card into the narrative every other section, after the first.
+const quoteAt = (i: number) => (i > 0 && i % 2 === 0 ? rest[i / 2 - 1] : undefined);
+---
+
+<Site site={site} title={`${s.client} Success Story`} path={path} description={s.blurb}>
+  <div class="st-story">
+    <section class="hero side">
+      <div class="wrap">
+        <p class="crumbs"><a href={href(site, listingPath[site])}>Success Stories</a><span>&gt;</span><a href={href(site, listingPath[site])}>{s.industry}</a><span>&gt;</span><span class="here">{s.client}</span></p>
+        <div class="hero-grid">
+          <div>
+            <h1>{s.headline}</h1>
+            <p class="lede">{s.summary}</p>
+          </div>
+          <div class="media">
+            {s.video ? <Video id={s.video} title={s.headline} poster={poster} /> : poster ? <div class="st-video"><img src={poster} alt="" /></div> : null}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="st-body">
+      <div class="wrap st-cols">
+        <aside class="st-side">
+          <div class="st-facts">
+            <dl>
+              <div><dt>Industry:</dt><dd>{s.industry}</dd></div>
+              {s.size && <div><dt>Company Size:</dt><dd>{s.size}</dd></div>}
+              {s.founded && <div><dt>Founded:</dt><dd>{s.founded}</dd></div>}
+              {s.location && <div><dt>Location:</dt><dd>{s.location}</dd></div>}
+              <div><dt>Challenges:</dt><dd><ul>{s.challenges.map((c) => <li>{c}</li>)}</ul></dd></div>
+              <div><dt>Solutions:</dt><dd><ul>{s.solutions.map((c) => <li>{c}</li>)}</ul></dd></div>
+              <div><dt>Outcomes:</dt><dd><ul>{s.outcomes.map((c) => <li>{c}</li>)}</ul></dd></div>
+            </dl>
+            <a class="btn primary" href="#related">See Related Stories</a>
+          </div>
+          <div class="st-services">
+            <h3>Services Used</h3>
+            <ul>
+              {s.services.map((name) => { const l = serviceLink(name); return <li><a href={l.href}><span class="st-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>{name}{l.cross ? ' ↗' : ''}</a></li>; })}
+            </ul>
+          </div>
+          <div class="st-share">
+            <h3>Share This Story</h3>
+            <ul>
+              {share.map((x) => <li><a href={x.u} target="_blank" rel="noopener" aria-label={`Share on ${x.name}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={x.d} /></svg></a></li>)}
+              <li><button type="button" class="st-copy" data-url={url} aria-label="Copy link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a4 4 0 005.6 0l3-3a4 4 0 00-5.6-5.6l-1.5 1.5M13.4 10.6a4 4 0 00-5.6 0l-3 3a4 4 0 005.6 5.6l1.5-1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></li>
+            </ul>
+          </div>
+        </aside>
+
+        <article class="st-main">
+          {s.stats.length > 0 && (
+            <div class="st-stats" data-n={s.stats.length}>
+              {s.stats.map((st) => <div class="st-stat"><span class="stat">{st.n}</span><p>{st.caption}</p></div>)}
+            </div>
+          )}
+          {lead && <figure class="st-quote"><span class="st-q" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></span><p>{lead.q}</p><footer><b>{lead.who}</b>{lead.role}</footer></figure>}
+          {body.map((sec, i) => (
+            <>
+              {sec.h && <h2>{sec.h}</h2>}
+              {sec.blocks.map((b) =>
+                'p' in b ? <p>{b.p}</p>
+                : 'ul' in b ? <ul>{b.ul.map((x) => <li>{x}</li>)}</ul>
+                : 'h3' in b ? <h3>{b.h3}</h3>
+                : <figure class="st-quote"><span class="st-q" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></span><p>{b.q}</p>{b.by && <footer><b>{b.by.split(',')[0]}</b>{b.by.split(',').slice(1).join(',').trim()}</footer>}</figure>
+              )}
+              {quoteAt(i) && <figure class="st-quote"><span class="st-q" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></span><p>{quoteAt(i)!.q}</p><footer><b>{quoteAt(i)!.who}</b>{quoteAt(i)!.role}</footer></figure>}
+            </>
+          ))}
+        </article>
+      </div>
+    </section>
+
+    <section class="section alt st-cta">
+      <div class="wrap">
+        <h2>{cta.h}</h2>
+        <p>{cta.p}</p>
+        <div class="actions">
+          <a class="btn primary" href={href(site, cta.a.path)}>{cta.a.label} <span class="arrow">→</span></a>
+          <a class="btn" href={href(site, cta.b.path)}>{cta.b.label}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section st-related" id="related">
+      <div class="wrap">
+        <div class="st-related-head"><h2>Related Success Stories</h2><a class="more" href={href(site, listingPath[site])}>All Success Stories →</a></div>
+        <div class="grid c3">{rel.map((r) => <StoryCard site={site} story={r} />)}</div>
+      </div>
+    </section>
+  </div>
+</Site>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.st-copy').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.url ?? location.href); b.setAttribute('data-done', ''); setTimeout(() => b.removeAttribute('data-done'), 1500); } catch {}
+  }));
+</script>

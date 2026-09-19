@@ -1,0 +1,21 @@
+---
+// Click-to-play Vidyard embed: the poster and a play button until someone clicks, then the player.
+// Same shape as the video in the hero of zoom.com's customer stories.
+interface Props { id: string; title: string; poster?: string }
+const { id, title, poster } = Astro.props;
+---
+<div class="st-video" data-vid={id}>
+  <img src={poster ?? `https://play.vidyard.com/${id}.jpg`} alt="" loading="lazy" />
+  <button class="st-playbtn" type="button" aria-label={`Play video: ${title}`}><span></span></button>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('.st-video[data-vid]').forEach((el) => {
+    el.querySelector('button')?.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = `https://play.vidyard.com/${el.dataset.vid}.html?autoplay=1&v=4`;
+      f.allow = 'autoplay; fullscreen; picture-in-picture';
+      f.title = el.querySelector('button')?.getAttribute('aria-label') ?? 'Video';
+      el.replaceChildren(f);
+    });
+  });
+</script>

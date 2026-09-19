@@ -1,0 +1,9 @@
+---
+import StoryPage from '../../../components/StoryPage.astro';
+import { storiesFor } from '../../../data/stories';
+export function getStaticPaths() {
+  return storiesFor('ec').map((story) => ({ params: { slug: story.slug }, props: { story } }));
+}
+const { story } = Astro.props;
+---
+<StoryPage site="ec" story={story} />

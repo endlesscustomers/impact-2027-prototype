@@ -1,0 +1,21 @@
+---
+// One story on the listing and in "Related Success Stories": image with a play badge when there is a
+// video, the client's logo or name, one sentence, and the link. Data attributes feed the filters.
+import { asset, href, type SiteId } from '../lib/site';
+import { posterFor, storyPath, type Story } from '../data/stories';
+interface Props { site: SiteId; story: Story; eager?: boolean }
+const { site, story, eager = false } = Astro.props;
+const poster = posterFor(story);
+const text = [story.client, story.headline, story.blurb, story.industry, ...story.services, ...story.problems].join(' ').toLowerCase();
+---
+<a class="st-card" href={href(site, storyPath(site, story))} data-story={story.slug}
+  data-problem={story.problems.join('|')} data-service={story.services.join('|')} data-size={story.size ?? ''} data-industry={story.industry} data-text={text}>
+  <span class="st-media">
+    {poster && <img src={poster} alt="" loading={eager ? 'eager' : 'lazy'} />}
+    {story.video && <span class="st-play" aria-hidden="true"></span>}
+  </span>
+  {story.logo ? <span class="st-logo"><img src={asset(`img/logos/${story.logo}`)} alt={story.client} /></span> : null}
+  <b>{story.client}</b>
+  <p>{story.blurb}</p>
+  <span class="st-go">{story.video ? 'Watch Video' : 'Read Story'} →</span>
+</a>
