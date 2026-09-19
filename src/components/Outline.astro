@@ -2,12 +2,10 @@
 // Renders a page from its outline: breadcrumbs, H1, lede, the section blocks, and a "how this page
 // connects" strip. Enough to read the strategy off the page; not the finished page.
 import Site from '../layouts/Site.astro';
-import LocalNav from './LocalNav.astro';
 import type { SiteId } from '../lib/site';
 import { href } from '../lib/site';
 import { pages, crumbParent, type PageEntry } from '../data/pages';
 import type { Outline } from '../data/outlines';
-import { micrositeFor } from '../data/microsites';
 
 interface Props { site: SiteId; page: PageEntry; outline: Outline }
 const { site, page, outline } = Astro.props;
@@ -22,12 +20,10 @@ if (segs.length > 1) {
   const section = pages[site].find((p) => p.path === '/' + segs[0]);
   if (section) crumbs.push({ label: section.title, path: section.path });
 }
-const ms = micrositeFor(site, page.path);
 const split = (s: string) => { const i = s.indexOf(' — '); return i < 0 ? [s, ''] : [s.slice(0, i), s.slice(i + 3)]; };
 ---
 
 <Site site={site} title={page.title} path={page.path} status="draft">
-  {ms && <LocalNav ms={ms} path={page.path} />}
   <section class="hero">
     <div class="wrap">
       {crumbs.length > 0 && (

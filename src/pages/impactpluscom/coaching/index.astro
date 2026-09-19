@@ -3,7 +3,6 @@
 // endlesscustomers.com/coaching is the door that hands off here. Coach profiles live on
 // endlesscustomers.com/coaches, and this page links there rather than duplicating them.
 import Site from '../../../layouts/Site.astro';
-import LocalNav from '../../../components/LocalNav.astro';
 import { href, asset } from '../../../lib/site';
 import { microsites } from '../../../data/microsites';
 
@@ -22,8 +21,6 @@ const coaches = [
 ---
 
 <Site site="impact" title="Endless Customers Coaching" path={path} description="Endless Customers coaching from IMPACT, the company behind the system: a coach who works like a fractional chief revenue officer until your team runs the system without them.">
-  <LocalNav ms={ms} path={path} />
-
   <section class="hero ms-hero">
     <div class="wrap">
       <p class="crumbs"><a href={href('impact', '/services')}>How We Help</a><span>&gt;</span><span class="here">Endless Customers Coaching</span></p>

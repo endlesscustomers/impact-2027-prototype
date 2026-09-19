@@ -3,14 +3,12 @@
 // behavior borrowed from apple.com (the message changes by section). Dismissal is per message and remembered.
 import type { Ribbon, SiteId } from '../lib/site';
 import { href } from '../lib/site';
-import { micrositeFor } from '../data/microsites';
 
 interface Props { site: SiteId; path: string; ribbons: Ribbon[] }
 const { site, path, ribbons } = Astro.props;
 
 const clean = '/' + path.replace(/^\/+|\/+$/g, '');
-// Microsite pages carry a local nav instead; three stacked bars is too many.
-const pick = micrositeFor(site, path) ? undefined : ribbons.find((r) => r.on.some((p) => (p === '/' ? clean === '/' : clean === p || clean.startsWith(p + '/'))));
+const pick = ribbons.find((r) => r.on.some((p) => (p === '/' ? clean === '/' : clean === p || clean.startsWith(p + '/'))));
 ---
 
 {pick && (

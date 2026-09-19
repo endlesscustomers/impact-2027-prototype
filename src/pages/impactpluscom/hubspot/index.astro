@@ -4,7 +4,6 @@
 // local nav under it is the microsite. No sub-brand (HubSpot's partner rules bar "Hub" or "HubSpot"
 // in a partner's program name). Facts and prices from the live site, 2026-09-18.
 import Site from '../../../layouts/Site.astro';
-import LocalNav from '../../../components/LocalNav.astro';
 import { href, asset } from '../../../lib/site';
 import { microsites } from '../../../data/microsites';
 
@@ -43,8 +42,6 @@ const faqs = [
 ---
 
 <Site site="impact" title="HubSpot Services" path={path} description="HubSpot training, onboarding, cleanup, integrations, and the Trust theme, from a HubSpot Diamond Solutions Partner that trains your team to run it.">
-  <LocalNav ms={ms} path={path} />
-
   <section class="hero ms-hero">
     <div class="wrap">
       <p class="crumbs"><a href={href('impact', '/services')}>How We Help</a><span>&gt;</span><span class="here">HubSpot Services</span></p>
