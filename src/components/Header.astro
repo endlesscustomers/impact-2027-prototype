@@ -10,11 +10,13 @@ interface Props {
   site: SiteId;
   nav: NavItem[];
   cta: NavLink;
+  /** Ghost button to the left of the main call to action. */
+  secondary?: NavLink;
   /** Line under the mobile menu's button. */
   mobileNote?: { text: string; link?: NavLink };
   currentPath?: string;
 }
-const { site, nav, cta, mobileNote, currentPath = '' } = Astro.props;
+const { site, nav, cta, secondary, mobileNote, currentPath = '' } = Astro.props;
 const isEC = site === 'ec';
 const mobileId = `mobile-${site}`;
 
@@ -54,7 +56,8 @@ const crosses = (l: NavLink) => l.site && l.site !== site;
         <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
         <span class="tip tip-light" aria-hidden="true">Dark mode</span><span class="tip tip-dark" aria-hidden="true">Light mode</span>
       </button>
-      <a class:list={['cta', { grad: isEC }]} href={href(site, cta.path)}>{cta.label}</a>
+      {secondary && <a class="cta ghost" href={href(site, secondary.path)}>{secondary.label}</a>}
+      <a class:list={['cta', { grad: isEC }]} href={href(site, cta.path)}>{cta.label} <span class="arr" aria-hidden="true">→</span></a>
       <button class="icon-btn burger" aria-label="Menu" aria-expanded="false" aria-controls={mobileId} data-burger={mobileId}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path class="open" d="M4 7h16M4 12h16M4 17h16"/><path class="close" d="M6 6l12 12M18 6L6 18"/></svg>
       </button>

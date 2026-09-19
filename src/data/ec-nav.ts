@@ -5,6 +5,7 @@ import type { NavItem, NavLink, Ribbon } from '../lib/site';
 // endlesscustomers.com page (Bob, 2026-09-18), not a hop to impactplus.com.
 
 export const cta: NavLink = { label: 'Book a Free Call', path: '/book-a-call' };
+export const secondary: NavLink = { label: 'Free AI Diagnostic', path: '/instant-diagnostic' };
 
 export const nav: NavItem[] = [
   { kind: 'link', label: 'The Book', path: '/book' },

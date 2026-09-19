@@ -108,6 +108,12 @@ html[data-dark] .tip-dark { display: block; }
 .cta:hover { filter: brightness(1.06); }
 .cta:active { transform: scale(.98); }
 .cta.grad { background: var(--grad); color: #fff; }
+.cta.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line-strong); }
+.cta.ghost:hover { filter: none; box-shadow: inset 0 0 0 1.5px var(--ink); }
+.cta .arr { margin-left: 6px; transition: transform .15s var(--ease); }
+.cta:hover .arr { transform: translateX(2px); }
+.header .tools .cta.ghost { margin-left: 4px; }
+@media (max-width: 1180px) { .header .cta.ghost { display: none; } .header .wrap { gap: 24px; } } /* the ghost button is the first thing to go when the header gets tight */
 .theme .moon, html[data-dark] .theme .sun { display: none; }
 html[data-dark] .theme .moon { display: block; }
 .burger { display: none; }
@@ -268,7 +274,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 @media (max-width: 900px) {
   .nav, .tools .search, .tools .account, .icon-btn .tip { display: none; }
   .header .cta { padding: 0 14px; font-size: 13px; }
-  .header .cta.grad { display: none; }
+  .header .cta.grad, .header .cta.ghost { display: none; }
   .tools .theme { order: -1; }
   .burger { display: inline-grid; }
   .header .wrap { grid-template-columns: 1fr auto; padding: 0 20px; gap: 8px; }

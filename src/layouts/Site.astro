@@ -22,6 +22,7 @@ const { site, title, description, path, status = 'draft' } = Astro.props;
 const s = SITES[site];
 const nav = site === 'ec' ? ec.nav : impact.nav;
 const cta = site === 'ec' ? ec.cta : impact.cta;
+const secondary = site === 'ec' ? ec.secondary : impact.secondary;
 const mobileNote = site === 'ec'
   ? { text: 'Endless Customers is a brand of IMPACT.' }
   : { text: 'Not sure where to start?', link: impact.instantDiagnostic };
@@ -29,7 +30,7 @@ const mobileNote = site === 'ec'
 
 <Base title={`${title} · ${s.domain}`} description={description} favicon={site}>
   <slot name="head" slot="head" />
-  <Header site={site} nav={nav} cta={cta} mobileNote={mobileNote} currentPath={path} />
+  <Header site={site} nav={nav} cta={cta} secondary={secondary} mobileNote={mobileNote} currentPath={path} />
   <Ribbon site={site} path={path} ribbons={site === 'ec' ? ec.ribbons : impact.ribbons} />
   <main>
     <slot />

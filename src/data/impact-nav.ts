@@ -39,6 +39,8 @@ export const industries: NavLink[] = [
 ];
 
 export const cta: NavLink = { label: 'Let’s Talk', path: '/talk' };
+/** Ghost button beside the main call to action. Same on both sites: the free diagnostic is the first step everywhere. */
+export const secondary: NavLink = { label: 'Free AI Diagnostic', path: '/instant-diagnostic' };
 export const instantDiagnostic: NavLink = { label: 'Take the free instant diagnostic', path: '/instant-diagnostic' };
 
 export const nav: NavItem[] = [
