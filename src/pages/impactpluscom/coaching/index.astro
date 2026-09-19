@@ -4,9 +4,7 @@
 // endlesscustomers.com/coaches, and this page links there rather than duplicating them.
 import Site from '../../../layouts/Site.astro';
 import { href, asset } from '../../../lib/site';
-import { microsites } from '../../../data/microsites';
 
-const ms = microsites.find((m) => m.id === 'coaching')!;
 const path = '/coaching';
 const plans = [
   ['Guidance', '$5,500/mo', 'Bi-weekly coaching, one track. For teams with a content manager already in place.'],
@@ -27,17 +25,17 @@ const coaches = [
       <div class="hero-grid">
         <div>
           <img class="wordmark" src={asset('img/ec-logo-black.svg')} alt="Endless Customers" width="200" />
-          <h1>Become the most trusted voice in your market, with a coach in your corner.</h1>
+          <h1>Become the Most Trusted Voice in Your Market, With a Coach in Your Corner</h1>
           <p class="lede">A certified Endless Customers coach works with your leadership, sales, and marketing teams, like a fractional chief revenue officer, until the system runs without them. Delivered by IMPACT, the company behind the system.</p>
           <div class="actions">
             <a class="btn primary" href={href('impact', '/talk')}>Book an Explore Call</a>
-            <a class="btn" href={href('impact', '/coaching/pricing')}>See pricing</a>
+            <a class="btn" href={href('impact', '/coaching/pricing')}>See Pricing</a>
           </div>
         </div>
         <aside class="path">
           <p class="cap">The sequence</p>
           <ol>
-            <li><b>Free instant diagnostic</b><span>How AI sees you today</span></li>
+            <li><b>Free Instant Diagnostic</b><span>How AI sees you today</span></li>
             <li><b>Deep Diagnostic &amp; Roadmap</b><span>$5,000 · the plan</span></li>
             <li class="live"><b>Coaching</b><span>Alignment Day, then weekly</span></li>
             <li><b>Mastery</b><span>Your team runs it</span></li>
@@ -49,26 +47,26 @@ const coaches = [
 
   <section class="section">
     <div class="wrap">
-      <h2>What a coach actually does</h2>
+      <h2>What a Coach Actually Does</h2>
       <div class="grid c4">
-        <div class="card"><h3>Sits with leadership</h3><p>In your leadership meetings and quarterly planning, pushing on the hard things.</p></div>
-        <div class="card"><h3>Trains the team</h3><p>Content and video, website, assignment selling, HubSpot, practical AI. Weekly or bi-weekly, in your business.</p></div>
-        <div class="card"><h3>Holds the plan</h3><p>A 90-day plan, tracked every quarter. Accountability is most of the value.</p></div>
-        <div class="card"><h3>Builds the team</h3><p>Helps you hire a content manager and a videographer, and makes sales use what they make.</p></div>
+        <div class="card"><h3>Sits With Leadership</h3><p>In your leadership meetings and quarterly planning, pushing on the hard things.</p></div>
+        <div class="card"><h3>Trains the Team</h3><p>Content and video, website, assignment selling, HubSpot, practical AI. Weekly or bi-weekly, in your business.</p></div>
+        <div class="card"><h3>Holds the Plan</h3><p>A 90-day plan, tracked every quarter. Accountability is most of the value.</p></div>
+        <div class="card"><h3>Builds the Team</h3><p>Helps you hire a content manager and a videographer, and makes sales use what they make.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section alt">
     <div class="wrap">
-      <h2>How it works</h2>
+      <h2>How It Works</h2>
       <ol class="steps">
         <li><span class="n">1</span><div><b>Alignment Day</b><p>Leadership, sales, and marketing in one room. Everyone understands the system and their role. $10,000 virtual, $12,500 + travel in person.</p></div></li>
-        <li><span class="n">2</span><div><b>First 90-day plan</b><p>Benchmark where you are, set priorities.</p></div></li>
-        <li><span class="n">3</span><div><b>Coaching and training</b><p>Weekly or bi-weekly, by plan. Quarterly planning resets priorities.</p></div></li>
+        <li><span class="n">2</span><div><b>First 90-Day Plan</b><p>Benchmark where you are, set priorities.</p></div></li>
+        <li><span class="n">3</span><div><b>Coaching and Training</b><p>Weekly or bi-weekly, by plan. Quarterly planning resets priorities.</p></div></li>
         <li><span class="n">4</span><div><b>Mastery</b><p>Your team runs it. Coaching gets lighter or ends. Many clients keep a quarterly session.</p></div></li>
       </ol>
-      <a class="more" href={href('impact', '/coaching/how-it-works')}>How it works, in detail →</a>
+      <a class="more" href={href('impact', '/coaching/how-it-works')}>How It Works, in Detail →</a>
     </div>
   </section>
 
@@ -94,9 +92,9 @@ const coaches = [
     <div class="wrap">
       <div class="split">
         <div>
-          <h2>Your coaches</h2>
+          <h2>Your Coaches</h2>
           <p class="intro">IMPACT’s coaches, and the certified independent coaches who deliver the same system. Every coach is listed in one directory on endlesscustomers.com; this page shows a few.</p>
-          <a class="btn" href={href('ec', '/coaches')}>Every certified coach, on endlesscustomers.com ↗</a>
+          <a class="btn" href={href('ec', '/coaches')}>Every Certified Coach, on endlesscustomers.com ↗</a>
         </div>
         <div class="faces">
           {coaches.map(([name, role, img]) => (
@@ -118,13 +116,13 @@ const coaches = [
         <blockquote class="quote"><p>“Sales opportunities tripled, especially from qualified leads. We even hired our first salesperson in four years.”</p><footer>Mike Ritzema, Founder and President, Superior Trucking Payroll</footer></blockquote>
         <blockquote class="quote"><p>“IMPACT doesn’t do the work for you. They teach you how to own it.”</p><footer>Davy Clay, Co-Founder, Dental Claim Support</footer></blockquote>
       </div>
-      <a class="more" href={href('impact', '/coaching/results')}>More coaching results →</a>
+      <a class="more" href={href('impact', '/coaching/results')}>More Coaching Results →</a>
     </div>
   </section>
 
   <section class="section connects">
     <div class="wrap">
-      <h2>How this section connects</h2>
+      <h2>How This Section Connects</h2>
       <p class="src">impactplus.com is the source for coaching. endlesscustomers.com describes the system and hands off here.</p>
       <ul>
         <li><span>The door on the Endless Customers side: what coaching is, book a call there, or come here for the detail</span><a href={href('ec', '/coaching')}>endlesscustomers.com/coaching ↗ →</a></li>
@@ -137,12 +135,7 @@ const coaches = [
 </Site>
 
 <style>
-  .ms-hero { padding: 64px 0 56px; }
-  .crumbs .here { color: var(--ink); }
-  .wordmark { height: 26px; width: auto; margin-bottom: 20px; }
-  html[data-dark] .wordmark { filter: invert(1); }
-  .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
-  .path { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
+.path { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
   .path .cap { margin: 0 0 12px; font-size: 12px; color: var(--ink-3); }
   .path ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: s; }
   .path li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); counter-increment: s; }
@@ -150,31 +143,5 @@ const coaches = [
   .path li b { display: block; font-weight: 600; font-size: 15px; }
   .path li span { display: block; grid-column: 2; font-size: 13px; color: var(--ink-3); }
   .path li.live b { color: var(--accent); }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; max-width: 760px; }
-  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; }
-  .steps .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 600; }
-  .steps b { display: block; padding-top: 3px; font-weight: 600; }
-  .steps p { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
-  .section > .wrap > a.more { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 500; }
-  .plan { position: relative; }
-  .plan.rec { border-color: var(--accent); }
-  .plan .badge { position: absolute; top: 16px; right: 16px; }
-  .plan .price { font-size: 28px; font-weight: 600; letter-spacing: -.02em; color: var(--accent); }
-  .also { margin: 24px 0 0; color: var(--ink-2); font-size: 15px; max-width: 70ch; }
-  .also a { color: var(--ink); font-weight: 500; }
-  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
-  .faces { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .face { display: grid; justify-items: center; text-align: center; gap: 2px; font-size: 13px; color: var(--ink-3); }
-  .face img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 6px; }
-  .face b { color: var(--ink); font-weight: 500; font-size: 14px; }
-  .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); }
-  .quote p { margin: 0; font-size: 16px; text-wrap: pretty; }
-  .quote footer { margin-top: 8px; font-size: 13px; color: var(--ink-3); }
-  .connects { border-top: 1px solid var(--line); background: var(--bg-panel); }
-  .connects h2 { font-size: 20px; }
-  .connects .src { margin: 0 0 16px; color: var(--ink-2); font-size: 15px; }
-  .connects ul { list-style: none; margin: 0; padding: 0; max-width: 800px; }
-  .connects li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
-  .connects li a { color: var(--ink); font-weight: 500; }
-  @media (max-width: 900px) { .hero-grid, .split { grid-template-columns: 1fr; gap: 28px; } .ms-hero { padding: 40px 0 32px; } }
+  .split { grid-template-columns: 1.1fr 1fr; align-items: center; }
 </style>

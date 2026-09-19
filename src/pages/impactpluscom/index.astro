@@ -41,9 +41,9 @@ const services = [
 
 // Verbatim from impactplus.com and impactplus.com/reviews. Banned names checked against the library.
 const results = [
-  { stat: '7x', label: 'revenue growth in three years', q: 'In three years, we saw 4x more sales qualified leads in our pipeline and 7x revenue growth. IMPACT’s coaching gave us the clarity and accountability to align our content and become a trusted authority in our market.', who: 'Patrick Moorhead', title: 'Former CMO', co: 'Pricefx' },
-  { stat: '3x', label: 'sales opportunities in one year', q: 'We were stuck trying to DIY our marketing. IMPACT gave us the structure and clarity we needed. Sales opportunities tripled, especially from qualified leads. We even hired our first salesperson in four years.', who: 'Mike Ritzema', title: 'Founder and President', co: 'Superior Trucking Payroll' },
-  { stat: '1 → 6', label: 'stores', q: 'From one store to six stores, that didn’t happen by accident. Working with IMPACT and Endless Customers gave us guidance early on. The fundamentals haven’t changed, but having coaching helped us adapt as the company continued to grow.', who: 'Steve Sheinkopf', title: 'CEO', co: 'Yale Appliance' },
+  { stat: '7x', label: 'Revenue Growth in Three Years', q: 'In three years, we saw 4x more sales qualified leads in our pipeline and 7x revenue growth. IMPACT’s coaching gave us the clarity and accountability to align our content and become a trusted authority in our market.', who: 'Patrick Moorhead', title: 'Former CMO', co: 'Pricefx' },
+  { stat: '3x', label: 'Sales Opportunities in One Year', q: 'We were stuck trying to DIY our marketing. IMPACT gave us the structure and clarity we needed. Sales opportunities tripled, especially from qualified leads. We even hired our first salesperson in four years.', who: 'Mike Ritzema', title: 'Founder and President', co: 'Superior Trucking Payroll' },
+  { stat: '1 → 6', label: 'Stores', q: 'From one store to six stores, that didn’t happen by accident. Working with IMPACT and Endless Customers gave us guidance early on. The fundamentals haven’t changed, but having coaching helped us adapt as the company continued to grow.', who: 'Steve Sheinkopf', title: 'CEO', co: 'Yale Appliance' },
 ];
 const quotes = [
   { q: 'IMPACT doesn’t do the work for you. They teach you how to own it. Our team walks away from every session smarter and more confident.', who: 'Davy Clay', title: 'Co-Founder', co: 'Dental Claim Support' },
@@ -109,10 +109,10 @@ const faqSchema = {
   <!-- 1. Hero -->
   <section class="hero home">
     <div class="wrap">
-      <h1>Win more customers in the age of AI.</h1>
+      <h1>Win More Customers in the Age of AI</h1>
       <p class="lede">{positioning}</p>
       <div class="actions">
-        <a class="btn primary" href={href('impact', '/instant-diagnostic')}>See how AI describes your company <span class="arrow">→</span></a>
+        <a class="btn primary" href={href('impact', '/instant-diagnostic')}>See How AI Describes Your Company <span class="arrow">→</span></a>
         <a class="btn" href={href('impact', '/talk')}>Let’s Talk</a>
       </div>
     </div>
@@ -152,7 +152,7 @@ const faqSchema = {
   <!-- 4. Problems -->
   <section class="section alt">
     <div class="wrap">
-      <h2>Sound familiar?</h2>
+      <h2>Sound Familiar?</h2>
       <p class="intro">These are the problems companies bring us. Pick yours to see how we approach it, which services apply, and what it costs.</p>
       <div class="grid c4 problems">
         {problems.map((p) => (
@@ -160,7 +160,7 @@ const faqSchema = {
             <span class="topic">{p.topic}</span>
             <h3>“{p.say}”</h3>
             <p>{p.how}</p>
-            <span class="more">How we solve it →</span>
+            <span class="more">How We Solve It →</span>
           </a>
         ))}
       </div>
@@ -170,7 +170,7 @@ const faqSchema = {
   <!-- 5. What we do, with the system drawn once -->
   <section class="section">
     <div class="wrap">
-      <h2>What we do</h2>
+      <h2>What We Do</h2>
       <p class="intro">One way in, so nobody buys the wrong thing. Where it goes from there depends on what we find. The same picture is on every service page, so you always know where you are.</p>
 
       <figure class="system" aria-label="How IMPACT works: diagnose, roadmap, do the work with you, own it">
@@ -219,22 +219,22 @@ const faqSchema = {
       <ol class="grid c4 how">
         <li>
           <span class="num">1</span>
-          <h3>We diagnose</h3>
+          <h3>We Diagnose</h3>
           <p>Every engagement starts with the <a href={href('impact', '/deep-diagnostic')}>Deep Diagnostic &amp; Roadmap</a>. Our experts use AI, their own judgment, and what your team tells us to find what’s keeping you from winning more customers, including exactly how AI describes you today.</p>
         </li>
         <li>
           <span class="num">2</span>
-          <h3>We build the roadmap</h3>
+          <h3>We Build the Roadmap</h3>
           <p>Strategy first: is there a bigger move that makes you the obvious choice over every competitor? Then the quick wins that bring in customers now. Then the long-term work that earns trust with buyers and with the AI they ask.</p>
         </li>
         <li>
           <span class="num">3</span>
-          <h3>We do the work with you</h3>
+          <h3>We Do the Work With You</h3>
           <p>Coaching, HubSpot, websites, paid media, workshops. We start with the foundation: a website you can build on, a CRM with clean data, AI put to work in sales and marketing. Then we turn up the volume.</p>
         </li>
         <li>
           <span class="num">4</span>
-          <h3>We make you self-sufficient</h3>
+          <h3>We Make You Self-Sufficient</h3>
           <p>The part that matters most. Our coaches work like fractional chief revenue officers. We help you build a marketing team that owns its content, video, HubSpot, and website. The goal is a company that doesn’t need an agency.</p>
         </li>
       </ol>
@@ -244,7 +244,7 @@ const faqSchema = {
   <!-- 6. Services -->
   <section class="section alt">
     <div class="wrap">
-      <h2>Services we offer</h2>
+      <h2>Services We Offer</h2>
       <p class="intro">Six services, one system behind them. Every one is backed by our <a href={href('impact', '/guarantee')}>100% money-back guarantee</a>, and every one has a <a href={href('impact', '/pricing')}>published price</a>.</p>
       <div class="services">
         {services.map((s) => (
@@ -259,7 +259,7 @@ const faqSchema = {
           </a>
         ))}
       </div>
-      <div class="actions"><a class="btn" href={href('impact', '/services')}>Explore all services</a><a class="btn" href={href('impact', '/compare')}>Compare us to your other options</a></div>
+      <div class="actions"><a class="btn" href={href('impact', '/services')}>Explore All Services</a><a class="btn" href={href('impact', '/compare')}>Compare Us to Your Other Options</a></div>
     </div>
   </section>
 
@@ -273,20 +273,20 @@ const faqSchema = {
           <span class="step">Step 1 · Free</span>
           <h3>Instant Diagnostic</h3>
           <p>Enter your website. In about a minute, see how AI describes your company, whether it recommends you, and what it gets wrong.</p>
-          <span class="more">Run it now →</span>
+          <span class="more">Run It Now →</span>
           <span class="next">→ Step 2: the Deep Diagnostic &amp; Roadmap, $5,000</span>
         </a>
         <a class="card tool" href={href('impact', '/ai-visibility-study')}>
           <span class="step">Free</span>
           <h3>AI Visibility Study</h3>
           <p>How AI describes your industry, which companies it recommends, and why. Updated as the answers change.</p>
-          <span class="more">Read the study →</span>
+          <span class="more">Read the Study →</span>
         </a>
         <a class="card tool" href={href('ec', '/book')}>
           <span class="step">Free</span>
-          <h3>A chapter of Endless Customers</h3>
+          <h3>A Chapter of Endless Customers</h3>
           <p>The system every service runs on, in the author’s words. Read the first chapter before you talk to anyone.</p>
-          <span class="more">Get the chapter →</span>
+          <span class="more">Get the Chapter →</span>
         </a>
       </div>
     </div>
@@ -295,7 +295,7 @@ const faqSchema = {
   <!-- 8. Results and proof -->
   <section class="section alt">
     <div class="wrap">
-      <h2>Results, in their words</h2>
+      <h2>Results, in Their Words</h2>
       <p class="intro">Three of the 300+ companies we’ve coached. Every quote is verbatim and attributed; more on <a href={href('impact', '/results/success-stories')}>success stories</a> and <a href={href('impact', '/results/reviews')}>reviews</a>.</p>
       <div class="grid c3">
         {results.map((r) => (
@@ -330,7 +330,7 @@ const faqSchema = {
     <div class="wrap">
       <div class="split fit">
         <div>
-          <h2>This is for you if</h2>
+          <h2>This Is for You If</h2>
           <ul class="fit-list">
             <li>You sell directly to your own customers, B2B or B2C.</li>
             <li>Your buyers research before they reach out, and they’re asking AI.</li>
@@ -343,7 +343,7 @@ const faqSchema = {
           </ul>
         </div>
         <aside class="notfit">
-          <h3>When we’re not the right fit</h3>
+          <h3>When We’re Not the Right Fit</h3>
           <p>If distributors, dealers, or other layers sit between you and the person who buys, our system doesn’t work as well, and we’ll tell you so on the first call. We’re also not the choice if you want an agency to do everything for you forever. We build teams that don’t need one.</p>
           <a href={href('impact', '/compare')}>See how we compare to an agency, a freelancer, or doing it in-house →</a>
         </aside>
@@ -354,7 +354,7 @@ const faqSchema = {
   <!-- 10. People -->
   <section class="section alt">
     <div class="wrap">
-      <h2>The people you’ll work with</h2>
+      <h2>The People You’ll Work With</h2>
       <div class="people">
         <div class="founder">
           <img src={asset('img/people/bob-ruffolo.jpg')} alt="Bob Ruffolo" width="120" height="120" />
@@ -375,7 +375,7 @@ const faqSchema = {
               </a>
             ))}
           </div>
-          <a class="more" href={href('impact', '/team')}>Meet the whole team →</a>
+          <a class="more" href={href('impact', '/team')}>Meet the Whole Team →</a>
         </div>
       </div>
     </div>
@@ -388,19 +388,19 @@ const faqSchema = {
       <p class="intro">We checked 50 marketing agencies a company like yours might shortlist. 30 of them won’t tell you what anything costs until you’ve booked a call. We put every price on the site, with what changes it, and the first engagement is a fixed price, not a “starting at” figure. It’s what we tell our clients to do. <span class="tag plan" title="IMPACT’s own count, September 2026: 50 US agencies (27 HubSpot Elite and Diamond partners, 23 vertical and inbound agencies); 20 publish real figures, 30 do not">our count, Sept 2026</span></p>
       <div class="grid c3">
         <a class="card big" href={href('impact', '/pricing')}>
-          <h3>What it costs</h3>
+          <h3>What It Costs</h3>
           <p>Every service, in real numbers and ranges. The Deep Diagnostic &amp; Roadmap is $5,000.</p>
-          <span class="more">See pricing →</span>
+          <span class="more">See Pricing →</span>
         </a>
         <a class="card big" href={href('impact', '/compare')}>
-          <h3>How we compare</h3>
+          <h3>How We Compare</h3>
           <p>IMPACT against an agency, a freelancer, and your own team: cost, speed, and what you own at the end.</p>
-          <span class="more">Compare your options →</span>
+          <span class="more">Compare Your Options →</span>
         </a>
         <a class="card big" href={href('impact', '/guarantee')}>
-          <h3>The guarantee</h3>
+          <h3>The Guarantee</h3>
           <p>Every service we offer is backed by a 100% money-back guarantee. Here’s exactly how it works.</p>
-          <span class="more">Read the guarantee →</span>
+          <span class="more">Read the Guarantee →</span>
         </a>
       </div>
     </div>
@@ -411,12 +411,12 @@ const faqSchema = {
     <div class="wrap">
       <div class="split">
         <div>
-          <img class="ec-wordmark" src={asset('img/ec-logo-black.svg')} alt="Endless Customers" width="220" />
-          <h2>The system behind everything we do</h2>
+          <img class="wordmark" src={asset('img/ec-logo-black.svg')} alt="Endless Customers" width="220" />
+          <h2>The System Behind Everything We Do</h2>
           <p class="intro">Every service at IMPACT runs on <b>Endless Customers</b>, the national best-seller by Marcus Sheridan, previously known as <i>They Ask, You Answer</i>: become the most known, trusted, and recommended company in your market by answering what buyers ask, showing what others hide, and teaching your own team to do it. The book explains it. The coaching installs it. The other services do the parts you can’t yet.</p>
           <div class="actions" style="margin-top: 8px;">
-            <a class="btn" href={href('ec', '/')}>Explore the system on endlesscustomers.com <span class="arrow">→</span></a>
-            <a class="btn" href={href('ec', '/book')}>Get a free chapter</a>
+            <a class="btn" href={href('ec', '/')}>Explore the System on endlesscustomers.com <span class="arrow">→</span></a>
+            <a class="btn" href={href('ec', '/book')}>Get a Free Chapter</a>
           </div>
         </div>
         <div class="book"><img src={asset('img/ec-book.png')} alt="Endless Customers, the book" loading="lazy" /></div>
@@ -427,7 +427,7 @@ const faqSchema = {
   <!-- 13. FAQ -->
   <section class="section">
     <div class="wrap">
-      <h2>Questions buyers ask before they call</h2>
+      <h2>Questions Buyers Ask Before They Call</h2>
       <div class="faqs">
         {faqs.map((f) => (
           <details class="faq">
@@ -444,7 +444,7 @@ const faqSchema = {
     <div class="wrap">
       <div class="lc-head">
         <div>
-          <h2>New from the Learning Center</h2>
+          <h2>New From the Learning Center</h2>
           <p class="intro" style="margin-bottom: 0;">Answers first, no forms. Searchable by the problem you have, your role, and your industry. <span class="tag plan" title="A live feed on the built site">feed</span></p>
         </div>
         <a class="btn" href={href('impact', '/learn')}>Explore the Learning Center <span class="arrow">→</span></a>
@@ -463,7 +463,7 @@ const faqSchema = {
       <div class="letter-box">
         <img src={asset('img/people/bob-ruffolo.jpg')} alt="" width="56" height="56" />
         <div>
-          <h2>The weekly letter</h2>
+          <h2>The Weekly Letter</h2>
           <p>One email a week from Bob Ruffolo: what changed for buyers this week, and what to do about it. No pitch, unsubscribe anytime.</p>
         </div>
         <form class="signup" action={href('impact', '/letter')} method="get">
@@ -489,12 +489,12 @@ const faqSchema = {
       <h2>Two ways to start. Both are free.</h2>
       <div class="grid c2">
         <a class="card big" href={href('impact', '/instant-diagnostic')}>
-          <h3>See how AI describes your company</h3>
+          <h3>See How AI Describes Your Company</h3>
           <p>Enter your website. In about a minute you’ll see what AI says about you, whether it recommends you, and what it gets wrong.</p>
-          <span class="more">Run the free instant diagnostic →</span>
+          <span class="more">Run the Free Instant Diagnostic →</span>
         </a>
         <a class="card big" href={href('impact', '/talk')}>
-          <h3>Talk to someone who’s done this</h3>
+          <h3>Talk to Someone Who’s Done This</h3>
           <p>A 30-minute conversation about your business, what’s holding it back, and whether we’re the right fit. No pitch.</p>
           <span class="more">Let’s Talk →</span>
         </a>
@@ -517,9 +517,7 @@ const faqSchema = {
   html[data-dark] .track img { filter: grayscale(1) invert(1) contrast(.8); }
   @keyframes slide { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .track img:nth-child(n+11) { display: none; } }
-
-  .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
-  .split .intro + .intro { margin-top: -20px; }
+  .split { grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
   .shift { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
   .shift li { padding: 20px 22px; background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; font-size: 16px; color: var(--ink-2); }
   .shift b { display: block; color: var(--ink); font-size: 18px; font-weight: 600; letter-spacing: -.015em; margin-bottom: 2px; }
@@ -564,13 +562,11 @@ const faqSchema = {
 
   .result { margin: 0; }
   .result .stat { color: var(--accent); }
+  .result footer { margin-top: auto; padding-top: 12px; font-size: 13px; color: var(--ink-3); }
+  .result footer b { color: var(--ink); font-weight: 500; }
   .result .stat-label { font-size: 13px; color: var(--ink-3); margin-bottom: 10px; }
   .result p { font-size: 15px; color: var(--ink-2); text-wrap: pretty; }
-  .result footer, .quote footer { margin-top: auto; padding-top: 12px; font-size: 13px; color: var(--ink-3); }
-  .result footer b, .quote footer b { color: var(--ink); font-weight: 500; }
   .more-quotes { margin-top: 24px; }
-  .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); display: flex; flex-direction: column; }
-  .quote p { margin: 0; font-size: 15px; color: var(--ink-2); text-wrap: pretty; }
   .badges { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
   .bd { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-panel); font-size: 13px; color: var(--ink-2); }
   .bd b { font-size: 17px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
@@ -599,30 +595,10 @@ const faqSchema = {
   .founder p a { color: var(--ink); font-weight: 500; }
   .founder p a:hover { color: var(--accent); }
   .coaches .cap { margin: 0 0 14px; font-size: 13px; color: var(--ink-3); display: flex; align-items: center; gap: 8px; }
-  .faces { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 14px; }
-  .face { display: grid; justify-items: center; text-align: center; gap: 2px; font-size: 13px; color: var(--ink-3); }
-  .face img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 6px; transition: transform .2s var(--ease); }
-  .face:hover img { transform: translateY(-2px); }
-  .face b { color: var(--ink); font-weight: 500; font-size: 14px; }
+  .coaches .faces { margin-bottom: 14px; }
   .coaches .more { font-size: 14px; font-weight: 500; }
-
-  .ec-wordmark { height: 28px; width: auto; margin-bottom: 20px; }
-  html[data-dark] .ec-wordmark { filter: invert(1); }
   .book { display: grid; place-items: center; }
   .book img { max-height: 380px; width: auto; filter: drop-shadow(0 24px 40px rgba(0,0,0,.18)); }
-
-  .faqs { max-width: 800px; border-top: 1px solid var(--line-strong); }
-  .faq { border-bottom: 1px solid var(--line); }
-  .faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; cursor: pointer; }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq h3 { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em; }
-  .faq summary:hover h3 { color: var(--accent); }
-  .faq .plus { position: relative; flex: none; width: 14px; height: 14px; }
-  .faq .plus::before, .faq .plus::after { content: ''; position: absolute; background: var(--ink-3); transition: transform .2s var(--ease); }
-  .faq .plus::before { left: 0; top: 6px; width: 14px; height: 2px; }
-  .faq .plus::after { left: 6px; top: 0; width: 2px; height: 14px; }
-  .faq[open] .plus::after { transform: rotate(90deg); }
-  .faq p { margin: 0 0 20px; color: var(--ink-2); font-size: 16px; max-width: 70ch; text-wrap: pretty; }
 
   .lc-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
   .lc-head h2 { margin-bottom: 8px; }
@@ -641,19 +617,17 @@ const faqSchema = {
   .signup { display: flex; gap: 8px; }
   .signup input { height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--bg); color: var(--ink); font: inherit; font-size: 15px; min-width: 240px; }
   .signup input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
   .about { padding-top: 40px; padding-bottom: 40px; }
   .about h2 { font-size: 20px; }
   .about .prose { margin: 0; font-size: 16px; }
   .about .prose a { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--line-strong); }
   .about .prose a:hover { color: var(--accent); }
-  .final { padding-bottom: 96px; }
 
   @media (max-width: 900px) {
     .hero.home { padding: 56px 0 40px; }
     .hero.home .lede { font-size: 18px; }
-    .split, .people { grid-template-columns: 1fr; gap: 32px; }
+    .people { grid-template-columns: 1fr; gap: 32px; }
     .svc { grid-template-columns: 1fr; gap: 6px; }
     .svc .arrow { display: none; }
     .problems.grid.c4 { grid-template-columns: 1fr 1fr; }
@@ -668,7 +642,6 @@ const faqSchema = {
     .letter-box img { display: none; }
     .signup { flex-direction: column; }
     .signup input { min-width: 0; }
-    .final { padding-bottom: 72px; }
   }
-  @media (max-width: 560px) { .problems.grid.c4 { grid-template-columns: 1fr; } .faces { gap: 8px; } .face img { width: 72px; height: 72px; } }
+  @media (max-width: 560px) { .problems.grid.c4 { grid-template-columns: 1fr; } }
 </style>

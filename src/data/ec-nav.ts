@@ -29,11 +29,11 @@ export const nav: NavItem[] = [
     id: 'ec-learn',
     label: 'Learning Center',
     groups: [
-      { links: [{ label: 'Explore The Learning Center', path: '/learn' }] },
+      { links: [{ label: 'Explore the Learning Center', path: '/learn' }] },
       {
         rule: true,
         links: [
-          { label: 'What is Endless Customers?', path: '/what-is-endless-customers' },
+          { label: 'What Is Endless Customers?', path: '/what-is-endless-customers' },
           { label: 'How to Implement', path: '/how-to-implement' },
           { label: 'Endless Customers Academy', path: '/academy' },
           { label: 'Free Instant AI Diagnostic', path: '/instant-diagnostic' },

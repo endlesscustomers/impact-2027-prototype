@@ -78,7 +78,7 @@ const split = (s: string) => { const i = s.indexOf(' — '); return i < 0 ? [s, 
   {(outline.connects || outline.source) && (
     <section class="section connects">
       <div class="wrap">
-        <h2>How this page connects</h2>
+        <h2>How This Page Connects</h2>
         {outline.source && <p class="src">{outline.source}</p>}
         {outline.connects && (
           <ul>
@@ -91,41 +91,12 @@ const split = (s: string) => { const i = s.indexOf(' — '); return i < 0 ? [s, 
 </Site>
 
 <style>
-  .crumbs a:hover { color: var(--accent); }
-  .crumbs .here { color: var(--ink); }
-  .block .bhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.block .bhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
   .block .bhead h2 { margin: 0; }
   .block .intro { margin-bottom: 24px; }
   .block .intro:last-child { margin-bottom: 0; }
   .cards .card h3 { font-size: 16px; }
   .cards .card p { font-size: 14px; }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; max-width: 760px; }
-  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; }
-  .steps .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 600; }
-  .steps b { display: block; font-weight: 600; letter-spacing: -.01em; padding-top: 3px; }
-  .steps p { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
-  .prices { list-style: none; margin: 0; padding: 0; max-width: 760px; border-top: 1px solid var(--line-strong); }
-  .prices li { display: flex; justify-content: space-between; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
-  .prices b { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .faqs { max-width: 760px; border-top: 1px solid var(--line-strong); }
-  .faq { border-bottom: 1px solid var(--line); }
-  .faq summary { list-style: none; padding: 16px 0; cursor: pointer; }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq h3 { margin: 0; font-size: 17px; font-weight: 500; }
-  .faq summary:hover h3 { color: var(--accent); }
-  .faq p { margin: 0 0 18px; color: var(--ink-2); max-width: 70ch; }
-  .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); }
-  .quote p { margin: 0; font-size: 16px; color: var(--ink); text-wrap: pretty; }
-  .quote footer { margin-top: 8px; font-size: 13px; color: var(--ink-3); }
-  .plain { margin: 0; padding-left: 20px; color: var(--ink-2); }
   .block .list-links { max-width: 640px; }
   .block .grid + .list-links, .block .prices + .list-links, .block .intro + .list-links { margin-top: 20px; }
-  .connects { border-top: 1px solid var(--line); background: var(--bg-panel); }
-  .connects h2 { font-size: 20px; }
-  .connects .src { margin: 0 0 16px; color: var(--ink-2); font-size: 15px; }
-  .connects ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 800px; }
-  .connects li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
-  .connects li a { color: var(--ink); font-weight: 500; white-space: nowrap; }
-  .connects li a:hover { color: var(--accent); }
-  @media (max-width: 900px) { .prices li { flex-direction: column; gap: 4px; } .prices b { text-align: left; white-space: normal; } }
 </style>

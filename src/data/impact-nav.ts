@@ -12,8 +12,8 @@ export const services: NavLink[] = [
   { label: 'Workshops', path: '/workshops' },
 ];
 
-export const exploreAll: NavLink = { label: 'Explore all services', path: '/services' };
-export const guarantee: NavLink = { label: 'Read the guarantee', path: '/guarantee' };
+export const exploreAll: NavLink = { label: 'Explore All Services', path: '/services' };
+export const guarantee: NavLink = { label: 'Read the Guarantee', path: '/guarantee' };
 
 // Menu labels are the topics a buyer would name; the pages behind them carry the persuasive H1s.
 export const useCases: NavLink[] = [
@@ -41,7 +41,7 @@ export const industries: NavLink[] = [
 export const cta: NavLink = { label: 'Let’s Talk', path: '/talk' };
 /** Ghost button beside the main call to action. Same on both sites: the free diagnostic is the first step everywhere. */
 export const secondary: NavLink = { label: 'Free AI Diagnostic', path: '/instant-diagnostic' };
-export const instantDiagnostic: NavLink = { label: 'Take the free instant diagnostic', path: '/instant-diagnostic' };
+export const instantDiagnostic: NavLink = { label: 'Take the Free Instant Diagnostic', path: '/instant-diagnostic' };
 
 export const nav: NavItem[] = [
   {
@@ -49,13 +49,13 @@ export const nav: NavItem[] = [
     id: 'help',
     label: 'How We Help',
     columns: [
-      { heading: 'Services we offer', className: 'services', links: services, more: exploreAll },
-      { heading: 'Problems we solve', className: 'problems', links: useCases },
-      { heading: 'Industries we serve', className: 'industries', links: industries },
+      { heading: 'Services We Offer', className: 'services', links: services, more: exploreAll },
+      { heading: 'Problems We Solve', className: 'problems', links: useCases },
+      { heading: 'Industries We Serve', className: 'industries', links: industries },
     ],
     foot: [
       { text: 'Every service we offer is backed by our 100% money-back guarantee.', link: guarantee },
-      { text: 'Is IMPACT the right fit for your business?', link: { label: 'Compare us to your other options', path: '/compare' } },
+      { text: 'Is IMPACT the right fit for your business?', link: { label: 'Compare Us to Your Other Options', path: '/compare' } },
     ],
   },
   {
@@ -97,7 +97,7 @@ export const nav: NavItem[] = [
     groups: [
       { links: [{ label: 'Explore the Learning Center', path: '/learn', sub: 'Articles, videos, and answers, searchable' }] },
       {
-        heading: 'Free tools',
+        heading: 'Free Tools',
         links: [
           { label: 'Instant Diagnostic', path: '/instant-diagnostic' },
           { label: 'AI Visibility Study', path: '/ai-visibility-study' },

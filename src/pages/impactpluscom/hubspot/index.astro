@@ -5,9 +5,7 @@
 // in a partner's program name). Facts and prices from the live site, 2026-09-18.
 import Site from '../../../layouts/Site.astro';
 import { href, asset } from '../../../lib/site';
-import { microsites } from '../../../data/microsites';
 
-const ms = microsites.find((m) => m.id === 'hubspot')!;
 const path = '/hubspot';
 
 const problems = [
@@ -47,11 +45,11 @@ const faqs = [
       <p class="crumbs"><a href={href('impact', '/services')}>How We Help</a><span>&gt;</span><span class="here">HubSpot Services</span></p>
       <div class="hero-grid">
         <div>
-          <h1>The HubSpot team that gets you out of the mess and into the results.</h1>
+          <h1>The HubSpot Team That Gets You Out of the Mess and Into the Results</h1>
           <p class="lede">Training, onboarding, cleanup, integrations, and a CMS theme your marketing manager can run, from a HubSpot Diamond Solutions Partner. We leave your team able to run it, which is the part most partners skip.</p>
           <div class="actions">
-            <a class="btn primary" href={href('impact', '/talk')}>Talk to a HubSpot expert</a>
-            <a class="btn" href={href('impact', '/hubspot/pricing')}>See pricing</a>
+            <a class="btn primary" href={href('impact', '/talk')}>Talk to a HubSpot Expert</a>
+            <a class="btn" href={href('impact', '/hubspot/pricing')}>See Pricing</a>
           </div>
         </div>
         <aside class="creds">
@@ -69,11 +67,11 @@ const faqs = [
 
   <section class="section" id="services">
     <div class="wrap">
-      <h2>What we hear most often</h2>
+      <h2>What We Hear Most Often</h2>
       <p class="intro">Pick the one that sounds like you. Each leads to the service, the process, and the price.</p>
       <div class="grid c3">
         {problems.map(([say, how, p]) => (
-          <a class="card" href={href('impact', p)}><h3>“{say}”</h3><p>{how}</p><span class="more">How we handle it →</span></a>
+          <a class="card" href={href('impact', p)}><h3>“{say}”</h3><p>{how}</p><span class="more">How We Handle It →</span></a>
         ))}
       </div>
     </div>
@@ -83,14 +81,14 @@ const faqs = [
     <div class="wrap">
       <div class="split">
         <div>
-          <h2>What makes IMPACT different from other HubSpot partners</h2>
+          <h2>What Makes IMPACT Different From Other HubSpot Partners</h2>
           <p class="intro">Most partners set HubSpot up and leave. Some manage it for you forever. We do the setup, and then we train your team in your own portal until they don’t need us. That’s the same thing we do with content, sales, and websites, because it’s the whole point of IMPACT.</p>
           <p class="intro">HubSpot is only as powerful as the team using it.</p>
         </div>
         <ol class="steps">
-          <li><span class="n">1</span><div><b>Discovery &amp; kickoff</b><p>A worksheet, then a deep dive with your specialist.</p></div></li>
-          <li><span class="n">2</span><div><b>Training roadmap</b><p>Priorities and a curriculum for your team.</p></div></li>
-          <li><span class="n">3</span><div><b>Sessions in your portal</b><p>Screen-share, in your actual HubSpot. Your team applies it between sessions.</p></div></li>
+          <li><span class="n">1</span><div><b>Discovery &amp; Kickoff</b><p>A worksheet, then a deep dive with your specialist.</p></div></li>
+          <li><span class="n">2</span><div><b>Training Roadmap</b><p>Priorities and a curriculum for your team.</p></div></li>
+          <li><span class="n">3</span><div><b>Sessions in Your Portal</b><p>Screen-share, in your actual HubSpot. Your team applies it between sessions.</p></div></li>
           <li><span class="n">4</span><div><b>Independence</b><p>The program ends when your team owns the portal.</p></div></li>
         </ol>
       </div>
@@ -99,7 +97,7 @@ const faqs = [
 
   <section class="section">
     <div class="wrap">
-      <h2>Training programs</h2>
+      <h2>Training Programs</h2>
       <p class="intro">Priced by how many people and departments need training. Three-month minimum, then month to month. <span class="tag plan">Live-site pricing, to verify for 2027</span></p>
       <div class="grid c3">
         {programs.map(([name, price, what]) => (
@@ -117,7 +115,7 @@ const faqs = [
 
   <section class="section alt">
     <div class="wrap">
-      <h2>Meet your HubSpot certified trainers</h2>
+      <h2>Meet Your HubSpot Certified Trainers</h2>
       <p class="intro">The same people every session. Certified, and in your portal, not a slide deck.</p>
       <div class="grid c3 team">
         {team.map(([name, role]) => (
@@ -128,13 +126,13 @@ const faqs = [
           </div>
         ))}
       </div>
-      <a class="more" href={href('impact', '/hubspot/experts')}>The HubSpot team, and our integration partner →</a>
+      <a class="more" href={href('impact', '/hubspot/experts')}>The HubSpot Team, and Our Integration Partner →</a>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <h2>What clients say</h2>
+      <h2>What Clients Say</h2>
       <div class="grid c3">
         {quotes.map(([q, who]) => <blockquote class="quote"><p>“{q}”</p><footer>{who}</footer></blockquote>)}
       </div>
@@ -144,7 +142,7 @@ const faqs = [
 
   <section class="section alt">
     <div class="wrap">
-      <h2>Questions HubSpot buyers ask</h2>
+      <h2>Questions HubSpot Buyers Ask</h2>
       <div class="faqs">
         {faqs.map(([q, a]) => <details class="faq"><summary><h3>{q}</h3></summary><p>{a}</p></details>)}
       </div>
@@ -153,7 +151,7 @@ const faqs = [
 
   <section class="section connects">
     <div class="wrap">
-      <h2>How this section connects</h2>
+      <h2>How This Section Connects</h2>
       <ul>
         <li><span>One of six IMPACT services; the roadmap from the Deep Diagnostic says whether it’s first</span><a href={href('impact', '/services')}>All services →</a></li>
         <li><span>Coaching clients bring in the HubSpot team for add-on projects</span><a href={href('impact', '/coaching')}>Endless Customers Coaching →</a></li>
@@ -165,42 +163,13 @@ const faqs = [
 </Site>
 
 <style>
-  .ms-hero { padding: 64px 0 56px; }
-  .crumbs .here { color: var(--ink); }
-  .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
-  .creds { display: grid; gap: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
+.creds { display: grid; gap: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
   .creds img { height: 64px; width: auto; }
   .creds ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--ink-2); }
   .creds b { color: var(--ink); font-size: 17px; margin-right: 4px; }
-  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
-  .split .intro + .intro { margin-top: -20px; font-weight: 500; color: var(--ink); }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
-  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; }
-  .steps .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 600; }
-  .steps b { display: block; padding-top: 3px; font-weight: 600; }
-  .steps p { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; }
-  .plan .price { font-size: 28px; font-weight: 600; letter-spacing: -.02em; color: var(--accent); }
-  .also { margin: 24px 0 0; color: var(--ink-2); font-size: 15px; max-width: 70ch; }
-  .also a { color: var(--ink); font-weight: 500; }
-  .also a:hover { color: var(--accent); }
+  .split { grid-template-columns: 1.1fr 1fr; gap: 56px; }
+  .split .intro + .intro { font-weight: 500; color: var(--ink); }
   .team .person { display: grid; justify-items: start; gap: 2px; font-size: 14px; color: var(--ink-3); }
   .ph { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 12%, var(--bg)); color: var(--accent); font-weight: 600; margin-bottom: 8px; }
   .team b { color: var(--ink); font-weight: 500; font-size: 16px; }
-  .section > .wrap > a.more { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 500; }
-  .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); }
-  .quote p { margin: 0; font-size: 16px; text-wrap: pretty; }
-  .quote footer { margin-top: 8px; font-size: 13px; color: var(--ink-3); }
-  .faqs { max-width: 760px; border-top: 1px solid var(--line-strong); }
-  .faq { border-bottom: 1px solid var(--line); }
-  .faq summary { list-style: none; padding: 16px 0; cursor: pointer; }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq h3 { margin: 0; font-size: 17px; font-weight: 500; }
-  .faq summary:hover h3 { color: var(--accent); }
-  .faq p { margin: 0 0 18px; color: var(--ink-2); max-width: 70ch; }
-  .connects { border-top: 1px solid var(--line); background: var(--bg-panel); }
-  .connects h2 { font-size: 20px; }
-  .connects ul { list-style: none; margin: 0; padding: 0; max-width: 800px; }
-  .connects li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
-  .connects li a { color: var(--ink); font-weight: 500; }
-  @media (max-width: 900px) { .hero-grid, .split { grid-template-columns: 1fr; gap: 28px; } .ms-hero { padding: 40px 0 32px; } }
 </style>

@@ -28,7 +28,7 @@ export const microsites: Microsite[] = [
     tagline: 'Delivered by IMPACT, the company behind the system',
     links: [
       { label: 'Overview', path: '/coaching' },
-      { label: 'How it works', path: '/coaching/how-it-works' },
+      { label: 'How It Works', path: '/coaching/how-it-works' },
       { label: 'Results', path: '/coaching/results' },
       { label: 'Pricing', path: '/coaching/pricing' },
       { label: 'Coaches', path: '/coaches', site: 'ec' },
@@ -49,7 +49,7 @@ export const microsites: Microsite[] = [
       { label: 'Pricing', path: '/hubspot/pricing' },
       { label: 'Experts', path: '/hubspot/experts' },
     ],
-    cta: { label: 'Talk to a HubSpot expert', path: '/talk' },
+    cta: { label: 'Talk to a HubSpot Expert', path: '/talk' },
     pill: { label: 'Talk to a HubSpot Expert', path: '/talk' },
   },
   {
@@ -64,7 +64,7 @@ export const microsites: Microsite[] = [
       { label: 'Pricing', path: '/websites/pricing' },
       { label: 'Experts', path: '/websites/experts' },
     ],
-    cta: { label: 'Talk to a website strategist', path: '/talk' },
+    cta: { label: 'Talk to a Website Strategist', path: '/talk' },
     pill: { label: 'Talk to a Website Strategist', path: '/talk' },
   },
   {
@@ -79,7 +79,7 @@ export const microsites: Microsite[] = [
       { label: 'Pricing', path: '/paid-media/pricing' },
       { label: 'Team', path: '/paid-media/experts' },
     ],
-    cta: { label: 'Get a free ads assessment', path: '/talk' },
+    cta: { label: 'Get a Free Ads Assessment', path: '/talk' },
     pill: { label: 'Talk to a Paid Media Strategist', path: '/talk' },
   },
 ];
