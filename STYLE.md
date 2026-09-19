@@ -71,7 +71,7 @@ Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`
 | `--ink` `--ink-2` `--ink-3` `--ink-max` | Headings; body copy; captions (AA on every light surface); bold and the nav hover |
 | `--line` `--line-strong` | Rules and card borders; button outlines and list heads |
 | `--accent` `--accent-hover` `--accent-fill` `--accent-fill-hover` `--accent-ink` | Text accents; button fills; text on a fill |
-| `--menu-bg` `--menu-tint` `--bar-bg` `--fill` `--fill-hover` | Dropdown card; page tint behind an open menu; section pill; soft fills |
+| `--menu-bg` `--frost` `--bar-bg` `--fill` `--fill-hover` | Dropdown card; the header band and the whole page behind an open menu (one surface, no seam); section pill; soft fills |
 | `--shadow` `--shadow-card` `--shadow-bar` | Site cards; dropdown card; section pill |
 | `--header-h` `--logo-h` `--logo-ec-h` `--ctrl-h` `--cta-font` `--cta-pad` | Tall header at the top of the page; `html[data-scrolled]` swaps in the compact set |
 | `--ease` | The one curve. .15s colour, .2 to .25s size and position, .28 to .32s panels arriving |

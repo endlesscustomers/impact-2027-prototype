@@ -57,7 +57,7 @@ body {
   --bg-panel: oklch(from var(--tint) .995 calc(.010 * var(--c)) h);  /* raised panels */
   --bg-page:  oklch(from var(--tint) .968 calc(.016 * var(--c)) h);  /* page */
   --menu-bg:  oklch(from var(--tint) .995 calc(.010 * var(--c)) h);  /* open dropdown card */
-  --menu-tint: oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .05); /* page behind an open menu, under the blur */
+  --frost: color-mix(in srgb, var(--bg) 86%, transparent); /* the header band, and the whole page behind an open menu */
   --bar-bg:   oklch(from var(--tint) .960 calc(.022 * var(--c)) h / .72); /* frosted section pill */
   --fill:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .05);
   --fill-hover: oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .08);
@@ -79,7 +79,6 @@ html[data-dark] body {
   --bg-panel: oklch(from var(--tint) .279 calc(.050 * var(--c)) h);
   --bg-page:  oklch(from var(--tint) .208 calc(.055 * var(--c)) h);
   --menu-bg:  oklch(from var(--tint) .150 calc(.040 * var(--c)) h);
-  --menu-tint: oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .09);
   --bar-bg:   oklch(from var(--tint) .300 calc(.050 * var(--c)) h / .72);
   --fill:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .08);
   --fill-hover: oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .12);
@@ -127,7 +126,7 @@ img, svg { display: block; max-width: 100%; }
 /* ---------- Header ---------- */
 :root[data-scrolled]:not([data-microsite]) { --header-h: 56px; --logo-h: 30px; --logo-ec-h: 40px; --ctrl-h: 36px; --cta-font: var(--fs-ui); --cta-pad: 16px; }
 .header { position: sticky; top: 0; z-index: 40; height: var(--header-h); transition: height .25s var(--ease);
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  background: var(--frost);
   backdrop-filter: saturate(180%) blur(18px); -webkit-backdrop-filter: saturate(180%) blur(18px); }
 .header .wrap { height: 100%; max-width: none; padding: 0 32px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 36px; }
 /* full-bleed, Zoom-style: logo, nav beside it, tools at the far edge */
@@ -187,12 +186,13 @@ html[data-dark] .theme .sun { display: block; }
 /* the ghost button is the first thing to go when the header gets tight */
 
 /* ---------- Dropdown sheets ---------- */
-.scrim { /* The page behind an open menu blurs and takes a slight tint: darker in light mode, lifted to charcoal in dark mode. */
-  position: fixed; inset: 0; z-index: 30; background: var(--menu-tint);
+.scrim { /* The whole page behind an open menu takes the header's frost, so header and page read as one surface with no seam (Bob, 2026-09-19). */
+  position: fixed; inset: 0; z-index: 30; background: var(--frost);
   opacity: 0; pointer-events: none; transition: opacity .25s var(--ease);
-  backdrop-filter: blur(12px) saturate(1.1); -webkit-backdrop-filter: blur(12px) saturate(1.1); }
+  backdrop-filter: saturate(180%) blur(18px); -webkit-backdrop-filter: saturate(180%) blur(18px); }
 body[data-open] .scrim { opacity: 1; pointer-events: auto; }
-/* The header keeps its frosted fill while a menu is open, so the nav items stay readable over a dark hero (Bob, 2026-09-19). */
+/* While a menu is open the scrim carries the frost for the whole page, header included, so the header gives up its own to avoid a doubled band. */
+body[data-open] .header { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .sheet { /* Zoom-style floating card: inset by the header gutter, rounded on all sides, a breath of air under the header,
      shadow instead of a border. The same recipe scales down to the small menus. */
   position: fixed; left: 32px; right: 32px; top: calc(var(--header-h) + 8px); z-index: 35;
