@@ -40,14 +40,14 @@ Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-
 | `--fs-h2` | 32 to 48 (fluid) | 1.1 | 700 | Section H2, stats |
 | `--fs-h3` | 24 | 1.15 | 700 | Card, step, and block titles; prices |
 | `--fs-lede` | 21 to 28 (fluid) | 1.3 | 400 | The line under the H1 |
-| `--fs-lg` | 24 | 1.35 | 600 | Primary paragraphs (tracking `--tr-para` +.01em): section intros, prose blocks, FAQ questions, checklists |
-| `--fs-body` | 18 | 1.5 | 400 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, stat labels |
+| `--fs-lg` | 24 | 1.375 | 700 | Primary paragraphs (tracking `--tr-para` +.01em): section intros, prose blocks, FAQ questions, checklists |
+| `--fs-body` | 18 | 1.45 | 400 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, stat labels |
 | `--fs-ui` | 16 | 1.5 | 500 | Main nav items, the header pill, the section-pill button |
 | `--fs-fine` | 15 | 1.45 | 400 | Fine print only: footer, legal, text under a form, chips (tags, badges), icon tooltips |
 
 **Two paragraph sizes, one fine print (Bob, 2026-09-19).** Paragraphs are 24 or 18. Anything that names something (an eyebrow, a role, a testimonial name, a caption, a column header) is 18, not smaller. 15 is only for places that truly need small type: the footer, legal lines, help text under a form field, and chips. Skew larger: when a paragraph could be either size, take 24.
 
-Weights: `--w-body` 400, `--w-ui` 500, `--w-semi` 600, `--w-bold` 700. The 24px paragraph is 600 (Bob, 2026-09-19, matching Apple's 21px intros); every other paragraph is 400. Tracking: `--tr-display` -.025em, `--tr-heading` -.02em, `--tr-title` -.01em, `--tr-label` .02em, `--tr-para` +.01em on the 24px paragraph only. Skew larger: when in doubt between two sizes, take the bigger one.
+Weights: `--w-body` 400, `--w-ui` 500, `--w-semi` 600, `--w-bold` 700. The 24px paragraph is 700 (Bob, 2026-09-19; Proxima's 500 and 600 sit too close to read as a step, so the paragraph jumps to bold and its emphasis comes from `--ink-max`); every other paragraph is 400. Line heights follow Apple's measured ratios: 24→33, 18→26, 15→22. Tracking: `--tr-display` -.025em, `--tr-heading` -.02em, `--tr-title` -.01em, `--tr-label` .02em, `--tr-para` +.01em on the 24px paragraph only. Skew larger: when in doubt between two sizes, take the bigger one.
 
 Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
 
@@ -68,7 +68,7 @@ Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`
 | Token | Use |
 |---|---|
 | `--bg` `--bg-panel` `--bg-page` | Sections and cards; raised panels; the page |
-| `--ink` `--ink-2` `--ink-3` `--ink-max` | Headings; body copy (muted: 6.5:1 light, 7.4:1 dark, so bold pops); captions (AA everywhere); bold and the nav hover |
+| `--ink` `--ink-2` `--ink-3` `--ink-max` | Headings; body copy (muted to about 5.7:1 light and 6:1 dark, Apple's range, so bold pops); captions (AA everywhere); bold and the nav hover |
 | `--line` `--line-strong` | Rules and card borders; button outlines and list heads |
 | `--accent` `--accent-hover` `--accent-fill` `--accent-fill-hover` `--accent-ink` | Text accents; button fills; text on a fill |
 | `--menu-bg` `--frost` `--bar-bg` `--fill` `--fill-hover` | Dropdown card; the header band and the whole page behind an open menu (one surface, no seam); section pill; soft fills |
