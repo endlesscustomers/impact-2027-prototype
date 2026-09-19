@@ -14,7 +14,7 @@ const chrome = ['src/components/Header.astro', 'src/components/Footer.astro', 's
 const chromeSet = new Set(chrome.filter((c) => !['class', 'list', 'true', 'false'].includes(c)));
 const css = read('src/styles/global.css');
 const pageSection = css.slice(css.indexOf('Page-specific ===='));
-for (const m of pageSection.matchAll(/\[data-page="([^"]+)"\] \.([a-z0-9-]+)/g)) {
+for (const m of new Map([...pageSection.matchAll(/\[data-page="([^"]+)"\] \.([a-z0-9-]+)/g)].map((m) => [m[0], m])).values()) {
   if (chromeSet.has(m[2])) { console.log(`collision: [data-page="${m[1]}"] .${m[2]} also names a header/footer/ribbon/pill element`); bad++; }
 }
 for (const f of walk('src').filter((f) => f.endsWith('.astro'))) {

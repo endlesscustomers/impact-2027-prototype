@@ -93,7 +93,7 @@ const ec = index('ec');
           <section class="index">
             <h2>{SITES[site].domain}</h2>
             {[...ix.groups].map(([group, list]) => (
-              <div class="group">
+              <div class="idx-group">
                 <h3>{group}</h3>
                 <ul>
                   {list.map((p) => (
@@ -109,7 +109,7 @@ const ec = index('ec');
         ))}
       </div>
 
-      <footer class="foot">
+      <footer class="entry-foot">
         <p>Prototype, updated {built}. Drafted means the page has proposed copy and layout to react to. Outlined means the page's sections, prices, and connections are laid out so the strategy reads, without finished copy. Placeholder means the link works and the page says what it is for. Nothing here is final, and none of it is indexed by search engines.</p>
       </footer>
     </div>
