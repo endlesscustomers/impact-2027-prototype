@@ -1,0 +1,32 @@
+---
+// Floating section pill for service microsites (inspired by apple.com/iphone-18-pro). On these pages the main
+// header scrolls away; once the visitor is about halfway through the hero this pill appears, fixed and centered:
+// IMPACT logo + section name on the left, the section's own call to action on the right.
+import type { Microsite } from '../data/microsites';
+import { href } from '../lib/site';
+import ImpactLogo from './ImpactLogo.astro';
+
+interface Props { ms: Microsite }
+const { ms } = Astro.props;
+---
+
+<div class="pillbar" data-pillbar aria-label={`${ms.name} section`}>
+  <a class="who" href={href('impact', ms.base)}>
+    <span class="mark" aria-hidden="true"><ImpactLogo /></span>
+    <span class="name">{ms.name}</span>
+  </a>
+  <a class="go" href={href('impact', ms.pill.path)}>{ms.pill.label} <span aria-hidden="true">→</span></a>
+</div>
+
+<script>
+  // Show once the top of the viewport passes the midpoint of the hero.
+  const bar = document.querySelector<HTMLElement>('[data-pillbar]');
+  const hero = document.querySelector<HTMLElement>('.hero');
+  if (bar) {
+    const line = () => (hero ? hero.offsetTop + hero.offsetHeight / 2 : 240);
+    const tick = () => bar.toggleAttribute('data-show', window.scrollY > line());
+    tick();
+    addEventListener('scroll', tick, { passive: true });
+    addEventListener('resize', tick);
+  }
+</script>

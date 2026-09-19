@@ -4,6 +4,8 @@ import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Ribbon from '../components/Ribbon.astro';
+import SectionBar from '../components/SectionBar.astro';
+import { micrositeFor } from '../data/microsites';
 import type { SiteId } from '../lib/site';
 import { SITES, entryHref, realUrl } from '../lib/site';
 import * as impact from '../data/impact-nav';
@@ -23,15 +25,18 @@ const s = SITES[site];
 const nav = site === 'ec' ? ec.nav : impact.nav;
 const cta = site === 'ec' ? ec.cta : impact.cta;
 const secondary = site === 'ec' ? ec.secondary : impact.secondary;
+// Service microsites (coaching, HubSpot, websites, paid media): the header scrolls away and a section pill takes over.
+const ms = micrositeFor(site, path);
 const mobileNote = site === 'ec'
   ? { text: 'Endless Customers is a brand of IMPACT.' }
   : { text: 'Not sure where to start?', link: impact.instantDiagnostic };
 ---
 
-<Base title={`${title} · ${s.domain}`} description={description} favicon={site}>
+<Base title={`${title} · ${s.domain}`} description={description} favicon={site} microsite={!!ms}>
   <slot name="head" slot="head" />
   <Header site={site} nav={nav} cta={cta} secondary={secondary} mobileNote={mobileNote} currentPath={path} />
   <Ribbon site={site} path={path} ribbons={site === 'ec' ? ec.ribbons : impact.ribbons} />
+  {ms && <SectionBar ms={ms} />}
   <main>
     <slot />
   </main>

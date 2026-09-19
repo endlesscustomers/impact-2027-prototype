@@ -4,18 +4,20 @@
 import '../styles/global.css';
 
 interface Props {
+  /** Service microsite page: header scrolls away, section pill takes over (see SectionBar). */
+  microsite?: boolean;
   title: string;
   description?: string;
   /** Which site's favicon to use. */
   favicon?: 'impact' | 'ec';
 }
-const { title, description = '', favicon = 'impact' } = Astro.props;
+const { title, description = '', favicon = 'impact', microsite = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fonts = [400, 500, 600, 700].map((w) => `@font-face{font-family:'General Sans';font-weight:${w};src:url('${base}/fonts/general-sans-${w}.woff2') format('woff2');font-display:swap}`).join('');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-microsite={microsite ? "" : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -16,6 +16,8 @@ export interface Microsite {
   tagline: string;
   links: MsLink[];
   cta: NavLink;
+  /** Call to action in the floating section pill (Apple-style bar that appears once the header scrolls away). */
+  pill: NavLink;
 }
 
 export const microsites: Microsite[] = [
@@ -32,6 +34,7 @@ export const microsites: Microsite[] = [
       { label: 'Coaches', path: '/coaches', site: 'ec' },
     ],
     cta: { label: 'Book an Explore Call', path: '/talk' },
+    pill: { label: 'Talk to an Endless Customers Coach', path: '/talk' },
   },
   {
     id: 'hubspot',
@@ -47,6 +50,7 @@ export const microsites: Microsite[] = [
       { label: 'Experts', path: '/hubspot/experts' },
     ],
     cta: { label: 'Talk to a HubSpot expert', path: '/talk' },
+    pill: { label: 'Talk to a HubSpot Expert', path: '/talk' },
   },
   {
     id: 'websites',
@@ -61,6 +65,7 @@ export const microsites: Microsite[] = [
       { label: 'Experts', path: '/websites/experts' },
     ],
     cta: { label: 'Talk to a website strategist', path: '/talk' },
+    pill: { label: 'Talk to a Website Strategist', path: '/talk' },
   },
   {
     id: 'paid-media',
@@ -75,6 +80,7 @@ export const microsites: Microsite[] = [
       { label: 'Team', path: '/paid-media/experts' },
     ],
     cta: { label: 'Get a free ads assessment', path: '/talk' },
+    pill: { label: 'Talk to a Paid Media Strategist', path: '/talk' },
   },
 ];
 
