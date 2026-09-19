@@ -23,7 +23,7 @@
   --fs-h2:      clamp(2rem, 1.35rem + 2.2vw, 3rem);        /* 32 → 48  section H2, stats */
   --fs-h3:      1.5rem;                                    /* 24       card, step, and block titles; prices */
   --fs-lede:    clamp(1.3125rem, 1.05rem + .9vw, 1.75rem); /* 21 → 28  the line under the H1 */
-  --fs-lg:      1.5rem;                                    /* 24       primary paragraphs: intros, prose, FAQ questions, checklists (Bob, 2026-09-19) */
+  --fs-lg:      1.5rem;                                    /* 24       primary paragraphs at weight 500: intros, prose, FAQ questions, checklists (Bob, 2026-09-19) */
   --fs-body:    1.125rem;                                  /* 18       every other paragraph, list, link, caption, role, eyebrow, column header */
   --fs-ui:      1rem;                                      /* 16       main nav items (Bob, 2026-09-19), header pill, section-pill button */
   --fs-fine:    .9375rem;                                  /* 15       fine print only: footer, legal, text under a form, chips (Bob, 2026-09-19) */
@@ -287,7 +287,7 @@ a:hover > .arrow { transform: translateX(2px); }
 .section.alt { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .section.final { padding-bottom: 96px; }
 .section h2 { margin: 0 0 12px; max-width: var(--measure-h2); }
-.section .intro { margin: 0 0 36px; color: var(--ink-2); font-size: var(--fs-lg); line-height: var(--lh-lg); max-width: var(--measure); text-wrap: pretty; }
+.section .intro { margin: 0 0 36px; color: var(--ink-2); font-size: var(--fs-lg); font-weight: var(--w-ui); line-height: var(--lh-lg); max-width: var(--measure); text-wrap: pretty; }
 .section .intro.tight { margin-bottom: 12px; }
 .section .intro.last { margin-bottom: 0; }
 .actions.close { margin-top: 8px; } /* actions right under a lede or intro */
@@ -296,7 +296,7 @@ a:hover > .arrow { transform: translateX(2px); }
 /* small note under a pricing grid */
 .also a { color: var(--accent); font-weight: var(--w-ui); }
 .also a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
-.prose { font-size: var(--fs-lg); line-height: var(--lh-lg); color: var(--ink-2); max-width: var(--measure); }
+.prose { font-size: var(--fs-lg); font-weight: var(--w-ui); line-height: var(--lh-lg); color: var(--ink-2); max-width: var(--measure); }
 .prose h2 { font-size: var(--fs-h3); color: var(--ink); margin: 40px 0 12px; line-height: var(--lh-h3) }
 .prose p { margin: 0 0 18px; text-wrap: pretty; }
 .prose ul { padding-left: 20px; }
@@ -510,7 +510,7 @@ html[data-microsite] .header { position: relative; }
 [data-page="entry"] .site.ec:hover .domain { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 [data-page="entry"] .how { margin-bottom: 72px; padding: 32px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-panel); }
 [data-page="entry"] .how h2 { margin: 0 0 8px; font-size: var(--fs-h3); font-weight: var(--w-bold); letter-spacing: var(--tr-heading); line-height: var(--lh-h3) }
-[data-page="entry"] .how .lede { margin: 0 0 24px; font-size: var(--fs-lg); line-height: var(--lh-lg); }
+[data-page="entry"] .how .lede { margin: 0 0 24px; font-size: var(--fs-lg); font-weight: var(--w-ui); line-height: var(--lh-lg); }
 [data-page="entry"] .how .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 [data-page="entry"] .how h3 { margin: 0 0 10px; font-family: var(--font-body); font-size: var(--fs-body); font-weight: var(--w-bold); letter-spacing: var(--tr-title); line-height: var(--lh-body) }
 [data-page="entry"] .how ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }
@@ -599,7 +599,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="impact-home"] a.bd:hover { border-color: var(--line-strong); color: var(--ink); }
 [data-page="impact-home"] .fit { align-items: start; }
 [data-page="impact-home"] .fit-list { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 10px; }
-[data-page="impact-home"] .fit-list li { position: relative; padding-left: 30px; font-size: var(--fs-lg); line-height: var(--lh-lg); color: var(--ink); }
+[data-page="impact-home"] .fit-list li { position: relative; padding-left: 30px; font-size: var(--fs-lg); font-weight: var(--w-ui); line-height: var(--lh-lg); color: var(--ink); }
 [data-page="impact-home"] .fit-list li::before { content: ''; position: absolute; left: 0; top: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path d='M4 9.5l3.2 3L14 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 18px no-repeat, linear-gradient(#000 0 0); mask-composite: exclude; -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path d='M4 9.5l3.2 3L14 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 18px no-repeat, linear-gradient(#000 0 0); -webkit-mask-composite: xor; } /* raw */
 [data-page="impact-home"] .inds a { font-size: var(--fs-body); line-height: var(--lh-body); padding: 11px 0; }
 [data-page="impact-home"] .notfit { padding: 28px; border-radius: 16px; background: var(--bg-panel); border: 1px solid var(--line); }
@@ -638,7 +638,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="impact-home"] .signup input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
 [data-page="impact-home"] .about { padding-top: 40px; padding-bottom: 40px; }
 [data-page="impact-home"] .about h2 { font-size: var(--fs-h3); line-height: var(--lh-h3) }
-[data-page="impact-home"] .about .prose { margin: 0; font-size: var(--fs-body); line-height: var(--lh-body); }
+[data-page="impact-home"] .about .prose { margin: 0; font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-body); }
 [data-page="impact-home"] .about .prose a { color: var(--accent); font-weight: var(--w-ui); }
 [data-page="impact-home"] .about .prose a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 900px) {
@@ -690,7 +690,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="ec-home"] .cover::after { content: ""; position: absolute; left: 0; right: 0; bottom: 18%; height: 10px; background: var(--grad); opacity: .9; filter: blur(.5px); }
 @media (max-width: 900px) {
   [data-page="ec-home"] .split { grid-template-columns: 1fr; }
-  [data-page="ec-home"] .cover { width: 150px; font-size: var(--fs-lg); line-height: var(--lh-lg) }
+  [data-page="ec-home"] .cover { width: 150px; font-size: var(--fs-lg); font-weight: var(--w-ui); line-height: var(--lh-lg) }
   [data-page="ec-home"] .hero.home { padding: 64px 0 48px; }
 }
 /* ---------- endlesscustomers.com/coaching ---------- */
