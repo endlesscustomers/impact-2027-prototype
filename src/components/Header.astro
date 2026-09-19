@@ -220,6 +220,10 @@ const crosses = (l: NavLink) => l.site && l.site !== site;
 
   // Theme: follows the system until the visitor picks; the pick is remembered in this browser.
   const root = document.documentElement;
+  // Tall header at the top of the page; compact once scrolled. Drives the --header-h family in global.css.
+  const onScroll = () => root.toggleAttribute('data-scrolled', window.scrollY > 8);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
   const themeBtns = [...document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')];
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
   function applyTheme(pick: string | null) {

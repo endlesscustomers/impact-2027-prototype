@@ -19,7 +19,8 @@
   --shadow: 0 24px 48px -24px rgba(0,0,0,.28), 0 1px 0 rgba(0,0,0,.06);
   --shadow-card: 0 8px 16px -8px rgba(0,0,0,.14), 0 32px 64px -24px rgba(0,0,0,.28);
   --selection: #d6e4ff;
-  --header-h: 56px;
+  /* Header is taller at the top of the page and compacts once you scroll (html[data-scrolled], set in Header.astro). */
+  --header-h: 72px; --logo-h: 36px; --logo-ec-h: 48px; --ctrl-h: 40px; --cta-font: 15px; --cta-pad: 20px;
   --ease: cubic-bezier(.2,.8,.2,1);
   --grad: linear-gradient(90deg, #1a6cf5, #e43ea7 60%, #ff2ad4);
 }
@@ -63,23 +64,25 @@ img, svg { display: block; max-width: 100%; }
 .wrap.narrow { max-width: 760px; }
 
 /* ---------- Header ---------- */
+:root[data-scrolled] { --header-h: 56px; --logo-h: 30px; --logo-ec-h: 40px; --ctrl-h: 36px; --cta-font: 14px; --cta-pad: 16px; }
+
 .header {
-  position: sticky; top: 0; z-index: 40; height: var(--header-h);
+  position: sticky; top: 0; z-index: 40; height: var(--header-h); transition: height .25s var(--ease);
   background: color-mix(in srgb, var(--bg) 86%, transparent);
   backdrop-filter: saturate(180%) blur(18px); -webkit-backdrop-filter: saturate(180%) blur(18px);
 }
 .header .wrap { height: 100%; max-width: none; padding: 0 32px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 36px; } /* full-bleed, Zoom-style: logo, nav beside it, tools at the far edge */
 .logo { display: inline-flex; align-items: center; justify-self: start; }
-.logo svg { height: 30px; width: auto; }
+.logo svg { height: var(--logo-h); width: auto; transition: height .25s var(--ease); }
 .logo:not(.ec) svg path { fill: var(--ink); }
-.logo.ec svg { height: 40px; }
+.logo.ec svg { height: var(--logo-ec-h); }
 .logo.ec svg path:not([fill]) { fill: var(--ink); }
 .logo.ec svg path[fill^="url"] { fill: url(#ec-swoosh); }
 
 .nav { display: flex; align-items: center; gap: 4px; justify-self: start; }
 .nav-item { position: relative; }
 .nav-btn {
-  display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 6px; height: var(--ctrl-h); padding: 0 12px; white-space: nowrap;
   font-size: 15px; font-weight: 500; letter-spacing: -.005em; color: var(--ink-2);
   border-radius: 8px; transition: color .15s var(--ease);
 }
@@ -91,7 +94,7 @@ html[data-dark] .nav-btn:hover, html[data-dark] .nav-btn[aria-expanded="true"], 
 .chev path { stroke: currentColor; stroke-width: 1.9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
 .tools { display: flex; align-items: center; gap: 8px; justify-self: end; }
-.icon-btn { position: relative; width: 36px; height: 36px; display: inline-grid; place-items: center; border-radius: 8px; color: var(--ink-2); }
+.icon-btn { position: relative; width: var(--ctrl-h); height: var(--ctrl-h); display: inline-grid; place-items: center; border-radius: 8px; color: var(--ink-2); }
 /* Tooltip under an icon, shown on hover or keyboard focus: dark pill with a pointer, as on the sandbox nav. */
 .icon-btn .tip {
   position: absolute; top: calc(100% + 12px); left: 50%; transform: translate(-50%, -3px);
@@ -110,8 +113,8 @@ html[data-dark] .tip-dark { display: block; }
 .icon-btn svg { width: 18px; height: 18px; }
 .icon-btn svg * { stroke: currentColor; stroke-width: 1.9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .cta {
-  height: 36px; padding: 0 16px; border-radius: 999px; background: var(--accent); color: var(--accent-ink);
-  font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; white-space: nowrap;
+  height: var(--ctrl-h); padding: 0 var(--cta-pad); border-radius: 999px; background: var(--accent); color: var(--accent-ink);
+  font-size: var(--cta-font); font-weight: 500; display: inline-flex; align-items: center; white-space: nowrap;
   transition: transform .15s var(--ease), filter .15s var(--ease);
 }
 .cta:hover { filter: brightness(1.06); }
@@ -294,6 +297,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
   .tools .theme { order: -1; }
   .burger { display: inline-grid; }
   .header .wrap { grid-template-columns: 1fr auto; padding: 0 20px; gap: 8px; }
+  :root { --header-h: 56px; --logo-h: 30px; --logo-ec-h: 40px; --ctrl-h: 36px; --cta-font: 14px; --cta-pad: 16px; }
   .sheet, .scrim { display: none; }
   .hero { padding: 56px 0 48px; }
   .section { padding: 48px 0; }
