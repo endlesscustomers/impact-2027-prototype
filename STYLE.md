@@ -32,7 +32,7 @@ General Sans for headings (`--font-head`, self-hosted, weights 400 to 700; it ha
 
 ## Type scale
 
-Nine sizes, each with its line height. Every `font-size`, `line-height`, `font-weight`, `letter-spacing`, `font-family`, and `max-width` in characters is a token; `scripts/check-css.mjs` fails on a literal, and on a size token written without its line-height token.
+Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-weight`, `letter-spacing`, `font-family`, and `max-width` in characters is a token; `scripts/check-css.mjs` fails on a literal, and on a size token written without its line-height token.
 
 | Token | Size | Line height | Weight | Use |
 |---|---|---|---|---|
@@ -40,13 +40,12 @@ Nine sizes, each with its line height. Every `font-size`, `line-height`, `font-w
 | `--fs-h2` | 32 to 48 (fluid) | 1.08 | 700 | Section H2, stats |
 | `--fs-h3` | 24 | 1.15 | 700 | Card, step, and block titles; prices |
 | `--fs-lede` | 21 to 28 (fluid) | 1.3 | 400 | The line under the H1 |
-| `--fs-lg` | 21 | 1.4 | 400 | Primary paragraphs: section intros, prose blocks, FAQ questions, checklists |
-| `--fs-body` | 18 | 1.5 | 400 | Every other paragraph, list, note, and link: cards, steps, FAQ answers, price notes, stat captions, "More" links, buttons, menu links |
-| `--fs-nav` | 16 | 1.4 | 500 | Main nav items only (Bob, 2026-09-19) |
-| `--fs-label` | 15 | 1.4 | 500 | True labels: eyebrows, breadcrumbs, roles, attributions, column headers, tooltips, small buttons |
-| `--fs-fine` | 14 | 1.45 | 400 | Footer, legal, tags, badges |
+| `--fs-lg` | 24 | 1.35 | 400 | Primary paragraphs: section intros, prose blocks, FAQ questions, checklists |
+| `--fs-body` | 18 | 1.5 | 400 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, tooltips, stat labels |
+| `--fs-ui` | 16 | 1.5 | 500 | Main nav items, the header pill, the section-pill button |
+| `--fs-fine` | 15 | 1.45 | 400 | Fine print only: footer, legal, text under a form, chips (tags, badges) |
 
-**Two paragraph sizes, one fine print (Bob, 2026-09-19).** If it is a sentence, it is `--fs-lg` or `--fs-body`, never `--fs-label`. A label is a word or a short phrase that names something: an eyebrow, a role, a caption under a portrait, an attribution. Fine print is the footer, legal, tags, and badges. Skew larger: when a paragraph could be either size, take 21.
+**Two paragraph sizes, one fine print (Bob, 2026-09-19).** Paragraphs are 24 or 18. Anything that names something (an eyebrow, a role, a testimonial name, a caption, a column header) is 18, not smaller. 15 is only for places that truly need small type: the footer, legal lines, help text under a form field, and chips. Skew larger: when a paragraph could be either size, take 24.
 
 Weights: `--w-body` 400, `--w-ui` 500, `--w-bold` 700. Tracking: `--tr-display` -.025em, `--tr-heading` -.02em, `--tr-title` -.01em, `--tr-label` .02em. Skew larger: when in doubt between two sizes, take the bigger one.
 
