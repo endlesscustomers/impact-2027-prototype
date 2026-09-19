@@ -32,9 +32,9 @@
   --fs-body:    1.125rem;                                  /* 18       every other paragraph, list, link, caption, role, eyebrow, column header */
   --fs-ui:      1rem;                                      /* 16       main nav items (Bob, 2026-09-19), header pill, section-pill button */
   --fs-fine:    .9375rem;                                  /* 15       fine print only: footer, legal, text under a form, chips (Bob, 2026-09-19) */
-  --lh-display: 1.05; --lh-h2: 1.1; --lh-h3: 1.15; --lh-lede: 1.3; --lh-lg: 1.375; --lh-body: 1.45; --lh-fine: 1.45; /* 24→33, 18→26, 15→22: Apple's body ratios */ --lh-tight: 1;
+  --lh-display: 1.05; --lh-h2: 1.1; --lh-h3: 1.15; --lh-lede: 1.3; --lh-lg: 1.3; --lh-body: 1.45; --lh-fine: 1.45; /* 24→31 (Bob, 2026-09-19: tighter than Apple's 1.38), 18→26, 15→22 */ --lh-tight: 1;
   --w-light: 300; --w-regular: 400; --w-body: 600; --w-ui: 600; --w-bold: 700; /* every paragraph, list, and control is 600; bold inside copy changes colour, not weight; headings are 700 (Bob, 2026-09-19) */
-  --tr-display: -.025em; --tr-heading: -.02em; --tr-title: -.01em; --tr-label: .02em; --tr-para: .01em;
+  --tr-display: -.025em; --tr-heading: -.02em; --tr-title: -.01em; --tr-label: .02em; --tr-para: -.01em; /* the 24px paragraph tightens at 600 (Bob, 2026-09-19) */
   /* Text links: accent colour at rest, one underline on hover, colour never changes (Bob, 2026-09-19) */
   --ul-thick: .06em; --ul-offset: .16em;
   /* Measure: one line length for anything read as prose; headlines get their own. Nothing sets a ch width directly. */
@@ -71,6 +71,7 @@ body {
   --ink:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h);   /* headings, strong text */
   --ink-2:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* body copy: about 4.7:1 on the page surface, the darkest place a paragraph sits; AA with room for bold to pop (Bob, 2026-09-19) */
   --ink-3:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* captions match body: any lighter fails AA on the page surface */
+  --ink-lg:  oklch(from var(--tint) .600 calc(.050 * var(--c)) h);   /* the 24px paragraph: lighter (Bob, 2026-09-19); 24px is WCAG large text, needs 3:1, held near 3.6:1 on the page surface */
   --ink-max: #000000;                                                /* bold inside body copy, nav item on hover: the only pure black */
   --line:        oklch(from var(--tint) .929 calc(.024 * var(--c)) h);
   --line-strong: oklch(from var(--tint) .869 calc(.034 * var(--c)) h);
@@ -92,6 +93,7 @@ html[data-dark] body {
   --ink:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h);
   --ink-2:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* about 4.7:1 on a dark panel, the darkest place a paragraph sits */
   --ink-3:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* captions match body for the same reason */
+  --ink-lg:  var(--ink-2);                                           /* dark mode stays as is (Bob: "dark mode looks great now") */
   --ink-max: #ffffff;
   --line:        oklch(from var(--tint) .372 calc(.052 * var(--c)) h);
   --line-strong: oklch(from var(--tint) .446 calc(.050 * var(--c)) h);
@@ -293,14 +295,14 @@ a:hover > .arrow { transform: translateX(2px); }
 .section.alt { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .section.final { padding-bottom: 96px; }
 .section h2 { margin: 0 0 12px; max-width: var(--measure-h2); }
-.section .intro { margin: 0 0 36px; color: var(--ink-2); font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); max-width: var(--measure); text-wrap: pretty; }
+.section .intro { margin: 0 0 36px; color: var(--ink-lg); font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); max-width: var(--measure); text-wrap: pretty; }
 .section .intro.tight { margin-bottom: 12px; }
 .section .intro.last { margin-bottom: 0; }
 .actions.close { margin-top: 8px; } /* actions right under a lede or intro */
 .split .intro + .intro { margin-top: -20px; }
 .also { margin: 24px 0 0; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); max-width: var(--measure); }
 /* small note under a pricing grid */
-.prose { font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); color: var(--ink-2); max-width: var(--measure); }
+.prose { font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); color: var(--ink-lg); max-width: var(--measure); }
 .prose h2 { font-size: var(--fs-h3); color: var(--ink); margin: 40px 0 12px; line-height: var(--lh-h3) }
 .prose p { margin: 0 0 18px; text-wrap: pretty; }
 .prose ul { padding-left: 20px; }
@@ -510,7 +512,7 @@ html[data-microsite] .header { position: relative; }
 [data-page="entry"] .site.ec:hover .domain { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 [data-page="entry"] .how { margin-bottom: 72px; padding: 32px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-panel); }
 [data-page="entry"] .how h2 { margin: 0 0 8px; font-size: var(--fs-h3); font-weight: var(--w-bold); letter-spacing: var(--tr-heading); line-height: var(--lh-h3) }
-[data-page="entry"] .how .lede { margin: 0 0 24px; font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); }
+[data-page="entry"] .how .lede { margin: 0 0 24px; color: var(--ink-lg); font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); }
 [data-page="entry"] .how .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 [data-page="entry"] .how h3 { margin: 0 0 10px; font-family: var(--font-body); font-size: var(--fs-body); font-weight: var(--w-bold); letter-spacing: var(--tr-title); line-height: var(--lh-body) }
 [data-page="entry"] .how ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }

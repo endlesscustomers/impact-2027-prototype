@@ -40,14 +40,14 @@ Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-
 | `--fs-h2` | 32 to 48 (fluid) | 1.1 | 700 | Section H2, stats |
 | `--fs-h3` | 24 | 1.15 | 700 | Card, step, and block titles; prices |
 | `--fs-lede` | 21 to 28 (fluid) | 1.3 | 400 | The line under the H1 |
-| `--fs-lg` | 24 | 1.375 | 600 | Primary paragraphs (tracking `--tr-para` +.01em): section intros, prose blocks, FAQ questions, checklists |
+| `--fs-lg` | 24 | 1.3 | 600 | Primary paragraphs (tracking `--tr-para` -.01em, colour `--ink-lg`): section intros, prose blocks, FAQ questions, checklists |
 | `--fs-body` | 18 | 1.45 | 600 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, stat labels |
 | `--fs-ui` | 16 | 1.5 | 600 | Main nav items, the header pill, the section-pill button |
 | `--fs-fine` | 15 | 1.45 | 600 | Fine print only: footer, legal, text under a form, chips (tags, badges), icon tooltips |
 
 **Two paragraph sizes, one fine print (Bob, 2026-09-19).** Paragraphs are 24 or 18. Anything that names something (an eyebrow, a role, a testimonial name, a caption, a column header) is 18, not smaller. 15 is only for places that truly need small type: the footer, legal lines, help text under a form field, and chips. Skew larger: when a paragraph could be either size, take 24.
 
-Weights: `--w-body` 600 for every paragraph, list, and control; `--w-bold` 700 for headings only; `--w-regular` 400 and `--w-light` 300 exist for later. **Bold inside copy is a colour change, not a weight change** (Bob, 2026-09-19): `strong` and `b` inherit the paragraph's weight and take `--ink-max`. Line heights follow Apple's measured ratios: 24 → 33, 18 → 26, 15 → 22.
+Weights: `--w-body` 600 for every paragraph, list, and control; `--w-bold` 700 for headings only; `--w-regular` 400 and `--w-light` 300 exist for later. **Bold inside copy is a colour change, not a weight change** (Bob, 2026-09-19): `strong` and `b` inherit the paragraph's weight and take `--ink-max`. Line heights: 24 → 31 (tighter than Apple's 1.38, Bob's call), 18 → 26 and 15 → 22 (Apple's ratios).
 
 Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
 
