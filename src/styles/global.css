@@ -334,15 +334,17 @@ html[data-dark] .ribbon:hover { background: rgba(255,255,255,.12); }
 /* ---------- Service microsites: header scrolls away, section pill takes over ---------- */
 html[data-microsite] .header { position: relative; }
 .pillbar {
+  /* Apple's local-nav width (1024 at desktop), translucent and frosted, no outline; a shade off the page color. */
   position: fixed; top: 12px; left: 50%; transform: translate(-50%, -16px); z-index: 45;
-  display: flex; align-items: center; gap: 28px; height: 52px; padding: 0 8px 0 18px; border-radius: 999px;
-  background: color-mix(in srgb, var(--bg-panel) 82%, transparent);
+  width: min(1024px, calc(100% - 48px));
+  display: flex; align-items: center; justify-content: space-between; gap: 28px; height: 52px; padding: 0 8px 0 22px; border-radius: 999px;
+  background: rgba(240, 240, 243, .72);
   backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.22);
+  box-shadow: 0 12px 32px -16px rgba(0,0,0,.18);
   opacity: 0; pointer-events: none; visibility: hidden;
   transition: opacity .28s var(--ease), transform .32s var(--ease), visibility 0s linear .32s;
 }
-html[data-dark] .pillbar { background: color-mix(in srgb, #000 70%, transparent); box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 12px 32px -12px rgba(0,0,0,.8); }
+html[data-dark] .pillbar { background: rgba(28, 28, 31, .72); box-shadow: 0 12px 32px -16px rgba(0,0,0,.7); }
 .pillbar[data-show] { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; visibility: visible; transition-delay: 0s; }
 .pillbar .who { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); }
 .pillbar .mark svg { height: 22px; width: auto; display: block; }
@@ -351,7 +353,7 @@ html[data-dark] .pillbar { background: color-mix(in srgb, #000 70%, transparent)
 .pillbar .go { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 16px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 14px; font-weight: 500; white-space: nowrap; transition: filter .15s var(--ease); }
 .pillbar .go:hover { filter: brightness(1.06); }
 @media (max-width: 734px) {
-  .pillbar { left: 12px; right: 12px; transform: translateY(-16px); gap: 12px; justify-content: space-between; padding: 0 6px 0 14px; height: 48px; }
+  .pillbar { left: 12px; right: 12px; width: auto; transform: translateY(-16px); gap: 12px; padding: 0 6px 0 14px; height: 48px; }
   .pillbar[data-show] { transform: none; }
   .pillbar .name { display: none; }
   .pillbar .go { font-size: 13px; padding: 0 14px; height: 34px; }
