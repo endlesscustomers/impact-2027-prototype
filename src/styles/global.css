@@ -84,7 +84,7 @@ img, svg { display: block; max-width: 100%; }
 .nav-btn {
   display: inline-flex; align-items: center; gap: 6px; height: var(--ctrl-h); padding: 0 12px; white-space: nowrap;
   font-size: 15px; font-weight: 500; letter-spacing: -.005em; color: var(--ink-2);
-  border-radius: 8px; transition: color .15s var(--ease);
+  border-radius: 8px; transition: color .15s var(--ease), height .25s var(--ease);
 }
 /* Hover and active states change the type only: dark grey to black in light mode, no background. */
 .nav-btn:hover, .nav-btn[aria-expanded="true"], .nav-btn[aria-current="page"] { color: #000; }
@@ -94,7 +94,7 @@ html[data-dark] .nav-btn:hover, html[data-dark] .nav-btn[aria-expanded="true"], 
 .chev path { stroke: currentColor; stroke-width: 1.9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
 .tools { display: flex; align-items: center; gap: 8px; justify-self: end; }
-.icon-btn { position: relative; width: var(--ctrl-h); height: var(--ctrl-h); display: inline-grid; place-items: center; border-radius: 8px; color: var(--ink-2); }
+.icon-btn { position: relative; width: var(--ctrl-h); height: var(--ctrl-h); transition: width .25s var(--ease), height .25s var(--ease); display: inline-grid; place-items: center; border-radius: 8px; color: var(--ink-2); }
 /* Tooltip under an icon, shown on hover or keyboard focus: dark pill with a pointer, as on the sandbox nav. */
 .icon-btn .tip {
   position: absolute; top: calc(100% + 12px); left: 50%; transform: translate(-50%, -3px);
@@ -115,7 +115,7 @@ html[data-dark] .tip-dark { display: block; }
 .cta {
   height: var(--ctrl-h); padding: 0 var(--cta-pad); border-radius: 999px; background: var(--accent); color: var(--accent-ink);
   font-size: var(--cta-font); font-weight: 500; display: inline-flex; align-items: center; white-space: nowrap;
-  transition: transform .15s var(--ease), filter .15s var(--ease);
+  transition: transform .15s var(--ease), filter .15s var(--ease), height .25s var(--ease), padding .25s var(--ease), font-size .25s var(--ease);
 }
 .cta:hover { filter: brightness(1.06); }
 .cta:active { transform: scale(.98); }
