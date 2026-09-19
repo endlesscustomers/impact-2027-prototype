@@ -45,7 +45,7 @@ const faqs = [
       <p class="crumbs"><a href={href('impact', '/services')}>How We Help</a><span>&gt;</span><span class="here">HubSpot Services</span></p>
       <div class="hero-grid">
         <div>
-          <h1>The HubSpot Team That Gets You Out of the Mess and Into the Results</h1>
+          <h1>The HubSpot Team That Gets You Out of the Mess</h1>
           <p class="lede">Training, onboarding, cleanup, integrations, and a CMS theme your marketing manager can run, from a HubSpot Diamond Solutions Partner. We leave your team able to run it, which is the part most partners skip.</p>
           <div class="actions">
             <a class="btn primary" href={href('impact', '/talk')}>Talk to a HubSpot Expert</a>
@@ -71,7 +71,7 @@ const faqs = [
       <p class="intro">Pick the one that sounds like you. Each leads to the service, the process, and the price.</p>
       <div class="grid c3">
         {problems.map(([say, how, p]) => (
-          <a class="card" href={href('impact', p)}><h3>“{say}”</h3><p>{how}</p><span class="more">How We Handle It →</span></a>
+          <a class="card" href={href('impact', p)}><h3>{say}</h3><p>{how}</p><span class="more">How We Handle It →</span></a>
         ))}
       </div>
     </div>

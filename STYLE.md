@@ -36,19 +36,20 @@ Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-
 
 | Token | Size | Line height | Weight | Use |
 |---|---|---|---|---|
-| `--fs-display` | 44 to 80 (fluid) | 1.05 | 700 | H1 |
+| `--fs-display` | 44 to 80 (fluid) | 1.05 | 700 | H1 on a full-width hero |
+| `--fs-display-ms` | 40 to 64 (fluid) | 1.05 | 700 | H1 on a two-column microsite hero (`.hero.ms-hero`) |
 | `--fs-h2` | 32 to 48 (fluid) | 1.1 | 700 | Section H2, stats |
 | `--fs-h3` | 24 | 1.15 | 700 | Card, step, and block titles; prices |
-| `--fs-lede` | 21 to 28 (fluid) | 1.3 | 400 | The line under the H1 |
-| `--fs-lg` | 24 | 1.3 | 650 | Primary paragraphs (tracking `--tr-para` -.01em, colour `--ink-lg`): section intros, prose blocks, FAQ questions, checklists |
-| `--fs-body` | 18 | 1.45 | 650 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, stat labels |
-| `--fs-body` + `.regular` | 18 | 1.45 | 400 | The third paragraph style, for longer reading. Bold inside it goes to `--ink-max` **and** steps up to `--w-body` (Bob, 2026-09-19) |
-| `--fs-ui` | 16 | 1.5 | 650 | Main nav items, the header pill, the section-pill button |
-| `--fs-fine` | 15 | 1.45 | 650 | Fine print only: footer, legal, text under a form, chips (tags, badges), icon tooltips |
+| `--fs-lede` | 21 to 28 (fluid) | 1.25 | 700 | The line under the H1, tracking -.01em, colour `--ink-lg` |
+| `--fs-lg` | 24 | 1.3 | 700 | Primary paragraphs (tracking `--tr-para` -.01em, colour `--ink-lg`): section intros, prose blocks, FAQ questions, checklists |
+| `--fs-body` | 18 | 1.45 | 600 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, stat labels |
+| `--fs-body` + `.regular` | 18 | 1.45 | 400 | The third paragraph style, for longer reading. Bold inside it goes to `--ink-max` **and** steps up to 600 (Bob, 2026-09-19) |
+| `--fs-ui` | 16 | 1.4 | 600 | Main nav items, the header pill, the section-pill button |
+| `--fs-fine` | 15 | 1.45 | 400 | Fine print only: footer, legal, text under a form, chips (tags, badges), icon tooltips |
 
 **Two paragraph sizes, one fine print (Bob, 2026-09-19).** Paragraphs are 24 or 18. Anything that names something (an eyebrow, a role, a testimonial name, a caption, a column header) is 18, not smaller. 15 is only for places that truly need small type: the footer, legal lines, help text under a form field, and chips. Skew larger: when a paragraph could be either size, take 24.
 
-Weights: `--w-body` 650 for every paragraph, list, and control (Bob, 2026-09-19; the family has static 600 and 700 cuts only, so 650 renders with the Bold cut until a variable Proxima Nova exists); `--w-bold` 700 for headings only; `--w-regular` 400 and `--w-light` 300 exist for later. **Bold inside copy is a colour change, not a weight change** (Bob, 2026-09-19): `strong` and `b` inherit the paragraph's weight and take `--ink-max`. The one exception is the `.regular` paragraph, where bold also steps from 400 to `--w-body`. Line heights: 24 → 31 (tighter than Apple's 1.38, Bob's call), 18 → 26 and 15 → 22 (Apple's ratios).
+Weights are a ladder (Bob, 2026-09-19): `--w-para` 700 for the 24px paragraph, the lede, and FAQ questions; `--w-body` and `--w-ui` 600 for 18px body, nav, buttons, and titles inside lists; `--w-regular` 400 for `.regular`, fine print, and the footer; `--w-bold` 700 for headings only; `--w-regular` 400 and `--w-light` 300 exist for later. **Bold inside copy is a colour change, not a weight change** (Bob, 2026-09-19): `strong` and `b` inherit the paragraph's weight and take `--ink-max`. The one exception is the `.regular` paragraph, where bold also steps from 400 to `--w-body`. Line heights: 24 → 31 (tighter than Apple's 1.38, Bob's call), 18 → 26 and 15 → 22 (Apple's ratios).
 
 Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
 
@@ -60,7 +61,7 @@ Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`
 |---|---|---|---|---|
 | `blue` | IMPACT default | `#0A6CFF` | `#0A6CFF` | `#0A6CFF` |
 | `magenta` | Website Services | `#D6269B` | `#D6269B` | `#D6269B` |
-| `hubspot` | HubSpot Services | plum `#5A1E46` | `#DE3E00` | orange `#FF4701` (white on it is 3.4:1, accepted as a brand decision) |
+| `hubspot` | HubSpot Services | plum `#5A1E46` | `#C93600` (AA on the tinted light surfaces) | orange `#FF4701` (white on it is 3.4:1, accepted as a brand decision) |
 | `swell` | Paid Media | navy `#132D62` | teal `#007A73` | teal `#007A73` |
 | `black` | endlesscustomers.com, Endless Customers Coaching | none (grayscale) | `#0A6CFF`; magenta and green available | the EC gradient stays on the primary button and ribbon pill |
 
@@ -105,7 +106,7 @@ Use these before writing new CSS. They live in the "Page blocks" section of the 
 | Grid and cards | `.grid.c2/.c3/.c4`, `.card`, `.card.rec`, `.card .price`, `.card > .badge` | Cards; the recommended one; a price; a corner badge. |
 | Steps | `.steps` | Numbered list with a blue disc. |
 | Prices | `.prices` | Label left, price right, rule between rows. |
-| FAQ | `.faqs` > `details.faq` | Accordion with a plus that turns. |
+| FAQ | `.faqs` > `details.faq` | Accordion with a plus that turns. The question is a 24px Proxima sentence, not a heading face. |
 | Quote | `blockquote.quote` | Left rule, attribution in the footer. |
 | Faces | `.faces` > `.face` | Round portraits, name, role. |
 | Link list | `.list-links` | Rows with an arrow. |
