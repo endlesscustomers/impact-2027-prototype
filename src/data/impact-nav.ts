@@ -116,7 +116,7 @@ export const nav: NavItem[] = [
 
 // Announcement ribbon under the header, Zoom's look with Apple's per-section behavior.
 export const ribbons: Ribbon[] = [
-  { id: 'ecl-hartford-2026', on: ['/', '/results', '/about', '/team', '/why-impact', '/speaking', '/careers'], text: 'Endless Customers Live · Hartford, CT · October 5–7, 2026', short: 'Endless Customers Live · Oct 5–7', cta: 'Register', path: '/conference', site: 'ec' },
+  { id: 'ecl-hartford-2026', on: ['/', '/results', '/about', '/team', '/why-impact', '/speaking', '/careers'], text: 'Endless Customers Live · Hartford, CT · October 5-7, 2026', short: 'Endless Customers Live · Oct 5-7', cta: 'Register', path: '/conference', site: 'ec' },
   { id: 'guarantee', on: ['/services', '/deep-diagnostic', '/coaching', '/hubspot', '/websites', '/paid-media', '/workshops', '/pricing', '/compare'], text: 'Every service we offer is backed by a 100% money-back guarantee', short: '100% money-back guarantee', cta: 'How it works', path: '/guarantee' },
   { id: 'instant-diagnostic', on: ['/help', '/industries'], text: 'Not sure where you stand? Ask AI about your company, free, in about a minute', short: 'Free instant diagnostic', cta: 'Run it', path: '/instant-diagnostic' },
   { id: 'weekly-letter', on: ['/learn', '/events', '/ai-visibility-study'], text: 'The weekly letter from Bob Ruffolo: what changed for buyers this week, and what to do about it', short: 'The weekly letter from Bob Ruffolo', cta: 'Subscribe', path: '/letter' },

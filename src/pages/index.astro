@@ -7,6 +7,7 @@ import { SITES, href, type SiteId } from '../lib/site';
 import { pages, draftedPaths } from '../data/pages';
 import { outlines } from '../data/outlines';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const built = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/New_York' });
 
 type State = 'drafted' | 'outlined' | 'placeholder';
@@ -33,6 +34,7 @@ const ec = index('ec');
       <header class="top">
         <h1 class="display">Two Sites, One Company</h1>
         <p class="lede">impactplus.com is the full-service company. endlesscustomers.com is the system. Pick one to walk through it; the strip in the corner of every page shows where you are and brings you back here.</p>
+        <p class="lib-link"><a href={`${base}/modules/`}>Module Library →</a></p>
       </header>
 
       <div class="pick">

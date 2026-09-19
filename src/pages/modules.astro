@@ -1,0 +1,70 @@
+---
+// Module library: every reusable section, built once here in real page context, so a page is
+// assembled from these rather than restyled. Reference stack, not a public page (Bob, 2026-09-19).
+// Order: heroes first, then content modules. Add a module here before using it on a page.
+import Site from '../layouts/Site.astro';
+import { href } from '../lib/site';
+
+const faqs: [string, string][] = [
+  ['Do I Have to Justify the Claim?', 'No. Just put in writing where you feel like we missed, failed, or didn’t deliver what we said we would. We won’t ask you to build a case.'],
+  ['What Counts as a Deliverable?', 'Any implementation work, including website projects, Learning Center builds, self-service tools, or optimization work, plus every coaching call, training, diagnostic, or Alignment Day.'],
+  ['Is It Really Money Back or Just a Credit?', 'Once you’ve put in writing where we fell short, we’ll always try to make it right first. If you still feel we failed, we’ll refund your money, no questions asked.'],
+  ['What About Endless Customers Live or Endless Customers Academy?', 'Our in-person event, Endless Customers Live, and online community Endless Customers Academy have their own separate refund and transfer policies.'],
+  ['What If the Problem Is the Whole Engagement, Not One Session?', 'Put this in writing to your coach, and you’ll land on one of four outcomes: change coach, change scope, pause, or wind down.'],
+];
+---
+
+<Site site="impact" title="Module Library" path="/modules" strip="Module library" description="Reference stack of the prototype's reusable sections.">
+  <div class="mod-bar lead">
+    <div class="wrap"><b>Module Library</b><span>Stacked examples, built once here and reused on pages. Each bar names the module and its class.</span></div>
+  </div>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>01 · Hero, Centered</b><span>.hero.center: crumbs, H1, lede, actions. For pages that open on a promise.</span></div>
+  </div>
+  <section class="hero center">
+    <div class="wrap">
+      <p class="crumbs"><a href={href('impact', '/services')}>How We Help</a><span>&gt;</span><span class="here">Money-Back Guarantee</span></p>
+      <h1>If We Miss the Mark, We Make It Right</h1>
+      <p class="lede">Every coaching call, every training, every deliverable is covered by our money-back guarantee.</p>
+      <div class="actions">
+        <a class="btn primary" href={href('impact', '/guarantee')}>Read How It Works</a>
+        <a class="btn" href={href('impact', '/pricing')}>See Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>02 · Hero, Side Media</b><span>.hero.side: text left, a video or image right in a 16:9 frame. The frame takes an img or a video element.</span></div>
+  </div>
+  <section class="hero side">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1>Win More Customers in the Age of AI</h1>
+          <p class="lede">Buyers ask AI before they ask you. Endless Customers is how your company becomes the answer, with a coach, a plan, and a published price.</p>
+          <div class="actions">
+            <a class="btn primary" href={href('impact', '/instant-diagnostic')}>See How AI Describes Your Company <span class="arrow">→</span></a>
+            <a class="btn" href={href('impact', '/talk')}>Let’s Talk</a>
+          </div>
+        </div>
+        <div class="media">
+          <div class="frame video" role="img" aria-label="Video placeholder"><span class="play" aria-hidden="true"></span></div>
+          <p class="cap">Video or image, 16:9. Swap the frame for an img or a video element.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>03 · FAQ</b><span>.section.center + .faqs: centered H2, one column, hairlines, plus becomes minus. One open at a time.</span></div>
+  </div>
+  <section class="section center">
+    <div class="wrap">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faqs">
+        {faqs.map(([q, a]) => <details class="faq" name="faq"><summary><h3>{q}</h3></summary><p>{a}</p></details>)}
+      </div>
+    </div>
+  </section>
+</Site>

@@ -128,3 +128,12 @@ Use these before writing new CSS. They live in the "Page blocks" section of the 
 ## Both sites, one stylesheet
 
 The two sites share every rule. Endless Customers differs only by its logo, its gradient on buttons and the ribbon pill, and its nav data. Do not fork the stylesheet per site; add a token or a class.
+
+## Module library (`/modules/`, 2026-09-19)
+
+`src/pages/modules.astro` stacks every reusable section in real page context, one bar above each naming the module and its class. Build a module here before using it on a page; a page assembles modules, it does not restyle them. Linked from the entry page ("Module Library →").
+
+- **Hero, centred** `.hero.center`: crumbs, H1, lede, actions, all centred. For pages that open on a promise (guarantee, pricing).
+- **Hero, side media** `.hero.side`: text left, a 16:9 frame right (`.media .frame` takes an `img` or `video`; the play button is the placeholder). Stacks under 900px. Not `.split`, which is the two-column content block.
+- **FAQ** `.section.center` + `.faqs`: mirrors the EC guarantee page. Centred H2, one 800px column, hairlines between questions, General Sans bold question at `--fs-h3`, a 25px plus circle drawn by `summary::after` that becomes a minus when open, 18px regular answer in `--ink-2`. `details[name="faq"]` keeps one open at a time. The old `.plus` span is no longer needed and is hidden if present.
+

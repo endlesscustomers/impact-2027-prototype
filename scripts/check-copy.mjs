@@ -1,7 +1,11 @@
-// Case checker for labels and headings. Rule (STYLE.md → Copy): title case for nav labels, buttons,
-// headings, card titles, step titles, tooltips, and price-row labels; sentence case for body copy and
-// for multi-sentence editorial headlines. Run `node scripts/check-copy.mjs` to list what is off,
-// `node scripts/check-copy.mjs --fix` to rewrite it.
+// Copy checker. Two rules from STYLE.md:
+//  1. Case (Copy: capitalization): title case for nav labels, buttons, headings, card titles, step titles,
+//     tooltips, and price-row labels; sentence case for body copy and multi-sentence editorial headlines.
+//  2. Dashes (Copy: dashes): no en dash anywhere (a range takes a hyphen: October 5-7, 2026) and no em dash in
+//     anything rendered. The only em dash allowed is the 'Label — detail' separator in outlines.ts, which
+//     Outline.astro splits and never shows.
+// Run `node scripts/check-copy.mjs` to list what is off, `node scripts/check-copy.mjs --fix` to rewrite what
+// can be rewritten safely (case, and en dash to hyphen). An em dash in copy is listed and left for a rewrite.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -104,6 +108,27 @@ for (const file of [...files(path.join(root, 'src/data'), /\.ts$/).filter((f) =>
     }
   }
   if (fix) fs.writeFileSync(file, src);
+}
+
+// 4. Dashes. En dash: flag everywhere, fix to a hyphen. Em dash: flag anywhere it would render. In outlines.ts a
+//    block whose kind splits on ' — ' may use the separator inside items; everything else on that line (h, p,
+//    lede, tag) and every item of a text or links block renders as written, so a dash there counts.
+{
+  const SPLIT_KINDS = /kind: '(?:cards|steps|faq|pricing|proof)'/;
+  const ctx = (line, i) => line.slice(Math.max(0, i - 24), i + 24).trim();
+  for (const file of files(path.join(root, 'src'), /\.(astro|ts)$/)) {
+    if (file.endsWith('Outline.astro')) continue; // its split() helper names the separator
+    const isOutlines = file.endsWith(path.join('src', 'data', 'outlines.ts'));
+    let src = fs.readFileSync(file, 'utf8');
+    src.split('\n').forEach((line, n) => {
+      if (/^\s*(\/\/|\/\*|\*)/.test(line)) return; // comments
+      for (const m of line.matchAll(/–/g)) note(file, `line ${n + 1}: en dash in “${ctx(line, m.index)}”`, 'hyphen');
+      if (!line.includes('—')) return;
+      const scan = isOutlines && SPLIT_KINDS.test(line) ? line.replace(/items: \[.*?\](?=,| \})/, 'items: []') : line;
+      for (const m of scan.matchAll(/—/g)) note(file, `line ${n + 1}: em dash in “${ctx(scan, m.index)}”`, 'rewrite without the dash (not auto-fixed)');
+    });
+    if (fix && src.includes('–')) fs.writeFileSync(file, src.replace(/–/g, '-'));
+  }
 }
 
 const byFile = new Map();

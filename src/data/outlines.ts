@@ -42,8 +42,8 @@ const impact: Record<string, Outline> = {
       { h: 'Where Everyone Starts', kind: 'pricing', items: ['Free Instant Diagnostic — $0, about a minute, how AI describes you today', 'Deep Diagnostic & Roadmap — $5,000 one-time, three weeks, 124 checkpoints and a 3/6/12-month roadmap'] },
       { h: 'Endless Customers Coaching', kind: 'pricing', tag: live, items: ['Alignment Day (First Month) — $10,000 virtual · $12,500 + travel in person', 'Guidance — $5,500/mo', 'Mastery (Recommended) — $8,000/mo', 'Mastery Accelerated — $10,500/mo', 'All Plans Month-To-Month, 30-Day Notice'], links: [{ label: 'Coaching Pricing in Detail', path: '/coaching/pricing' }] },
       { h: 'HubSpot Services', kind: 'pricing', tag: live, items: ['Core Training — $3,500/mo', 'Advanced Training — $6,000/mo', 'Organization Training — $10,000/mo', 'On-Site Workshop — $12,500 + travel', 'Projects (Onboarding, Cleanup, Integrations, Dashboards) — $3,000 to $15,000+, quoted'], links: [{ label: 'HubSpot Pricing in Detail', path: '/hubspot/pricing' }] },
-      { h: 'Website Services', kind: 'pricing', tag: live, items: ['Redesign — $25,000 to $155,000 (Enhanced $30K–$60K; Elite from $63K)', 'Learning Center Build — from $5,000', 'Self-Service Tool — strategy $3,000; builds $5,000 to $70,000', 'Optimization & Training — monthly, quoted'], links: [{ label: 'Website Pricing in Detail', path: '/websites/pricing' }] },
-      { h: 'Paid Media Services', kind: 'pricing', tag: live, items: ['Management — $5,000/mo base + 10–15% performance fee ($20K–$100K monthly spend); $7,000/mo base above $100K', 'Consulting & Training — $4,000/mo', 'Minimum Ad Spend — $20,000/mo managed; $10,000/mo consulting'], links: [{ label: 'Paid Media Pricing in Detail', path: '/paid-media/pricing' }] },
+      { h: 'Website Services', kind: 'pricing', tag: live, items: ['Redesign — $25,000 to $155,000 (Enhanced $30K-$60K; Elite from $63K)', 'Learning Center Build — from $5,000', 'Self-Service Tool — strategy $3,000; builds $5,000 to $70,000', 'Optimization & Training — monthly, quoted'], links: [{ label: 'Website Pricing in Detail', path: '/websites/pricing' }] },
+      { h: 'Paid Media Services', kind: 'pricing', tag: live, items: ['Management — $5,000/mo base + 10-15% performance fee ($20K-$100K monthly spend); $7,000/mo base above $100K', 'Consulting & Training — $4,000/mo', 'Minimum Ad Spend — $20,000/mo managed; $10,000/mo consulting'], links: [{ label: 'Paid Media Pricing in Detail', path: '/paid-media/pricing' }] },
       { h: 'Workshops', kind: 'pricing', items: ['One-Day Workshop — quoted by room size and travel'] },
       { h: 'What Changes the Price', kind: 'cards', items: ['Team Size — more people in the room means more sessions', 'Departments — sales and marketing together costs more than one', 'Speed — accelerated plans compress the same work into fewer months', 'Complexity — integrations, migrations, and custom builds are quoted'] },
       { h: 'Every Service Is Covered', p: 'Tell us within 7 days, we redo the work, and if we still miss, you get your money back in full. No cap, no “reasonable use” clause.', links: [{ label: 'Read the Guarantee', path: '/guarantee' }] },
@@ -182,7 +182,7 @@ const impact: Record<string, Outline> = {
   '/hubspot/training': {
     lede: 'HubSpot is only as powerful as the team using it. Training in your own portal, by certified trainers, until your team owns it.',
     blocks: [
-      { h: 'Programs', kind: 'pricing', tag: live, items: ['Core — $3,500/mo · two sessions a month, one specialist, one department up to 10 people', 'Advanced — $6,000/mo · weekly sessions, multiple departments, deeper curriculum', 'Organization — $10,000/mo · multiple weekly tracks, role-based, with leadership coordination', 'On-Site Workshop — $12,500 + travel · a full day at your office plus 4–6 weeks of virtual follow-up', 'Minimum Engagement: 3 Months'] },
+      { h: 'Programs', kind: 'pricing', tag: live, items: ['Core — $3,500/mo · two sessions a month, one specialist, one department up to 10 people', 'Advanced — $6,000/mo · weekly sessions, multiple departments, deeper curriculum', 'Organization — $10,000/mo · multiple weekly tracks, role-based, with leadership coordination', 'On-Site Workshop — $12,500 + travel · a full day at your office plus 4-6 weeks of virtual follow-up', 'Minimum Engagement: 3 Months'] },
       { h: 'How It Works', kind: 'steps', items: ['Discovery & Kickoff — worksheet, then a deep dive with your specialist', 'Training Roadmap — priorities and a curriculum for your team', 'Sessions — screen-share in your actual portal; your team applies it between sessions', 'Independence — the program ends when your team owns the portal'] },
       { h: 'Who Trains You', kind: 'cards', items: ['Jessica Palmeri — Director of HubSpot Training', 'Joe Bachir — HubSpot Trainer', 'Kaitlyn Petro — HubSpot Trainer'] },
     ],
@@ -281,7 +281,7 @@ const impact: Record<string, Outline> = {
   '/websites/pricing': {
     lede: 'Every website service, priced.',
     blocks: [
-      { h: 'Prices', kind: 'pricing', tag: live, items: ['Redesign — $25,000 to $155,000 (Enhanced $30K–$60K; Elite from $63K)', 'Optimization & Training — monthly, quoted', 'Learning Center Build — from $5,000', 'Self-Service Tools — strategy $3,000; builds $5,000 to $70,000'] },
+      { h: 'Prices', kind: 'pricing', tag: live, items: ['Redesign — $25,000 to $155,000 (Enhanced $30K-$60K; Elite from $63K)', 'Optimization & Training — monthly, quoted', 'Learning Center Build — from $5,000', 'Self-Service Tools — strategy $3,000; builds $5,000 to $70,000'] },
       { h: 'What Drives Cost Up', kind: 'cards', items: ['Page Count and Custom Templates', 'Migration Complexity and Redirects', 'Custom Tools and Integrations', 'Content We Write Versus Content You Write'] },
       { h: 'Covered', p: 'Every website deliverable is covered by the 100% money-back guarantee.', links: [{ label: 'The Guarantee', path: '/guarantee' }] },
     ],
@@ -297,7 +297,7 @@ const impact: Record<string, Outline> = {
     lede: 'Do it for you: campaign management, creative, optimization, and reporting tied to revenue, on Google, Meta, LinkedIn, Microsoft, YouTube, and more.',
     blocks: [
       { h: 'What’s Included', kind: 'cards', items: ['Campaign Management', 'Ad Copy & Creative', 'Routine Optimization', 'Real-Time Spend Visibility', 'Reporting Tied to Revenue', 'Bi-Weekly Strategy Calls'] },
-      { h: 'Pricing', kind: 'pricing', tag: live, items: ['$20K–$100K Monthly Spend — $5,000/mo base + 15% (to $29,999), 12% ($30K–$64,999), 10% ($65K–$99,999)', '$100K+ Monthly Spend — $7,000/mo base + negotiated performance fee', 'Minimum Ad Spend — $20,000/mo'] },
+      { h: 'Pricing', kind: 'pricing', tag: live, items: ['$20K-$100K Monthly Spend — $5,000/mo base + 15% (to $29,999), 12% ($30K-$64,999), 10% ($65K-$99,999)', '$100K+ Monthly Spend — $7,000/mo base + negotiated performance fee', 'Minimum Ad Spend — $20,000/mo'] },
     ],
   },
   '/paid-media/consulting': {
@@ -314,7 +314,7 @@ const impact: Record<string, Outline> = {
   '/paid-media/pricing': {
     lede: 'Two ways to work with the Swell team, both priced here.',
     blocks: [
-      { h: 'Management', kind: 'pricing', tag: live, items: ['$5,000/mo Base + 10–15% Performance Fee on $20K–$100K Monthly Spend', '$7,000/mo Base + Negotiated Fee Above $100K'] },
+      { h: 'Management', kind: 'pricing', tag: live, items: ['$5,000/mo Base + 10-15% Performance Fee on $20K-$100K Monthly Spend', '$7,000/mo Base + Negotiated Fee Above $100K'] },
       { h: 'Consulting & Training', kind: 'pricing', tag: live, items: ['$4,000/mo'] },
       { h: 'Minimums', kind: 'cards', items: ['Managed — $20,000/mo ad spend', 'Consulting — $10,000/mo ad spend'] },
       { h: 'Covered', p: 'Management fees are covered by the guarantee; ad spend is not.', links: [{ label: 'The Guarantee', path: '/guarantee' }] },
@@ -353,7 +353,7 @@ const impact: Record<string, Outline> = {
       { h: 'Two Ways to Work With Swell', kind: 'cards', items: ['Management (Do It for You) — campaigns, creative, optimization, real-time spend visibility, reporting tied to revenue, bi-weekly strategy calls', 'Consulting & Training (Do It With You) — a strategist beside your team, monthly, so the capability stays in-house'] },
       { h: 'Is Swell the Right Fit?', kind: 'cards', items: ['You Spend $20,000 a Month or More on Ads, or Plan To', 'You Want to Know What the Spend Returns, in Revenue', 'Your Website and Content Can Carry the Traffic; If Not, We’ll Say So and Point You to the Fix First'] },
       { h: 'How We Work Together', kind: 'steps', items: ['Intro Call — 30 minutes', 'Initial Audit — complimentary', 'Audit Review', 'Kickoff — 60 minutes', 'Ongoing — bi-weekly for management, monthly for consulting'] },
-      { h: 'Pricing', kind: 'pricing', tag: live, items: ['Management — $5,000/mo base + 10–15% performance fee ($20K–$100K spend); $7,000/mo base above $100K', 'Consulting & Training — $4,000/mo', 'Minimum Ad Spend — $20,000/mo managed; $10,000/mo consulting'], links: [{ label: 'Paid Media Pricing in Detail', path: '/paid-media/pricing' }] },
+      { h: 'Pricing', kind: 'pricing', tag: live, items: ['Management — $5,000/mo base + 10-15% performance fee ($20K-$100K spend); $7,000/mo base above $100K', 'Consulting & Training — $4,000/mo', 'Minimum Ad Spend — $20,000/mo managed; $10,000/mo consulting'], links: [{ label: 'Paid Media Pricing in Detail', path: '/paid-media/pricing' }] },
       { h: 'Results', kind: 'proof', items: ['Our return on ad spend is about 13x — Matthew Marshall, Southwest Exteriors', 'Highly intelligent, proactive, and communicative — Matt Bowley, Illume Fertility', 'Average client relationship 3 to 4 years; longest 7+'] },
       { h: 'Your Team', kind: 'cards', items: ['Jason Linde — Google Ads Lead, Paid Media Specialist', 'Tanner Holman — Paid Social Strategist'], links: [{ label: 'Our Team', path: '/paid-media/experts' }] },
     ],
@@ -444,7 +444,7 @@ const impact: Record<string, Outline> = {
   },
   '/events': {
     lede: 'Live sessions on what’s changing and what to do about it, plus the conference.',
-    blocks: [{ h: 'Upcoming', kind: 'cards', tag: 'Feed', items: ['Endless Customers Live — Hartford, CT, October 5–7, 2026', 'Endless Customers Live — Chicago, IL, April 5–7, 2027', 'Webinar — title, date'] }],
+    blocks: [{ h: 'Upcoming', kind: 'cards', tag: 'Feed', items: ['Endless Customers Live — Hartford, CT, October 5-7, 2026', 'Endless Customers Live — Chicago, IL, April 5-7, 2027', 'Webinar — title, date'] }],
     connects: [{ text: 'The conference lives on the Endless Customers site', link: { label: 'endlesscustomers.com/conference', path: '/conference', site: 'ec' } }],
   },
   '/privacy': { lede: 'Privacy policy.', blocks: [{ h: 'Policy', p: 'Carried over from the live site.' }] },
@@ -581,10 +581,10 @@ const ec: Record<string, Outline> = {
     source: 'impactplus.com is the source; this page is the door.',
   },
   '/conference': {
-    lede: 'Endless Customers Live. Two days with the people actually doing this. Hartford, CT, October 5–7, 2026, and Chicago, IL, April 5–7, 2027.',
+    lede: 'Endless Customers Live. Two days with the people actually doing this. Hartford, CT, October 5-7, 2026, and Chicago, IL, April 5-7, 2027.',
     ctas: [{ label: 'Register for Hartford', path: '/conference' }],
     blocks: [
-      { h: 'Upcoming', kind: 'cards', items: ['Hartford, CT — October 5–7, 2026', 'Chicago, IL — April 5–7, 2027'] },
+      { h: 'Upcoming', kind: 'cards', items: ['Hartford, CT — October 5-7, 2026', 'Chicago, IL — April 5-7, 2027'] },
       { h: 'What It’s Like', p: 'Sessions from clients on stage, workshops with coaches, and two days with a few hundred people running the same system.' },
       { h: 'Pages', kind: 'cards', items: ['What It’s Like', 'Past Events', 'Become a Sponsor', 'Convince Your Boss'] },
     ],
