@@ -555,7 +555,7 @@ html[data-dark] [data-page="impact-home"] .track img { filter: grayscale(1) inve
 [data-page="impact-home"] .how p { margin: 0; color: var(--ink-2); font-size: 15px; }
 [data-page="impact-home"] .how a { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--line-strong); }
 [data-page="impact-home"] .how a:hover { color: var(--accent); }
-[data-page="impact-home"] .services { display: grid; border-top: 1px solid var(--line-strong); }
+[data-page="impact-home"] .svc-list { display: grid; border-top: 1px solid var(--line-strong); }
 [data-page="impact-home"] .svc { display: grid; grid-template-columns: 1.1fr 1.6fr auto; gap: 24px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--line); transition: color .15s var(--ease); }
 [data-page="impact-home"] .svc:hover { color: var(--accent); }
 [data-page="impact-home"] .svc:hover .arrow { transform: translateX(4px); }
@@ -689,7 +689,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 
 /* ---------- endlesscustomers.com/coaching ---------- */
 [data-page="ec-coaching"] .hero { padding: 72px 0 56px; }
-[data-page="ec-coaching"] .who { padding: 40px 0; }
+[data-page="ec-coaching"] .handoff-band { padding: 40px 0; }
 [data-page="ec-coaching"] .handoff { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 32px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
 [data-page="ec-coaching"] .handoff img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
 [data-page="ec-coaching"] .handoff h2 { margin: 0 0 6px; font-size: 20px; }
