@@ -302,6 +302,88 @@ li[data-when="proof"] { display: none; }
 .mod-bar .wrap { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; }
 .mod-bar span { font-weight: var(--w-regular); }
 .mod-bar.lead { padding: 20px 0; }
+
+/* ---------- Logo bar module (zoom.com pattern, 2026-09-19) ---------- */
+.logobar { padding: 56px 0 40px; background: var(--bg); border-bottom: 1px solid var(--line); }
+.logobar h2 { margin: 0 0 28px; text-align: center; font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: var(--tr-title); max-width: none; }
+.logobar .logos { overflow: hidden; mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); } /* raw */
+.logobar .track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; width: max-content; animation: slide 40s linear infinite; }
+.logobar[data-paused] .track { animation-play-state: paused; }
+.logobar .track li { flex: none; width: 184px; height: 70px; display: grid; place-items: center; } /* uniform tiles, like Zoom's 164 x 70 with its gap folded in */
+.logobar .track img { max-height: 36px; max-width: 150px; width: auto; object-fit: contain; filter: grayscale(1) contrast(.9); opacity: .75; transition: filter .2s, opacity .2s; }
+.logobar .track img:hover { filter: none; opacity: 1; }
+html[data-dark] .logobar .track img { filter: grayscale(1) invert(1) contrast(.8); }
+.logobar .pause { display: grid; place-items: center; width: 40px; height: 40px; margin: 12px 0 0 auto; border-radius: 8px; color: var(--accent); transition: background .15s var(--ease); }
+.logobar .pause:hover { background: var(--fill); }
+.logobar .pause svg { width: 18px; height: 18px; }
+.logobar .pause path { stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.logobar .pause .ico-play path { fill: currentColor; }
+.logobar .pause .ico-play, .logobar[data-paused] .pause .ico-pause { display: none; }
+.logobar[data-paused] .pause .ico-play { display: block; }
+@media (prefers-reduced-motion: reduce) { .logobar .track { animation-play-state: paused; } }
+
+/* ---------- Feature module: media one side, content the other (zoom.com / Orbit Media pattern, 2026-09-19) ---------- */
+.feature { padding: 72px 0; }
+.feature .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.feature.m60 .grid { grid-template-columns: 3fr 2fr; }
+.feature.m70 .grid { grid-template-columns: 7fr 3fr; }
+.feature.m40 .grid { grid-template-columns: 2fr 3fr; }
+.feature.m30 .grid { grid-template-columns: 3fr 7fr; }
+.feature.media-right .media { order: 2; }
+.feature.media-right.m60 .grid { grid-template-columns: 2fr 3fr; }
+.feature.media-right.m70 .grid { grid-template-columns: 3fr 7fr; }
+.feature.media-right.m40 .grid { grid-template-columns: 3fr 2fr; }
+.feature.media-right.m30 .grid { grid-template-columns: 7fr 3fr; }
+.feature .media img { display: block; width: 100%; height: auto; border-radius: 24px; } /* Zoom's 24px corner */
+.feature .media .frame { aspect-ratio: 4 / 3; border-radius: 24px; background: var(--fill); border: 1px solid var(--line); }
+.feature .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: var(--accent); font-weight: var(--w-ui); letter-spacing: var(--tr-title); }
+.feature .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px var(--fill); }
+.feature h2 { margin: 0 0 16px; max-width: var(--measure-h2); }
+.feature .intro { margin: 0 0 16px; color: var(--ink-lg); font-size: var(--fs-lg); font-weight: var(--w-para); letter-spacing: var(--tr-para); line-height: var(--lh-lg); max-width: var(--measure); text-wrap: pretty; }
+.feature .content p:not(.intro):not(.eyebrow) { margin: 0 0 14px; color: var(--ink-2); max-width: var(--measure); text-wrap: pretty; }
+.feature .content .actions { margin-top: 24px; }
+@media (max-width: 900px) {
+  .feature { padding: 48px 0; }
+  .feature .grid, .feature.m60 .grid, .feature.m70 .grid, .feature.m40 .grid, .feature.m30 .grid,
+  .feature.media-right.m60 .grid, .feature.media-right.m70 .grid, .feature.media-right.m40 .grid, .feature.media-right.m30 .grid { grid-template-columns: 1fr; gap: 28px; }
+  .feature.media-right .media { order: 0; } /* media stacks above the content on phones */
+}
+
+/* ---------- Ratings module (zoom.com review strip, 2026-09-19) ---------- */
+.ratings { padding: 56px 0; }
+.ratings ul { list-style: none; margin: 0 auto; padding: 0; max-width: 1000px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.ratings li { display: grid; justify-items: center; text-align: center; padding: 8px 24px; border-left: 1px solid var(--line-strong); }
+.ratings li:first-child { border-left: 0; }
+.ratings li a { display: grid; justify-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.ratings li a:hover .site { text-decoration-line: underline; text-decoration-thickness: var(--ul-thick); text-underline-offset: var(--ul-offset); }
+.ratings .score { font-family: var(--font-head); font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--w-bold); letter-spacing: var(--tr-heading); color: var(--ink); }
+.ratings .score .of { font-weight: var(--w-regular); color: var(--ink-3); }
+.ratings .stars { position: relative; display: inline-grid; height: 22px; }
+.ratings .row { display: flex; gap: 6px; height: 22px; }
+.ratings .row svg { width: 22px; height: 22px; flex: none; }
+.ratings .base path { fill: var(--line-strong); }
+.ratings .fill { position: absolute; inset: 0 auto 0 0; overflow: hidden; }
+.ratings .fill path { fill: var(--ink); }
+.ratings .fill[data-fill="0"] { width: 0%; }
+.ratings .fill[data-fill="10"] { width: 10%; }
+.ratings .fill[data-fill="20"] { width: 20%; }
+.ratings .fill[data-fill="30"] { width: 30%; }
+.ratings .fill[data-fill="40"] { width: 40%; }
+.ratings .fill[data-fill="50"] { width: 50%; }
+.ratings .fill[data-fill="60"] { width: 60%; }
+.ratings .fill[data-fill="70"] { width: 70%; }
+.ratings .fill[data-fill="80"] { width: 80%; }
+.ratings .fill[data-fill="90"] { width: 90%; }
+.ratings .fill[data-fill="100"] { width: 100%; }
+.ratings .count { color: var(--ink-3); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-regular); }
+.ratings .site { margin-top: 6px; font-family: var(--font-head); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-bold); letter-spacing: var(--tr-title); color: var(--ink); }
+.ratings img.site { height: 28px; width: auto; }
+@media (max-width: 760px) {
+  .ratings ul { grid-template-columns: 1fr; }
+  .ratings li { border-left: 0; border-top: 1px solid var(--line-strong); padding: 28px 0; }
+  .ratings li:first-child { border-top: 0; padding-top: 0; }
+  .ratings li:last-child { padding-bottom: 0; }
+}
 .entry .lib-link { margin: 16px 0 0; font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-ui); }
 .entry .lib-link a { color: var(--accent); text-decoration: none; text-decoration-thickness: var(--ul-thick); text-underline-offset: var(--ul-offset); }
 .entry .lib-link a:hover { text-decoration-line: underline; }
@@ -569,18 +651,7 @@ html[data-microsite] .header { position: relative; }
 }
 /* ---------- impactplus.com home ---------- */
 [data-page="impact-home"] .hero.home { padding: 88px 0 64px; border-bottom: 0; }
-[data-page="impact-home"] .logobar { padding: 8px 0 40px; background: var(--bg); border-bottom: 1px solid var(--line); }
-[data-page="impact-home"] .logobar .cap { margin: 0 0 20px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); text-align: center; max-width: none; }
-[data-page="impact-home"] .logos { overflow: hidden; mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); } /* raw */
-[data-page="impact-home"] .track { display: flex; align-items: center; gap: 56px; width: max-content; animation: slide 40s linear infinite; }
-[data-page="impact-home"] .track img { height: 34px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1) contrast(.9); opacity: .75; transition: filter .2s, opacity .2s; }
-[data-page="impact-home"] .track img:hover { filter: none; opacity: 1; }
-html[data-dark] [data-page="impact-home"] .track img { filter: grayscale(1) invert(1) contrast(.8); }
 @keyframes slide { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) {
-  [data-page="impact-home"] .track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
-  [data-page="impact-home"] .track img:nth-child(n+11) { display: none; }
-}
 [data-page="impact-home"] .split { grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
 [data-page="impact-home"] .shift { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 [data-page="impact-home"] .shift li { padding: 20px 22px; background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }

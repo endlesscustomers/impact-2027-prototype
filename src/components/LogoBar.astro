@@ -1,0 +1,50 @@
+---
+// Logo bar module. Pattern from zoom.com's "Trusted by millions" strip (2026-09-19): a centred one-line
+// heading, a continuous marquee of uniform logo tiles that bleeds off both edges, and a pause/play
+// button right-aligned under the strip. The marquee keeps running on mobile, as Zoom's does; it starts
+// paused for visitors who prefer reduced motion. Logos come from public/img/logos; check the banned
+// list before adding a company.
+import { asset } from '../lib/site';
+
+interface Props {
+  heading: string;
+  /** [file in public/img/logos, company name] */
+  logos: [string, string][];
+  /** Extra class on the section, e.g. "alt". */
+  class?: string;
+}
+const { heading, logos, class: cls } = Astro.props;
+---
+
+<section class:list={['logobar', cls]} aria-label="Clients">
+  <div class="wrap">
+    <h2>{heading}</h2>
+  </div>
+  <div class="logos" data-marquee>
+    <ul class="track">
+      {[...logos, ...logos].map(([file, name], i) => <li aria-hidden={i >= logos.length ? 'true' : undefined}><img src={asset(`img/logos/${file}`)} alt={i >= logos.length ? '' : name} loading="lazy" /></li>)}
+    </ul>
+  </div>
+  <div class="wrap">
+    <button class="pause" type="button" aria-pressed="false" aria-label="Pause logo animation">
+      <svg class="ico-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2v12M12 2v12"/></svg>
+      <svg class="ico-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  // Pause/play the marquee. State lives on the section (data-paused) so CSS owns the visuals.
+  for (const bar of document.querySelectorAll<HTMLElement>('.logobar')) {
+    const btn = bar.querySelector<HTMLButtonElement>('.pause');
+    if (!btn) continue;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const set = (paused: boolean) => {
+      bar.toggleAttribute('data-paused', paused);
+      btn.setAttribute('aria-pressed', String(paused));
+      btn.setAttribute('aria-label', paused ? 'Play logo animation' : 'Pause logo animation');
+    };
+    set(reduced);
+    btn.addEventListener('click', () => set(!bar.hasAttribute('data-paused')));
+  }
+</script>

@@ -1,0 +1,40 @@
+---
+// Ratings module. Pattern from a zoom.com review strip (Bob's screenshot, 2026-09-19): three columns
+// divided by vertical hairlines, each with a large score, five stars, the review count, and the review
+// site's mark. On phones the columns stack and the hairlines turn horizontal. Figures must come from a
+// verified source (live site or the outline for /results/reviews); never self-hosted review markup.
+interface Rating {
+  score: number;
+  max: 5 | 10;
+  /** e.g. "327+ reviews"; omit when the site publishes no count. */
+  count?: string;
+  /** The review site's name; a logo file in public/img/reviews replaces the wordmark when present. */
+  site: string;
+  logo?: string;
+  href: string;
+}
+interface Props { items: Rating[]; class?: string }
+const { items, class: cls } = Astro.props;
+const stars = [0, 1, 2, 3, 4];
+const star = 'M8 1.2l2.1 4.3 4.7.7-3.4 3.3.8 4.7L8 12l-4.2 2.2.8-4.7L1.2 6.2l4.7-.7z';
+---
+
+<section class:list={['ratings', cls]} aria-label="Reviews">
+  <div class="wrap">
+    <ul>
+      {items.map((r) => (
+        <li>
+          <a href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel={r.href.startsWith('http') ? 'noopener' : undefined}>
+            <span class="score">{r.score.toFixed(1)}<span class="of">/{r.max}</span></span>
+            <span class="stars" role="img" aria-label={`${r.score} out of ${r.max}`}>
+              <span class="row base">{stars.map(() => <svg viewBox="0 0 16 16" aria-hidden="true"><path d={star}/></svg>)}</span>
+              <span class="row fill" data-fill={Math.round((r.score / r.max) * 10) * 10}>{stars.map(() => <svg viewBox="0 0 16 16" aria-hidden="true"><path d={star}/></svg>)}</span>
+            </span>
+            {r.count && <span class="count">out of {r.count}</span>}
+            {r.logo ? <img class="site" src={r.logo} alt={r.site} /> : <span class="site">{r.site}</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

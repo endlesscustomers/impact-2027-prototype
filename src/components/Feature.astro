@@ -1,0 +1,40 @@
+---
+// Feature module: media on one side, content on the other. Pattern from zoom.com's Workplace page and
+// Orbit Media's service pages (Bob, 2026-09-19). The media side swaps left or right, the split can be
+// 50/50, 60/40, or 70/30 either way, and the copy slot takes the 24px intro paragraph, the 18px regular
+// paragraph, or both (Orbit's lede-then-detail rhythm). On phones the media stacks above the content.
+import { href, asset } from '../lib/site';
+import type { SiteId } from '../lib/site';
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  /** Which side the media sits on at desktop width. */
+  media?: 'left' | 'right';
+  /** The media column's share of the width. Content takes the rest. */
+  ratio?: 30 | 40 | 50 | 60 | 70;
+  /** Path under public/, e.g. "img/ec-book.png". Omit for the placeholder frame. */
+  image?: string;
+  alt?: string;
+  cta?: { label: string; path: string; site?: SiteId };
+  /** Extra class on the section, e.g. "alt". */
+  class?: string;
+}
+const { eyebrow, heading, media = 'left', ratio = 50, image, alt = '', cta, class: cls } = Astro.props;
+---
+
+<section class:list={['feature', `media-${media}`, `m${ratio}`, cls]}>
+  <div class="wrap">
+    <div class="grid">
+      <div class="media">
+        {image ? <img src={asset(image)} alt={alt} loading="lazy" /> : <div class="frame" role="img" aria-label="Image placeholder"></div>}
+      </div>
+      <div class="content">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2>{heading}</h2>
+        <slot />
+        {cta && <div class="actions close"><a class="btn primary" href={href(cta.site ?? 'impact', cta.path)}>{cta.label}</a></div>}
+      </div>
+    </div>
+  </div>
+</section>

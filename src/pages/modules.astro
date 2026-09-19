@@ -4,6 +4,22 @@
 // Order: heroes first, then content modules. Add a module here before using it on a page.
 import Site from '../layouts/Site.astro';
 import { href } from '../lib/site';
+import LogoBar from '../components/LogoBar.astro';
+import Ratings from '../components/Ratings.astro';
+import Feature from '../components/Feature.astro';
+
+// Client logos: the live homepage wall, minus the banned list (same set as the IMPACT home page).
+const logos: [string, string][] = [
+  ['yale-appliance.png', 'Yale Appliance'], ['berry-insurance.png', 'Berry Insurance'], ['linta-roofing.svg', 'Linta Roofing'],
+  ['energy-swing-windows.png', 'Energy Swing Windows'], ['roe-painting.svg', 'Roe Painting'], ['office-interiors.png', 'Office Interiors'],
+  ['retrofoam.png', 'RetroFoam'], ['bill-ragan-roofing.png', 'Bill Ragan Roofing'], ['intek.png', 'Intek'], ['lazboy-ottawa.png', 'La-Z-Boy Ottawa & Kingston'],
+];
+// Review figures from the /results/reviews outline (live site, 2026-09-18). Wordmarks stand in until logo files are added.
+const ratings = [
+  { score: 5.0, max: 5 as const, count: '327+ reviews', site: 'HubSpot Directory', href: 'https://ecosystem.hubspot.com/marketplace/solutions/impact' },
+  { score: 5.0, max: 5 as const, count: '36+ reviews', site: 'Google', href: href('impact', '/results/reviews') },
+  { score: 4.9, max: 5 as const, site: 'Clutch', href: href('impact', '/results/reviews') },
+];
 
 const faqs: [string, string][] = [
   ['Do I Have to Justify the Claim?', 'No. Just put in writing where you feel like we missed, failed, or didn’t deliver what we said we would. We won’t ask you to build a case.'],
@@ -67,4 +83,29 @@ const faqs: [string, string][] = [
       </div>
     </div>
   </section>
+  <div class="mod-bar">
+    <div class="wrap"><b>04 · Logo Bar</b><span>LogoBar component, .logobar: centred heading, continuous marquee of uniform tiles bleeding off both edges, pause/play under the strip. Keeps scrolling on phones; starts paused for reduced-motion visitors.</span></div>
+  </div>
+  <LogoBar heading="Trusted by 300+ Companies Since 2009" logos={logos} />
+
+  <div class="mod-bar">
+    <div class="wrap"><b>05 · Ratings</b><span>Ratings component, .ratings: score, stars, review count, review site, three across with hairlines. Stacks on phones with the hairlines turned horizontal.</span></div>
+  </div>
+  <Ratings items={ratings} />
+
+  <div class="mod-bar">
+    <div class="wrap"><b>06 · Feature</b><span>Feature component, .feature: media one side, content the other. Props: media left or right; ratio 30, 40, 50, 60, or 70 for the media column; eyebrow, heading, copy slot, one CTA. Three settings below; media stacks above the content on phones.</span></div>
+  </div>
+  <Feature eyebrow="The Book" heading="The System Behind Every Result on This Site" media="left" ratio={50} image="img/ec-book.png" alt="Endless Customers, the book" cta={{ label: 'About the Book', path: '/book', site: 'ec' }}>
+    <p class="intro">Endless Customers is the playbook: answer what buyers ask, publish what competitors hide, and become the company AI recommends first.</p>
+  </Feature>
+  <Feature eyebrow="Coaching" heading="A Coach Who Has Done This Before" media="right" ratio={60} image="img/people/marcus-sheridan.jpg" alt="Marcus Sheridan" cta={{ label: 'Meet the Coaches', path: '/coaches', site: 'ec' }}>
+    <p class="intro">Every IMPACT coach has run the system inside a real company before teaching it.</p>
+    <p class="regular">Weekly calls, a 90-day plan, and training for the people who will do the work. The coach keeps your team on the plan and out of the weeds.</p>
+    <p class="regular">Coaching is covered by the 100% money-back guarantee, like everything else we sell.</p>
+  </Feature>
+  <Feature eyebrow="Diagnostic" heading="Start With the Deep Diagnostic and Roadmap" media="left" ratio={30} cta={{ label: 'How the Diagnostic Works', path: '/deep-diagnostic' }}>
+    <p class="regular">Two weeks, 124 checkpoints across 13 areas, and a 90-minute working session with your leadership team.</p>
+    <p class="regular">You leave with a key findings report and a prioritized roadmap for the next 3, 6, and 12 months, whether or not you hire us for any of it.</p>
+  </Feature>
 </Site>

@@ -3,6 +3,7 @@
 // deciding whether to recommend us. Every fact is public (live homepage, impactplus.com/reviews, the
 // HubSpot directory); quotes are verbatim with attribution; logos and photos are the live site's own.
 // "confirm" tags are Bob's to rule on.
+import LogoBar from '../../components/LogoBar.astro';
 import Site from '../../layouts/Site.astro';
 import { href, asset } from '../../lib/site';
 import { industries } from '../../data/impact-nav';
@@ -119,16 +120,7 @@ const faqSchema = {
   </section>
 
   <!-- 2. Logo bar -->
-  <section class="logobar" aria-label="Clients">
-    <div class="wrap">
-      <p class="cap">Trusted by 300+ companies since 2009</p>
-      <div class="logos">
-        <div class="track">
-          {[...logos, ...logos].map(([file, name]) => <img src={asset(`img/logos/${file}`)} alt={name} loading="lazy" />)}
-        </div>
-      </div>
-    </div>
-  </section>
+  <LogoBar heading="Trusted by 300+ Companies Since 2009" logos={logos} />
 
   <!-- 3. The shift -->
   <section class="section">
