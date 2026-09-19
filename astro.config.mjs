@@ -8,5 +8,5 @@ export default defineConfig({
   site: 'https://endlesscustomers.github.io',
   base: '/impact-2027-prototype',
   trailingSlash: 'always',
-  build: { format: 'directory' },
+  build: { format: 'directory', inlineStylesheets: 'never' }, // one linked stylesheet, no CSS in the HTML
 });

@@ -92,7 +92,7 @@ Use these before writing new CSS. They live in the "Page blocks" section of the 
 | Connects | `.section.connects` | The strategy strip at the foot of a page. |
 | Notes | `.also`, `.more`, `.tag`, `.badge`, `.stat` | Small furniture. |
 
-A page's own `<style>` block is for what is genuinely unique to that page: a credential card, a diagram, a logo bar. If a second page needs it, move it into the stylesheet and add a row here.
+**No page carries its own `<style>` block, and the build never inlines CSS.** Every page links one stylesheet (Bob, 2026-09-19: "all the CSS not on the page but in our global CSS file"). Rules that are genuinely unique to one page, such as a credential card, a diagram, or a logo bar, go at the end of `global.css` under "Page-specific", prefixed with that page's hook: `[data-page="impact-hubspot"] .creds { … }`. The hook is `body[data-page]`, set by `Site.astro` from the site and path (`impact-home`, `impact-hubspot`, `ec-coaching`, `ec-how-to-implement`; the entry page is `entry`). If a second page needs the same rule, move it up into "Page blocks" and add a row here. Fonts are declared in the stylesheet too; Vite prefixes the `/fonts/` paths with the site base at build time.
 
 ## Both sites, one stylesheet
 

@@ -97,18 +97,3 @@ import { href } from '../../lib/site';
     </div>
   </section>
 </Site>
-
-<style>
-  .hero.home { padding: 112px 0 88px; }
-  .hero.home h1 { max-width: 15ch; }
-  .split { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: center; }
-  .book-art { display: grid; place-items: center; }
-  .cover {
-    width: 210px; aspect-ratio: 2 / 3; border-radius: 6px 14px 14px 6px; display: grid; place-items: center; text-align: center;
-    background: linear-gradient(160deg, #16161a, #2a2a31); color: #fff; font-weight: 600; font-size: 22px; letter-spacing: -.02em; line-height: 1.1;
-    box-shadow: 0 30px 60px -30px rgba(0,0,0,.6), inset 6px 0 0 rgba(255,255,255,.06);
-    position: relative; overflow: hidden;
-  }
-  .cover::after { content: ""; position: absolute; left: 0; right: 0; bottom: 18%; height: 10px; background: var(--grad); opacity: .9; filter: blur(.5px); }
-  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } .cover { width: 150px; font-size: 17px; } .hero.home { padding: 64px 0 48px; } }
-</style>

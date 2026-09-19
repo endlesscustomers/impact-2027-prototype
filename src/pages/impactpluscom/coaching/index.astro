@@ -133,15 +133,3 @@ const coaches = [
     </div>
   </section>
 </Site>
-
-<style>
-.path { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
-  .path .cap { margin: 0 0 12px; font-size: 12px; color: var(--ink-3); }
-  .path ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: s; }
-  .path li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); counter-increment: s; }
-  .path li::before { content: counter(s); font-size: 12px; color: var(--ink-3); }
-  .path li b { display: block; font-weight: 600; font-size: 15px; }
-  .path li span { display: block; grid-column: 2; font-size: 13px; color: var(--ink-3); }
-  .path li.live b { color: var(--accent); }
-  .split { grid-template-columns: 1.1fr 1fr; align-items: center; }
-</style>

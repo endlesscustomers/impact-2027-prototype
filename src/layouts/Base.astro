@@ -1,19 +1,20 @@
 ---
-// Every page in the prototype goes through this: noindex on all of them, fonts, tokens,
+// Every page in the prototype goes through this: noindex on all of them, the one stylesheet,
 // and the pre-paint theme read so dark mode never flashes.
 import '../styles/global.css';
 
 interface Props {
   /** Service microsite page: header scrolls away, section pill takes over (see SectionBar). */
   microsite?: boolean;
+  /** Hook for page-specific CSS in global.css: body[data-page="…"]. */
+  page?: string;
   title: string;
   description?: string;
   /** Which site's favicon to use. */
   favicon?: 'impact' | 'ec';
 }
-const { title, description = '', favicon = 'impact', microsite = false } = Astro.props;
+const { title, description = '', favicon = 'impact', microsite = false, page } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const fonts = [400, 500, 600, 700].map((w) => `@font-face{font-family:'General Sans';font-weight:${w};src:url('${base}/fonts/general-sans-${w}.woff2') format('woff2');font-display:swap}`).join('');
 ---
 
 <!doctype html>
@@ -27,7 +28,6 @@ const fonts = [400, 500, 600, 700].map((w) => `@font-face{font-family:'General S
     <link rel="icon" href={`${base}/favicon-${favicon}.ico`} sizes="any" />
     <link rel="preload" href={`${base}/fonts/general-sans-600.woff2`} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={`${base}/fonts/general-sans-400.woff2`} as="font" type="font/woff2" crossorigin />
-    <style set:html={fonts}></style>
     <slot name="head" />
     <script is:inline>
       // Runs before first paint. Mirrors the toggle logic in Header.astro.
@@ -41,7 +41,7 @@ const fonts = [400, 500, 600, 700].map((w) => `@font-face{font-family:'General S
       })();
     </script>
   </head>
-  <body>
+  <body data-page={page}>
     <slot />
   </body>
 </html>
