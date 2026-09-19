@@ -122,6 +122,9 @@ h3, h4 { font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: var
 p, li, dd, figcaption, blockquote { text-wrap: pretty; }
 main p, main li { max-width: var(--measure); } /* 45 to 75 characters a line; wider is a layout bug */
 strong, b { font-weight: inherit; color: var(--ink-max); } /* bold inside copy is a colour change only: the one pure black (white in dark mode), same weight as the paragraph (Bob, 2026-09-19) */
+/* Third paragraph style (Bob, 2026-09-19): 18px at regular weight for longer reading. Put .regular on the paragraph, list, or the block that holds them. Bold inside it goes to --ink-max and steps up to 600. */
+.regular, .regular p, .regular li { font-weight: var(--w-regular); }
+.regular b, .regular strong { font-weight: var(--w-body); color: var(--ink-max); }
 /* Every text link on the site outside the main navigation: copy links, More links, breadcrumbs, link lists, the strategy strip, the footer, the mobile menu's footer line. Block links (cards, service rows, faces) keep their own treatment. */
 main p a, main li a, .prose a, .lede a, a.more, .also a, .notfit a, .handoff a, .crumbs a, .list-links a, .connects li a, .footer a, .mobile .foot p a { color: var(--accent); text-decoration: none; text-decoration-thickness: var(--ul-thick); text-underline-offset: var(--ul-offset); text-decoration-skip-ink: auto; }
 main p a:hover, main li a:hover, .prose a:hover, .lede a:hover, a.more:hover, .also a:hover, .notfit a:hover, .handoff a:hover, .crumbs a:hover, .list-links a:hover, .connects li a:hover, .footer a:hover, .mobile .foot p a:hover { text-decoration-line: underline; }
