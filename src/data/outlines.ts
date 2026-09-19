@@ -36,7 +36,7 @@ const live = 'Live-site figure, to verify for 2027';
 
 const impact: Record<string, Outline> = {
   '/pricing': {
-    lede: 'Every price we charge, on one page. Ranges where the work varies, and what moves the number. Most agencies won’t do this; we tell our clients to, so we do.',
+    lede: 'Every price we charge, on one page. Ranges where the work varies, and what moves the number. Three in five agencies we checked won’t do this; we tell our clients to, so we do.',
     ctas: [deep, talk],
     blocks: [
       { h: 'Where everyone starts', kind: 'pricing', items: ['Free instant diagnostic — $0, about a minute, how AI describes you today', 'Deep Diagnostic & Roadmap — $5,000 one-time, three weeks, 124 checkpoints and a 3/6/12-month roadmap'] },
