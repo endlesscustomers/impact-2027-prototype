@@ -383,7 +383,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 /* FAQ module. Mirrors the EC guarantee page's FAQ (Bob, 2026-09-19): one 800px column, hairlines between
    questions, General Sans bold question, a 25px plus circle that becomes a minus, 18px regular answer.
    One open at a time via details[name]. */
-.faqs { max-width: 800px; border-top: 1px solid var(--line); }
+.faqs { max-width: 800px; } /* no rule under the heading; hairlines sit only between and below questions (Bob, 2026-09-19) */
 .section.center .faqs { margin: 0 auto; text-align: left; }
 .faq { border-bottom: 1px solid var(--line); }
 .faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; cursor: pointer; }
