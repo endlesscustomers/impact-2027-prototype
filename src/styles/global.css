@@ -127,9 +127,10 @@ html[data-dark] .theme .moon { display: block; }
 
 /* ---------- Dropdown sheets ---------- */
 .scrim {
-  position: fixed; inset: 0; z-index: 30; background: var(--scrim);
+  /* No darkening: the page behind an open menu just blurs. */
+  position: fixed; inset: 0; z-index: 30; background: transparent;
   opacity: 0; pointer-events: none; transition: opacity .25s var(--ease);
-  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(12px) saturate(1.1); -webkit-backdrop-filter: blur(12px) saturate(1.1);
 }
 body[data-open] .scrim { opacity: 1; pointer-events: auto; }
 /* While a menu is open the header gives up its own fill so the tint runs from the top edge to the card; the items stay on top. */
