@@ -15,6 +15,7 @@ Bob confirmed the copy rule, the fonts, the type scale, the themes, and the writ
 - tooltips and tags
 
 **Sentence case** for anything that reads as prose: body copy, ledes, intros, card descriptions, quotes, captions under a stat, the ribbon, footer text.
+- Announcement ribbon: text at `--fs-body` / `--w-regular` in `--ink-2` (the body gray, never ink); the pill inside it keeps `--w-ui`. Ribbon gray measures 4.71:1 on its fill in both modes.
 
 **The one exception:** a multi-sentence editorial headline stays in sentence case. *Two ways to start. Both are free.* keeps its shape. A single-sentence headline is title case and drops its period: *What It Costs, in Plain Numbers*.
 
@@ -51,7 +52,7 @@ Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-
 
 Weights are a ladder (Bob, 2026-09-19): `--w-para` 700 for the 24px paragraph, the lede, and FAQ questions; `--w-body` and `--w-ui` 600 for 18px body, nav, buttons, and titles inside lists; `--w-regular` 400 for `.regular`, fine print, and the footer; `--w-bold` 700 for headings only; `--w-regular` 400 and `--w-light` 300 exist for later. **Bold inside copy is a colour change, not a weight change** (Bob, 2026-09-19): `strong` and `b` inherit the paragraph's weight and take `--ink-max`. The one exception is the `.regular` paragraph, where bold also steps from 400 to `--w-body`. Line heights: 24 → 31 (tighter than Apple's 1.38, Bob's call), 18 → 26 and 15 → 22 (Apple's ratios).
 
-Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
+Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold. Includes the two foot links in the How We Help dropdown (guarantee, compare) and the announcement ribbon, whose hover is the same underline rather than a darker fill.
 
 ## Colour and themes
 
