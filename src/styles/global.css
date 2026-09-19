@@ -4,15 +4,20 @@
    dark mode keys off html[data-dark], set before first paint in Base.astro; the page theme keys off body[data-accent]. */
 
 /* ---------- Fonts ---------- */
-/* General Sans (headings) is self-hosted; it tops out at 700. Proxima Nova (body, UI) loads from the files impactplus.com already serves. */
+/* General Sans (headings) tops out at 700. Proxima Nova (body, UI) is self-hosted from IMPACT's own font files (Bob, 2026-09-19); the family has no Medium 500, so UI weight is Semibold 600. */
 @font-face { font-family: 'General Sans'; font-weight: 400; src: url('../fonts/general-sans-400.woff2') format('woff2'); font-display: swap; }
 @font-face { font-family: 'General Sans'; font-weight: 500; src: url('../fonts/general-sans-500.woff2') format('woff2'); font-display: swap; }
 @font-face { font-family: 'General Sans'; font-weight: 600; src: url('../fonts/general-sans-600.woff2') format('woff2'); font-display: swap; }
 @font-face { font-family: 'General Sans'; font-weight: 700; src: url('../fonts/general-sans-700.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Proxima Nova'; font-weight: 400; src: url('https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-400.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Proxima Nova'; font-weight: 500; src: url('https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-500.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Proxima Nova'; font-weight: 600; src: url('https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-600.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Proxima Nova'; font-weight: 700; src: url('https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-700.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 300; font-style: normal; src: url('../fonts/proxima-nova-300.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 300; font-style: italic; src: url('../fonts/proxima-nova-300i.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 400; font-style: normal; src: url('../fonts/proxima-nova-400.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 400; font-style: italic; src: url('../fonts/proxima-nova-400i.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 600; font-style: normal; src: url('../fonts/proxima-nova-600.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 700; font-style: normal; src: url('../fonts/proxima-nova-700.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 700; font-style: italic; src: url('../fonts/proxima-nova-700i.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 800; font-style: normal; src: url('../fonts/proxima-nova-800.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; font-weight: 900; font-style: normal; src: url('../fonts/proxima-nova-900.woff2') format('woff2'); font-display: swap; }
 
 /* ---------- Tokens ---------- */
 :root {
@@ -23,12 +28,12 @@
   --fs-h2:      clamp(2rem, 1.35rem + 2.2vw, 3rem);        /* 32 → 48  section H2, stats */
   --fs-h3:      1.5rem;                                    /* 24       card, step, and block titles; prices */
   --fs-lede:    clamp(1.3125rem, 1.05rem + .9vw, 1.75rem); /* 21 → 28  the line under the H1 */
-  --fs-lg:      1.5rem;                                    /* 24       primary paragraphs at weight 700 with --tr-para: intros, prose, FAQ questions, checklists (Bob, 2026-09-19) */
+  --fs-lg:      1.5rem;                                    /* 24       primary paragraphs with --tr-para: intros, prose, FAQ questions, checklists */
   --fs-body:    1.125rem;                                  /* 18       every other paragraph, list, link, caption, role, eyebrow, column header */
   --fs-ui:      1rem;                                      /* 16       main nav items (Bob, 2026-09-19), header pill, section-pill button */
   --fs-fine:    .9375rem;                                  /* 15       fine print only: footer, legal, text under a form, chips (Bob, 2026-09-19) */
   --lh-display: 1.05; --lh-h2: 1.1; --lh-h3: 1.15; --lh-lede: 1.3; --lh-lg: 1.375; --lh-body: 1.45; --lh-fine: 1.45; /* 24→33, 18→26, 15→22: Apple's body ratios */ --lh-tight: 1;
-  --w-body: 400; --w-ui: 500; --w-semi: 600; --w-bold: 700; /* the 24px paragraph is --w-bold: Proxima's 500 and 600 sit too close to read as a step (Bob, 2026-09-19) */
+  --w-light: 300; --w-regular: 400; --w-body: 600; --w-ui: 600; --w-bold: 700; /* every paragraph, list, and control is 600; bold inside copy changes colour, not weight; headings are 700 (Bob, 2026-09-19) */
   --tr-display: -.025em; --tr-heading: -.02em; --tr-title: -.01em; --tr-label: .02em; --tr-para: .01em;
   /* Text links: accent colour at rest, one underline on hover, colour never changes (Bob, 2026-09-19) */
   --ul-thick: .06em; --ul-offset: .16em;
@@ -64,8 +69,8 @@ body {
   --fill:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .05);
   --fill-hover: oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .08);
   --ink:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h);   /* headings, strong text */
-  --ink-2:   oklch(from var(--tint) .510 calc(.050 * var(--c)) h);   /* body copy: about 5.7:1 on --bg, muted so bold pops (Bob, 2026-09-19; Apple runs 5.8:1) */
-  --ink-3:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* captions, eyebrows: about 4.6:1 on the page surface, AA on every light surface */
+  --ink-2:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* body copy: about 4.7:1 on the page surface, the darkest place a paragraph sits; AA with room for bold to pop (Bob, 2026-09-19) */
+  --ink-3:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* captions match body: any lighter fails AA on the page surface */
   --ink-max: #000000;                                                /* bold inside body copy, nav item on hover: the only pure black */
   --line:        oklch(from var(--tint) .929 calc(.024 * var(--c)) h);
   --line-strong: oklch(from var(--tint) .869 calc(.034 * var(--c)) h);
@@ -85,8 +90,8 @@ html[data-dark] body {
   --fill:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .08);
   --fill-hover: oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .12);
   --ink:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h);
-  --ink-2:   oklch(from var(--tint) .670 calc(.030 * var(--c)) h);   /* about 6:1 on the dark --bg */
-  --ink-3:   oklch(from var(--tint) .610 calc(.040 * var(--c)) h);   /* about 4.9:1 */
+  --ink-2:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* about 4.7:1 on a dark panel, the darkest place a paragraph sits */
+  --ink-3:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* captions match body for the same reason */
   --ink-max: #ffffff;
   --line:        oklch(from var(--tint) .372 calc(.052 * var(--c)) h);
   --line-strong: oklch(from var(--tint) .446 calc(.050 * var(--c)) h);
@@ -114,7 +119,7 @@ h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: var(--t
 h3, h4 { font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: var(--tr-title); margin: 0; }
 p, li, dd, figcaption, blockquote { text-wrap: pretty; }
 main p, main li { max-width: var(--measure); } /* 45 to 75 characters a line; wider is a layout bug */
-strong, b { font-weight: var(--w-bold); color: var(--ink-max); } /* bold is the only pure black (white in dark mode) */
+strong, b { font-weight: inherit; color: var(--ink-max); } /* bold inside copy is a colour change only: the one pure black (white in dark mode), same weight as the paragraph (Bob, 2026-09-19) */
 /* Every text link on the site outside the main navigation: copy links, More links, breadcrumbs, link lists, the strategy strip, the footer, the mobile menu's footer line. Block links (cards, service rows, faces) keep their own treatment. */
 main p a, main li a, .prose a, .lede a, a.more, .also a, .notfit a, .handoff a, .crumbs a, .list-links a, .connects li a, .footer a, .mobile .foot p a { color: var(--accent); text-decoration: none; text-decoration-thickness: var(--ul-thick); text-underline-offset: var(--ul-offset); text-decoration-skip-ink: auto; }
 main p a:hover, main li a:hover, .prose a:hover, .lede a:hover, a.more:hover, .also a:hover, .notfit a:hover, .handoff a:hover, .crumbs a:hover, .list-links a:hover, .connects li a:hover, .footer a:hover, .mobile .foot p a:hover { text-decoration-line: underline; }
@@ -268,7 +273,7 @@ li[data-when="proof"] { display: none; }
 .eyebrow { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); letter-spacing: var(--tr-label); margin: 0 0 16px; }
 .hero h1, .display { max-width: var(--measure-h1); }
 .hero .lede, .lede { margin: 22px 0 0; font-size: var(--fs-lede); line-height: var(--lh-lede); color: var(--ink-2); max-width: var(--measure); }
-.lede b { color: var(--ink-max); font-weight: var(--w-bold); }
+.lede b { color: var(--ink-max); }
 .wordmark { height: 28px; width: auto; margin-bottom: 20px; }
 /* Endless Customers wordmark above a heading */
 html[data-dark] .wordmark { filter: invert(1); }
@@ -288,19 +293,19 @@ a:hover > .arrow { transform: translateX(2px); }
 .section.alt { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .section.final { padding-bottom: 96px; }
 .section h2 { margin: 0 0 12px; max-width: var(--measure-h2); }
-.section .intro { margin: 0 0 36px; color: var(--ink-2); font-size: var(--fs-lg); letter-spacing: var(--tr-para); font-weight: var(--w-bold); line-height: var(--lh-lg); max-width: var(--measure); text-wrap: pretty; }
+.section .intro { margin: 0 0 36px; color: var(--ink-2); font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); max-width: var(--measure); text-wrap: pretty; }
 .section .intro.tight { margin-bottom: 12px; }
 .section .intro.last { margin-bottom: 0; }
 .actions.close { margin-top: 8px; } /* actions right under a lede or intro */
 .split .intro + .intro { margin-top: -20px; }
 .also { margin: 24px 0 0; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); max-width: var(--measure); }
 /* small note under a pricing grid */
-.prose { font-size: var(--fs-lg); letter-spacing: var(--tr-para); font-weight: var(--w-bold); line-height: var(--lh-lg); color: var(--ink-2); max-width: var(--measure); }
+.prose { font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); color: var(--ink-2); max-width: var(--measure); }
 .prose h2 { font-size: var(--fs-h3); color: var(--ink); margin: 40px 0 12px; line-height: var(--lh-h3) }
 .prose p { margin: 0 0 18px; text-wrap: pretty; }
 .prose ul { padding-left: 20px; }
 .prose li { margin: 6px 0; }
-.prose strong { color: var(--ink-max); font-weight: var(--w-bold); }
+.prose strong { color: var(--ink-max); }
 .plain { margin: 0; padding-left: 20px; color: var(--ink-2); }
 /* Layout */
 .grid { display: grid; gap: 24px; }
@@ -336,19 +341,19 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; max-width: 760px; }
 .steps li { display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: start; }
 .steps .n { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-fill); color: var(--accent-ink); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-bold); }
-.steps b { display: block; padding-top: 3px; font-weight: var(--w-bold); letter-spacing: var(--tr-title); }
+.steps b { display: block; padding-top: 3px; letter-spacing: var(--tr-title); }
 .steps p { margin: 2px 0 0; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); }
 /* Price list */
 .prices { list-style: none; margin: 0; padding: 0; max-width: 760px; border-top: 1px solid var(--line-strong); }
 .prices li { display: flex; justify-content: space-between; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-body); line-height: var(--lh-body) }
-.prices b { font-weight: var(--w-bold); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.prices b { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .prices .note { display: block; font-size: var(--fs-body); color: var(--ink-3); border: 0; line-height: var(--lh-body) }
 /* FAQ accordion */
 .faqs { max-width: 800px; border-top: 1px solid var(--line-strong); }
 .faq { border-bottom: 1px solid var(--line); }
 .faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; cursor: pointer; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq h3 { margin: 0; font-size: var(--fs-lg); font-weight: var(--w-bold); letter-spacing: var(--tr-title); line-height: var(--lh-lg) }
+.faq h3 { margin: 0; font-size: var(--fs-lg); letter-spacing: var(--tr-title); line-height: var(--lh-lg) }
 .faq summary:hover h3 { color: var(--accent); }
 .faq .plus { position: relative; flex: none; width: 14px; height: 14px; }
 .faq .plus::before, .faq .plus::after { content: ''; position: absolute; background: var(--ink-3); transition: transform .2s var(--ease); }
@@ -360,13 +365,13 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); display: flex; flex-direction: column; }
 .quote p { margin: 0; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink); text-wrap: pretty; }
 .quote footer { margin-top: auto; padding-top: 10px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); }
-.quote footer b { color: var(--ink); font-weight: var(--w-ui); }
+.quote footer b { color: var(--ink); }
 /* People: small round portraits */
 .faces { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .face { display: grid; justify-items: center; text-align: center; gap: 2px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); }
 .face img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 6px; transition: transform .2s var(--ease); }
 .face:hover img { transform: translateY(-2px); }
-.face b { color: var(--ink); font-weight: var(--w-ui); font-size: var(--fs-body); line-height: var(--lh-body); }
+.face b { color: var(--ink); font-size: var(--fs-body); line-height: var(--lh-body); }
 /* "How this page connects": the strategy strip at the foot of a page */
 .connects { border-top: 1px solid var(--line); background: var(--bg-panel); }
 .connects h2 { font-size: var(--fs-h3); line-height: var(--lh-h3) }
@@ -505,7 +510,7 @@ html[data-microsite] .header { position: relative; }
 [data-page="entry"] .site.ec:hover .domain { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 [data-page="entry"] .how { margin-bottom: 72px; padding: 32px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-panel); }
 [data-page="entry"] .how h2 { margin: 0 0 8px; font-size: var(--fs-h3); font-weight: var(--w-bold); letter-spacing: var(--tr-heading); line-height: var(--lh-h3) }
-[data-page="entry"] .how .lede { margin: 0 0 24px; font-size: var(--fs-lg); letter-spacing: var(--tr-para); font-weight: var(--w-bold); line-height: var(--lh-lg); }
+[data-page="entry"] .how .lede { margin: 0 0 24px; font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); }
 [data-page="entry"] .how .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 [data-page="entry"] .how h3 { margin: 0 0 10px; font-family: var(--font-body); font-size: var(--fs-body); font-weight: var(--w-bold); letter-spacing: var(--tr-title); line-height: var(--lh-body) }
 [data-page="entry"] .how ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }
@@ -542,7 +547,7 @@ html[data-dark] [data-page="impact-home"] .track img { filter: grayscale(1) inve
 [data-page="impact-home"] .split { grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
 [data-page="impact-home"] .shift { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 [data-page="impact-home"] .shift li { padding: 20px 22px; background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }
-[data-page="impact-home"] .shift b { display: block; color: var(--ink-max); font-weight: var(--w-bold); letter-spacing: var(--tr-title); margin-bottom: 2px; }
+[data-page="impact-home"] .shift b { display: block; color: var(--ink-max); letter-spacing: var(--tr-title); margin-bottom: 2px; }
 [data-page="impact-home"] .problems { gap: 16px; }
 [data-page="impact-home"] .problem .topic { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); letter-spacing: var(--tr-label); }
 [data-page="impact-home"] .problem p { font-size: var(--fs-body); line-height: var(--lh-body); }
@@ -576,13 +581,13 @@ html[data-dark] [data-page="impact-home"] .track img { filter: grayscale(1) inve
 [data-page="impact-home"] .result { margin: 0; }
 [data-page="impact-home"] .result .stat { color: var(--accent); }
 [data-page="impact-home"] .result footer { margin-top: auto; padding-top: 12px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); }
-[data-page="impact-home"] .result footer b { color: var(--ink); font-weight: var(--w-ui); }
+[data-page="impact-home"] .result footer b { color: var(--ink); }
 [data-page="impact-home"] .result .stat-label { font-size: var(--fs-body); color: var(--ink-3); margin-bottom: 10px; line-height: var(--lh-body) }
 [data-page="impact-home"] .result p { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); text-wrap: pretty; }
 [data-page="impact-home"] .more-quotes { margin-top: 24px; }
 [data-page="impact-home"] .badges { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
 [data-page="impact-home"] .bd { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px 0 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-panel); font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }
-[data-page="impact-home"] .bd b { font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-bold); color: var(--ink); letter-spacing: var(--tr-title); }
+[data-page="impact-home"] .bd b { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink); letter-spacing: var(--tr-title); }
 [data-page="impact-home"] .bd.img img { height: 30px; width: auto; }
 [data-page="impact-home"] .bd.eos { padding: 0 12px; }
 [data-page="impact-home"] .bd.eos img { height: 22px; }
@@ -590,7 +595,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="impact-home"] a.bd:hover { border-color: var(--line-strong); color: var(--ink); }
 [data-page="impact-home"] .fit { align-items: start; }
 [data-page="impact-home"] .fit-list { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 10px; }
-[data-page="impact-home"] .fit-list li { position: relative; padding-left: 30px; font-size: var(--fs-lg); letter-spacing: var(--tr-para); font-weight: var(--w-bold); line-height: var(--lh-lg); color: var(--ink); }
+[data-page="impact-home"] .fit-list li { position: relative; padding-left: 30px; font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg); color: var(--ink); }
 [data-page="impact-home"] .fit-list li::before { content: ''; position: absolute; left: 0; top: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path d='M4 9.5l3.2 3L14 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 18px no-repeat, linear-gradient(#000 0 0); mask-composite: exclude; -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path d='M4 9.5l3.2 3L14 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 18px no-repeat, linear-gradient(#000 0 0); -webkit-mask-composite: xor; } /* raw */
 [data-page="impact-home"] .inds a { font-size: var(--fs-body); line-height: var(--lh-body); padding: 11px 0; }
 [data-page="impact-home"] .notfit { padding: 28px; border-radius: 16px; background: var(--bg-panel); border: 1px solid var(--line); }
@@ -656,14 +661,14 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="impact-hubspot"] .split .intro + .intro { color: var(--ink-max); }
 [data-page="impact-hubspot"] .team .person { display: grid; justify-items: start; gap: 2px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); }
 [data-page="impact-hubspot"] .ph { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 12%, var(--bg)); color: var(--accent); font-weight: var(--w-bold); margin-bottom: 8px; }
-[data-page="impact-hubspot"] .team b { color: var(--ink); font-weight: var(--w-ui); font-size: var(--fs-body); line-height: var(--lh-body); }
+[data-page="impact-hubspot"] .team b { color: var(--ink); font-size: var(--fs-body); line-height: var(--lh-body); }
 /* ---------- impactplus.com/coaching ---------- */
 [data-page="impact-coaching"] .path { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-panel); }
 [data-page="impact-coaching"] .path .cap { margin: 0 0 12px; font-size: var(--fs-body); line-height: var(--lh-body); letter-spacing: var(--tr-label); color: var(--ink-3); }
 [data-page="impact-coaching"] .path ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: s; }
 [data-page="impact-coaching"] .path li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); counter-increment: s; }
 [data-page="impact-coaching"] .path li::before { content: counter(s); font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); }
-[data-page="impact-coaching"] .path li b { display: block; font-weight: var(--w-bold); font-size: var(--fs-body); line-height: var(--lh-body); }
+[data-page="impact-coaching"] .path li b { display: block; font-size: var(--fs-body); line-height: var(--lh-body); }
 [data-page="impact-coaching"] .path li span { display: block; grid-column: 2; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }
 [data-page="impact-coaching"] .path li.live b { color: var(--accent); }
 [data-page="impact-coaching"] .split { grid-template-columns: 1.1fr 1fr; align-items: center; }
@@ -675,7 +680,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="ec-home"] .cover::after { content: ""; position: absolute; left: 0; right: 0; bottom: 18%; height: 10px; background: var(--grad); opacity: .9; filter: blur(.5px); }
 @media (max-width: 900px) {
   [data-page="ec-home"] .split { grid-template-columns: 1fr; }
-  [data-page="ec-home"] .cover { width: 150px; font-size: var(--fs-lg); letter-spacing: var(--tr-para); font-weight: var(--w-bold); line-height: var(--lh-lg) }
+  [data-page="ec-home"] .cover { width: 150px; font-size: var(--fs-lg); letter-spacing: var(--tr-para); line-height: var(--lh-lg) }
   [data-page="ec-home"] .hero.home { padding: 64px 0 48px; }
 }
 /* ---------- endlesscustomers.com/coaching ---------- */
@@ -697,7 +702,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="ec-how-to-implement"] .way .who { color: var(--ink); font-size: var(--fs-body); line-height: var(--lh-body); }
 [data-page="ec-how-to-implement"] .way ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); display: grid; gap: 4px; }
 [data-page="ec-how-to-implement"] .way .cost, [data-page="ec-how-to-implement"] .way .honest { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); }
-[data-page="ec-how-to-implement"] .way b { color: var(--ink-max); font-weight: var(--w-bold); }
+[data-page="ec-how-to-implement"] .way b { color: var(--ink-max); }
 [data-page="ec-how-to-implement"] .way .btn { margin-top: auto; align-self: start; }
 [data-page="ec-how-to-implement"] .steps .n { background: var(--grad); color: var(--accent-ink); }
 /* Endless Customers site: gradient accent */

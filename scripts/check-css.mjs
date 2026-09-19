@@ -28,7 +28,7 @@ for (const f of walk('src').filter((f) => f.endsWith('.astro'))) {
   const checks = [
     [/font-size:\s*(?=\S)(?!var\()[^;}]+/, 'font-size literal (use var(--fs-…))'],
     [/line-height:\s*(?=\S)(?!var\()[^;}]+/, 'line-height literal (use var(--lh-…))'],
-    [/font-weight:\s*(?=\S)(?!var\()[^;}]+/, 'font-weight literal (use var(--w-…))'],
+    [/font-weight:\s*(?=\S)(?!var\(|inherit)[^;}]+/, 'font-weight literal (use var(--w-…) or inherit)'],
     [/letter-spacing:\s*(?=\S)(?!var\()[^;}]+/, 'letter-spacing literal (use var(--tr-…))'],
     [/#[0-9a-fA-F]{3,8}\b/, 'hex colour outside the token block (add a token)'],
     [/font-family:\s*(?=\S)(?!var\(|inherit)[^;}]+/, 'font-family literal (use var(--font-head|--font-body))'],

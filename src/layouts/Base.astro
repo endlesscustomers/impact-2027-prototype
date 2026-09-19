@@ -3,6 +3,7 @@
 // and the pre-paint theme read so dark mode never flashes.
 import '../styles/global.css';
 import gs700 from '../fonts/general-sans-700.woff2?url';
+import pn600 from '../fonts/proxima-nova-600.woff2?url';
 
 interface Props {
   /** Service microsite page: header scrolls away, section pill takes over (see SectionBar). */
@@ -32,7 +33,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     {description && <meta name="description" content={description} />}
     <link rel="icon" href={`${base}/favicon-${favicon}.ico`} sizes="any" />
     <link rel="preload" href={gs700} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={pn600} as="font" type="font/woff2" crossorigin />
     <slot name="head" />
     <script is:inline>
       // Runs before first paint. Mirrors the toggle logic in Header.astro.
