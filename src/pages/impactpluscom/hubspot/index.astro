@@ -85,7 +85,7 @@ const faqs = [
           <p class="intro">Most partners set HubSpot up and leave. Some manage it for you forever. We do the setup, and then we train your team in your own portal until they don’t need us. That’s the same thing we do with content, sales, and websites, because it’s the whole point of IMPACT.</p>
           <p class="intro">HubSpot is only as powerful as the team using it.</p>
         </div>
-        <ol class="steps">
+        <ol class="steps regular">
           <li><span class="n">1</span><div><b>Discovery &amp; Kickoff</b><p>A worksheet, then a deep dive with your specialist.</p></div></li>
           <li><span class="n">2</span><div><b>Training Roadmap</b><p>Priorities and a curriculum for your team.</p></div></li>
           <li><span class="n">3</span><div><b>Sessions in Your Portal</b><p>Screen-share, in your actual HubSpot. Your team applies it between sessions.</p></div></li>
@@ -101,7 +101,7 @@ const faqs = [
       <p class="intro">Priced by how many people and departments need training. Three-month minimum, then month to month. <span class="tag plan">Live-site pricing, to verify for 2027</span></p>
       <div class="grid c3">
         {programs.map(([name, price, what]) => (
-          <div class="card plan">
+          <div class="card plan regular">
             <h3>{name}</h3>
             <span class="price">{price}</span>
             <p>{what}</p>
@@ -109,7 +109,7 @@ const faqs = [
           </div>
         ))}
       </div>
-      <p class="also">Also: an on-site workshop, $12,500 + travel, a full day at your office plus 4–6 weeks of virtual follow-up. Projects (onboarding, cleanup, dashboards, Breeze AI) run $3,000 to $15,000+ and are quoted after a scoping call. <a href={href('impact', '/hubspot/pricing')}>All HubSpot pricing →</a></p>
+      <p class="also regular">Also: an on-site workshop, $12,500 + travel, a full day at your office plus 4–6 weeks of virtual follow-up. Projects (onboarding, cleanup, dashboards, Breeze AI) run $3,000 to $15,000+ and are quoted after a scoping call. <a href={href('impact', '/hubspot/pricing')}>All HubSpot pricing →</a></p>
     </div>
   </section>
 
@@ -134,9 +134,9 @@ const faqs = [
     <div class="wrap">
       <h2>What Clients Say</h2>
       <div class="grid c3">
-        {quotes.map(([q, who]) => <blockquote class="quote"><p>“{q}”</p><footer>{who}</footer></blockquote>)}
+        {quotes.map(([q, who]) => <blockquote class="quote regular"><p>“{q}”</p><footer>{who}</footer></blockquote>)}
       </div>
-      <p class="also">More on the <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">HubSpot directory ↗</a> and on our <a href={href('impact', '/hubspot/results')}>results page</a>.</p>
+      <p class="also regular">More on the <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">HubSpot directory ↗</a> and on our <a href={href('impact', '/hubspot/results')}>results page</a>.</p>
     </div>
   </section>
 
@@ -144,7 +144,7 @@ const faqs = [
     <div class="wrap">
       <h2>Questions HubSpot Buyers Ask</h2>
       <div class="faqs">
-        {faqs.map(([q, a]) => <details class="faq"><summary><h3>{q}</h3></summary><p>{a}</p></details>)}
+        {faqs.map(([q, a]) => <details class="faq"><summary><h3>{q}</h3></summary><p class="regular">{a}</p></details>)}
       </div>
     </div>
   </section>

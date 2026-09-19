@@ -33,7 +33,7 @@
   --fs-ui:      1rem;                                      /* 16       main nav items (Bob, 2026-09-19), header pill, section-pill button */
   --fs-fine:    .9375rem;                                  /* 15       fine print only: footer, legal, text under a form, chips (Bob, 2026-09-19) */
   --lh-display: 1.05; --lh-h2: 1.1; --lh-h3: 1.15; --lh-lede: 1.3; --lh-lg: 1.3; --lh-body: 1.45; --lh-fine: 1.45; /* 24→31 (Bob, 2026-09-19: tighter than Apple's 1.38), 18→26, 15→22 */ --lh-tight: 1;
-  --w-light: 300; --w-regular: 400; --w-body: 600; --w-ui: 600; --w-bold: 700; /* every paragraph, list, and control is 600; bold inside copy changes colour, not weight; headings are 700 (Bob, 2026-09-19) */
+  --w-light: 300; --w-regular: 400; --w-body: 650; --w-ui: 650; --w-bold: 700; /* Bob asked for 650 (2026-09-19); the family has static 600 and 700 cuts only, so 650 resolves to the Bold cut. Bold inside copy changes colour, not weight; headings are 700. */
   --tr-display: -.025em; --tr-heading: -.02em; --tr-title: -.01em; --tr-label: .02em; --tr-para: -.01em; /* the 24px paragraph tightens at 600 (Bob, 2026-09-19) */
   /* Text links: accent colour at rest, one underline on hover, colour never changes (Bob, 2026-09-19) */
   --ul-thick: .06em; --ul-offset: .16em;
