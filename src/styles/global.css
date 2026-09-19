@@ -296,7 +296,7 @@ li[data-when="proof"] { display: none; }
 .hero .media .play::after { content: ''; margin-left: 5px; border-left: 20px solid var(--accent-ink); border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
 .hero .media .cap { margin: 12px 0 0; color: var(--ink-3); font-size: var(--fs-fine); line-height: var(--lh-fine); font-weight: var(--w-regular); }
 .section.center { text-align: center; }
-.section.center h2, .section.center .intro { margin-left: auto; margin-right: auto; }
+.section.center h2, .section.center .intro, .section.center .eyebrow, .section.center .crumbs { margin-left: auto; margin-right: auto; } /* anything with a max-width must also centre its box, not just its text (Bob, 2026-09-19: eyebrows sat left of centre on wide screens) */
 /* module library chrome: the bar above each example */
 .mod-bar { background: var(--bg-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; color: var(--ink-3); font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: var(--w-ui); }
 .mod-bar .wrap { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; }
@@ -428,7 +428,7 @@ html[data-dark] .logobar .track img { filter: grayscale(1) invert(1) contrast(.8
 .testimonials { max-width: 900px; margin: 0 auto; }
 .testimonials .panel { position: relative; padding: 56px 48px 40px; border-radius: 20px; background: var(--bg-panel); border: 1px solid var(--line); text-align: center; }
 .testimonials ul { list-style: none; margin: 0; padding: 0; display: grid; }
-.testimonials li { grid-area: 1 / 1; display: grid; justify-items: center; gap: 24px; opacity: 0; visibility: hidden; transition: opacity .3s var(--ease); }
+.testimonials li { grid-area: 1 / 1; max-width: none; display: grid; justify-items: center; gap: 24px; opacity: 0; visibility: hidden; transition: opacity .3s var(--ease); } /* max-width: none so the slide fills the panel; main li is capped at the measure */
 .testimonials li[data-active] { opacity: 1; visibility: visible; }
 .testimonials .say { margin: 0; }
 .testimonials .say p { margin: 0 auto; max-width: var(--measure); color: var(--ink); font-size: var(--fs-lg); line-height: var(--lh-lg); font-weight: var(--w-para); letter-spacing: var(--tr-para); text-wrap: pretty; }
@@ -444,7 +444,7 @@ html[data-dark] .logobar .track img { filter: grayscale(1) invert(1) contrast(.8
 .testimonials .dots { display: flex; gap: 8px; }
 .testimonials .dots button { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); transition: background .15s var(--ease); }
 .testimonials .dots button[aria-selected="true"] { background: var(--accent); }
-.testimonials .count { margin: 12px 0 0; color: var(--ink-3); font-size: var(--fs-body); line-height: var(--lh-body); }
+.testimonials .count { margin: 12px auto 0; color: var(--ink-3); font-size: var(--fs-body); line-height: var(--lh-body); }
 
 /* CTA band: centred heading, intro, and buttons; buttons stack full width on phones */
 .section.closer .intro { margin-bottom: 0; } /* "closer", not "cta": .cta is the header pill */
