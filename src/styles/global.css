@@ -119,8 +119,9 @@ html[data-dark] .tip-dark { display: block; }
 .cta:hover .arr { transform: translateX(2px); }
 .header .tools .cta.ghost { margin-left: 4px; }
 @media (max-width: 1180px) { .header .cta.ghost { display: none; } .header .wrap { gap: 24px; } } /* the ghost button is the first thing to go when the header gets tight */
-.theme .moon, html[data-dark] .theme .sun { display: none; }
-html[data-dark] .theme .moon { display: block; }
+/* The icon shows the mode you would switch to: a moon in light mode, a sun in dark mode. */
+.theme .sun, html[data-dark] .theme .moon { display: none; }
+html[data-dark] .theme .sun { display: block; }
 .burger { display: none; }
 .burger .close, .burger[aria-expanded="true"] .open { display: none; }
 .burger[aria-expanded="true"] .close { display: block; }
