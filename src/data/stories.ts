@@ -35,7 +35,7 @@ export interface Story {
   outcomes: string[];
   stats: Stat[];
   quotes: Quote[];
-  /** Vidyard id. Poster and player come from play.vidyard.com. Only the story's own interview video, checked by its poster on 2026-09-19; the shared testimonial clips on the live pages are left out. */
+  /** Vidyard id. Poster and player come from play.vidyard.com. Only the story's own interview video, checked by its Vidyard title on 2026-09-19; the other clients' testimonial clips on the live pages are left out. */
   video?: string;
   /** Hero and card image; falls back to the video poster. */
   image?: string;
@@ -197,7 +197,7 @@ export const stories: Story[] = [
     outcomes: ['192% increase in deals won', '56% increase in deal velocity', '1,421% increase in organic traffic'],
     stats: [{ n: '192%', caption: 'increase in deals won' }, { n: '56%', caption: 'increase in deal velocity' }, { n: '1,421%', caption: 'increase in organic traffic' }],
     quotes: [],
-    image: 'https://www.impactplus.com/hubfs/IMPACT_Framework_3/Inbound%20Success%20Playbook/Real%20World%20Results/Featured%20Images/Case-Studies---Real-World-Results---Featured-Images--Dental-Claim-Support.jpg',
+    ...vid('gJU3nqTN3tyZ8xjGnPnodC'), image: 'https://www.impactplus.com/hubfs/IMPACT_Framework_3/Inbound%20Success%20Playbook/Real%20World%20Results/Featured%20Images/Case-Studies---Real-World-Results---Featured-Images--Dental-Claim-Support.jpg',
   },
   {
     slug: 'intek-freight-and-logistics', client: 'InTek Freight & Logistics',
@@ -242,6 +242,7 @@ export const stories: Story[] = [
     outcomes: ['100% year-over-year growth, four years running', '160% increase in traffic', '600 clinics and counting', 'Runs its own marketing, no agency'],
     stats: [{ n: '100%', caption: 'year-over-year growth, four years in a row' }, { n: '160%', caption: 'increase in traffic' }, { n: '600', caption: 'clinics across the country' }],
     quotes: [],
+    ...vid('avSSLZHsNZ9TZnFzNQKeyU'),
   },
 ];
 
