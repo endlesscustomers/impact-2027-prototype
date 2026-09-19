@@ -30,7 +30,7 @@
     --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18);
     --accent: #4c8dff; --scrim: rgba(0,0,0,.5);
     --shadow: 0 24px 48px -24px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.05);
-    --shadow-card: 0 0 0 1px rgba(255,255,255,.08), 0 32px 64px -24px rgba(0,0,0,.8);
+    --shadow-card: 0 32px 64px -24px rgba(0,0,0,.8);
     --menu-bg: #000000; --menu-tint: rgba(255,255,255,.09); /* inverse of light: black card, page lifts to charcoal */
     --selection: #22406f;
   }
@@ -41,7 +41,7 @@
   --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18);
   --accent: #4c8dff; --scrim: rgba(0,0,0,.5);
   --shadow: 0 24px 48px -24px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.05);
-  --shadow-card: 0 0 0 1px rgba(255,255,255,.08), 0 32px 64px -24px rgba(0,0,0,.8);
+  --shadow-card: 0 32px 64px -24px rgba(0,0,0,.8);
   --menu-bg: #000000; --menu-tint: rgba(255,255,255,.09);
   --selection: #22406f;
 }
