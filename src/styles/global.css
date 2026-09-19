@@ -439,13 +439,13 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .ribbon-wrap { padding: 12px 0 0; background: var(--bg); }
 .ribbon-wrap .wrap { max-width: none; padding: 0 32px; }
 /* full-bleed like the header; same 32px gutter so the ribbon's edges line up with the logo and the button */
-.ribbon { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px;
+.ribbon { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: var(--w-regular); /* announcement text is the thin style (Bob, 2026-09-19) */
   min-height: 48px; padding: 8px 48px 8px 20px; border-radius: 12px;
   background: var(--fill); color: var(--ink); font-size: var(--fs-body); line-height: var(--lh-body);
   transition: background .15s var(--ease); }
 .ribbon:hover { background: var(--fill-hover); }
 .ribbon .short { display: none; }
-.ribbon .pill { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; background: var(--grad); color: var(--accent-ink); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-bold); white-space: nowrap; }
+.ribbon .pill { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; background: var(--grad); color: var(--accent-ink); font-weight: var(--w-ui); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-bold); white-space: nowrap; }
 .ribbon-wrap[hidden] { display: none; }
 @media (max-width: 734px) {
   .ribbon-wrap { padding: 10px 0 0; }
