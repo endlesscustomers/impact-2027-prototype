@@ -230,7 +230,7 @@ const crosses = (l: NavLink) => l.site && l.site !== site;
     if (pick) root.setAttribute('data-theme', pick); else root.removeAttribute('data-theme');
     const dark = pick ? pick === 'dark' : mq.matches;
     dark ? root.setAttribute('data-dark', '') : root.removeAttribute('data-dark');
-    themeBtns.forEach((b) => b.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode'));
+    themeBtns.forEach((b) => b.setAttribute('aria-label', dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'));
   }
   let pick: string | null = null;
   try { pick = localStorage.getItem('impact-theme'); } catch {}
