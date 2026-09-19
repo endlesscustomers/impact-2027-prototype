@@ -3,10 +3,11 @@
 // assembled from these rather than restyled. Reference stack, not a public page (Bob, 2026-09-19).
 // Order: heroes first, then content modules. Add a module here before using it on a page.
 import Site from '../layouts/Site.astro';
-import { href } from '../lib/site';
+import { href, asset } from '../lib/site';
 import LogoBar from '../components/LogoBar.astro';
 import Ratings from '../components/Ratings.astro';
 import Feature from '../components/Feature.astro';
+import Testimonials from '../components/Testimonials.astro';
 
 // Client logos: the live homepage wall, minus the banned list (same set as the IMPACT home page).
 const logos: [string, string][] = [
@@ -15,6 +16,20 @@ const logos: [string, string][] = [
   ['retrofoam.png', 'RetroFoam'], ['bill-ragan-roofing.png', 'Bill Ragan Roofing'], ['intek.png', 'Intek'], ['lazboy-ottawa.png', 'La-Z-Boy Ottawa & Kingston'],
 ];
 // Review figures from the /results/reviews outline (live site, 2026-09-18). Wordmarks stand in until logo files are added.
+// Testimonials: the three vetted homepage quotes, verbatim (banned list checked 2026-09-19).
+const quotes = [
+  { q: 'IMPACT doesn’t do the work for you. They teach you how to own it. Our team walks away from every session smarter and more confident.', who: 'Davy Clay', title: 'Co-Founder', co: 'Dental Claim Support' },
+  { q: 'Sales and marketing united under one strategy, and within a year we hit 1,500 leads a month with stronger close rates and lifetime value than ever before.', who: 'Tony Paille', title: 'Chief Marketing Officer', co: 'AIIM International' },
+  { q: 'IMPACT’s coaching gave us the accountability and structure we needed to apply what we believed in. That guidance led to stronger trust, faster sales conversations, and consistent growth.', who: 'Kaitlyn Pintarich', title: 'President', co: 'Berry Insurance' },
+];
+const icon = {
+  people: 'M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM1 15v-1a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v1M11 2a3 3 0 0 1 0 6M15 15v-1a4 4 0 0 0-3-3.9',
+  price: 'M8 1v14M11 4.5c0-1-1.3-1.5-3-1.5S5 3.7 5 5s1 1.8 3 2 3 1 3 2.5-1.3 2-3 2-3-.7-3-2',
+  scale: 'M8 2v12M3 5h10M3 5l-2 5a2.5 2.5 0 0 0 5 0L4 5M13 5l-2 5a2.5 2.5 0 0 0 5 0l-2-5',
+  shield: 'M8 1l6 2.5v4c0 3.6-2.5 6.6-6 7.5-3.5-.9-6-3.9-6-7.5v-4L8 1zM5.5 8l2 2 3.5-4',
+  compass: 'M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zM11 5l-2 4-4 2 2-4 4-2z',
+  chart: 'M2 14h12M4 11l3-4 3 2 3-5',
+};
 const ratings = [
   { score: 5.0, max: 5 as const, count: '327+ reviews', site: 'HubSpot Directory', href: 'https://ecosystem.hubspot.com/marketplace/solutions/impact' },
   { score: 5.0, max: 5 as const, count: '36+ reviews', site: 'Google', href: href('impact', '/results/reviews') },
@@ -108,4 +123,164 @@ const faqs: [string, string][] = [
     <p class="regular">Two weeks, 124 checkpoints across 13 areas, and a 90-minute working session with your leadership team.</p>
     <p class="regular">You leave with a key findings report and a prioritized roadmap for the next 3, 6, and 12 months, whether or not you hire us for any of it.</p>
   </Feature>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>07 · Detail Cards</b><span>.section.center + .grid.c2 + .card.detail: eyebrow, H2, intro, then two wide cards with a title and level tag, an optional stats row, description, a checklist, and one link. Stacks under 900px.</span></div>
+  </div>
+  <section class="section center">
+    <div class="wrap">
+      <p class="eyebrow">What You Can Get Help With</p>
+      <h2>Areas of Deep Expertise</h2>
+      <p class="intro">Pick one area or combine several. Each is coached by someone who has done it inside a real company.</p>
+      <div class="grid c2">
+        <div class="card detail">
+          <div class="head"><h3>HubSpot</h3><span class="tag">Diamond Partner</span></div>
+          <ul class="stats">
+            <li><b>5.0</b><span>on the HubSpot directory</span></li>
+            <li><b>15+</b><span>years as a partner</span></li>
+            <li><b>27</b><span>certifications</span></li>
+          </ul>
+          <p>Training, onboarding, cleanup, and integrations, and a team that leaves yours able to run it.</p>
+          <ul class="checks">
+            <li>Training in your own portal, not a slide deck</li>
+            <li>Clean data and automation your leadership team trusts</li>
+            <li>2x HubSpot Partner of the Year</li>
+          </ul>
+          <a class="more" href={href('impact', '/hubspot')}>HubSpot Services →</a>
+        </div>
+        <div class="card detail">
+          <div class="head"><h3>AI Visibility</h3><span class="tag">New for 2027</span></div>
+          <p>When a buyer asks ChatGPT, Google, or Perplexity who to hire, we find out why AI skips you and fix what disqualifies you.</p>
+          <ul class="checks">
+            <li>See how AI describes your company today, free</li>
+            <li>Fix the facts it gets wrong first</li>
+            <li>Give it something worth recommending</li>
+          </ul>
+          <a class="more" href={href('impact', '/help/ai-visibility')}>AI Visibility →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>08 · Icon Cards on a Dark Band</b><span>.section.dark.center + .grid.c3 + .card.icon: the band keeps the page hue and flips to the dark neutrals; each card is a soft accent disc with a line icon, a title, one paragraph. One column under 900px.</span></div>
+  </div>
+  <section class="section dark center">
+    <div class="wrap">
+      <p class="eyebrow">What You Can Expect</p>
+      <h2>How We Work</h2>
+      <div class="grid c3">
+        {([
+          ['You Own the Work', 'We coach your team to do it, so the results stay when we leave.', icon.people],
+          ['Published Prices', 'Every price is on the site. No call to find out what it costs.', icon.price],
+          ['Honest Comparisons', 'We compare ourselves to an agency, a freelancer, and your own team.', icon.scale],
+          ['Covered by a Guarantee', 'Tell us within 7 days, we redo the work, and if we still miss, you get your money back.', icon.shield],
+          ['A Plan Every 90 Days', 'Priorities set with your leadership team, then measured.', icon.compass],
+          ['Measured in Revenue', 'Leads, close rates, and sales cycle, not vanity metrics.', icon.chart],
+        ] as [string, string, string][]).map(([h, p, d]) => (
+          <div class="card icon"><span class="disc" aria-hidden="true"><svg viewBox="0 0 16 16"><path d={d}/></svg></span><h3>{h}</h3><p>{p}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>09 · Timeline</b><span>.timeline: numbered discs on a rule with a card under each: tag, title, one line. Vertical without the rule under 900px.</span></div>
+  </div>
+  <section class="section center">
+    <div class="wrap">
+      <p class="eyebrow">Your Path Forward</p>
+      <h2>How It Works</h2>
+      <p class="intro">A simple, transparent process. Every step has a published price.</p>
+      <ol class="timeline">
+        <li><span class="n">1</span><div class="card"><span class="tag">Free</span><h3>Instant Diagnostic</h3><p>See how AI describes your company in about a minute.</p></div></li>
+        <li><span class="n">2</span><div class="card"><span class="tag">$5,000</span><h3>Deep Diagnostic and Roadmap</h3><p>124 checkpoints, a leadership working session, and a prioritized roadmap.</p></div></li>
+        <li><span class="n">3</span><div class="card"><span class="tag">Your Call</span><h3>Choose the Work</h3><p>Coaching, HubSpot, website, or paid media, or none of it.</p></div></li>
+        <li><span class="n">4</span><div class="card"><span class="tag">Every 90 Days</span><h3>Plan and Measure</h3><p>Priorities reset with your leadership team, measured in revenue.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>10 · Pricing Tiers and Callout</b><span>.grid.c3 + .card.tier, with .rec and a .badge on the recommended tier, then .callout for the "not sure where to start" panel. Prices are the live-site HubSpot training programs (to verify for 2027); stacks under 900px.</span></div>
+  </div>
+  <section class="section alt center">
+    <div class="wrap">
+      <p class="eyebrow">Your Investment</p>
+      <h2>Choose Your Path</h2>
+      <p class="intro">Three-month minimum, then month to month. Every plan is covered by the guarantee.</p>
+      <div class="grid c3">
+        <div class="card tier">
+          <h3>Core</h3><span class="hours">One department, up to 10 people</span>
+          <span class="price">$3,500</span><span class="rate">per month</span>
+          <p>Two sessions a month with one specialist, for the team that has to own the portal.</p>
+          <ul class="checks"><li>Two sessions a month</li><li>One specialist</li><li>One department, up to 10 people</li></ul>
+          <a class="btn" href={href('impact', '/hubspot/training')}>Start With Core</a>
+        </div>
+        <div class="card tier rec">
+          <span class="badge">Most Popular</span>
+          <h3>Advanced</h3><span class="hours">Multiple departments</span>
+          <span class="price">$6,000</span><span class="rate">per month</span>
+          <p>Weekly sessions across departments, with a deeper curriculum.</p>
+          <ul class="checks"><li>Weekly sessions</li><li>Multiple departments</li><li>Deeper curriculum</li></ul>
+          <a class="btn primary" href={href('impact', '/hubspot/training')}>Start With Advanced</a>
+        </div>
+        <div class="card tier">
+          <h3>Organization</h3><span class="hours">Whole company</span>
+          <span class="price">$10,000</span><span class="rate">per month</span>
+          <p>Multiple weekly tracks by role, coordinated with your leadership team.</p>
+          <ul class="checks"><li>Multiple weekly tracks</li><li>Role-based curriculum</li><li>Leadership coordination</li></ul>
+          <a class="btn" href={href('impact', '/hubspot/training')}>Start With Organization</a>
+        </div>
+      </div>
+      <div class="callout">
+        <h3>Not Sure Where to Start?</h3>
+        <p>Run the free instant diagnostic. In about a minute you will see how AI describes your company and what to fix first.</p>
+        <span class="price">Free</span>
+        <div class="actions close"><a class="btn primary" href={href('impact', '/instant-diagnostic')}>Run the Diagnostic</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>11 · Story Card</b><span>.story: a narrow centred card with a round photo lifted over its top edge, eyebrow, H2, regular paragraphs, the standard blockquote.quote, one button.</span></div>
+  </div>
+  <section class="section">
+    <div class="wrap">
+      <div class="story regular">
+        <img class="photo" src={asset('img/people/bob-ruffolo.jpg')} alt="Bob Ruffolo" />
+        <p class="eyebrow">Why IMPACT Exists</p>
+        <h2>We Teach Companies to Do This Themselves</h2>
+        <p>IMPACT was founded in 2009 in Cheshire, Connecticut. Since then more than 300 companies have used the system to become the most trusted voice in their market.</p>
+        <p>We run on the system we sell: published prices, honest comparisons, and a guarantee. This site is the proof.</p>
+        <blockquote class="quote"><p>If we miss the mark, we make it right.</p><footer><b>The IMPACT guarantee</b></footer></blockquote>
+        <div class="actions close"><a class="btn" href={href('impact', '/about')}>About IMPACT</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>12 · Testimonial Slider</b><span>Testimonials component, .testimonials: one quote at a time in a panel, the person under it, arrows, dots, and a counter. Shown here on the dark band; works on any section.</span></div>
+  </div>
+  <section class="section dark center">
+    <div class="wrap">
+      <p class="eyebrow">Growth and Success</p>
+      <h2>What Clients Say</h2>
+      <Testimonials items={quotes} />
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>13 · CTA Band</b><span>.section.alt.center.closer: H2, intro, two buttons. Buttons stack full width under 560px.</span></div>
+  </div>
+  <section class="section alt center closer final">
+    <div class="wrap">
+      <h2>Ready to See What AI Says About You?</h2>
+      <p class="intro">It starts with a free diagnostic and takes about a minute. No form first.</p>
+      <div class="actions">
+        <a class="btn primary" href={href('impact', '/instant-diagnostic')}>Run the Free Diagnostic</a>
+        <a class="btn" href={href('impact', '/talk')}>Let’s Talk</a>
+      </div>
+    </div>
+  </section>
 </Site>

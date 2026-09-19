@@ -1,0 +1,54 @@
+---
+// Testimonial slider. Pattern from georgebthomas.com/coaching "What Humans Say" (2026-09-19): one quote
+// at a time in a panel, the person under it, previous/next arrows with position dots and a counter.
+// Quotes must be verbatim and attributed, and checked against the banned list in the vault
+// (50-resources/impact/testimonials-library.md) before they go in.
+import { asset } from '../lib/site';
+
+interface Quote { q: string; who: string; title?: string; co?: string; img?: string }
+interface Props { items: Quote[]; class?: string }
+const { items, class: cls } = Astro.props;
+---
+
+<div class:list={['testimonials', cls]} data-slider>
+  <div class="panel">
+    <ul>
+      {items.map((t, i) => (
+        <li data-active={i === 0 ? '' : undefined} aria-hidden={i === 0 ? undefined : 'true'}>
+          <blockquote class="say"><p>{t.q}</p></blockquote>
+          <div class="who">
+            {t.img && <img src={asset(`img/people/${t.img}`)} alt="" />}
+            <b>{t.who}</b>
+            {(t.title || t.co) && <span>{[t.title, t.co].filter(Boolean).join(', ')}</span>}
+          </div>
+        </li>
+      ))}
+    </ul>
+    <div class="nav">
+      <button class="arrow prev" type="button" aria-label="Previous testimonial"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button>
+      <div class="dots" role="tablist">
+        {items.map((_, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} aria-label={`Testimonial ${i + 1}`}></button>)}
+      </div>
+      <button class="arrow next" type="button" aria-label="Next testimonial"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg></button>
+    </div>
+    <p class="count" aria-live="polite"><span>1</span>/{items.length}</p>
+  </div>
+</div>
+
+<script>
+  for (const s of document.querySelectorAll<HTMLElement>('[data-slider]')) {
+    const slides = [...s.querySelectorAll<HTMLElement>('ul > li')];
+    const dots = [...s.querySelectorAll<HTMLButtonElement>('.dots button')];
+    const count = s.querySelector<HTMLElement>('.count span');
+    let i = 0;
+    const go = (n: number) => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((el, k) => { el.toggleAttribute('data-active', k === i); el.setAttribute('aria-hidden', String(k !== i)); });
+      dots.forEach((d, k) => d.setAttribute('aria-selected', String(k === i)));
+      if (count) count.textContent = String(i + 1);
+    };
+    s.querySelector('.prev')?.addEventListener('click', () => go(i - 1));
+    s.querySelector('.next')?.addEventListener('click', () => go(i + 1));
+    dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+  }
+</script>

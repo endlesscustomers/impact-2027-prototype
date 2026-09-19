@@ -140,6 +140,21 @@ The two sites share every rule. Endless Customers differs only by its logo, its 
 - **Feature** `Feature` component, `.feature`: media one side, content the other (zoom.com Workplace page, Orbit Media service pages). Props: `media` left or right; `ratio` 30, 40, 50, 60, or 70 for the media column's share; `eyebrow` (accent, plain text), `heading`, one `cta`, and a copy slot that takes `.intro` (24px), `.regular` (18px at 400), or both, Orbit's lede-then-detail rhythm. Image corners 24px, columns vertically centred, 64px gap. Under 900px it stacks with the media above the content whichever side it sat on.
 - **FAQ** `.section.center` + `.faqs`: mirrors the EC guarantee page. Centred H2, one 800px column, hairlines between questions, General Sans bold question at `--fs-h3`, a 25px plus circle drawn by `summary::after` that becomes a minus when open, 18px regular answer in `--ink-2`. `details[name="faq"]` keeps one open at a time. The old `.plus` span is no longer needed and is hidden if present.
 
+### From georgebthomas.com/coaching (2026-09-19)
+
+All built on the existing primitives (`.section`, `.grid`, `.card`, `.tag`, `.badge`, `.quote`, `.btn`, `.actions`, the eyebrow, the link rule). The reference page's layouts were kept; its decoration (glows, pulses, action dots, serif prices) was not.
+
+- **Section eyebrow** `.section .eyebrow`: accent, `--w-ui`, plain text, above the H2. Use with `.section.center` for the centred header pattern (eyebrow, H2, `.intro`).
+- **Dark band** `.section.dark`: a section that keeps the page hue and flips to the dark neutrals (same oklch formulas as dark mode). Its text accent is `--accent-dark`, a per-theme token next to `--accent`. Cards inside take `--fill` and `--line`. Body gray on a card in the band measures 4.68:1.
+- **Detail cards** `.grid.c2` + `.card.detail`: `.head` (H3 and a `.tag`), optional `ul.stats` (value at `--fs-h3`, label at `--fs-body`), a paragraph, `ul.checks` (accent check marks), one `.more` link.
+- **Icon cards** `.grid.c3` + `.card.icon`: centred, a 64px `.disc` in 14% accent holding a 28px line icon, H3, one paragraph. Meant for the dark band but works on any section.
+- **Timeline** `ol.timeline`: four numbered discs on a hairline (drawn by each item's `::before` and `::after`, so any count works), a centred `.card` under each with a `.tag`, H3, one line. One column without the rule under 900px.
+- **Pricing tiers** `.grid.c3` + `.card.tier`: H3, `.hours`, `.price` at `--fs-h2`, `.rate`, a paragraph, `ul.checks`, a full-width `.btn` pinned to the bottom. `.rec` plus a corner `.badge` marks the recommended tier. Prices come from a verified source; the library uses the live-site HubSpot training programs.
+- **Callout** `.callout`: one soft `--fill` panel, 760px, centred: H3, paragraph, optional `.price`, one button. Sits under a grid with `margin-top: 40px`.
+- **Story card** `.story`: 760px `--bg-panel` card with a 180px round `.photo` lifted 90px over its top edge, eyebrow, H2, `.regular` paragraphs, the standard `blockquote.quote`, one button.
+- **Testimonial slider** `Testimonials` component, `.testimonials`: one quote at a time (`--fs-lg`, `--w-para`, `--ink`) in a 900px panel, the person under it (`b` name, `--ink-3` title), 44px outline arrows, 10px position dots (accent when selected), a counter. Quotes verbatim and checked against the banned list.
+- **CTA band** `.section.alt.center.closer`: H2, `.intro`, two buttons. Buttons stack full width under 560px. Named `closer` because `.cta` is the header pill.
+
 ## Accent as text (2026-09-19)
 
 Text accents and button fills are separate tokens. In light mode the blue and magenta text accents are 4% darker than their fills (`#0966F2` for `#0A6CFF`, `#CB2393` for `#D6269B`) so an 18px link clears 4.5:1 on the tinted page surface, the darkest place a link sits; measured 4.57 and 4.53. HubSpot and Swell already clear it. Dark mode accents are unchanged and measure 4.58 or better on every surface. Buttons keep the brighter fill. If a new theme is added, measure its accent on `--bg-page` before using it for text.
