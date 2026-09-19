@@ -1,6 +1,7 @@
 ---
 // Announcement ribbon under the header. Shape borrowed from zoom.com (inset, rounded, text + pill + close);
 // behavior borrowed from apple.com (the message changes by section). Dismissal is per message and remembered.
+// The bar itself is not a link and has no hover; only the pill links (Bob, 2026-09-19).
 import type { Ribbon, SiteId } from '../lib/site';
 import { href } from '../lib/site';
 
@@ -14,11 +15,11 @@ const pick = ribbons.find((r) => r.on.some((p) => (p === '/' ? clean === '/' : c
 {pick && (
   <div class="ribbon-wrap" data-ribbon={pick.id} hidden>
     <div class="wrap">
-      <a class="ribbon" href={href(pick.site ?? site, pick.path)}>
+      <div class="ribbon">
         <span class="long">{pick.text}</span>
         <span class="short">{pick.short ?? pick.text}</span>
-        <span class="pill">{pick.cta} →</span>
-      </a>
+        <a class="pill" href={href(pick.site ?? site, pick.path)}>{pick.cta} →</a>
+      </div>
       <button class="x" type="button" aria-label="Dismiss" data-dismiss>
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
       </button>

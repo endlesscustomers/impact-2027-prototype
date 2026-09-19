@@ -2,7 +2,7 @@
 
 How to build a page so it matches every other page, on both sites. `src/styles/global.css` is the single stylesheet; this file says what is in it and the rules for adding to it. When the sites move into HubSpot, the tokens become theme fields and the page blocks become modules, so keep both clean.
 
-Bob confirmed the copy rule, the fonts, the type scale, the themes, and the writing rules on 2026-09-19.
+Bob confirmed the copy rule, the fonts, the type scale, the themes, the writing rules, and the no-dash rule on 2026-09-19.
 
 ## Copy: capitalization
 
@@ -15,7 +15,7 @@ Bob confirmed the copy rule, the fonts, the type scale, the themes, and the writ
 - tooltips and tags
 
 **Sentence case** for anything that reads as prose: body copy, ledes, intros, card descriptions, quotes, captions under a stat, the ribbon, footer text.
-- Announcement ribbon: text at `--fs-body` / `--w-regular` in `--ink-2` (the body gray, never ink); the pill inside it keeps `--w-ui`. Ribbon gray measures 4.71:1 on its fill in both modes.
+- Announcement ribbon: text at `--fs-body` / `--w-regular` in `--ribbon-ink` on `--ribbon-bg`, the ribbon's own pair of tokens (a solid fill one step darker than `--fill`, in the page hue, and the body gray nudged darker to hold AA on it: about 5.3:1 light, 5.1:1 dark). The bar is not a link and has no hover state; only the pill links, and it keeps `--w-ui` with the `.btn.grad` hover (Bob, 2026-09-19).
 
 **The one exception:** a multi-sentence editorial headline stays in sentence case. *Two ways to start. Both are free.* keeps its shape. A single-sentence headline is title case and drops its period: *What It Costs, in Plain Numbers*.
 
@@ -26,6 +26,14 @@ How to title-case (AP style):
 - Product and company names keep their own casing: HubSpot, IMPACT, Endless Customers, AI, CRM. Domains stay lowercase: impactplus.com.
 
 `node scripts/check-copy.mjs` lists every label and heading that breaks the rule. `--fix` rewrites them. Run it before committing copy.
+
+## Copy: dashes
+
+**No em dashes (—) and no en dashes (–) anywhere a visitor reads**, including dates, number ranges, times, and prices (Bob, 2026-09-19). Use a hyphen: *October 5-7, 2026*, *$30K-$60K*, *10-15%*, *4-6 weeks*, *9-11 a.m.* Where a sentence wants an em dash, use a comma, a period, or a colon instead. A dash between two words in a heading is not an exception: *What It Costs, in Plain Numbers*, not *What It Costs — in Plain Numbers*.
+
+The one place the em dash is allowed is as a data separator: `outlines.ts` writes an item as `'Label — detail'` and `Outline.astro` splits on it, so the dash itself is never rendered. Do not use that separator in a `text` or `links` block, or in an `h`, `lede`, or `p` field, because those render as written.
+
+`node scripts/check-copy.mjs` flags every en and em dash in copy. `--fix` turns en dashes into hyphens; an em dash needs a rewrite, so it is listed and left for a human.
 
 ## Fonts
 
@@ -52,7 +60,7 @@ Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-
 
 Weights are a ladder (Bob, 2026-09-19): `--w-para` 700 for the 24px paragraph, the lede, and FAQ questions; `--w-body` and `--w-ui` 600 for 18px body, nav, buttons, and titles inside lists; `--w-regular` 400 for `.regular`, fine print, and the footer; `--w-bold` 700 for headings only; `--w-regular` 400 and `--w-light` 300 exist for later. **Bold inside copy is a colour change, not a weight change** (Bob, 2026-09-19): `strong` and `b` inherit the paragraph's weight and take `--ink-max`. The one exception is the `.regular` paragraph, where bold also steps from 400 to `--w-body`. Line heights: 24 → 31 (tighter than Apple's 1.38, Bob's call), 18 → 26 and 15 → 22 (Apple's ratios).
 
-Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold. Includes the two foot links in the How We Help dropdown (guarantee, compare) and the announcement ribbon, whose hover is the same underline rather than a darker fill.
+Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold. Includes the two foot links in the How We Help dropdown (guarantee, compare). The announcement ribbon is not a link: its text has no hover, and only its pill is clickable.
 
 ## Colour and themes
 
@@ -75,6 +83,7 @@ Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`
 | `--line` `--line-strong` | Rules and card borders; button outlines and list heads |
 | `--accent` `--accent-hover` `--accent-fill` `--accent-fill-hover` `--accent-ink` | Text accents; button fills; text on a fill |
 | `--menu-bg` `--frost` `--bar-bg` `--fill` `--fill-hover` | Dropdown card; the header band and the whole page behind an open menu (one surface, no seam); section pill; soft fills |
+| `--ribbon-bg` `--ribbon-ink` | The announcement ribbon only: its solid fill, one step darker than `--fill`, and its text gray (AA on that fill); the black theme's dark ribbon is the panel gray |
 | `--shadow` `--shadow-card` `--shadow-bar` | Site cards; dropdown card; section pill |
 | `--header-h` `--logo-h` `--logo-ec-h` `--ctrl-h` `--cta-font` `--cta-pad` | Tall header at the top of the page; `html[data-scrolled]` swaps in the compact set |
 | `--ease` | The one curve. .15s colour, .2 to .25s size and position, .28 to .32s panels arriving |
@@ -83,7 +92,7 @@ A hex value belongs in the token block or the theme block, nowhere else. Two mas
 
 ## Writing rules
 
-Read like Apple, HubSpot, and Orbit Media. Sentences average under 20 words. A paragraph is one to three sentences, under 50 words. A section carries one idea and under about 120 words of prose, plus a list or cards. Three or more parallel items become a list. Lines run 45 to 75 characters; `--measure` handles it, and anything wider is a layout bug. No orphan words in headings or body; the wrap defaults handle it, so do not force line breaks.
+Read like Apple, HubSpot, and Orbit Media. Sentences average under 20 words. A paragraph is one to three sentences, under 50 words. A section carries one idea and under about 120 words of prose, plus a list or cards. Three or more parallel items become a list. Lines run 45 to 75 characters; `--measure` handles it, and anything wider is a layout bug. No orphan words in headings or body; the wrap defaults handle it, so do not force line breaks. No em or en dashes anywhere, including date ranges; a hyphen instead (see Copy: dashes).
 
 ## Space and shape
 

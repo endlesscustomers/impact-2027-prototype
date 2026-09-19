@@ -69,6 +69,8 @@ body {
   --bar-bg:   oklch(from var(--tint) .960 calc(.022 * var(--c)) h / .72); /* frosted section pill */
   --fill:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .05);
   --fill-hover: oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .08);
+  --ribbon-bg:  oklch(from var(--tint) .945 calc(.022 * var(--c)) h); /* the announcement ribbon's own surface: one step darker than --fill, solid, in the page hue (Bob, 2026-09-19) */
+  --ribbon-ink: oklch(from var(--tint) .490 calc(.050 * var(--c)) h); /* ribbon text: body gray nudged darker so it holds AA on the darker fill (about 5.3:1; --ink-2 would be 4.4:1) */
   --ink:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h);   /* headings, strong text */
   --ink-2:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* body copy: about 4.7:1 on the page surface, the darkest place a paragraph sits; AA with room for bold to pop (Bob, 2026-09-19) */
   --ink-3:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* captions match body: any lighter fails AA on the page surface */
@@ -91,6 +93,8 @@ html[data-dark] body {
   --bar-bg:   oklch(from var(--tint) .300 calc(.050 * var(--c)) h / .72);
   --fill:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .08);
   --fill-hover: oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .12);
+  --ribbon-bg:  oklch(from var(--tint) .279 calc(.050 * var(--c)) h); /* lifts off the page like a panel, in the page hue */
+  --ribbon-ink: oklch(from var(--tint) .680 calc(.030 * var(--c)) h); /* about 5.1:1 on the ribbon fill */
   --ink:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h);
   --ink-2:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* about 4.7:1 on a dark panel, the darkest place a paragraph sits */
   --ink-3:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* captions match body for the same reason */
@@ -110,7 +114,7 @@ html[data-dark] body[data-accent="hubspot"] { --accent: #FF7A45; --accent-hover:
 body[data-accent="swell"] { --tint: #132D62; --accent: #007A73; --accent-hover: #006E68; --accent-fill: #007A73; --accent-fill-hover: #006E68; } /* deep-blue neutrals, teal actions: the water in Swell's hero */
 html[data-dark] body[data-accent="swell"] { --accent: #00A69C; --accent-hover: #33C2B9; }
 body[data-accent="black"] { --c: 0; --tint: #000000; } /* true grayscale; blue, green, and magenta stay available as accents */
-html[data-dark] body[data-accent="black"] { --bg: #000000; --bg-page: #000000; --bg-panel: #1d1d1f; --menu-bg: #1d1d1f; --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18); }
+html[data-dark] body[data-accent="black"] { --bg: #000000; --bg-page: #000000; --bg-panel: #1d1d1f; --menu-bg: #1d1d1f; --ribbon-bg: #1d1d1f; --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18); }
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
@@ -280,6 +284,26 @@ li[data-when="proof"] { display: none; }
 .hero h1, .display { max-width: var(--measure-h1); }
 .hero .lede, .lede { margin: 22px 0 0; font-size: var(--fs-lede); line-height: var(--lh-lede); font-weight: var(--w-para); letter-spacing: var(--tr-para); color: var(--ink-lg); max-width: var(--measure); }
 .lede b { color: var(--ink-max); }
+/* hero variants (module library, 2026-09-19) */
+.hero.center .wrap { text-align: center; }
+.hero.center h1, .hero.center .lede { margin-left: auto; margin-right: auto; }
+.hero.center .actions { justify-content: center; }
+.hero.split .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 56px; }
+.hero .media .frame { aspect-ratio: 16 / 9; border-radius: 16px; background: var(--fill); border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+.hero .media .frame img, .hero .media .frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero .media .play { width: 64px; height: 64px; border-radius: 50%; background: var(--accent-fill); display: grid; place-items: center; }
+.hero .media .play::after { content: ''; margin-left: 5px; border-left: 20px solid var(--accent-ink); border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
+.hero .media .cap { margin: 12px 0 0; color: var(--ink-3); font-size: var(--fs-fine); line-height: var(--lh-fine); font-weight: var(--w-regular); }
+.section.center { text-align: center; }
+.section.center h2, .section.center .intro { margin-left: auto; margin-right: auto; }
+/* module library chrome: the bar above each example */
+.mod-bar { background: var(--bg-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; color: var(--ink-3); font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: var(--w-ui); }
+.mod-bar .wrap { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; }
+.mod-bar span { font-weight: var(--w-regular); }
+.mod-bar.lead { padding: 20px 0; }
+.entry .tools { margin: 16px 0 0; font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-ui); }
+.entry .tools a { color: var(--accent); text-decoration: none; text-decoration-thickness: var(--ul-thick); text-underline-offset: var(--ul-offset); }
+.entry .tools a:hover { text-decoration-line: underline; }
 .wordmark { height: 28px; width: auto; margin-bottom: 20px; }
 /* Endless Customers wordmark above a heading */
 html[data-dark] .wordmark { filter: invert(1); }
@@ -355,18 +379,22 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .prices b { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .prices .note { display: block; font-size: var(--fs-body); color: var(--ink-3); border: 0; line-height: var(--lh-body) }
 /* FAQ accordion */
-.faqs { max-width: 800px; border-top: 1px solid var(--line-strong); }
+/* FAQ module. Mirrors the EC guarantee page's FAQ (Bob, 2026-09-19): one 800px column, hairlines between
+   questions, General Sans bold question, a 25px plus circle that becomes a minus, 18px regular answer.
+   One open at a time via details[name]. */
+.faqs { max-width: 800px; border-top: 1px solid var(--line); }
+.section.center .faqs { margin: 0 auto; text-align: left; }
 .faq { border-bottom: 1px solid var(--line); }
-.faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; cursor: pointer; }
+.faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; cursor: pointer; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq h3 { margin: 0; font-family: var(--font-body); font-size: var(--fs-lg); font-weight: var(--w-para); letter-spacing: var(--tr-para); line-height: var(--lh-lg) }
-.faq summary:hover h3 { color: var(--accent); }
-.faq .plus { position: relative; flex: none; width: 14px; height: 14px; }
-.faq .plus::before, .faq .plus::after { content: ''; position: absolute; background: var(--ink-3); transition: transform .2s var(--ease); }
-.faq .plus::before { left: 0; top: 6px; width: 14px; height: 2px; }
-.faq .plus::after { left: 6px; top: 0; width: 2px; height: 14px; }
-.faq[open] .plus::after { transform: rotate(90deg); }
-.faq p { margin: 0 0 20px; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); max-width: var(--measure); text-wrap: pretty; }
+.faq h3 { margin: 0; font-family: var(--font-head); font-size: var(--fs-h3); font-weight: var(--w-bold); letter-spacing: var(--tr-title); line-height: var(--lh-h3); color: var(--ink); }
+.faq summary::after { content: ''; flex: none; width: 25px; height: 25px; border-radius: 50%; border: 1px solid var(--ink); box-sizing: border-box; transition: background .15s var(--ease);
+  background: linear-gradient(var(--ink), var(--ink)) center / 11px 1px no-repeat, linear-gradient(var(--ink), var(--ink)) center / 1px 11px no-repeat; }
+.faq[open] summary::after { background: linear-gradient(var(--ink), var(--ink)) center / 11px 1px no-repeat; }
+.faq summary:hover::after { background-color: var(--fill); }
+.faq .plus { display: none; } /* older markup carried its own icon; the icon is now the summary's ::after */
+.faq p { margin: 0 0 24px; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-regular); max-width: var(--measure); text-wrap: pretty; }
+.faq p b, .faq p strong { font-weight: var(--w-body); color: var(--ink-max); }
 /* Quote */
 .quote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line-strong); display: flex; flex-direction: column; }
 .quote p { margin: 0; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink); text-wrap: pretty; }
@@ -416,6 +444,7 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
   :root { --header-h: 56px; --logo-h: 30px; --logo-ec-h: 40px; --ctrl-h: 36px; --cta-font: var(--fs-ui); --cta-pad: 16px; }
   .sheet, .scrim { display: none; }
   .hero { padding: 56px 0 48px; }
+  .hero.split .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero.ms-hero { padding: 40px 0 32px; }
   .hero-grid, .split { grid-template-columns: 1fr; gap: 28px; }
   .section { padding: 48px 0; }
@@ -440,11 +469,11 @@ a.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 /* full-bleed like the header; same 32px gutter so the ribbon's edges line up with the logo and the button */
 .ribbon { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: var(--w-regular); /* announcement text is the thin style (Bob, 2026-09-19) */
   min-height: 48px; padding: 8px 48px 8px 20px; border-radius: 12px;
-  background: var(--fill); color: var(--ink-2); /* body gray, not ink (Bob, 2026-09-19) */ font-size: var(--fs-body); line-height: var(--lh-body);
-  transition: background .15s var(--ease); }
-.ribbon:hover .long, .ribbon:hover .short { text-decoration-line: underline; text-decoration-thickness: var(--ul-thick); text-underline-offset: var(--ul-offset); } /* hover follows the site link rule: colour stays, underline appears; a darker fill on hover dropped the gray under AA */
+  background: var(--ribbon-bg); color: var(--ribbon-ink); /* the ribbon's own surface and gray; the bar is not a link and has no hover state (Bob, 2026-09-19) */ font-size: var(--fs-body); line-height: var(--lh-body); }
 .ribbon .short { display: none; }
-.ribbon .pill { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; background: var(--grad); color: var(--accent-ink); font-weight: var(--w-ui); font-size: var(--fs-body); line-height: var(--lh-body); white-space: nowrap; }
+.ribbon .pill { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; background: var(--grad); color: var(--accent-ink); font-weight: var(--w-ui); font-size: var(--fs-body); line-height: var(--lh-body); white-space: nowrap; text-decoration: none; transition: filter .15s var(--ease), transform .15s var(--ease); } /* the only link in the ribbon */
+.ribbon .pill:hover { filter: brightness(1.08); } /* same hover as .btn.grad */
+.ribbon .pill:active { transform: scale(.98); }
 .ribbon-wrap[hidden] { display: none; }
 @media (max-width: 734px) {
   .ribbon-wrap { padding: 10px 0 0; }
