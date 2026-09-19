@@ -228,7 +228,7 @@ const crosses = (l: NavLink) => l.site && l.site !== site;
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
   function applyTheme(pick: string | null) {
     if (pick) root.setAttribute('data-theme', pick); else root.removeAttribute('data-theme');
-    const dark = pick ? pick === 'dark' : mq.matches;
+    const dark = pick ? pick === 'dark' : root.hasAttribute('data-default-dark') || mq.matches; // the black theme opens dark
     dark ? root.setAttribute('data-dark', '') : root.removeAttribute('data-dark');
     themeBtns.forEach((b) => b.setAttribute('aria-label', dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'));
   }

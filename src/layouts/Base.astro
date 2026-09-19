@@ -2,23 +2,28 @@
 // Every page in the prototype goes through this: noindex on all of them, the one stylesheet,
 // and the pre-paint theme read so dark mode never flashes.
 import '../styles/global.css';
+import gs700 from '../fonts/general-sans-700.woff2?url';
 
 interface Props {
   /** Service microsite page: header scrolls away, section pill takes over (see SectionBar). */
   microsite?: boolean;
   /** Hook for page-specific CSS in global.css: body[data-page="…"]. */
   page?: string;
+  /** Page theme: blue | magenta | hubspot | swell | black (body[data-accent]). */
+  accent?: string;
+  /** The black theme opens in dark mode unless the visitor has picked a mode. */
+  defaultDark?: boolean;
   title: string;
   description?: string;
   /** Which site's favicon to use. */
   favicon?: 'impact' | 'ec';
 }
-const { title, description = '', favicon = 'impact', microsite = false, page } = Astro.props;
+const { title, description = '', favicon = 'impact', microsite = false, page, accent = 'blue', defaultDark = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
-<html lang="en" data-microsite={microsite ? "" : undefined}>
+<html lang="en" data-microsite={microsite ? "" : undefined} data-default-dark={defaultDark ? "" : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,8 +31,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="icon" href={`${base}/favicon-${favicon}.ico`} sizes="any" />
-    <link rel="preload" href={`${base}/fonts/general-sans-600.woff2`} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={`${base}/fonts/general-sans-400.woff2`} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={gs700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-400.woff2" as="font" type="font/woff2" crossorigin />
     <slot name="head" />
     <script is:inline>
       // Runs before first paint. Mirrors the toggle logic in Header.astro.
@@ -36,12 +41,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         try { pick = localStorage.getItem('impact-theme'); } catch (e) {}
         var root = document.documentElement;
         if (pick) root.setAttribute('data-theme', pick);
-        var dark = pick ? pick === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        var dark = pick ? pick === 'dark' : root.hasAttribute('data-default-dark') || matchMedia('(prefers-color-scheme: dark)').matches;
         if (dark) root.setAttribute('data-dark', '');
       })();
     </script>
   </head>
-  <body data-page={page}>
+  <body data-page={page} data-accent={accent}>
     <slot />
   </body>
 </html>

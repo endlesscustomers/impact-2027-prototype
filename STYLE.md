@@ -2,7 +2,7 @@
 
 How to build a page so it matches every other page, on both sites. `src/styles/global.css` is the single stylesheet; this file says what is in it and the rules for adding to it. When the sites move into HubSpot, the tokens become theme fields and the page blocks become modules, so keep both clean.
 
-Bob confirmed the copy rule and this file on 2026-09-19. Type sizes, weights, and spacing below are what the prototype uses today; aligning them is the next conversation, so treat that section as a record, not a decision.
+Bob confirmed the copy rule, the fonts, the type scale, the themes, and the writing rules on 2026-09-19.
 
 ## Copy: capitalization
 
@@ -26,54 +26,71 @@ How to title-case (AP style):
 
 `node scripts/check-copy.mjs` lists every label and heading that breaks the rule. `--fix` rewrites them. Run it before committing copy.
 
-## Tokens
+## Fonts
 
-Everything that can be a token is one. Never write a hex value or an rgba in a rule; add a token. Dark mode keys off `html[data-dark]`, which `Base.astro` sets before first paint from the system preference or the visitor's choice, so each dark value is declared once.
+General Sans for headings (`--font-head`, self-hosted, weights 400 to 700; it has no 800). Proxima Nova for body and UI (`--font-body`, loaded from the four weights impactplus.com already serves). Bob, 2026-09-19.
 
-| Group | Tokens | Use |
-|---|---|---|
-| Surfaces | `--bg` `--bg-panel` `--bg-page` | `--bg-page` is the page; `--bg` is the header, hero, alt sections, and cards; `--bg-panel` is a raised panel on the page colour. In light mode `--bg` and `--bg-panel` are both white. |
-| Menus | `--menu-bg` `--menu-tint` `--bar-bg` | Dropdown card, the tint behind an open menu, the frosted section pill. |
-| Fills | `--fill` `--fill-hover` | Soft fills on the ribbon, ghost button hover, small-menu row hover. |
-| Ink | `--ink` `--ink-2` `--ink-3` `--ink-max` | Headings; body and nav at rest; captions; the nav item on hover (pure black or white). |
-| Lines | `--line` `--line-strong` | Rules and card borders; the stronger one for button outlines and list heads. |
-| Accent | `--accent` `--accent-ink` `--grad` | Blue and the text on it. `--grad` is the Endless Customers gradient and appears only on that site's buttons, the ribbon pill, and the EC step numbers. |
-| Elevation | `--shadow` `--shadow-card` `--shadow-bar` | Site cards; the dropdown card; the section pill. |
-| Header | `--header-h` `--logo-h` `--logo-ec-h` `--ctrl-h` `--cta-font` `--cta-pad` | The tall header at the top of the page. `html[data-scrolled]` swaps in the compact set. |
-| Motion | `--ease` | The one curve. Durations are .15s for colour, .2s to .25s for size and position, .28s to .32s for panels arriving. |
+## Type scale
 
-## Type (current, alignment pending)
+Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-weight`, `letter-spacing`, and `font-family` in the stylesheet is a token; `scripts/check-css.mjs` fails on a literal.
 
-One family: General Sans, weights 400, 500, 600 loaded (700 is loaded but unused). Body is 16px / 1.5.
+| Token | Size | Line height | Weight | Use |
+|---|---|---|---|---|
+| `--fs-display` | 44 to 80 (fluid) | 1.05 | 700 | H1 |
+| `--fs-h2` | 32 to 48 (fluid) | 1.08 | 700 | Section H2, stats |
+| `--fs-h3` | 24 | 1.15 | 700 | Card, step, and block titles; prices |
+| `--fs-lede` | 21 to 28 (fluid) | 1.3 | 400 | The line under the H1 |
+| `--fs-lg` | 21 | 1.4 | 400 | Primary paragraphs, intros, quotes, FAQ questions |
+| `--fs-body` | 18 | 1.5 | 400 | Everything else that is read: cards, lists, buttons, menu links |
+| `--fs-label` | 15 | 1.4 | 500 | Nav items, eyebrows, captions, column headers, small buttons |
+| `--fs-fine` | 14 | 1.45 | 400 | Footer, legal, tags, badges |
 
-| Role | Size | Weight | Tracking |
-|---|---|---|---|
-| H1, `.display` | clamp(34, 5vw, 56) | 600 | -.03em, line-height 1.06 |
-| Section H2 | clamp(26, 3vw, 36) | 600 | -.025em, line-height 1.12 |
-| Stat | clamp(36, 4vw, 52) | 600 | -.03em |
-| Price | 28 | 600 | -.02em |
-| Big card / service H3 | 22 to 24 | 600 | -.02em |
-| Card H3, FAQ question | 18 | 600 / 500 | -.015em / -.01em |
-| Lede | 19 | 400 | |
-| Intro, prose, link list | 17 | 400 / 500 | |
-| Body | 16 | 400 | |
-| Nav, buttons, card text, notes | 15 | 500 / 400 | |
-| Small buttons, "More" links, footer | 14 | 500 / 400 | |
-| Captions, tooltips, crumbs, eyebrows | 13 | 400 / 500 | .01em on eyebrows |
-| Tags, group labels | 12 | 400 / 500 | |
-| Badges | 11 | 500 | .02em |
+Weights: `--w-body` 400, `--w-ui` 500, `--w-bold` 700. Tracking: `--tr-display` -.025em, `--tr-heading` -.02em, `--tr-title` -.01em, `--tr-label` .02em. Skew larger: when in doubt between two sizes, take the bigger one.
 
-That is fourteen sizes. The alignment conversation should decide the scale and cut it to something like eight.
+Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` with a 65-character measure (`--measure`); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); links inside copy are `--accent` and underline on hover. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
+
+## Colour and themes
+
+Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`: same lightness and chroma on every page, the hue from the page. Grays on a blue page lean blue; on a HubSpot page they lean plum. The recipe and the accent values come from the endlesscustomers.com redesign stylesheet so the two builds stay on brand. Neutrals are declared on `body`, not `:root`, because a custom property resolves where it is declared and the tint is set on the body.
+
+| `body[data-accent]` | Pages | Tint (neutrals) | Accent (text, links) | Fill (buttons) |
+|---|---|---|---|---|
+| `blue` | IMPACT default | `#0A6CFF` | `#0A6CFF` | `#0A6CFF` |
+| `magenta` | Website Services | `#D6269B` | `#D6269B` | `#D6269B` |
+| `hubspot` | HubSpot Services | plum `#5A1E46` | `#DE3E00` | orange `#FF4701` (white on it is 3.4:1, accepted as a brand decision) |
+| `swell` | Paid Media | navy `#132D62` | teal `#007A73` | teal `#007A73` |
+| `black` | endlesscustomers.com, Endless Customers Coaching | none (grayscale) | `#0A6CFF`; magenta and green available | the EC gradient stays on the primary button and ribbon pill |
+
+`Site.astro` sets the accent from the site and path. The black theme opens in dark mode unless the visitor has picked a mode. In dark mode text accents brighten and fills stay on brand so white button text keeps its contrast.
+
+| Token | Use |
+|---|---|
+| `--bg` `--bg-panel` `--bg-page` | Sections and cards; raised panels; the page |
+| `--ink` `--ink-2` `--ink-3` `--ink-max` | Headings; body copy; captions (AA on every light surface); bold and the nav hover |
+| `--line` `--line-strong` | Rules and card borders; button outlines and list heads |
+| `--accent` `--accent-hover` `--accent-fill` `--accent-fill-hover` `--accent-ink` | Text accents; button fills; text on a fill |
+| `--menu-bg` `--menu-tint` `--bar-bg` `--fill` `--fill-hover` | Dropdown card; page tint behind an open menu; section pill; soft fills |
+| `--shadow` `--shadow-card` `--shadow-bar` | Site cards; dropdown card; section pill |
+| `--header-h` `--logo-h` `--logo-ec-h` `--ctrl-h` `--cta-font` `--cta-pad` | Tall header at the top of the page; `html[data-scrolled]` swaps in the compact set |
+| `--ease` | The one curve. .15s colour, .2 to .25s size and position, .28 to .32s panels arriving |
+
+A hex value belongs in the token block or the theme block, nowhere else. Two mask images use `#000` as a shape, marked `/* raw */`.
+
+## Writing rules
+
+Read like Apple, HubSpot, and Orbit Media. Sentences average under 20 words. A paragraph is one to three sentences, under 50 words. A section carries one idea and under about 120 words of prose, plus a list or cards. Three or more parallel items become a list. Lines run 45 to 75 characters; the 65ch measure handles it, and anything wider is a layout bug. No orphan words in headings or body; the wrap defaults handle it, so do not force line breaks.
 
 ## Space and shape
 
 - Spacing runs on 4px: 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56, 72, 88, 96.
-- Sections are 72px top and bottom (48 on mobile). The hero is 88 / 72. The final section adds to 96.
+- Sections are 72px top and bottom (48 on mobile). The final section adds to 96.
 - Content width is 1200px with 24px gutters (`.wrap`); reading width is 760px (`.wrap.narrow`, `.steps`, `.prices`). The header and ribbon are full-bleed with 32px gutters.
 - Radii: 4 focus rings, 8 controls and tooltips, 12 the ribbon, 16 cards and panels, 20 dropdown cards and site cards, 999 pills and buttons.
-- Buttons are pills: `.btn` in the page (44px), `.cta` in the header (token-sized), `.pillbar .go` in the section pill (36px).
+- Buttons are pills: `.btn` in the page (48px, body size), `.cta` in the header (token-sized), `.pillbar .go` in the section pill (36px).
 
-## Page blocks
+## Page blocks (modules)
+
+**Module first.** Before writing a section, check this table. If the module exists, use it unchanged. If it does not, build it in the stylesheet, add a row here, then build the section with it. No page restyles a module, and no page builds its own FAQ, steps, quote, or card from scratch.
 
 Use these before writing new CSS. They live in the "Page blocks" section of the stylesheet and render the same on drafted pages and on outline pages.
 

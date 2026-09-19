@@ -20,5 +20,23 @@ for (const m of new Map([...pageSection.matchAll(/\[data-page="([^"]+)"\] \.([a-
 for (const f of walk('src').filter((f) => f.endsWith('.astro'))) {
   if (/<style[\s>]/.test(read(f))) { console.log(`style block: ${f} (move it into global.css)`); bad++; }
 }
+// Type and colour literals belong in the token block. Everything after it must use var(--fs-*), var(--lh-*), var(--w-*), var(--tr-*) and token colours.
+{
+  const start = css.indexOf('/* ---------- Base ---------- */');
+  const lines = css.slice(start).split('\n');
+  const checks = [
+    [/font-size:\s*(?=\S)(?!var\()[^;}]+/, 'font-size literal (use var(--fs-…))'],
+    [/line-height:\s*(?=\S)(?!var\()[^;}]+/, 'line-height literal (use var(--lh-…))'],
+    [/font-weight:\s*(?=\S)(?!var\()[^;}]+/, 'font-weight literal (use var(--w-…))'],
+    [/letter-spacing:\s*(?=\S)(?!var\()[^;}]+/, 'letter-spacing literal (use var(--tr-…))'],
+    [/#[0-9a-fA-F]{3,8}\b/, 'hex colour outside the token block (add a token)'],
+    [/font-family:\s*(?=\S)(?!var\(|inherit)[^;}]+/, 'font-family literal (use var(--font-head|--font-body))'],
+  ];
+  lines.forEach((line, n) => {
+    if (/\/\* raw \*\//.test(line) || /^\s*--/.test(line) || /^\s*\/\*/.test(line)) return;
+    const code = line.replace(/\/\*.*?\*\//g, '');
+    for (const [re, msg] of checks) { const m = code.match(re); if (m) { console.log(`literal: global.css:${start ? css.slice(0, start).split('\n').length + n : n + 1} ${msg}: ${m[0].trim().slice(0, 60)}`); bad++; } }
+  });
+}
 console.log(bad ? `${bad} problem(s)` : 'stylesheet OK: no chrome collisions, no page <style> blocks');
 process.exitCode = bad ? 1 : 0;
