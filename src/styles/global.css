@@ -78,7 +78,7 @@ html[data-dark] body {
   --bg:       oklch(from var(--tint) .208 calc(.055 * var(--c)) h);
   --bg-panel: oklch(from var(--tint) .279 calc(.050 * var(--c)) h);
   --bg-page:  oklch(from var(--tint) .208 calc(.055 * var(--c)) h);
-  --menu-bg:  oklch(from var(--tint) .150 calc(.040 * var(--c)) h);
+  --menu-bg:  oklch(from var(--tint) .262 calc(.075 * var(--c)) h);  /* dropdown card: lighter than the page and clearly in the page hue (Bob, 2026-09-19: dark menus must carry the theme colour) */
   --bar-bg:   oklch(from var(--tint) .300 calc(.050 * var(--c)) h / .72);
   --fill:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .08);
   --fill-hover: oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .12);
@@ -100,7 +100,7 @@ html[data-dark] body[data-accent="hubspot"] { --accent: #FF7A45; --accent-hover:
 body[data-accent="swell"] { --tint: #132D62; --accent: #007A73; --accent-hover: #006E68; --accent-fill: #007A73; --accent-fill-hover: #006E68; } /* deep-blue neutrals, teal actions: the water in Swell's hero */
 html[data-dark] body[data-accent="swell"] { --accent: #00A69C; --accent-hover: #33C2B9; }
 body[data-accent="black"] { --c: 0; --tint: #000000; } /* true grayscale; blue, green, and magenta stay available as accents */
-html[data-dark] body[data-accent="black"] { --bg: #000000; --bg-page: #000000; --bg-panel: #1d1d1f; --menu-bg: #000000; --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18); }
+html[data-dark] body[data-accent="black"] { --bg: #000000; --bg-page: #000000; --bg-panel: #1d1d1f; --menu-bg: #1d1d1f; --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18); }
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
