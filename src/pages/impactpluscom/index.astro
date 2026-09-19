@@ -337,7 +337,7 @@ const faqSchema = {
             <li>Your leadership team will commit people and time, not just a budget.</li>
             <li>You’re between $5M and $50M in revenue <span class="tag plan" title="Bob to confirm the range">confirm range</span>, in the US or Canada.</li>
           </ul>
-          <p class="intro" style="margin-bottom: 12px;">We know these industries best:</p>
+          <p class="intro tight">We know these industries best:</p>
           <ul class="list-links small inds">
             {industries.filter((l) => !l.whenProof).map((l) => <li><a href={href('impact', l.path)}>{l.label} <span class="arrow">→</span></a></li>)}
           </ul>
@@ -414,7 +414,7 @@ const faqSchema = {
           <img class="wordmark" src={asset('img/ec-logo-black.svg')} alt="Endless Customers" width="220" />
           <h2>The System Behind Everything We Do</h2>
           <p class="intro">Every service at IMPACT runs on <b>Endless Customers</b>, the national best-seller by Marcus Sheridan, previously known as <i>They Ask, You Answer</i>: become the most known, trusted, and recommended company in your market by answering what buyers ask, showing what others hide, and teaching your own team to do it. The book explains it. The coaching installs it. The other services do the parts you can’t yet.</p>
-          <div class="actions" style="margin-top: 8px;">
+          <div class="actions close">
             <a class="btn" href={href('ec', '/')}>Explore the System on endlesscustomers.com <span class="arrow">→</span></a>
             <a class="btn" href={href('ec', '/book')}>Get a Free Chapter</a>
           </div>
@@ -445,7 +445,7 @@ const faqSchema = {
       <div class="lc-head">
         <div>
           <h2>New From the Learning Center</h2>
-          <p class="intro" style="margin-bottom: 0;">Answers first, no forms. Searchable by the problem you have, your role, and your industry. <span class="tag plan" title="A live feed on the built site">feed</span></p>
+          <p class="intro last">Answers first, no forms. Searchable by the problem you have, your role, and your industry. <span class="tag plan" title="A live feed on the built site">feed</span></p>
         </div>
         <a class="btn" href={href('impact', '/learn')}>Explore the Learning Center <span class="arrow">→</span></a>
       </div>

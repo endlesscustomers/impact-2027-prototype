@@ -31,7 +31,7 @@ const cols = isEC ? ecCols : impactCols;
       <div class="brand">
         <a class:list={['logo', { ec: isEC }]} href={href(site, '/')} aria-label="Home">{isEC ? <ECLogo /> : <ImpactLogo />}</a>
         {isEC
-          ? <p>Endless Customers is a brand of <a href={href('impact', '/')} style="color: var(--ink); font-weight: 500;">IMPACT</a>, the company behind the system and the coaching.</p>
+          ? <p>Endless Customers is a brand of <a href={href('impact', '/')}>IMPACT</a>, the company behind the system and the coaching.</p>
           : <p>IMPACT helps companies become the most known, trusted, and recommended company in their market in the age of AI, and builds the systems and internal capabilities inside your business that keep it that way.</p>}
         {!isEC && <p class="addr">125 Commerce Ct STE 9, Cheshire, CT 06410 · (203) 265-4377 · Founded 2009 · Serving the US and Canada</p>}
       </div>

@@ -19,6 +19,7 @@ for (const m of new Map([...pageSection.matchAll(/\[data-page="([^"]+)"\] \.([a-
 }
 for (const f of walk('src').filter((f) => f.endsWith('.astro'))) {
   if (/<style[\s>]/.test(read(f))) { console.log(`style block: ${f} (move it into global.css)`); bad++; }
+  for (const m of read(f).matchAll(/\sstyle="[^"]*"/g)) { console.log(`inline style: ${f}: ${m[0].trim()} (add a class in global.css)`); bad++; }
 }
 // Type and colour literals belong in the token block. Everything after it must use var(--fs-*), var(--lh-*), var(--w-*), var(--tr-*) and token colours.
 {
@@ -31,6 +32,8 @@ for (const f of walk('src').filter((f) => f.endsWith('.astro'))) {
     [/letter-spacing:\s*(?=\S)(?!var\()[^;}]+/, 'letter-spacing literal (use var(--tr-…))'],
     [/#[0-9a-fA-F]{3,8}\b/, 'hex colour outside the token block (add a token)'],
     [/font-family:\s*(?=\S)(?!var\(|inherit)[^;}]+/, 'font-family literal (use var(--font-head|--font-body))'],
+    [/max-width:\s*[\d.]+ch\b/, 'measure literal (use var(--measure), var(--measure-h1), var(--measure-h2))'],
+    [/^(?=.*font-size: var\(--fs-)(?!.*line-height:).*$/, 'font-size without its line-height (each size token travels with an --lh-* token)'],
   ];
   lines.forEach((line, n) => {
     if (/\/\* raw \*\//.test(line) || /^\s*--/.test(line) || /^\s*\/\*/.test(line)) return;

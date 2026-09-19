@@ -32,7 +32,7 @@ General Sans for headings (`--font-head`, self-hosted, weights 400 to 700; it ha
 
 ## Type scale
 
-Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-weight`, `letter-spacing`, and `font-family` in the stylesheet is a token; `scripts/check-css.mjs` fails on a literal.
+Nine sizes, each with its line height. Every `font-size`, `line-height`, `font-weight`, `letter-spacing`, `font-family`, and `max-width` in characters is a token; `scripts/check-css.mjs` fails on a literal, and on a size token written without its line-height token.
 
 | Token | Size | Line height | Weight | Use |
 |---|---|---|---|---|
@@ -40,14 +40,17 @@ Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-
 | `--fs-h2` | 32 to 48 (fluid) | 1.08 | 700 | Section H2, stats |
 | `--fs-h3` | 24 | 1.15 | 700 | Card, step, and block titles; prices |
 | `--fs-lede` | 21 to 28 (fluid) | 1.3 | 400 | The line under the H1 |
-| `--fs-lg` | 21 | 1.4 | 400 | Primary paragraphs, intros, quotes, FAQ questions |
-| `--fs-body` | 18 | 1.5 | 400 | Everything else that is read: cards, lists, buttons, menu links |
-| `--fs-label` | 15 | 1.4 | 500 | Nav items, eyebrows, captions, column headers, small buttons |
+| `--fs-lg` | 21 | 1.4 | 400 | Primary paragraphs: section intros, prose blocks, FAQ questions, checklists |
+| `--fs-body` | 18 | 1.5 | 400 | Every other paragraph, list, note, and link: cards, steps, FAQ answers, price notes, stat captions, "More" links, buttons, menu links |
+| `--fs-nav` | 16 | 1.4 | 500 | Main nav items only (Bob, 2026-09-19) |
+| `--fs-label` | 15 | 1.4 | 500 | True labels: eyebrows, breadcrumbs, roles, attributions, column headers, tooltips, small buttons |
 | `--fs-fine` | 14 | 1.45 | 400 | Footer, legal, tags, badges |
+
+**Two paragraph sizes, one fine print (Bob, 2026-09-19).** If it is a sentence, it is `--fs-lg` or `--fs-body`, never `--fs-label`. A label is a word or a short phrase that names something: an eyebrow, a role, a caption under a portrait, an attribution. Fine print is the footer, legal, tags, and badges. Skew larger: when a paragraph could be either size, take 21.
 
 Weights: `--w-body` 400, `--w-ui` 500, `--w-bold` 700. Tracking: `--tr-display` -.025em, `--tr-heading` -.02em, `--tr-title` -.01em, `--tr-label` .02em. Skew larger: when in doubt between two sizes, take the bigger one.
 
-Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` with a 65-character measure (`--measure`); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); links inside copy are `--accent` and underline on hover. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
+Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); links inside copy are `--accent` and underline on hover. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
 
 ## Colour and themes
 
@@ -78,7 +81,7 @@ A hex value belongs in the token block or the theme block, nowhere else. Two mas
 
 ## Writing rules
 
-Read like Apple, HubSpot, and Orbit Media. Sentences average under 20 words. A paragraph is one to three sentences, under 50 words. A section carries one idea and under about 120 words of prose, plus a list or cards. Three or more parallel items become a list. Lines run 45 to 75 characters; the 65ch measure handles it, and anything wider is a layout bug. No orphan words in headings or body; the wrap defaults handle it, so do not force line breaks.
+Read like Apple, HubSpot, and Orbit Media. Sentences average under 20 words. A paragraph is one to three sentences, under 50 words. A section carries one idea and under about 120 words of prose, plus a list or cards. Three or more parallel items become a list. Lines run 45 to 75 characters; `--measure` handles it, and anything wider is a layout bug. No orphan words in headings or body; the wrap defaults handle it, so do not force line breaks.
 
 ## Space and shape
 
@@ -109,7 +112,7 @@ Use these before writing new CSS. They live in the "Page blocks" section of the 
 | Connects | `.section.connects` | The strategy strip at the foot of a page. |
 | Notes | `.also`, `.more`, `.tag`, `.badge`, `.stat` | Small furniture. |
 
-**No page carries its own `<style>` block, and the build never inlines CSS.** Every page links one stylesheet (Bob, 2026-09-19: "all the CSS not on the page but in our global CSS file"). Rules that are genuinely unique to one page, such as a credential card, a diagram, or a logo bar, go at the end of `global.css` under "Page-specific", prefixed with that page's hook: `[data-page="impact-hubspot"] .creds { … }`. The hook is `body[data-page]`, set by `Site.astro` from the site and path (`impact-home`, `impact-hubspot`, `ec-coaching`, `ec-how-to-implement`; the entry page is `entry`). If a second page needs the same rule, move it up into "Page blocks" and add a row here. **Page classes must not reuse a name the header, footer, ribbon, or section pill uses** (`services`, `who`, `foot`, `group`, `more`, `wrap` …), because the page hook is on `<body>` and the rule would reach the chrome too; that is how a border landed on the How We Help menu on 2026-09-19. `node scripts/check-css.mjs` catches collisions and stray `<style>` blocks. Fonts are declared in the stylesheet too; Vite prefixes the `/fonts/` paths with the site base at build time. The build uses PostCSS and esbuild, not Lightning CSS, because Lightning CSS without browser targets dropped unprefixed `backdrop-filter` and `mask-composite` from the live site (2026-09-19). Keep writing the unprefixed property first and the `-webkit-` twin after it.
+**No page carries its own `<style>` block or `style=""` attribute, and the build never inlines CSS.** A one-off margin is a class (`.intro.tight`, `.intro.last`, `.actions.close`), not an attribute. Every page links one stylesheet (Bob, 2026-09-19: "all the CSS not on the page but in our global CSS file"). Rules that are genuinely unique to one page, such as a credential card, a diagram, or a logo bar, go at the end of `global.css` under "Page-specific", prefixed with that page's hook: `[data-page="impact-hubspot"] .creds { … }`. The hook is `body[data-page]`, set by `Site.astro` from the site and path (`impact-home`, `impact-hubspot`, `ec-coaching`, `ec-how-to-implement`; the entry page is `entry`). If a second page needs the same rule, move it up into "Page blocks" and add a row here. **Page classes must not reuse a name the header, footer, ribbon, or section pill uses** (`services`, `who`, `foot`, `group`, `more`, `wrap` …), because the page hook is on `<body>` and the rule would reach the chrome too; that is how a border landed on the How We Help menu on 2026-09-19. `node scripts/check-css.mjs` catches collisions, stray `<style>` blocks, and inline `style` attributes. Fonts are declared in the stylesheet too; Vite prefixes the `/fonts/` paths with the site base at build time. The build uses PostCSS and esbuild, not Lightning CSS, because Lightning CSS without browser targets dropped unprefixed `backdrop-filter` and `mask-composite` from the live site (2026-09-19). Keep writing the unprefixed property first and the `-webkit-` twin after it.
 
 ## Both sites, one stylesheet
 
