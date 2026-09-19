@@ -41,15 +41,15 @@ Eight sizes, each with its line height. Every `font-size`, `line-height`, `font-
 | `--fs-h3` | 24 | 1.15 | 700 | Card, step, and block titles; prices |
 | `--fs-lede` | 21 to 28 (fluid) | 1.3 | 400 | The line under the H1 |
 | `--fs-lg` | 24 | 1.35 | 500 | Primary paragraphs: section intros, prose blocks, FAQ questions, checklists |
-| `--fs-body` | 18 | 1.5 | 400 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, tooltips, stat labels |
+| `--fs-body` | 18 | 1.5 | 400 | Everything else that is read or names something: paragraphs, lists, links, buttons, menu links, eyebrows, breadcrumbs, captions, roles, attributions, column headers, stat labels |
 | `--fs-ui` | 16 | 1.5 | 500 | Main nav items, the header pill, the section-pill button |
-| `--fs-fine` | 15 | 1.45 | 400 | Fine print only: footer, legal, text under a form, chips (tags, badges) |
+| `--fs-fine` | 15 | 1.45 | 400 | Fine print only: footer, legal, text under a form, chips (tags, badges), icon tooltips |
 
 **Two paragraph sizes, one fine print (Bob, 2026-09-19).** Paragraphs are 24 or 18. Anything that names something (an eyebrow, a role, a testimonial name, a caption, a column header) is 18, not smaller. 15 is only for places that truly need small type: the footer, legal lines, help text under a form field, and chips. Skew larger: when a paragraph could be either size, take 24.
 
 Weights: `--w-body` 400, `--w-ui` 500, `--w-bold` 700. The 24px paragraph is 500 (Bob, 2026-09-19); every other paragraph is 400. Tracking: `--tr-display` -.025em, `--tr-heading` -.02em, `--tr-title` -.01em, `--tr-label` .02em. Skew larger: when in doubt between two sizes, take the bigger one.
 
-Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); links inside copy are `--accent` and underline on hover. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
+Defaults the stylesheet applies so pages do not have to: headings are General Sans, 700, `text-wrap: balance`; paragraphs and list items are `text-wrap: pretty` at one measure (`--measure`, 56ch, which is about 70 characters in Proxima Nova; H1s take `--measure-h1`, H2s `--measure-h2`, and nothing sets a `ch` width directly); body copy is `--ink-2`; bold inside copy is `--ink-max`, the only pure black (white in dark mode); every text link outside the main navigation (copy, More links, breadcrumbs, link lists, the strategy strip, the footer) is `--accent` at rest and gains only an underline on hover, never a colour change (Bob, 2026-09-19); block links such as cards, service rows, and faces keep their own treatment. The hero fills about 88 percent of the first screen so the next section peeks below the fold.
 
 ## Colour and themes
 
