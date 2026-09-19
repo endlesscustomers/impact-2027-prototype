@@ -28,11 +28,11 @@ const pick = ribbons.find((r) => r.on.some((p) => (p === '/' ? clean === '/' : c
 
 <style>
   .wrap { position: relative; }
-  .x { position: absolute; right: 32px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; color: var(--ink-3); }
+  .x { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; color: var(--ink-3); }
   .x:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
   .x svg { width: 14px; height: 14px; }
   .x svg path { stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; }
-  @media (max-width: 734px) { .x { right: 6px; } }
+  @media (max-width: 734px) { .x { right: 18px; } }
 </style>
 
 <script is:inline>
