@@ -137,3 +137,7 @@ The two sites share every rule. Endless Customers differs only by its logo, its 
 - **Hero, side media** `.hero.side`: text left, a 16:9 frame right (`.media .frame` takes an `img` or `video`; the play button is the placeholder). Stacks under 900px. Not `.split`, which is the two-column content block.
 - **FAQ** `.section.center` + `.faqs`: mirrors the EC guarantee page. Centred H2, one 800px column, hairlines between questions, General Sans bold question at `--fs-h3`, a 25px plus circle drawn by `summary::after` that becomes a minus when open, 18px regular answer in `--ink-2`. `details[name="faq"]` keeps one open at a time. The old `.plus` span is no longer needed and is hidden if present.
 
+## Accent as text (2026-09-19)
+
+Text accents and button fills are separate tokens. In light mode the blue and magenta text accents are 4% darker than their fills (`#0966F2` for `#0A6CFF`, `#CB2393` for `#D6269B`) so an 18px link clears 4.5:1 on the tinted page surface, the darkest place a link sits; measured 4.57 and 4.53. HubSpot and Swell already clear it. Dark mode accents are unchanged and measure 4.58 or better on every surface. Buttons keep the brighter fill. If a new theme is added, measure its accent on `--bg-page` before using it for text.
+

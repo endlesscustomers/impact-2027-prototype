@@ -42,7 +42,7 @@
   --measure: 56ch; --measure-h1: 18ch; --measure-h2: 24ch; /* 56ch of Proxima Nova is about 70 characters; 65ch measured 79 to 87 */
 
   /* Accent: text accents (links, icons) and fills (buttons) are separate so dark mode can brighten one and keep the other on brand. */
-  --accent: #0A6CFF; --accent-hover: #0058E0;
+  --accent: #0966F2; --accent-hover: #0058E0; /* text accent, 4% darker than the #0A6CFF fill: 4.57:1 on the tinted page surface, the AA floor for 18px links (Bob, 2026-09-19) */
   --accent-fill: #0A6CFF; --accent-fill-hover: #0058E0; --accent-ink: #ffffff;
   --blue: #0A6CFF; --magenta: #D6269B; --green: #078A07; --orange: #FF4701; --plum: #5A1E46; --navy: #132D62; --teal: #007A73;
   --grad: linear-gradient(90deg, #0A6CFF, #D6269B); /* Endless Customers only: the ribbon pill and the EC primary button */
@@ -107,7 +107,7 @@ html[data-dark] body {
 
 /* ---------- Themes (body[data-accent], set in Site.astro from site and path) ---------- */
 /* blue: IMPACT default. magenta: Website Services. hubspot: plum neutrals, orange buttons. swell: navy neutrals, teal buttons. black: Endless Customers and coaching. */
-body[data-accent="magenta"] { --tint: #D6269B; --accent: #D6269B; --accent-hover: #B8318A; --accent-fill: #D6269B; --accent-fill-hover: #B8318A; }
+body[data-accent="magenta"] { --tint: #D6269B; --accent: #CB2393; /* text accent, 4% darker than the fill: 4.52:1 on the page surface */ --accent-hover: #B8318A; --accent-fill: #D6269B; --accent-fill-hover: #B8318A; }
 html[data-dark] body[data-accent="magenta"] { --accent: #F06CC6; --accent-hover: #F79AD9; }
 body[data-accent="hubspot"] { --tint: #5A1E46; --accent: #C93600; --accent-hover: #B83300; --accent-fill: #FF4701; --accent-fill-hover: #DE3E00; } /* white on the orange is 3.4:1, accepted as a brand decision (EC stylesheet, June 2026) */
 html[data-dark] body[data-accent="hubspot"] { --accent: #FF7A45; --accent-hover: #FF9A70; }
