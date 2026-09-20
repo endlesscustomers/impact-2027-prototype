@@ -1,0 +1,55 @@
+---
+// Comparison table. Pattern from humaninterest.com's "Human Interest vs the old way" (Bob, 2026-09-20):
+// row labels down the first column, our column on a continuous soft panel with its name in the accent,
+// the other option plain. A real table, so the columns read as columns; under 760px each row becomes a
+// block with the column names repeated (as Human Interest's does). Claims in the cells must come from a
+// verified source (the /compare, /why-impact, and /guarantee outlines); never invent a figure or a policy.
+import { href } from '../lib/site';
+import type { SiteId } from '../lib/site';
+
+interface Cell {
+  /** Bold opening words (colour change only, per the style guide). */
+  lead?: string;
+  text?: string;
+  /** The cell's only link, a standalone line on the site-wide link rule. */
+  link?: { label: string; path: string; site?: SiteId };
+}
+interface Row { label: string; cells: Cell[] }
+interface Props {
+  /** Column names, in order. */
+  cols: string[];
+  /** Index of our column, the one on the panel. */
+  us?: number;
+  rows: Row[];
+  /** Read to screen readers only. */
+  caption?: string;
+  class?: string;
+}
+const { cols, us = 0, rows, caption, class: cls } = Astro.props;
+const kind = (i: number) => (i === us ? 'us' : 'them');
+---
+
+<div class:list={['compare', cls]}>
+  <table>
+    {caption && <caption class="sr">{caption}</caption>}
+    <thead>
+      <tr>
+        <th scope="col"><span class="sr">Compared on</span></th>
+        {cols.map((c, i) => <th scope="col" class={kind(i)}>{c}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <th scope="row">{r.label}</th>
+          {r.cells.map((c, i) => (
+            <td class={kind(i)} data-col={cols[i]}>
+              {c.lead && <strong>{c.lead}</strong>}{c.lead && c.text && ' '}{c.text}
+              {c.link && <a class="more" href={href(c.link.site ?? 'impact', c.link.path)}>{c.link.label}</a>}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

@@ -8,6 +8,7 @@ import LogoBar from '../components/LogoBar.astro';
 import Ratings from '../components/Ratings.astro';
 import Feature from '../components/Feature.astro';
 import Testimonials from '../components/Testimonials.astro';
+import Compare from '../components/Compare.astro';
 
 // Client logos: the live homepage wall, minus the banned list (same set as the IMPACT home page).
 const logos: [string, string][] = [
@@ -43,6 +44,15 @@ const faqs: [string, string][] = [
   ['What About Endless Customers Live or Endless Customers Academy?', 'Our in-person event, Endless Customers Live, and online community Endless Customers Academy have their own separate refund and transfer policies.'],
   ['What If the Problem Is the Whole Engagement, Not One Session?', 'Put this in writing to your coach, and you’ll land on one of four outcomes: change coach, change scope, pause, or wind down.'],
 ];
+// 14 · Comparison table. Every claim comes from the /compare, /why-impact, and /guarantee outlines.
+const compareRows = [
+  { label: 'Who Does the Work', cells: [{ text: 'We do the work with you and train your team to own it.' }, { lead: 'They do the work for you.', text: 'You rent the result.' }] },
+  { label: 'What You Own at the End', cells: [{ text: 'The content, the site, the CRM, and a team that runs them.' }, { text: 'A contract.' }] },
+  { label: 'Pricing', cells: [{ text: 'Published on our pricing page.', link: { label: 'See Pricing', path: '/pricing' } }, { text: 'A custom quote, after the sales call.' }] },
+  { label: 'Guarantee', cells: [{ lead: '100% money-back.', text: 'Tell us within 7 days and we redo the work. If it still misses, a full refund.', link: { label: 'Read the Guarantee', path: '/guarantee' } }, { text: 'Rarely offered.' }] },
+  { label: 'Best When', cells: [{ text: 'You want the capability to stay in your business.' }, { text: 'You have no one internal and don’t plan to hire.' }] },
+];
+
 ---
 
 <Site site="impact" title="Module Library" path="/modules" strip="Module library" description="Reference stack of the prototype's reusable sections.">
@@ -287,6 +297,18 @@ const faqs: [string, string][] = [
         <a class="btn primary" href={href('impact', '/instant-diagnostic')}>Run the Free Diagnostic</a>
         <a class="btn" href={href('impact', '/talk')}>Let’s Talk</a>
       </div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>14 · Comparison Table</b><span>Compare component, .compare: row labels, our column on a soft --fill panel with its name in the accent, the other option plain. Under 760px each row becomes a block with the column names repeated.</span></div>
+  </div>
+  <section class="section center">
+    <div class="wrap">
+      <h2>How We Compare to an Agency</h2>
+      <p class="intro">Written the way we teach clients to write comparisons: honestly, including when we lose.</p>
+      <Compare cols={['IMPACT', 'A Marketing Agency']} rows={compareRows} caption="IMPACT compared with a marketing agency" />
+      <div class="actions"><a class="btn primary" href={href('impact', '/compare')}>Compare All Four Options</a></div>
     </div>
   </section>
 
