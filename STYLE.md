@@ -97,6 +97,8 @@ Every neutral is `oklch(from var(--tint) L C h)` with chroma scaled by `--c`, so
 
 The module library carries a theme switcher (bottom right, library chrome only) that sets `body[data-accent]` and flips dark mode through the header's own toggle, for checking a module in every theme before it ships.
 
+The 24px paragraph gray `--ink-lg` sits at L .575 in light mode (nudged from .600 on 2026-09-20, Bob: "a tad darker"), about 4.0:1 on the page surface; it only needs 3:1 as bold large text.
+
 ## Writing rules
 
 Read like Apple, HubSpot, and Orbit Media. Sentences average under 20 words. A paragraph is one to three sentences, under 50 words. A section carries one idea and under about 120 words of prose, plus a list or cards. Three or more parallel items become a list. Lines run 45 to 75 characters; `--measure` handles it, and anything wider is a layout bug. No orphan words in headings or body; the wrap defaults handle it, so do not force line breaks. No em or en dashes anywhere, including date ranges; a hyphen instead (see Copy: dashes).

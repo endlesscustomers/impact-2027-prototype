@@ -73,7 +73,7 @@ body {
   --ink:     oklch(from var(--tint) .208 calc(.060 * var(--c)) h);   /* headings, strong text */
   --ink-2:   oklch(from var(--tint) .535 calc(.070 * var(--c)) h);   /* body copy: about 4.7:1 on the page surface, the darkest place a paragraph sits; AA with room for bold to pop (Bob, 2026-09-19) */
   --ink-3:   oklch(from var(--tint) .535 calc(.070 * var(--c)) h);   /* captions match body: any lighter fails AA on the page surface */
-  --ink-lg:  oklch(from var(--tint) .600 calc(.070 * var(--c)) h);   /* the 24px paragraph: lighter (Bob, 2026-09-19); 24px is WCAG large text, needs 3:1, held near 3.6:1 on the page surface */
+  --ink-lg:  oklch(from var(--tint) .575 calc(.070 * var(--c)) h);   /* the 24px paragraph: lighter (Bob, 2026-09-19); 24px is WCAG large text, needs 3:1, held near 3.6:1 on the page surface */
   --ink-max: #000000;                                                /* bold inside body copy, nav item on hover: the only pure black */
   --line:        oklch(from var(--tint) .929 calc(.045 * var(--c)) h);
   --line-strong: oklch(from var(--tint) .869 calc(.055 * var(--c)) h);
