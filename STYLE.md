@@ -113,7 +113,7 @@ Use these before writing new CSS. They live in the "Page blocks" section of the 
 | Hero | `.hero`, `.hero.ms-hero` + `.hero-grid` | Page top. The microsite variant is two columns. |
 | Section | `.section`, `.section.alt`, `.section.final` | Alt is the white band with rules; final adds bottom room. |
 | Split | `.split` | Text beside a figure, 1.2 : 1. Override the ratio on the page if needed. |
-| Grid and cards | `.grid.c2/.c3/.c4`, `.card`, `.card.rec`, `.card .price`, `.card > .badge` | Cards; the recommended one; a price; a corner badge. |
+| Grid and cards | `.grid.c2/.c3/.c4`, `.card`, `.card.rec`, `.card .price`, `.card > .badge` | Cards; the recommended one; a price; a corner badge. Every card, linked or not, grows to 1.02 and lifts on `--shadow` on hover, with a stronger border (Bob, 2026-09-20); reduced-motion drops the grow and keeps the shadow. |
 | Steps | `.steps` | Numbered list with a blue disc. |
 | Prices | `.prices` | Label left, price right, rule between rows. |
 | FAQ | `.faqs` > `details.faq` | Accordion with a plus that turns. The question is a 24px Proxima sentence, not a heading face. |
