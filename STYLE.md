@@ -81,6 +81,7 @@ Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`
 | `--bg` `--bg-panel` `--bg-page` | Sections and cards; raised panels; the page |
 | `--ink` `--ink-2` `--ink-3` `--ink-max` | Headings; body copy and captions (one gray, about 4.7:1 on the darkest surface a paragraph sits on: just above AA, so bold pops); captions (AA everywhere); bold and the nav hover |
 | `--line` `--line-strong` | Rules and card borders; button outlines and list heads |
+| `--logo-filter` `--logo-filter-dark` | Client logos in the logo bar and story cards: grayscale, then sepia and a per-theme hue rotation so the logos sit in the page hue rather than gray; the black theme stays neutral (Bob, 2026-09-20) |
 | `--accent` `--accent-hover` `--accent-fill` `--accent-fill-hover` `--accent-ink` | Text accents; button fills; text on a fill |
 | `--menu-bg` `--frost` `--bar-bg` `--fill` `--fill-hover` | Dropdown card; the header band and the whole page behind an open menu (one surface, no seam); section pill; soft fills |
 | `--ribbon-bg` `--ribbon-ink` | The announcement ribbon only: its solid fill, one step darker than `--fill`, and its text gray (AA on that fill); the black theme's dark ribbon is the panel gray |
@@ -89,6 +90,12 @@ Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`
 | `--ease` | The one curve. .15s colour, .2 to .25s size and position, .28 to .32s panels arriving |
 
 A hex value belongs in the token block or the theme block, nowhere else. Two mask images use `#000` as a shape, marked `/* raw */`.
+
+### Nothing is plain gray (2026-09-20)
+
+Every neutral is `oklch(from var(--tint) L C h)` with chroma scaled by `--c`, so grays carry the page hue: blue-gray on IMPACT, plum-gray on HubSpot, navy-gray on Swell, magenta-gray on Website Services, and true gray only on the black theme, where `--c` is 0. On 2026-09-20 the chroma multipliers were raised (inks .050 to .070, lines .024 to .045 and .034 to .055, fills .045 to .080, page .016 to .026, dark neutrals similarly) so the hue is visible, not theoretical. Lightness did not change, so contrast held: worst body gray 4.71:1, worst accent text 4.51:1, measured across all five themes in both modes. Shadows and client logos follow the same rule through `--shadow-ink` and `--logo-filter`. Do not add a new gray as a literal; derive it from the tint.
+
+The module library carries a theme switcher (bottom right, library chrome only) that sets `body[data-accent]` and flips dark mode through the header's own toggle, for checking a module in every theme before it ships.
 
 ## Writing rules
 

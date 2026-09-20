@@ -58,23 +58,25 @@ body {
   /* Theme: the page tint. Every neutral below is the tint's hue at a fixed lightness and chroma (the recipe from the
      endlesscustomers.com redesign), so grays carry the page colour. --c scales chroma; the black theme sets it to 0. */
   --tint: #0A6CFF; --c: 1;
-  --bg:       oklch(from var(--tint) .995 calc(.010 * var(--c)) h);  /* header, hero, alt sections, cards */
-  --bg-panel: oklch(from var(--tint) .995 calc(.010 * var(--c)) h);  /* raised panels */
-  --bg-page:  oklch(from var(--tint) .968 calc(.016 * var(--c)) h);  /* page */
-  --menu-bg:  oklch(from var(--tint) .995 calc(.010 * var(--c)) h);  /* open dropdown card */
+  --logo-filter: grayscale(1) sepia(.55) hue-rotate(177deg) saturate(1.1) contrast(.9); /* client logos in the page hue, not gray (Bob, 2026-09-20): sepia lands near 40deg, rotated to the tint */
+  --logo-filter-dark: grayscale(1) invert(1) sepia(.45) hue-rotate(177deg) saturate(1.1) contrast(.8);
+  --bg:       oklch(from var(--tint) .995 calc(.014 * var(--c)) h);  /* header, hero, alt sections, cards */
+  --bg-panel: oklch(from var(--tint) .995 calc(.014 * var(--c)) h);  /* raised panels */
+  --bg-page:  oklch(from var(--tint) .968 calc(.026 * var(--c)) h);  /* page */
+  --menu-bg:  oklch(from var(--tint) .995 calc(.014 * var(--c)) h);  /* open dropdown card */
   --frost: color-mix(in srgb, var(--bg) 86%, transparent); /* the header band, and the whole page behind an open menu */
-  --bar-bg:   oklch(from var(--tint) .960 calc(.022 * var(--c)) h / .72); /* frosted section pill */
-  --fill:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .05);
-  --fill-hover: oklch(from var(--tint) .208 calc(.045 * var(--c)) h / .08);
-  --ribbon-bg:  oklch(from var(--tint) .945 calc(.022 * var(--c)) h); /* the announcement ribbon's own surface: one step darker than --fill, solid, in the page hue (Bob, 2026-09-19) */
-  --ribbon-ink: oklch(from var(--tint) .490 calc(.050 * var(--c)) h); /* ribbon text: body gray nudged darker so it holds AA on the darker fill (about 5.3:1; --ink-2 would be 4.4:1) */
-  --ink:     oklch(from var(--tint) .208 calc(.045 * var(--c)) h);   /* headings, strong text */
-  --ink-2:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* body copy: about 4.7:1 on the page surface, the darkest place a paragraph sits; AA with room for bold to pop (Bob, 2026-09-19) */
-  --ink-3:   oklch(from var(--tint) .535 calc(.050 * var(--c)) h);   /* captions match body: any lighter fails AA on the page surface */
-  --ink-lg:  oklch(from var(--tint) .600 calc(.050 * var(--c)) h);   /* the 24px paragraph: lighter (Bob, 2026-09-19); 24px is WCAG large text, needs 3:1, held near 3.6:1 on the page surface */
+  --bar-bg:   oklch(from var(--tint) .960 calc(.032 * var(--c)) h / .72); /* frosted section pill */
+  --fill:     oklch(from var(--tint) .208 calc(.080 * var(--c)) h / .05);
+  --fill-hover: oklch(from var(--tint) .208 calc(.080 * var(--c)) h / .08);
+  --ribbon-bg:  oklch(from var(--tint) .945 calc(.034 * var(--c)) h); /* the announcement ribbon's own surface: one step darker than --fill, solid, in the page hue (Bob, 2026-09-19) */
+  --ribbon-ink: oklch(from var(--tint) .490 calc(.070 * var(--c)) h); /* ribbon text: body gray nudged darker so it holds AA on the darker fill (about 5.3:1; --ink-2 would be 4.4:1) */
+  --ink:     oklch(from var(--tint) .208 calc(.060 * var(--c)) h);   /* headings, strong text */
+  --ink-2:   oklch(from var(--tint) .535 calc(.070 * var(--c)) h);   /* body copy: about 4.7:1 on the page surface, the darkest place a paragraph sits; AA with room for bold to pop (Bob, 2026-09-19) */
+  --ink-3:   oklch(from var(--tint) .535 calc(.070 * var(--c)) h);   /* captions match body: any lighter fails AA on the page surface */
+  --ink-lg:  oklch(from var(--tint) .600 calc(.070 * var(--c)) h);   /* the 24px paragraph: lighter (Bob, 2026-09-19); 24px is WCAG large text, needs 3:1, held near 3.6:1 on the page surface */
   --ink-max: #000000;                                                /* bold inside body copy, nav item on hover: the only pure black */
-  --line:        oklch(from var(--tint) .929 calc(.024 * var(--c)) h);
-  --line-strong: oklch(from var(--tint) .869 calc(.034 * var(--c)) h);
+  --line:        oklch(from var(--tint) .929 calc(.045 * var(--c)) h);
+  --line-strong: oklch(from var(--tint) .869 calc(.055 * var(--c)) h);
   /* Shadows are the page hue, deep and a little saturated, never plain black (Bob, 2026-09-20). Black theme (c = 0) stays neutral. */
   --shadow-ink: oklch(from var(--tint) .28 calc(.12 * var(--c)) h);
   --shadow: 0 24px 48px -24px oklch(from var(--shadow-ink) l c h / .30), 0 1px 0 oklch(from var(--shadow-ink) l c h / .06);
@@ -85,22 +87,22 @@ html[data-dark] {
   --accent: #4C8DFF; --accent-hover: #7AAAFF; /* text accents brighten; fills stay on brand so white text keeps its contrast */
 }
 html[data-dark] body {
-  --bg:       oklch(from var(--tint) .208 calc(.055 * var(--c)) h);
-  --bg-panel: oklch(from var(--tint) .279 calc(.050 * var(--c)) h);
-  --bg-page:  oklch(from var(--tint) .208 calc(.055 * var(--c)) h);
+  --bg:       oklch(from var(--tint) .208 calc(.065 * var(--c)) h);
+  --bg-panel: oklch(from var(--tint) .279 calc(.065 * var(--c)) h);
+  --bg-page:  oklch(from var(--tint) .208 calc(.065 * var(--c)) h);
   --menu-bg:  oklch(from var(--tint) .262 calc(.075 * var(--c)) h);  /* dropdown card: lighter than the page and clearly in the page hue (Bob, 2026-09-19: dark menus must carry the theme colour) */
   --bar-bg:   oklch(from var(--tint) .300 calc(.050 * var(--c)) h / .72);
   --fill:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .08);
   --fill-hover: oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .12);
   --ribbon-bg:  oklch(from var(--tint) .279 calc(.050 * var(--c)) h); /* lifts off the page like a panel, in the page hue */
-  --ribbon-ink: oklch(from var(--tint) .680 calc(.030 * var(--c)) h); /* about 5.1:1 on the ribbon fill */
+  --ribbon-ink: oklch(from var(--tint) .680 calc(.045 * var(--c)) h); /* about 5.1:1 on the ribbon fill */
   --ink:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h);
-  --ink-2:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* about 4.7:1 on a dark panel, the darkest place a paragraph sits */
-  --ink-3:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);   /* captions match body for the same reason */
+  --ink-2:   oklch(from var(--tint) .660 calc(.045 * var(--c)) h);   /* about 4.7:1 on a dark panel, the darkest place a paragraph sits */
+  --ink-3:   oklch(from var(--tint) .660 calc(.045 * var(--c)) h);   /* captions match body for the same reason */
   --ink-lg:  var(--ink-2);                                           /* dark mode stays as is (Bob: "dark mode looks great now") */
   --ink-max: #ffffff;
-  --line:        oklch(from var(--tint) .372 calc(.052 * var(--c)) h);
-  --line-strong: oklch(from var(--tint) .446 calc(.050 * var(--c)) h);
+  --line:        oklch(from var(--tint) .372 calc(.070 * var(--c)) h);
+  --line-strong: oklch(from var(--tint) .446 calc(.070 * var(--c)) h);
   --shadow-ink: oklch(from var(--tint) .08 calc(.06 * var(--c)) h);
   --shadow: 0 24px 48px -24px oklch(from var(--shadow-ink) l c h / .7), 0 1px 0 oklch(from var(--tint) .984 .006 h / .05);
   --shadow-card: 0 32px 64px -24px oklch(from var(--shadow-ink) l c h / .8);
@@ -110,13 +112,13 @@ html[data-dark] body {
 
 /* ---------- Themes (body[data-accent], set in Site.astro from site and path) ---------- */
 /* blue: IMPACT default. magenta: Website Services. hubspot: plum neutrals, orange buttons. swell: navy neutrals, teal buttons. black: Endless Customers and coaching. */
-body[data-accent="magenta"] { --tint: #D6269B; --accent: #CB2393; --accent-dark: #F06CC6; --accent-dark-hover: #F79AD9; /* text accent, 4% darker than the fill: 4.52:1 on the page surface */ --accent-hover: #B8318A; --accent-fill: #D6269B; --accent-fill-hover: #B8318A; }
+body[data-accent="magenta"] { --logo-filter: grayscale(1) sepia(.55) hue-rotate(280deg) saturate(1.1) contrast(.9); --logo-filter-dark: grayscale(1) invert(1) sepia(.45) hue-rotate(280deg) saturate(1.1) contrast(.8); --tint: #D6269B; --accent: #CB2393; --accent-dark: #F06CC6; --accent-dark-hover: #F79AD9; /* text accent, 4% darker than the fill: 4.52:1 on the page surface */ --accent-hover: #B8318A; --accent-fill: #D6269B; --accent-fill-hover: #B8318A; }
 html[data-dark] body[data-accent="magenta"] { --accent: #F06CC6; --accent-hover: #F79AD9; }
-body[data-accent="hubspot"] { --tint: #5A1E46; --accent: #C93600; --accent-dark: #FF7A45; --accent-dark-hover: #FF9A70; --accent-hover: #B83300; --accent-fill: #FF4701; --accent-fill-hover: #DE3E00; } /* white on the orange is 3.4:1, accepted as a brand decision (EC stylesheet, June 2026) */
+body[data-accent="hubspot"] { --logo-filter: grayscale(1) sepia(.55) hue-rotate(280deg) saturate(1.1) contrast(.9); --logo-filter-dark: grayscale(1) invert(1) sepia(.45) hue-rotate(280deg) saturate(1.1) contrast(.8); --tint: #5A1E46; --accent: #C93600; --accent-dark: #FF7A45; --accent-dark-hover: #FF9A70; --accent-hover: #B83300; --accent-fill: #FF4701; --accent-fill-hover: #DE3E00; } /* white on the orange is 3.4:1, accepted as a brand decision (EC stylesheet, June 2026) */
 html[data-dark] body[data-accent="hubspot"] { --accent: #FF7A45; --accent-hover: #FF9A70; }
-body[data-accent="swell"] { --tint: #132D62; --accent: #007A73; --accent-dark: #00A69C; --accent-dark-hover: #33C2B9; --accent-hover: #006E68; --accent-fill: #007A73; --accent-fill-hover: #006E68; } /* deep-blue neutrals, teal actions: the water in Swell's hero */
+body[data-accent="swell"] { --logo-filter: grayscale(1) sepia(.55) hue-rotate(180deg) saturate(1.1) contrast(.9); --logo-filter-dark: grayscale(1) invert(1) sepia(.45) hue-rotate(180deg) saturate(1.1) contrast(.8); --tint: #132D62; --accent: #007A73; --accent-dark: #00A69C; --accent-dark-hover: #33C2B9; --accent-hover: #006E68; --accent-fill: #007A73; --accent-fill-hover: #006E68; } /* deep-blue neutrals, teal actions: the water in Swell's hero */
 html[data-dark] body[data-accent="swell"] { --accent: #00A69C; --accent-hover: #33C2B9; }
-body[data-accent="black"] { --c: 0; --tint: #000000; } /* true grayscale; blue, green, and magenta stay available as accents */
+body[data-accent="black"] { --c: 0; --tint: #000000; --logo-filter: grayscale(1) contrast(.9); --logo-filter-dark: grayscale(1) invert(1) contrast(.8); } /* true grayscale; blue, green, and magenta stay available as accents */
 html[data-dark] body[data-accent="black"] { --bg: #000000; --bg-page: #000000; --bg-panel: #1d1d1f; --menu-bg: #1d1d1f; --ribbon-bg: #1d1d1f; --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18); }
 
 /* ---------- Base ---------- */
@@ -307,6 +309,14 @@ li[data-when="proof"] { display: none; }
 .mod-bar .wrap { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; }
 .mod-bar span { font-weight: var(--w-regular); }
 .mod-bar.lead { padding: 20px 0; }
+.mod-switch { position: fixed; right: 20px; bottom: 20px; z-index: 40; display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 999px; background: var(--menu-bg); border: 1px solid var(--line); box-shadow: var(--shadow-bar); }
+.mod-switch button { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; font-size: var(--fs-fine); line-height: var(--lh-fine); font-weight: var(--w-ui); color: var(--ink-2); transition: background .15s var(--ease); }
+.mod-switch button:hover { background: var(--fill); }
+.mod-switch button[aria-pressed="true"] { background: var(--accent-fill); color: var(--accent-ink); }
+.mod-switch .sw { width: 12px; height: 12px; border-radius: 50%; background: var(--sw); border: 1px solid var(--line-strong); }
+.mod-switch .sep { width: 1px; height: 20px; background: var(--line); margin: 0 4px; }
+.mod-switch .sw[data-sw="blue"] { --sw: var(--blue); } .mod-switch .sw[data-sw="magenta"] { --sw: var(--magenta); } .mod-switch .sw[data-sw="hubspot"] { --sw: var(--plum); } .mod-switch .sw[data-sw="swell"] { --sw: var(--navy); } .mod-switch .sw[data-sw="black"] { --sw: var(--ink); }
+@media (max-width: 760px) { .mod-switch { right: 12px; bottom: 64px; flex-wrap: wrap; max-width: calc(100vw - 24px); border-radius: 16px; } }
 
 /* ---------- Logo bar module (zoom.com pattern, 2026-09-19) ---------- */
 .logobar { padding: 56px 0 40px; background: var(--bg); border-bottom: 1px solid var(--line); }
@@ -315,9 +325,9 @@ li[data-when="proof"] { display: none; }
 .logobar .track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; width: max-content; animation: slide 40s linear infinite; }
 .logobar[data-paused] .track { animation-play-state: paused; }
 .logobar .track li { flex: none; width: 184px; height: 70px; display: grid; place-items: center; } /* uniform tiles, like Zoom's 164 x 70 with its gap folded in */
-.logobar .track img { max-height: 36px; max-width: 150px; width: auto; object-fit: contain; filter: grayscale(1) contrast(.9); opacity: .75; transition: filter .2s, opacity .2s; }
+.logobar .track img { max-height: 36px; max-width: 150px; width: auto; object-fit: contain; filter: var(--logo-filter); opacity: .8; transition: filter .2s, opacity .2s; }
 .logobar .track img:hover { filter: none; opacity: 1; }
-html[data-dark] .logobar .track img { filter: grayscale(1) invert(1) contrast(.8); }
+html[data-dark] .logobar .track img { filter: var(--logo-filter-dark); }
 .logobar .pause { display: grid; place-items: center; width: 40px; height: 40px; margin: 12px 0 0 auto; border-radius: 8px; color: var(--accent); transition: background .15s var(--ease); }
 .logobar .pause:hover { background: var(--fill); }
 .logobar .pause svg { width: 18px; height: 18px; }
@@ -361,17 +371,17 @@ html[data-dark] .logobar .track img { filter: grayscale(1) invert(1) contrast(.8
 
 /* dark band: a section that keeps the page hue but flips to the dark neutrals. Same formulas as html[data-dark] body. */
 .section.dark {
-  --bg:       oklch(from var(--tint) .208 calc(.055 * var(--c)) h);
-  --bg-panel: oklch(from var(--tint) .279 calc(.050 * var(--c)) h);
+  --bg:       oklch(from var(--tint) .208 calc(.065 * var(--c)) h);
+  --bg-panel: oklch(from var(--tint) .279 calc(.065 * var(--c)) h);
   --fill:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .08);
   --fill-hover: oklch(from var(--tint) .984 calc(.006 * var(--c)) h / .12);
   --ink:     oklch(from var(--tint) .984 calc(.006 * var(--c)) h);
-  --ink-2:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);
-  --ink-3:   oklch(from var(--tint) .660 calc(.030 * var(--c)) h);
+  --ink-2:   oklch(from var(--tint) .660 calc(.045 * var(--c)) h);
+  --ink-3:   oklch(from var(--tint) .660 calc(.045 * var(--c)) h);
   --ink-lg:  var(--ink-2);
   --ink-max: #ffffff;
-  --line:        oklch(from var(--tint) .372 calc(.052 * var(--c)) h);
-  --line-strong: oklch(from var(--tint) .446 calc(.050 * var(--c)) h);
+  --line:        oklch(from var(--tint) .372 calc(.070 * var(--c)) h);
+  --line-strong: oklch(from var(--tint) .446 calc(.070 * var(--c)) h);
   --accent: var(--accent-dark); --accent-hover: var(--accent-dark-hover);
   background: var(--bg); color: var(--ink-2); }
 
@@ -622,7 +632,7 @@ a:hover > .arrow { transform: translateX(2px); }
 .st-play::after { content: ''; margin-left: 3px; border-left: 11px solid var(--accent); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
 .st-card .st-logo { display: block; height: 26px; }
 .st-card .st-logo img { height: 100%; width: auto; max-width: 140px; object-fit: contain; object-position: left center; display: block; }
-html[data-dark] .st-card .st-logo img { filter: grayscale(1) invert(1) contrast(.8); }
+html[data-dark] .st-card .st-logo img { filter: var(--logo-filter-dark); }
 .st-card b { color: var(--ink); font-size: var(--fs-body); line-height: var(--lh-body); }
 .st-card p { margin: 0; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--w-regular); max-width: none; }
 .st-card:hover .st-go { text-decoration: underline; text-decoration-thickness: var(--ul-thick); text-underline-offset: var(--ul-offset); }
@@ -967,7 +977,7 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
 [data-page="impact-home"] .coaches .cap { margin: 0 0 14px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-3); display: flex; align-items: center; gap: 8px; }
 [data-page="impact-home"] .coaches .faces { margin-bottom: 14px; }
 [data-page="impact-home"] .book { display: grid; place-items: center; }
-[data-page="impact-home"] .book img { max-height: 380px; width: auto; filter: drop-shadow(0 24px 40px rgba(0,0,0,.18)); }
+[data-page="impact-home"] .book img { max-height: 380px; width: auto; filter: drop-shadow(0 24px 40px oklch(from var(--shadow-ink) l c h / .18)); }
 [data-page="impact-home"] .lc-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
 [data-page="impact-home"] .lc-head h2 { margin-bottom: 8px; }
 [data-page="impact-home"] .recent { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-strong); }

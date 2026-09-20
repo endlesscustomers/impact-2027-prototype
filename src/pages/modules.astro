@@ -46,6 +46,12 @@ const faqs: [string, string][] = [
 ---
 
 <Site site="impact" title="Module Library" path="/modules" strip="Module library" description="Reference stack of the prototype's reusable sections.">
+  <div class="mod-switch" aria-label="Theme switcher (library only)">
+    {(['blue', 'magenta', 'hubspot', 'swell', 'black'] as const).map((th) => <button type="button" data-theme={th} aria-pressed={th === 'blue' ? 'true' : 'false'}><span class="sw" data-sw={th} aria-hidden="true"></span>{th === 'hubspot' ? 'HubSpot' : th === 'swell' ? 'Swell' : th[0].toUpperCase() + th.slice(1)}</button>)}
+    <span class="sep" aria-hidden="true"></span>
+    <button type="button" data-mode aria-pressed="false">Dark</button>
+  </div>
+
   <div class="mod-bar lead">
     <div class="wrap"><b>Module Library</b><span>Stacked examples, built once here and reused on pages. Each bar names the module and its class.</span></div>
   </div>
@@ -283,4 +289,25 @@ const faqs: [string, string][] = [
       </div>
     </div>
   </section>
+
+<script>
+  // Library-only theme switcher: sets body[data-accent] (the page theme) and flips dark mode through the
+  // header's own toggle so the two stay in sync. The choice lives in sessionStorage for this tab only.
+  const sw = document.querySelector<HTMLElement>('.mod-switch');
+  if (sw) {
+    const html = document.documentElement, body = document.body;
+    const themeBtns = [...sw.querySelectorAll<HTMLButtonElement>('[data-theme]')];
+    const modeBtn = sw.querySelector<HTMLButtonElement>('[data-mode]')!;
+    const paint = () => {
+      themeBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.theme === body.dataset.accent)));
+      modeBtn.setAttribute('aria-pressed', String(html.hasAttribute('data-dark')));
+    };
+    const saved = sessionStorage.getItem('modules-theme');
+    if (saved) body.dataset.accent = saved;
+    themeBtns.forEach((b) => b.addEventListener('click', () => { body.dataset.accent = b.dataset.theme!; sessionStorage.setItem('modules-theme', b.dataset.theme!); paint(); }));
+    modeBtn.addEventListener('click', () => { (document.querySelector('.theme') as HTMLElement | null)?.click(); setTimeout(paint, 50); });
+    new MutationObserver(paint).observe(html, { attributes: true, attributeFilter: ['data-dark'] });
+    paint();
+  }
+</script>
 </Site>
