@@ -47,9 +47,6 @@
   --blue: #0A6CFF; --magenta: #D6269B; --green: #078A07; --orange: #FF4701; --plum: #5A1E46; --navy: #132D62; --teal: #007A73;
   --grad: linear-gradient(90deg, #0A6CFF, #D6269B); /* Endless Customers only: the ribbon pill and the EC primary button */
   /* Elevation */
-  --shadow: 0 24px 48px -24px rgba(0,0,0,.28), 0 1px 0 rgba(0,0,0,.06);
-  --shadow-card: 0 8px 16px -8px rgba(0,0,0,.14), 0 32px 64px -24px rgba(0,0,0,.28);
-  --shadow-bar: 0 12px 32px -16px rgba(0,0,0,.18);
   /* Header: taller at the top of the page, compact once scrolled (html[data-scrolled], set in Header.astro) */
   --header-h: 72px; --logo-h: 36px; --logo-ec-h: 48px; --ctrl-h: 40px; --cta-font: var(--fs-ui); --cta-pad: 20px;
   /* Motion */
@@ -78,12 +75,14 @@ body {
   --ink-max: #000000;                                                /* bold inside body copy, nav item on hover: the only pure black */
   --line:        oklch(from var(--tint) .929 calc(.024 * var(--c)) h);
   --line-strong: oklch(from var(--tint) .869 calc(.034 * var(--c)) h);
+  /* Shadows are the page hue, deep and a little saturated, never plain black (Bob, 2026-09-20). Black theme (c = 0) stays neutral. */
+  --shadow-ink: oklch(from var(--tint) .28 calc(.12 * var(--c)) h);
+  --shadow: 0 24px 48px -24px oklch(from var(--shadow-ink) l c h / .30), 0 1px 0 oklch(from var(--shadow-ink) l c h / .06);
+  --shadow-card: 0 8px 16px -8px oklch(from var(--shadow-ink) l c h / .14), 0 32px 64px -24px oklch(from var(--shadow-ink) l c h / .30);
+  --shadow-bar: 0 12px 32px -16px oklch(from var(--shadow-ink) l c h / .18);
 }
 html[data-dark] {
   --accent: #4C8DFF; --accent-hover: #7AAAFF; /* text accents brighten; fills stay on brand so white text keeps its contrast */
-  --shadow: 0 24px 48px -24px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.05);
-  --shadow-card: 0 32px 64px -24px rgba(0,0,0,.8);
-  --shadow-bar: 0 12px 32px -16px rgba(0,0,0,.7);
 }
 html[data-dark] body {
   --bg:       oklch(from var(--tint) .208 calc(.055 * var(--c)) h);
@@ -102,6 +101,10 @@ html[data-dark] body {
   --ink-max: #ffffff;
   --line:        oklch(from var(--tint) .372 calc(.052 * var(--c)) h);
   --line-strong: oklch(from var(--tint) .446 calc(.050 * var(--c)) h);
+  --shadow-ink: oklch(from var(--tint) .08 calc(.06 * var(--c)) h);
+  --shadow: 0 24px 48px -24px oklch(from var(--shadow-ink) l c h / .7), 0 1px 0 oklch(from var(--tint) .984 .006 h / .05);
+  --shadow-card: 0 32px 64px -24px oklch(from var(--shadow-ink) l c h / .8);
+  --shadow-bar: 0 12px 32px -16px oklch(from var(--shadow-ink) l c h / .7);
   --selection: oklch(from var(--tint) .35 .08 h);
 }
 

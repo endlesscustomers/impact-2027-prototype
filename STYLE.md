@@ -84,7 +84,7 @@ Every neutral is derived from the page tint with `oklch(from var(--tint) L C h)`
 | `--accent` `--accent-hover` `--accent-fill` `--accent-fill-hover` `--accent-ink` | Text accents; button fills; text on a fill |
 | `--menu-bg` `--frost` `--bar-bg` `--fill` `--fill-hover` | Dropdown card; the header band and the whole page behind an open menu (one surface, no seam); section pill; soft fills |
 | `--ribbon-bg` `--ribbon-ink` | The announcement ribbon only: its solid fill, one step darker than `--fill`, and its text gray (AA on that fill); the black theme's dark ribbon is the panel gray |
-| `--shadow` `--shadow-card` `--shadow-bar` | Site cards; dropdown card; section pill |
+| `--shadow-ink` `--shadow` `--shadow-card` `--shadow-bar` | The shadow colour, then card hover and site cards; dropdown card; section pill. Shadows are never black: `--shadow-ink` is the page tint at L .28 and a little chroma in light mode (L .08 in dark), so a blue page throws a blue shadow and a HubSpot page a plum one; the black theme has no chroma and stays neutral (Bob, 2026-09-20). |
 | `--header-h` `--logo-h` `--logo-ec-h` `--ctrl-h` `--cta-font` `--cta-pad` | Tall header at the top of the page; `html[data-scrolled]` swaps in the compact set |
 | `--ease` | The one curve. .15s colour, .2 to .25s size and position, .28 to .32s panels arriving |
 
