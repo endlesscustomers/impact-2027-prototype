@@ -1142,3 +1142,48 @@ html[data-dark] [data-page="impact-home"] .bd.eos img { filter: invert(1); }
   .compare .them { padding: 12px 18px 0; }
   .compare .them::before { color: var(--ink-3); }
 }
+
+/* Spotlight testimonial slider (Spotlight component; humaninterest.com home page, Bob 2026-09-20). One card: the photo
+   fills the left column edge to edge, the quote sits right with a quote mark, the person, a meta line, and the story
+   link. Arrows outside the card at 1200px and up, under it beside the dots below that. The selected dot stretches
+   into a short pill, as Human Interest's does. Under 760px the photo stacks above the text. */
+.spotlight { max-width: 1000px; margin: 0 auto; }
+.section h2 + .spotlight { margin-top: 36px; }
+.spotlight .stage { position: relative; }
+.spotlight .stage > ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.spotlight .stage > li, .spotlight .stage > ul > li { grid-area: 1 / 1; max-width: none; display: grid; grid-template-columns: 1fr 1.25fr; border-radius: 24px; overflow: hidden; background: var(--bg-panel); border: 1px solid var(--line); text-align: left; opacity: 0; visibility: hidden; transition: opacity .3s var(--ease); }
+.spotlight .stage > ul > li[data-active] { opacity: 1; visibility: visible; }
+.spotlight .photo { min-height: 520px; }
+.spotlight .photo img, .spotlight .photo .frame { display: block; width: 100%; height: 100%; object-fit: cover; }
+.spotlight .photo .frame { background: var(--fill); }
+.spotlight .body { display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: 56px 64px; }
+.spotlight .mark { font-family: var(--font-head); font-size: var(--fs-h2); line-height: var(--lh-tight); margin-bottom: -20px; font-weight: var(--w-bold); color: var(--ink); }
+.spotlight .say { margin: 0; }
+.spotlight .say p { margin: 0; max-width: var(--measure); color: var(--ink); font-size: var(--fs-lg); line-height: var(--lh-lg); font-weight: var(--w-para); letter-spacing: var(--tr-para); text-wrap: pretty; }
+.spotlight .who { display: grid; gap: 4px; }
+.spotlight .who b { color: var(--ink); }
+.spotlight .who span { color: var(--ink-2); }
+.spotlight .who .meta { color: var(--ink-3); }
+.spotlight .body .more { align-self: flex-start; }
+.spotlight .ctrl { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 28px; }
+.spotlight .arrow { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--bg-panel); display: grid; place-items: center; color: var(--ink); transition: background .15s var(--ease); }
+.spotlight .arrow:hover { background: var(--fill); }
+.spotlight .arrow svg { width: 16px; height: 16px; }
+.spotlight .arrow path { stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.spotlight .dots { display: flex; gap: 8px; }
+.spotlight .dots button { width: 10px; height: 10px; border-radius: 999px; background: var(--line-strong); transition: width .2s var(--ease), background .15s var(--ease); }
+.spotlight .dots button[aria-selected="true"] { width: 40px; background: var(--accent); }
+.spotlight .all { margin: 32px auto 0; text-align: center; }
+.spotlight .all a { font-weight: var(--w-ui); }
+.spotlight .note { margin: 12px auto 0; text-align: center; color: var(--ink-3); font-size: var(--fs-fine); line-height: var(--lh-fine); font-weight: var(--w-regular); }
+@media (min-width: 1200px) {
+  .spotlight .arrow { position: absolute; top: calc(50% - 19px); transform: translateY(-50%); } /* the stage is the card plus the 38px dots row; centre on the card */
+  .spotlight .prev { left: -76px; }
+  .spotlight .next { right: -76px; }
+}
+@media (max-width: 760px) {
+  .spotlight .stage > ul > li { grid-template-columns: 1fr; border-radius: 20px; }
+  .spotlight .photo { min-height: 0; aspect-ratio: 3 / 2; }
+  .spotlight .body { padding: 28px 24px 32px; gap: 20px; }
+  .spotlight .mark { font-size: var(--fs-h3); line-height: var(--lh-tight); margin-bottom: -12px; }
+}

@@ -10,6 +10,8 @@ import Feature from '../components/Feature.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Compare from '../components/Compare.astro';
 import Tabs from '../components/Tabs.astro';
+import Spotlight from '../components/Spotlight.astro';
+import { stories, storyPath, posterFor } from '../data/stories';
 
 // Client logos: the live homepage wall, minus the banned list (same set as the IMPACT home page).
 const logos: [string, string][] = [
@@ -76,6 +78,18 @@ const compareTabs = [
     { label: 'Best When', cells: [us.best, { text: 'You already have the people and just need a system.' }] },
   ] },
 ];
+
+// 15 · Spotlight slider. Photo, meta line, and story link come from the story data; quotes are the vetted homepage
+// ones (Berry Insurance, Dental ClaimSupport) and the story's own quote (Applied Educational Systems).
+const story = (slug: string) => stories.find((s) => s.slug === slug)!;
+const spotlight = [
+  { slug: 'berry-insurance', q: quotes[2].q, who: quotes[2].who, title: quotes[2].title },
+  { slug: 'dental-claimsupport', q: quotes[0].q, who: quotes[0].who, title: quotes[0].title },
+  { slug: 'applied-educational-systems', q: story('applied-educational-systems').quotes[0].q, who: 'Jim Schultz', title: 'President and Founder' },
+].map(({ slug, ...t }) => {
+  const s = story(slug);
+  return { ...t, co: s.client, meta: [s.industry, s.size, s.location, s.founded && `Founded ${s.founded}`].filter(Boolean) as string[], image: posterFor(s), alt: `${s.client}`, path: storyPath('impact', s) };
+});
 
 ---
 
@@ -340,6 +354,16 @@ const compareTabs = [
         </div>
       ))}
       <div class="actions"><a class="btn primary" href={href('impact', '/compare')}>Read the Full Comparison</a></div>
+    </div>
+  </section>
+
+  <div class="mod-bar">
+    <div class="wrap"><b>15 · Spotlight Slider</b><span>Spotlight component, .spotlight: one card at a time, the client's photo filling the left half, the quote right with the person, a meta line, and Read the Story. Arrows outside the card at 1200px and up, under it beside the dots below that. Photo stacks above the text under 760px.</span></div>
+  </div>
+  <section class="section center">
+    <div class="wrap">
+      <h2>Companies That Did the Work</h2>
+      <Spotlight items={spotlight} all={{ label: 'See All Success Stories', path: '/results/success-stories' }} note="Clients of IMPACT. Results are theirs; the system is the same one we teach." />
     </div>
   </section>
 
