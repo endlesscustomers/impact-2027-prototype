@@ -296,6 +296,8 @@ li[data-when="proof"] { display: none; }
 .hero .media .play::after { content: ''; margin-left: 5px; border-left: 20px solid var(--accent-ink); border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
 .hero .media .cap { margin: 12px 0 0; color: var(--ink-3); font-size: var(--fs-fine); line-height: var(--lh-fine); font-weight: var(--w-regular); }
 .section.center { text-align: center; }
+.section.center .grid, .section.center .faqs { text-align: left; } /* cards and lists keep their own alignment; .card.icon re-centres itself */
+.section h2 + .grid, .section h2 + .faqs, .section h2 + .timeline, .section h2 + .testimonials { margin-top: 36px; } /* a heading with no intro under it gets the intro's room (Bob, 2026-09-20) */
 .section.center h2, .section.center .intro, .section.center .eyebrow, .section.center .crumbs { margin-left: auto; margin-right: auto; } /* anything with a max-width must also centre its box, not just its text (Bob, 2026-09-19: eyebrows sat left of centre on wide screens) */
 /* module library chrome: the bar above each example */
 .mod-bar { background: var(--bg-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; color: var(--ink-3); font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: var(--w-ui); }
@@ -371,13 +373,16 @@ html[data-dark] .logobar .track img { filter: grayscale(1) invert(1) contrast(.8
   background: var(--bg); color: var(--ink-2); }
 
 /* detail card: title + level tag, optional stats row, description, highlights, one link */
-.card.detail { padding: 32px; gap: 14px; }
-.card.detail .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
-.card .stats { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 4px 0; }
-.card .stats li { list-style: none; display: grid; }
+.card.detail { padding: 32px; gap: 16px; text-align: left; align-items: stretch; }
+.card.detail .head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.card.detail .head h3 { margin: 0; }
+.card .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 0; padding: 16px 20px; border-radius: 12px; background: var(--fill); list-style: none; }
+.card .stats li { display: grid; text-align: center; max-width: none; }
 .card .stats b { font-family: var(--font-head); font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--w-bold); letter-spacing: var(--tr-title); color: var(--ink); }
 .card .stats span { color: var(--ink-3); font-size: var(--fs-body); line-height: var(--lh-body); }
-.card ul.stats, .card ul.checks { margin: 0; padding: 0; }
+.card.detail p { max-width: none; }
+.card.detail .more { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+.card ul.checks { margin: 0; padding: 0; }
 .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .checks li { position: relative; padding-left: 28px; color: var(--ink-2); font-size: var(--fs-body); line-height: var(--lh-body); }
 .checks li::before { content: ''; position: absolute; left: 0; top: .45em; width: 14px; height: 8px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
@@ -706,7 +711,7 @@ html[data-dark] .st-card .st-logo img { filter: grayscale(1) invert(1) contrast(
    questions, General Sans bold question, a 25px plus circle that becomes a minus, 18px regular answer.
    One open at a time via details[name]. */
 .faqs { max-width: 800px; } /* no rule under the heading; hairlines sit only between and below questions (Bob, 2026-09-19) */
-.section.center .faqs { margin: 0 auto; text-align: left; }
+.section.center .faqs { margin-left: auto; margin-right: auto; text-align: left; } /* left/right only, so the heading gap rule above can set margin-top */
 .faq { border-bottom: 1px solid var(--line); }
 .faq:last-child { border-bottom: 0; } /* hairlines only between questions: no rule above the first or below the last (Bob, 2026-09-19) */
 .faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; cursor: pointer; }
