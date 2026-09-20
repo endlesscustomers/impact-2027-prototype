@@ -9,6 +9,7 @@ import Ratings from '../components/Ratings.astro';
 import Feature from '../components/Feature.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Compare from '../components/Compare.astro';
+import Tabs from '../components/Tabs.astro';
 
 // Client logos: the live homepage wall, minus the banned list (same set as the IMPACT home page).
 const logos: [string, string][] = [
@@ -44,13 +45,36 @@ const faqs: [string, string][] = [
   ['What About Endless Customers Live or Endless Customers Academy?', 'Our in-person event, Endless Customers Live, and online community Endless Customers Academy have their own separate refund and transfer policies.'],
   ['What If the Problem Is the Whole Engagement, Not One Session?', 'Put this in writing to your coach, and you’ll land on one of four outcomes: change coach, change scope, pause, or wind down.'],
 ];
-// 14 · Comparison table. Every claim comes from the /compare, /why-impact, and /guarantee outlines.
-const compareRows = [
-  { label: 'Who Does the Work', cells: [{ text: 'We do the work with you and train your team to own it.' }, { lead: 'They do the work for you.', text: 'You rent the result.' }] },
-  { label: 'What You Own at the End', cells: [{ text: 'The content, the site, the CRM, and a team that runs them.' }, { text: 'A contract.' }] },
-  { label: 'Pricing', cells: [{ text: 'Published on our pricing page.', link: { label: 'See Pricing', path: '/pricing' } }, { text: 'A custom quote, after the sales call.' }] },
-  { label: 'Guarantee', cells: [{ lead: '100% money-back.', text: 'Tell us within 7 days and we redo the work. If it still misses, a full refund.', link: { label: 'Read the Guarantee', path: '/guarantee' } }, { text: 'Rarely offered.' }] },
-  { label: 'Best When', cells: [{ text: 'You want the capability to stay in your business.' }, { text: 'You have no one internal and don’t plan to hire.' }] },
+// 14 · Comparison table. One tab per alternative on the /compare outline; every claim comes from the /compare,
+// /why-impact, /guarantee, and /deep-diagnostic outlines. Never invent a figure or a policy.
+const us = {
+  work: { text: 'We do the work with you and train your team to own it.' },
+  pricing: { text: 'Published on our pricing page.', link: { label: 'See Pricing', path: '/pricing' } },
+  guarantee: { lead: '100% money-back.', text: 'Tell us within 7 days and we redo the work. If it still misses, a full refund.', link: { label: 'Read the Guarantee', path: '/guarantee' } },
+  best: { text: 'You want the capability to stay in your business.' },
+};
+const compareTabs = [
+  { id: 'agency', label: 'Marketing Agency', col: 'A Marketing Agency', heading: 'You Own It at the End', sub: 'With an agency you rent the result. With us, the content, the site, the CRM, and the team that runs them are yours.', rows: [
+    { label: 'Who Does the Work', cells: [us.work, { lead: 'They do the work for you.', text: 'You rent the result.' }] },
+    { label: 'What You Own at the End', cells: [{ text: 'The content, the site, the CRM, and a team that runs them.' }, { text: 'A contract.' }] },
+    { label: 'Pricing', cells: [{ text: 'Published on our pricing page. More than an agency if you want everything outsourced forever.', link: { label: 'See Pricing', path: '/pricing' } }, { text: 'A custom quote, after the sales call. Cheaper than us if you never plan to own it.' }] },
+    { label: 'Guarantee', cells: [us.guarantee, { text: 'Rarely offered.' }] },
+    { label: 'Best When', cells: [us.best, { text: 'You have no one internal and don’t plan to hire.' }] },
+  ] },
+  { id: 'freelancer', label: 'Freelancer', col: 'A Freelancer', heading: 'One System, Not One Skill', sub: 'A freelancer is the right call for a single defined project. We build the system that runs everything after it.', rows: [
+    { label: 'Who Does the Work', cells: [us.work, { lead: 'One person, one skill.' }] },
+    { label: 'Scope', cells: [{ text: 'The whole system: the diagnostic first, then the work the roadmap points to.' }, { text: 'A single defined project.' }] },
+    { label: 'Pricing', cells: [us.pricing, { text: 'Cheapest per hour.' }] },
+    { label: 'Guarantee', cells: [us.guarantee, { text: 'Depends on the person.' }] },
+    { label: 'Best When', cells: [us.best, { text: 'You need one landing page, or one defined project.' }] },
+  ] },
+  { id: 'team', label: 'Your Own Team', col: 'Your Own Team', heading: 'Your People, Running a Proven System', sub: 'Doing it yourself means the highest control and the slowest start. We give your team the system and a roadmap to start from.', rows: [
+    { label: 'Who Does the Work', cells: [us.work, { text: 'Your people, start to finish.' }] },
+    { label: 'Where You Start', cells: [{ text: 'A Deep Diagnostic & Roadmap: three weeks, then a 3, 6, and 12-month plan your team can run with or without us.', link: { label: 'See the Deep Diagnostic', path: '/deep-diagnostic' } }, { text: 'Wherever you are today. The slowest start.' }] },
+    { label: 'Control', cells: [{ text: 'Yours. The roadmap is yours with no obligation.' }, { lead: 'The highest.' }] },
+    { label: 'Pricing', cells: [us.pricing, { text: 'Payroll.' }] },
+    { label: 'Best When', cells: [us.best, { text: 'You already have the people and just need a system.' }] },
+  ] },
 ];
 
 ---
@@ -301,14 +325,21 @@ const compareRows = [
   </section>
 
   <div class="mod-bar">
-    <div class="wrap"><b>14 · Comparison Table</b><span>Compare component, .compare: row labels, our column on a soft --fill panel with its name in the accent, the other option plain. Under 760px each row becomes a block with the column names repeated.</span></div>
+    <div class="wrap"><b>14 · Comparison Table With Tabs</b><span>Tabs + Compare components: a pill tab bar (one full-width pill that opens a list under 760px), a centred H3 and sub line per panel, then the table: row labels, our column on a soft --fill panel with its name in the accent, the other option plain. Under 760px each row becomes a block with the column names repeated.</span></div>
   </div>
   <section class="section center">
     <div class="wrap">
-      <h2>How We Compare to an Agency</h2>
+      <h2>How We Compare to Your Other Options</h2>
       <p class="intro">Written the way we teach clients to write comparisons: honestly, including when we lose.</p>
-      <Compare cols={['IMPACT', 'A Marketing Agency']} rows={compareRows} caption="IMPACT compared with a marketing agency" />
-      <div class="actions"><a class="btn primary" href={href('impact', '/compare')}>Compare All Four Options</a></div>
+      <Tabs tabs={compareTabs.map((t) => ({ id: t.id, label: t.label }))} label="Compare IMPACT with your other options" />
+      {compareTabs.map((t, i) => (
+        <div class="tabpanel" id={`panel-${t.id}`} role="tabpanel" aria-labelledby={`tab-${t.id}`} data-panel={t.id} hidden={i !== 0}>
+          <h3>{t.heading}</h3>
+          <p class="sub">{t.sub}</p>
+          <Compare cols={['IMPACT', t.col]} rows={t.rows} caption={`IMPACT compared with ${t.col.toLowerCase()}`} />
+        </div>
+      ))}
+      <div class="actions"><a class="btn primary" href={href('impact', '/compare')}>Read the Full Comparison</a></div>
     </div>
   </section>
 

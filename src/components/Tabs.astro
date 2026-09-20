@@ -1,0 +1,50 @@
+---
+// Tab bar. Pattern from humaninterest.com's category switcher (Bob, 2026-09-20): a soft pill track, the
+// selected tab a raised pill with its name in the accent, the others plain. Under 760px the track becomes
+// one full-width pill showing the current tab, tap to open the list (Human Interest's phone behaviour).
+// Panels are authored next to the bar as `.tabpanel[data-panel=<id>]`; the script hides all but the
+// selected one. Labels are plain text: no icons, no counts.
+interface Tab { id: string; label: string }
+interface Props { tabs: Tab[]; /** aria-label for the group, e.g. "Compare IMPACT with your other options". */ label: string; class?: string }
+const { tabs, label, class: cls } = Astro.props;
+---
+
+<div class:list={['tabbar', cls]} data-tabs>
+  <div class="track" role="tablist" aria-label={label}>
+    {tabs.map((t, i) => <button type="button" role="tab" id={`tab-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} aria-controls={`panel-${t.id}`} tabindex={i === 0 ? undefined : -1} data-tab={t.id}>{t.label}</button>)}
+  </div>
+  <details class="drop">
+    <summary><span>{tabs[0]?.label}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <ul>
+      {tabs.map((t, i) => <li><button type="button" data-tab={t.id} aria-current={i === 0 ? 'true' : undefined}>{t.label}</button></li>)}
+    </ul>
+  </details>
+</div>
+
+<script>
+  for (const bar of document.querySelectorAll<HTMLElement>('[data-tabs]')) {
+    const scope = bar.parentElement!;
+    const tabs = [...bar.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const items = [...bar.querySelectorAll<HTMLButtonElement>('.drop li button')];
+    const drop = bar.querySelector<HTMLDetailsElement>('.drop')!;
+    const current = drop.querySelector('summary span')!;
+    const panels = [...scope.querySelectorAll<HTMLElement>('.tabpanel[data-panel]')];
+    const go = (id: string) => {
+      tabs.forEach((t) => { const on = t.dataset.tab === id; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+      items.forEach((b) => { if (b.dataset.tab === id) { b.setAttribute('aria-current', 'true'); current.textContent = b.textContent; } else b.removeAttribute('aria-current'); });
+      panels.forEach((p) => { p.hidden = p.dataset.panel !== id; });
+      drop.open = false;
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => go(t.dataset.tab!));
+      t.addEventListener('keydown', (e) => {
+        const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        const next = tabs[(i + step + tabs.length) % tabs.length];
+        go(next.dataset.tab!); next.focus();
+      });
+    });
+    items.forEach((b) => b.addEventListener('click', () => go(b.dataset.tab!)));
+  }
+</script>
