@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict');const E=require('./engine.js');const c=require('./catalog.json');let n=0;const test=(name,fn)=>{fn();n++;console.log('PASS '+name)};
+test('five categories and nineteen services',()=>{assert.equal(c.categories.length,5);assert.equal(c.services.length,19);assert.equal(c.services.filter(s=>s.category==='hubspot').length,7)});
+test('all offer ids unique and all references valid',()=>{assert.equal(new Set(c.offers.map(o=>o.id)).size,c.offers.length);c.services.forEach(s=>s.offers.forEach(id=>assert(c.offers.some(o=>o.id===id))));c.offers.forEach(o=>(o.requires||[]).forEach(id=>assert(c.offers.some(o=>o.id===id))))});
+test('content and assignment include coaching once',()=>{const r=E.estimate(c,['assignment-focused','content-manager-intensive','videographer-focused']);assert.equal(r.monthly.min,9000);assert.equal(r.ids.filter(x=>x.startsWith('coaching-')).length,1)});
+test('existing coaching excluded and explained',()=>{const r=E.estimate(c,['content-manager-focused'],{existing:true});assert.equal(r.monthly.min,2000);assert(r.notes.some(x=>x.includes('billed separately')))});
+test('changing coaching cadence replaces existing tier',()=>{const ids=E.add(c,['assignment-focused','coaching-focused'],'coaching-intensive',false);assert.equal(E.estimate(c,ids).monthly.min,4500);assert(!ids.includes('coaching-focused'))});
+test('removing prerequisite removes dependent services',()=>{assert.deepEqual(E.remove(c,['assignment-focused','coaching-focused'],'coaching-focused'),[])});
+test('shared website offers do not duplicate',()=>{assert.equal(E.estimate(c,['website-enhanced','website-enhanced']).project.min,30000)});
+test('finite implementation and overlapping onboarding',()=>{const r=E.estimate(c,['implementation','onboarding-marketing-pro']);assert.equal(r.project.min,15000);assert.equal(r.allocation,5000);assert.equal(r.monthly.count,0);assert.equal(r.excluded.length,1)});
+test('project ranges and unknown totals',()=>{const r=E.estimate(c,['website-elite','development-email']);assert.equal(r.project.min,63000);assert.equal(r.project.max,null);assert.equal(r.custom.length,1)});
+test('tool strategy added once',()=>{const r=E.estimate(c,['tool-platform']);assert.equal(r.project.min,8000);assert.equal(r.project.max,15000)});
+test('optimization first month replaces ongoing fee',()=>{const r=E.estimate(c,['optimization-foundation','coaching-intensive']);assert.equal(r.monthly.min,8500);assert.equal(r.firstMonth.min,11500)});
+test('paid media progressive bands and boundaries',()=>{assert.equal(E.media(c,19999).min,undefined);assert.equal(E.media(c,20000).min,8000);assert.equal(E.media(c,30000).min,9500);assert.equal(E.media(c,40000).min,10700);assert.equal(E.media(c,65000).min,13700);assert.equal(E.media(c,99999).min,17199.9);assert.equal(E.media(c,100000).min,7000);assert.equal(E.media(c,100000).max,null)});
+test('paid media spend separated and combined accurately',()=>{const r=E.estimate(c,['paid-management'],{spend:40000});assert.equal(r.monthly.min,10700);assert.equal(r.spend,40000);assert.equal(r.project.count,0)});
+test('management replaces consulting and extra session',()=>{const ids=E.add(c,['paid-consulting','paid-extra-session'],'paid-management');assert.deepEqual(ids,['paid-management'])});
+test('garbage and duplicate url selections ignored',()=>{assert.deepEqual(E.normalize(c,['not-real','diagnostic','diagnostic']),['diagnostic'])});
+test('extra consulting session replaces management',()=>{const ids=E.add(c,['paid-management'],'paid-extra-session');assert(ids.includes('paid-consulting'));assert(!ids.includes('paid-management'))});
+console.log(n+' pricing checks passed');

@@ -1,0 +1,758 @@
+{
+  "schemaVersion": 1,
+  "currency": "USD",
+  "updated": "2026-10-25",
+  "categories": [
+    {
+      "id": "coaching",
+      "name": "Sales & Marketing Coaching",
+      "description": "Build a sales and marketing team that earns trust and wins customers."
+    },
+    {
+      "id": "content-training",
+      "name": "Content Training",
+      "description": "Give your in-house creators the skills and feedback to do their best work."
+    },
+    {
+      "id": "websites",
+      "name": "Websites",
+      "description": "Build a website your buyers can trust and your team can own."
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "description": "Set up your tools, develop your team and get more from your CRM."
+    },
+    {
+      "id": "paid-media",
+      "name": "Paid Media",
+      "description": "Get expert help with the campaigns you run or the ones we manage together."
+    }
+  ],
+  "services": [
+    {
+      "id": "diagnostic",
+      "category": "coaching",
+      "name": "Deep Diagnostic & Roadmap",
+      "description": "Find your biggest growth opportunities and leave with a clear plan.",
+      "offers": [
+        "diagnostic"
+      ],
+      "note": ""
+    },
+    {
+      "id": "coaching",
+      "category": "coaching",
+      "name": "Endless Customers Coaching",
+      "description": "Build the strategy, habits and internal ownership to grow with the Endless Customers system.",
+      "offers": [
+        "coaching-focused",
+        "coaching-intensive"
+      ],
+      "note": "Most clients start with more frequent support, then adjust the cadence as their needs change."
+    },
+    {
+      "id": "assignment",
+      "category": "coaching",
+      "name": "Assignment Selling Training",
+      "description": "Help your sales team use educational content to move real conversations forward.",
+      "offers": [
+        "assignment-focused",
+        "assignment-intensive"
+      ],
+      "note": "Requires Endless Customers Coaching. Coaching is counted once in your estimate."
+    },
+    {
+      "id": "content-manager",
+      "category": "content-training",
+      "name": "Content Manager Onboarding & Training",
+      "description": "Develop one in-house content manager through practice, feedback and a tailored learning plan.",
+      "offers": [
+        "content-manager-focused",
+        "content-manager-intensive"
+      ],
+      "note": "Requires Endless Customers Coaching. Your team owns content production."
+    },
+    {
+      "id": "videographer",
+      "category": "content-training",
+      "name": "Videographer Onboarding & Training",
+      "description": "Build in-house skills in planning, filming, editing and using video in sales and marketing.",
+      "offers": [
+        "videographer-focused",
+        "videographer-intensive"
+      ],
+      "note": "Requires Endless Customers Coaching. Your team owns video production."
+    },
+    {
+      "id": "redesign",
+      "category": "websites",
+      "name": "Website Redesigns",
+      "description": "Build a buyer-focused website and learn how to manage it.",
+      "offers": [
+        "website-enhanced",
+        "website-elite"
+      ],
+      "note": "Project budget; billed monthly on an agreed schedule. Scope determines the final price."
+    },
+    {
+      "id": "optimization",
+      "category": "websites",
+      "name": "Website Optimization",
+      "description": "Develop your team\u2019s ability to improve the website you already have.",
+      "offers": [
+        "optimization-foundation",
+        "optimization-momentum"
+      ],
+      "note": "Assessment and setup in month one. Design and development are scoped separately."
+    },
+    {
+      "id": "learning-center",
+      "category": "websites",
+      "name": "Learning Centers",
+      "description": "Help buyers find the answers they need in an organized resource library.",
+      "offers": [
+        "learning-center"
+      ],
+      "note": ""
+    },
+    {
+      "id": "tools",
+      "category": "websites",
+      "name": "Self-Service Tools",
+      "description": "Give buyers a useful calculator, assessment or other decision tool.",
+      "offers": [
+        "tool-platform",
+        "tool-custom",
+        "tool-strategy"
+      ],
+      "note": "Tool builds require a separate strategy engagement. We review any discovery already covered in a larger scope."
+    },
+    {
+      "id": "onboarding",
+      "category": "hubspot",
+      "name": "HubSpot Onboarding",
+      "description": "Get started with the hubs you use. Add each hub separately.",
+      "offers": [
+        "onboarding-marketing-pro",
+        "onboarding-marketing-enterprise",
+        "onboarding-sales-pro",
+        "onboarding-sales-enterprise",
+        "onboarding-service-pro",
+        "onboarding-service-enterprise",
+        "onboarding-content-pro",
+        "onboarding-content-enterprise"
+      ],
+      "note": "Multiple hubs are an unadjusted budget. Shared setup is reviewed before a quote."
+    },
+    {
+      "id": "admin",
+      "category": "hubspot",
+      "name": "HubSpot Admin Onboarding",
+      "description": "Teach your internal administrator to own your portal and support your team.",
+      "offers": [
+        "admin-focused",
+        "admin-intensive"
+      ],
+      "note": "Available standalone. No Endless Customers Coaching prerequisite."
+    },
+    {
+      "id": "implementation",
+      "category": "hubspot",
+      "name": "HubSpot Implementation",
+      "description": "Get your core CRM and workflows working through a do-it-with-you approach.",
+      "offers": [
+        "implementation"
+      ],
+      "note": "Billed monthly over the planned implementation. Duration describes the work, not a minimum commitment."
+    },
+    {
+      "id": "hubspot-training",
+      "category": "hubspot",
+      "name": "HubSpot Training",
+      "description": "Help your team use HubSpot confidently in their day-to-day work.",
+      "offers": [
+        "training-core",
+        "training-advanced",
+        "training-organization"
+      ],
+      "note": ""
+    },
+    {
+      "id": "workshop",
+      "category": "hubspot",
+      "name": "HubSpot Workshops",
+      "description": "Bring your team together for focused, hands-on learning.",
+      "offers": [
+        "workshop"
+      ],
+      "note": ""
+    },
+    {
+      "id": "integrations",
+      "category": "hubspot",
+      "name": "HubSpot Integrations",
+      "description": "Connect the systems your business relies on.",
+      "offers": [
+        "integration-small",
+        "integration-medium",
+        "integration-complex"
+      ],
+      "note": "These are planning ranges. Every integration requires a custom scope and quote; software fees are additional."
+    },
+    {
+      "id": "hubspot-development",
+      "category": "hubspot",
+      "name": "HubSpot Web Development",
+      "description": "Build a full website or add the pages, templates and modules your team needs.",
+      "offers": [
+        "website-enhanced",
+        "website-elite",
+        "learning-center",
+        "tool-platform",
+        "tool-custom",
+        "development-landing",
+        "development-templates",
+        "development-email",
+        "development-modules"
+      ],
+      "note": "Full websites use the same packages as Website Redesigns. Selecting the same package in both categories never adds a second fee."
+    },
+    {
+      "id": "paid-audit",
+      "category": "paid-media",
+      "name": "Paid Media Audits",
+      "description": "Understand where your current campaigns can improve.",
+      "offers": [
+        "paid-audit"
+      ],
+      "note": ""
+    },
+    {
+      "id": "paid-management",
+      "category": "paid-media",
+      "name": "Paid Media Management",
+      "description": "Get a team to run and improve your paid campaigns.",
+      "offers": [
+        "paid-management"
+      ],
+      "note": "Ad spend is paid separately to the platforms. Management eligibility and fees depend on monthly spend."
+    },
+    {
+      "id": "paid-consulting",
+      "category": "paid-media",
+      "name": "Paid Media Consulting",
+      "description": "Get expert direction while your internal team manages the campaigns.",
+      "offers": [
+        "paid-consulting",
+        "paid-extra-session"
+      ],
+      "note": ""
+    }
+  ],
+  "offers": [
+    {
+      "id": "diagnostic",
+      "group": "diagnostic",
+      "title": "Deep Diagnostic & Roadmap",
+      "min": 5000,
+      "max": 5000,
+      "basis": "project",
+      "detail": "A 124-point inspection, leadership intake, written findings and a prioritized roadmap.",
+      "authority": "confirmed"
+    },
+    {
+      "id": "coaching-focused",
+      "group": "coaching",
+      "title": "Focused coaching",
+      "min": 2500,
+      "max": 2500,
+      "basis": "monthly",
+      "detail": "Two 60-minute coaching sessions per month.",
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "coaching-intensive",
+      "group": "coaching",
+      "title": "Intensive coaching",
+      "min": 3500,
+      "max": 3500,
+      "basis": "monthly",
+      "detail": "Four 60-minute coaching sessions per month.",
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "assignment-focused",
+      "group": "assignment",
+      "title": "Focused assignment selling training",
+      "min": 1000,
+      "max": 1000,
+      "basis": "monthly",
+      "detail": "One training session and one work review per month.",
+      "requires": [
+        "coaching-focused"
+      ],
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "assignment-intensive",
+      "group": "assignment",
+      "title": "Intensive assignment selling training",
+      "min": 2000,
+      "max": 2000,
+      "basis": "monthly",
+      "detail": "Two training sessions and two work reviews per month.",
+      "requires": [
+        "coaching-focused"
+      ],
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "content-manager-focused",
+      "group": "content-manager",
+      "title": "Focused content manager training",
+      "min": 2000,
+      "max": 2000,
+      "basis": "monthly",
+      "detail": "Two sessions and two content reviews per month.",
+      "requires": [
+        "coaching-focused"
+      ],
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "content-manager-intensive",
+      "group": "content-manager",
+      "title": "Intensive content manager training",
+      "min": 3500,
+      "max": 3500,
+      "basis": "monthly",
+      "detail": "Four sessions and four content reviews per month.",
+      "requires": [
+        "coaching-focused"
+      ],
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "videographer-focused",
+      "group": "videographer",
+      "title": "Focused videographer training",
+      "min": 2000,
+      "max": 2000,
+      "basis": "monthly",
+      "detail": "Two sessions and two video reviews per month.",
+      "requires": [
+        "coaching-focused"
+      ],
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "videographer-intensive",
+      "group": "videographer",
+      "title": "Intensive videographer training",
+      "min": 3500,
+      "max": 3500,
+      "basis": "monthly",
+      "detail": "Four sessions and four video reviews per month.",
+      "requires": [
+        "coaching-focused"
+      ],
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "website-enhanced",
+      "group": "redesign",
+      "title": "Enhanced website",
+      "min": 30000,
+      "max": 60000,
+      "basis": "project",
+      "detail": "A website built with TRUST on HubSpot, with strategy, team training and launch support. TRUST is included.",
+      "authority": "published package"
+    },
+    {
+      "id": "website-elite",
+      "group": "redesign",
+      "title": "Elite website",
+      "min": 63000,
+      "max": null,
+      "basis": "project",
+      "detail": "Bespoke design, architecture and custom functionality. Final scope determines the budget.",
+      "authority": "published package"
+    },
+    {
+      "id": "optimization-foundation",
+      "group": "optimization",
+      "title": "Foundation",
+      "min": 5000,
+      "max": 5000,
+      "basis": "monthly",
+      "detail": "Two calls and one primary improvement workstream per month.",
+      "firstMonth": 8000,
+      "authority": "published price; assumed workstreams",
+      "summaryTitle": "Website Optimization \u00b7 Foundation"
+    },
+    {
+      "id": "optimization-momentum",
+      "group": "optimization",
+      "title": "Momentum",
+      "min": 7500,
+      "max": 7500,
+      "basis": "monthly",
+      "detail": "Two calls and two improvement workstreams, with deeper research and review.",
+      "firstMonth": 8000,
+      "authority": "published price; assumed workstreams",
+      "summaryTitle": "Website Optimization \u00b7 Momentum"
+    },
+    {
+      "id": "learning-center",
+      "group": "learning-center",
+      "title": "Learning Center",
+      "min": 5000,
+      "max": null,
+      "basis": "project",
+      "detail": "A branded resource library, agreed filters, setup and team training.",
+      "authority": "published starting price"
+    },
+    {
+      "id": "tool-strategy",
+      "group": "tool-strategy",
+      "title": "Self-service tool strategy",
+      "min": 3000,
+      "max": 3000,
+      "basis": "project",
+      "detail": "Buyer journey, decision logic and scope for one tool or a related tool family.",
+      "authority": "working assumption"
+    },
+    {
+      "id": "tool-platform",
+      "group": "tool-build",
+      "title": "Platform-based tool",
+      "min": 5000,
+      "max": 12000,
+      "basis": "project",
+      "detail": "An agreed buyer tool built on an existing platform.",
+      "requires": [
+        "tool-strategy"
+      ],
+      "authority": "published package"
+    },
+    {
+      "id": "tool-custom",
+      "group": "tool-build",
+      "title": "Custom-built tool",
+      "min": 15000,
+      "max": 70000,
+      "basis": "project",
+      "detail": "Custom logic, user experience and agreed connections.",
+      "requires": [
+        "tool-strategy"
+      ],
+      "authority": "published package"
+    },
+    {
+      "id": "onboarding-marketing-pro",
+      "group": "onboarding-marketing",
+      "title": "Marketing Hub Professional",
+      "min": 5000,
+      "max": 5000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "onboarding-marketing-enterprise",
+      "group": "onboarding-marketing",
+      "title": "Marketing Hub Enterprise",
+      "min": 9000,
+      "max": 9000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "onboarding-sales-pro",
+      "group": "onboarding-sales",
+      "title": "Sales Hub Professional",
+      "min": 3000,
+      "max": 3000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "onboarding-sales-enterprise",
+      "group": "onboarding-sales",
+      "title": "Sales Hub Enterprise",
+      "min": 6000,
+      "max": 6000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "onboarding-service-pro",
+      "group": "onboarding-service",
+      "title": "Service Hub Professional",
+      "min": 3000,
+      "max": 3000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "onboarding-service-enterprise",
+      "group": "onboarding-service",
+      "title": "Service Hub Enterprise",
+      "min": 5000,
+      "max": 5000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "onboarding-content-pro",
+      "group": "onboarding-content",
+      "title": "Content Hub Professional",
+      "min": 2000,
+      "max": 2000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "onboarding-content-enterprise",
+      "group": "onboarding-content",
+      "title": "Content Hub Enterprise",
+      "min": 3000,
+      "max": 3000,
+      "basis": "project",
+      "detail": "Guided setup and team enablement. Substantial migration and custom engineering are separate.",
+      "authority": "existing preview price"
+    },
+    {
+      "id": "admin-focused",
+      "group": "admin",
+      "title": "Focused admin training",
+      "min": 2000,
+      "max": 2000,
+      "basis": "monthly",
+      "detail": "Two sessions per month, with practice reviews and questions between sessions.",
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "admin-intensive",
+      "group": "admin",
+      "title": "Intensive admin training",
+      "min": 3500,
+      "max": 3500,
+      "basis": "monthly",
+      "detail": "Four sessions per month, with practice reviews and questions between sessions.",
+      "authority": "confirmed price; assumed cadence"
+    },
+    {
+      "id": "implementation",
+      "group": "implementation",
+      "title": "Guided implementation",
+      "min": 15000,
+      "max": 15000,
+      "basis": "project",
+      "detail": "A planned three-month engagement with weekly working sessions. We build with you, and your internal owner takes an active role.",
+      "plannedMonths": 3,
+      "monthlyAllocation": 5000,
+      "authority": "confirmed total; assumed allocation"
+    },
+    {
+      "id": "training-core",
+      "group": "hubspot-training",
+      "title": "Core",
+      "min": 3500,
+      "max": 3500,
+      "basis": "monthly",
+      "detail": "Two monthly sessions for up to 10 people in one department.",
+      "authority": "published price; assumed capacity where unspecified",
+      "summaryTitle": "HubSpot Training \u00b7 Core"
+    },
+    {
+      "id": "training-advanced",
+      "group": "hubspot-training",
+      "title": "Advanced",
+      "min": 6000,
+      "max": 6000,
+      "basis": "monthly",
+      "detail": "Four monthly sessions across agreed tracks, for up to 20 participants.",
+      "authority": "published price; assumed capacity where unspecified",
+      "summaryTitle": "HubSpot Training \u00b7 Advanced"
+    },
+    {
+      "id": "training-organization",
+      "group": "hubspot-training",
+      "title": "Organization",
+      "min": 10000,
+      "max": 10000,
+      "basis": "monthly",
+      "detail": "Multiple role-based tracks, with attendance and cadence agreed in scope.",
+      "authority": "published price; assumed capacity where unspecified",
+      "summaryTitle": "HubSpot Training \u00b7 Organization"
+    },
+    {
+      "id": "workshop",
+      "group": "workshop",
+      "title": "On-site HubSpot workshop",
+      "min": 12500,
+      "max": 12500,
+      "basis": "project",
+      "detail": "A full on-site day, planning session and four virtual follow-ups. Travel is additional.",
+      "authority": "published price; assumed delivery allowances"
+    },
+    {
+      "id": "integration-small",
+      "group": "integration",
+      "title": "Small integration",
+      "min": 500,
+      "max": 2500,
+      "basis": "project",
+      "detail": "A supported connector with straightforward, limited mapping.",
+      "customQuote": true,
+      "authority": "Bob-suggested planning band"
+    },
+    {
+      "id": "integration-medium",
+      "group": "integration",
+      "title": "Medium integration",
+      "min": 2500,
+      "max": 10000,
+      "basis": "project",
+      "detail": "More objects, transformations or synchronization rules.",
+      "customQuote": true,
+      "authority": "Bob-suggested planning band"
+    },
+    {
+      "id": "integration-complex",
+      "group": "integration",
+      "title": "Complex integration",
+      "min": 10000,
+      "max": null,
+      "basis": "project",
+      "detail": "Custom APIs, multiple systems or complex architecture.",
+      "customQuote": true,
+      "authority": "Bob-suggested planning band"
+    },
+    {
+      "id": "development-landing",
+      "group": "development-landing",
+      "title": "Landing pages",
+      "min": null,
+      "max": null,
+      "basis": "custom",
+      "detail": "Scope depends on the assets, design, editable fields and connections you need.",
+      "authority": "working assumption; no price invented"
+    },
+    {
+      "id": "development-templates",
+      "group": "development-templates",
+      "title": "Page and blog templates",
+      "min": null,
+      "max": null,
+      "basis": "custom",
+      "detail": "Scope depends on the assets, design, editable fields and connections you need.",
+      "authority": "working assumption; no price invented"
+    },
+    {
+      "id": "development-email",
+      "group": "development-email",
+      "title": "Email templates",
+      "min": null,
+      "max": null,
+      "basis": "custom",
+      "detail": "Scope depends on the assets, design, editable fields and connections you need.",
+      "authority": "working assumption; no price invented"
+    },
+    {
+      "id": "development-modules",
+      "group": "development-modules",
+      "title": "Reusable modules",
+      "min": null,
+      "max": null,
+      "basis": "custom",
+      "detail": "Scope depends on the assets, design, editable fields and connections you need.",
+      "authority": "working assumption; no price invented"
+    },
+    {
+      "id": "paid-audit",
+      "group": "paid-audit",
+      "title": "Complimentary audit",
+      "min": 0,
+      "max": 0,
+      "basis": "free",
+      "detail": "For qualified prospects after a fit conversation. Account coverage is agreed first.",
+      "authority": "published offer"
+    },
+    {
+      "id": "paid-management",
+      "group": "paid-support",
+      "title": "Paid media management",
+      "min": null,
+      "max": null,
+      "basis": "media",
+      "detail": "Campaign execution, creative support, monitoring and fortnightly calls. Management starts at $20,000 in monthly ad spend.",
+      "authority": "published tiers; assumed progressive formula"
+    },
+    {
+      "id": "paid-consulting",
+      "group": "paid-support",
+      "title": "Paid media consulting",
+      "min": 4000,
+      "max": 4000,
+      "basis": "monthly",
+      "detail": "One 45-minute monthly session, a work review, written feedback and a performance summary. Your team executes.",
+      "authority": "published price"
+    },
+    {
+      "id": "paid-extra-session",
+      "group": "paid-extra-session",
+      "title": "Additional consulting session",
+      "min": 500,
+      "max": 500,
+      "basis": "monthly",
+      "detail": "One additional 60-minute session per month, including preparation.",
+      "requires": [
+        "paid-consulting"
+      ],
+      "authority": "working assumption"
+    }
+  ],
+  "media": {
+    "minSpend": 20000,
+    "customThreshold": 100000,
+    "base": 5000,
+    "customBase": 7000,
+    "bands": [
+      {
+        "upTo": 30000,
+        "rate": 0.15
+      },
+      {
+        "upTo": 65000,
+        "rate": 0.12
+      },
+      {
+        "upTo": 100000,
+        "rate": 0.1
+      }
+    ]
+  },
+  "terms": {
+    "billing": "All billing is monthly.",
+    "cancellation": "Cancel anytime with 30 days\u2019 notice.",
+    "guarantee": "Our work is backed by our 100% money-back guarantee.",
+    "guaranteeUrl": "https://www.impactplus.com/guarantee",
+    "externalCosts": "Software, ad spend, travel and other third-party costs are additional unless expressly included."
+  },
+  "resources": [
+    {
+      "category": "websites",
+      "title": "Explore the TRUST Theme",
+      "url": "https://www.impactplus.com/services/hubspot-trust-theme"
+    }
+  ]
+}
